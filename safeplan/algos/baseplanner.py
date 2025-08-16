@@ -1,7 +1,7 @@
 
 """
 @file baseplanner.py
-@brief Base class for grid planning algorithms.
+@brief Base class for planning algorithms.
 
 @details
 Provides a common interface for planners that compute a path on an

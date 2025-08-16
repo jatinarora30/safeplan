@@ -1,8 +1,37 @@
 """
-Reference for A star: https://www.geeksforgeeks.org/python/a-search-algorithm-in-python/ 
+@file a_star.py
+@brief A* planner for N-dimensional occupancy grids.
 
-Reference for adjacent nodes: https://www.geeksforgeeks.org/python/python-adjacent-coordinates-in-n-dimension/ 
+@details
+Implements A* (A-star) search over an N-D NumPy occupancy grid where 0 denotes
+free space and 1 denotes an obstacle. The planner takes a start and goal index
+(tuples of ints) and returns a collision-free path if one exists. The heuristic
+and neighborhood definition are provided by @ref heuristics() and
+@ref adjacentCoordinates() and must be chosen consistently.
+
+@par Inputs
+- @p start : tuple[int, ...] — start grid cell (e.g., (row, col))
+- @p goal  : tuple[int, ...] — goal grid cell
+- @p grid  : numpy.ndarray (N-D), values {0=free, 1=obstacle}
+
+@par Outputs
+- @p success : int — 1 if a path is found, else 0
+- @p path    : list[tuple[int, ...]] — sequence of cells from start→goal (inclusive)
+- @p info    : list[str] — diagnostics (e.g., "Invalid goal")
+
+@note Ensure the heuristic matches the move set:
+      - 4-neighbors → Manhattan distance
+      - 8-neighbors / diagonal moves → Chebyshev (or Euclidean with proper step costs)
+
+@see BasePlanner
+
+@references
+- A* overview: https://www.geeksforgeeks.org/python/a-search-algorithm-in-python/
+- N-D adjacent coordinates: https://www.geeksforgeeks.org/python/python-adjacent-coordinates-in-n-dimension/
+
+
 """
+
 
 from baseplanner import BasePlanner
 import math 
@@ -13,7 +42,11 @@ import numpy as np
 class A_star(BasePlanner):
     
     def __init__(self):
-        print("Intializing A* ...")
+        """
+        @brief Construct the class for A* planner
+
+        @post Instance is initialized.
+        """
         
         self.success=0
         self.info=[]
@@ -22,20 +55,36 @@ class A_star(BasePlanner):
      
         
     def isValid(self, grid_cell):
+        """
+        A function to return if cell is valid or not under the max limits of size of grids and 0 
+        @param start Takes the grid cell as input
+        @return bool Returns true or false depends on if cell is valid or not
+        """
         for i in range(self.dimension):
             if not (0 <= grid_cell[i] < self.grid.shape[i]):
                 return False
         return True
 
     def heuristics(self,node1,node2):
+        """
+        A function to return the cost of heuristics between two nodes depending on the eucledian cost 
+        @param node1 Takes input first node two get distance between distances
+        @param node2 Takes input second node two get distance between distances
+        @return cost Returns the eucledian cost between two nodes
+        """
         cost=0
-        
         for i in range(0,self.dimension):
             cost+=np.square(abs(node1[i]-node2[i]))
         return np.sqrt(cost)
             
             
     def adjacentCoordinates(self,node):
+        """
+        A function to return the cost of heuristics between two nodes depending on the eucledian cost ,
+        itertools.product function is used to compute the directions of adjacent coordinates.
+        @param node Takes a node in the input 
+        @return cost Returns the adjacent nodes in terms of coordinates
+        """
         offsets=[-1,0,1]
         combinations=itertools.product(offsets,repeat=self.dimension)
         adjacentNodes=[]
@@ -48,6 +97,16 @@ class A_star(BasePlanner):
                 
         
     def plan(self,start,goal,grid):
+        """
+        A Plan function  for A*, which plans on given start,goal and grid returns Path, Sucess, info
+        @param start Takes the n-dimensional start input
+        @param goal Takes the n-dimension goal input
+        @param grid Takes the N x N dimensional grid
+        @return success Tells if the path was found( as 1 ) or not ( as 0 )
+        @return Path Returns the path from star to goal in the form of a tuple
+        @return info Returns list of statements of what may may went wrong in finding path from start to goal
+        @throws NotImplementedError If a subclass does not override this method.
+        """
         self.start=tuple(start)
         self.goal=tuple(goal)
         self.grid=grid
@@ -131,72 +190,3 @@ class A_star(BasePlanner):
         
 
 
-
-tests = [
-    # (start, goal, grid, description)
-
-    # T1: Empty grid, straight line
-    ([0, 0], [0, 4], np.zeros((5, 5), dtype=int), "Empty grid, straight path"),
-
-    # T2: Start == Goal
-    ([1, 1], [1, 1], np.zeros((3, 3), dtype=int), "Start equals goal"),
-
-    # T3: No path (solid wall)
-    ([1, 2], [3, 2], (lambda g: (g.__setitem__((2, slice(None)), 1), g)[1])(np.zeros((5, 5), dtype=int)),
-     "No path due to wall"),
-
-    # T4: Goal cell blocked
-    ([0, 0], [2, 2], (lambda g: (g.__setitem__((2, 2), 1), g)[1])(np.zeros((3, 3), dtype=int)),
-     "Goal is an obstacle"),
-
-    # T5: Start cell blocked
-    ([0, 0], [2, 2], (lambda g: (g.__setitem__((0, 0), 1), g)[1])(np.zeros((3, 3), dtype=int)),
-     "Start is an obstacle"),
-
-    # T6: Your original maze-like grid
-    ([6, 4], [6, 2], np.array([
-        [1, 0, 1, 1, 1, 1, 0, 1, 1, 1],
-        [1, 1, 1, 0, 1, 1, 1, 0, 1, 1],
-        [1, 1, 1, 0, 1, 1, 0, 1, 0, 1],
-        [0, 0, 1, 0, 1, 0, 0, 0, 0, 1],
-        [1, 1, 1, 0, 1, 1, 1, 0, 1, 0],
-        [1, 0, 1, 1, 1, 1, 0, 1, 0, 0],
-        [1, 0, 0, 0, 0, 1, 0, 0, 0, 1],
-        [1, 0, 1, 1, 1, 1, 0, 1, 1, 1],
-        [1, 1, 1, 0, 0, 0, 1, 0, 0, 1]
-    ], dtype=int), "Given example"),
-
-    # T7: Narrow corridor with a turn
-    ([1, 1], [4, 4], (lambda g: (g.__setitem__((slice(1,5), 1), 0),
-                                  g.__setitem__((4, slice(1,5)), 0), g)[2])(np.ones((6, 6), dtype=int)),
-     "Narrow corridor with turn"),
-
-    # T8: Multiple shortest paths
-    ([0, 0], [3, 3], np.zeros((4, 4), dtype=int), "Multiple optimal paths"),
-
-    # T9: Diagonal-only path (succeeds only if diagonals allowed)
-    ([0, 0], [1, 1], np.array([[0, 1],
-                                [1, 0]], dtype=int), "Diagonal-only path"),
-
-    # T10: Invalid start (outside grid)
-    ([-1, 0], [2, 2], np.zeros((3, 3), dtype=int), "Invalid start index"),
-
-    # T11: Invalid goal (outside grid)
-    ([0, 0], [3, 3], np.zeros((3, 3), dtype=int), "Invalid goal index"),
-
-    # T12: 3D grid with obstacles (N-D support)
-    ([0, 0, 0], [2, 2, 2], (lambda g: (
-        g.__setitem__((1, 1, slice(None)), 1),
-        g.__setitem__((1, slice(None), 1), 1),
-        g.__setitem__((slice(None), 1, 1), 1), g)[3])(np.zeros((3, 3, 3), dtype=int)),
-     "3D grid with central cross blocked"),
-]
-
-# --- Harness ---
-planner = A_star()
-for i, (s, t, g, desc) in enumerate(tests, 1):
-    print(f"\n=== Test {i}: {desc} ===")
-    success, path, info = planner.plan(s, t, g)
-    print("Success:", success)
-    print("Path   :", path)
-    print("Info   :", info)

@@ -7,7 +7,7 @@ EXTRACT_ALL            = YES
 EXTENSION_MAPPING      = py=Python
 FILTER_PATTERNS        = *.py="python3 -m doxypypy.doxypypy -a -c"
 GENERATE_HTML          = YES
-GENERATE_LATEX         = NO
+GENERATE_LATEX         = YES
 USE_MDFILE_AS_MAINPAGE = README.md
 HAVE_DOT               = YES
 CLASS_GRAPH            = YES

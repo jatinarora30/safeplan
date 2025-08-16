@@ -1,0 +1,55 @@
+\hypertarget{a__star_8py}{}\doxysection{safeplan/algos/a\+\_\+star.py File Reference}
+\label{a__star_8py}\index{safeplan/algos/a\_star.py@{safeplan/algos/a\_star.py}}
+
+
+A$\ast$ planner for N-\/dimensional occupancy grids.  
+
+
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classa__star_1_1A__star}{a\+\_\+star.\+A\+\_\+star}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \mbox{\hyperlink{namespacea__star}{a\+\_\+star}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A$\ast$ planner for N-\/dimensional occupancy grids. 
+
+Implements A$\ast$ (A-\/star) search over an N-\/D Num\+Py occupancy grid where 0 denotes free space and 1 denotes an obstacle. The planner takes a start and goal index (tuples of ints) and returns a collision-\/free path if one exists. The heuristic and neighborhood definition are provided by heuristics() and adjacent\+Coordinates() and must be chosen consistently.
+
+\begin{DoxyParagraph}{Inputs}
+
+\begin{DoxyItemize}
+\item {\ttfamily start} \+: tuple\mbox{[}int, ...\mbox{]} — start grid cell (e.\+g., (row, col))
+\item {\ttfamily goal} \+: tuple\mbox{[}int, ...\mbox{]} — goal grid cell
+\item {\ttfamily grid} \+: numpy.\+ndarray (N-\/D), values \{0=free, 1=obstacle\}
+\end{DoxyItemize}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Outputs}
+
+\begin{DoxyItemize}
+\item {\ttfamily success} \+: int — 1 if a path is found, else 0
+\item {\ttfamily path} \+: list\mbox{[}tuple\mbox{[}int, ...\mbox{]}\mbox{]} — sequence of cells from start→goal (inclusive)
+\item {\ttfamily info} \+: list\mbox{[}str\mbox{]} — diagnostics (e.\+g., \char`\"{}\+Invalid goal\char`\"{})
+\end{DoxyItemize}
+\end{DoxyParagraph}
+\begin{DoxyNote}{Note}
+Ensure the heuristic matches the move set\+:
+\begin{DoxyItemize}
+\item 4-\/neighbors → Manhattan distance
+\item 8-\/neighbors / diagonal moves → Chebyshev (or Euclidean with proper step costs)
+\end{DoxyItemize}
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+Base\+Planner
+\end{DoxySeeAlso}
+@references
+\begin{DoxyItemize}
+\item A$\ast$ overview\+: \href{https://www.geeksforgeeks.org/python/a-search-algorithm-in-python/}{\texttt{ https\+://www.\+geeksforgeeks.\+org/python/a-\/search-\/algorithm-\/in-\/python/}}
+\item N-\/D adjacent coordinates\+: \href{https://www.geeksforgeeks.org/python/python-adjacent-coordinates-in-n-dimension/}{\texttt{ https\+://www.\+geeksforgeeks.\+org/python/python-\/adjacent-\/coordinates-\/in-\/n-\/dimension/}} 
+\end{DoxyItemize}

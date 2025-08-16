@@ -1,0 +1,17 @@
+{
+    "envName": "Env2",
+    "description": "Maze type environment",
+    "gridSize": 10,
+    "cellSize":0.5,
+    "dimensionOfGrid": 2,
+    "numStartGoals": 2,
+    "randomStartGoal": false,
+     "polygons": [
+        {"polygon": [[0, 0],[0,5],[5,5],[5,0]]},
+        {"polygon": [[7, 7],[7,9],[9,9],[9,7]]}
+    ],
+    "startGoalPairs": [
+        {"start": [0, 0], "goal": [5, 5]},
+        {"start": [10, 0], "goal": [7, 8]}
+    ]
+}
