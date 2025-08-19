@@ -20,7 +20,7 @@ It calculates eucledian distance between nodes for N - dimensional path
 
 """
 import numpy as np
-from baseeval import BaseEval
+from .baseeval import BaseEval
 import math
 class PathCost(BaseEval):
     def __init__(self):
@@ -46,5 +46,4 @@ class PathCost(BaseEval):
         for k in range(len(path)-1):
             val = math.dist(path[k],path[k+1])
             self.value+=val
-        print(cellSize)
         return self.value * cellSize

@@ -33,7 +33,7 @@ and neighborhood definition are provided by @ref heuristics() and
 """
 
 
-from baseplanner import BasePlanner
+from .baseplanner import BasePlanner
 import math 
 import heapq
 import itertools
@@ -117,7 +117,7 @@ class A_star(BasePlanner):
         self.sizes=[]
         for i in range(0,self.dimension):
             self.sizes.append(np.size(grid,axis=i))
-        print(self.sizes)
+        
         if not self.isValid(self.start):
             self.info.append("Invalid start ")
             return self.success,self.path,self.info
@@ -155,8 +155,6 @@ class A_star(BasePlanner):
             
             #calculating alternate nodes
             adjacentNodes=self.adjacentCoordinates(self.node)
-            print(adjacentNodes)
-            print
             
             for k in range(len(adjacentNodes)):
                 if self.isValid(adjacentNodes[k]) and self.grid[adjacentNodes[k]]==0 and adjacentNodes[k] not in visited:
@@ -181,7 +179,6 @@ class A_star(BasePlanner):
                 
             self.path.append(self.start)
             self.path.reverse()
-            print(type(self.path))
             
         
         return self.success,self.path,self.info

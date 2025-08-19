@@ -1,0 +1,17 @@
+{
+  "evalDetails": [
+    {"name": "PathCost", "args": {"normalize": true}}
+  ],
+  "algoDetails": [
+    {"name": "A_star", "args": {"diagonal": false, "tie_break": "g_first"}},
+    {"name": "Cstar", "args": {"diagonal": false, "tie_break": "g_first"}}
+  ],
+  "envDetails": [
+    {
+      "generateGrid": [
+        {"name": "env1", "args": {}},
+        {"name": "env2", "args": {}}
+      ]
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+    "envName": "CsvEnv1",
+    "description": "Maze type environment",
+    "fileName":"abc.csv",
+    "cellSize":0.5,
+    "randomStartGoal": true,
+    "numStartGoals": 5,
+    "startGoalPairs": []
+}

@@ -1,0 +1,10 @@
+doxygen Doxyfile   : Generate documentation
+
+env file:
+1. add csv support
+
+main file
+1. logging system
+2. Mean evaluating system
+3. plotting grid,run individual everything
+4. Visualizing

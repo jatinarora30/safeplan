@@ -1,5 +1,0 @@
-doxygen Doxyfile   : Generate documentation
-
-env file:
-1. Add start and goal pair
-2. add csv support
