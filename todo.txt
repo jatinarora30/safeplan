@@ -2,9 +2,15 @@ doxygen Doxyfile   : Generate documentation
 
 env file:
 1. add csv support
+2. adding more envs
+
+algos
+1. adding algos
+
+e
 
 main file
-1. logging system
+1. how to resume
 2. Mean evaluating system
 3. plotting grid,run individual everything
 4. Visualizing

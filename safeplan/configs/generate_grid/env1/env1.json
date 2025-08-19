@@ -1,6 +1,6 @@
 {
     "envName": "Env1",
-    "description": "Maze type environment",
+    "envDes": "Maze type environment",
     "gridSize": 10,
     "cellSize":0.5,
     "dimensionOfGrid": 2,

@@ -1,4 +1,5 @@
 {
+  "runDetails": "run1",
   "evalDetails": [
     {"name": "PathCost", "args": {"normalize": true}}
   ],

@@ -104,7 +104,7 @@ class GenerateGrid(BaseEnv):
             data = json.load(file)
         self.gridSize = data["gridSize"]
         self.envName = data["envName"]
-        self.envDes = data["description"]
+        self.envDes = data["envDes"]
         self.dimension = data["dimensionOfGrid"]
         self.cellSize = data["cellSize"]
         self.randomStartGoal = data["randomStartGoal"]
@@ -171,7 +171,7 @@ class GenerateGrid(BaseEnv):
             self.grid = np.array(load["Grid"])
 
             self.envName = load["envName"]
-            self.envDes = load["description"]
+            self.envDes = load["envDes"]
             self.dimension = load["dimensionOfGrid"]
             self.cellSize = load["cellSize"]
             self.startGoalPairs = load["startGoalPairs"]
@@ -221,14 +221,15 @@ class GenerateGrid(BaseEnv):
             # 6) Write cache JSON
             writeJson["Grid"] = self.grid.tolist()
             writeJson["envName"] = self.envName
-            writeJson["description"] = self.envDes
+            writeJson["envDes"] = self.envDes
             writeJson["dimensionOfGrid"] = self.dimension
             writeJson["cellSize"] = self.cellSize
             writeJson["numStartGoals"] = self.numStartGoals
+            jsonStr = json.dumps(writeJson, indent=4)
             with open(self.finalGrid, "w") as f:
-                json.dump(writeJson, f)
+                f.write(jsonStr)
 
-        return (self.grid, self.cellSize, self.envName, self.startGoalPairs)
+        return (self.grid, self.cellSize, self.envName,self.envDes, self.startGoalPairs)
 
 gr=GenerateGrid("env2")
 gr.getmap()

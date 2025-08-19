@@ -1,11 +1,12 @@
 
 import json
-
+from logger import Logger
 from algos.a_star import A_star
 
 
 
 from envs.generate_grid import GenerateGrid
+
 
 
 from evals.path_cost import PathCost
@@ -20,17 +21,22 @@ class SafePlan:
         self.envsDetails=data["envDetails"]
         self.algosDetails=data["algoDetails"]
         self.evalsDetails=data["evalDetails"]
+        self.runDetails=data["runDetails"]
+        self.iteration=0
         
         # classes objects lists
         self.envs=[]
         self.algos=[]
         self.evals=[]
         self.scenerios=[]
+        
 
         
         self.setUpAlgos()
         self.setUpEvals()
         self.setUpEnvs()
+        
+        self.logger = Logger(self.runDetails,self.algos)
         
         
     def setUpAlgos(self):
@@ -69,15 +75,20 @@ class SafePlan:
             self.scenerios.append(data)
         
         for scenerio in self.scenerios:
-            (grid, cellSize, envName, startGoalPairs)=scenerio
+            (grid, cellSize, envName,envDes, startGoalPairs)=scenerio
             for pair in startGoalPairs:
+                self.iteration=self.iteration+1
                 for algo in self.algos:
-                    name,obj=self.getObjAndClass(algo)
-                    pathData=obj.plan(pair["start"],pair["goal"],grid)
+                    algoName,algoObj=self.getObjAndClass(algo)
+                    
+                    pathData=algoObj.plan(pair["start"],pair["goal"],grid)
+                    evalData={}
                     for eval in self.evals:
-                        name,obj=self.getObjAndClass(eval)
-                        eval_data=obj.eval(pair["start"],pair["goal"],grid,cellSize,pathData[1])
-                        print(eval_data)
+                        nameEval,objEval=self.getObjAndClass(eval)
+                        eval=objEval.eval(pair["start"],pair["goal"],grid,cellSize,pathData[1])
+                        evalData[nameEval]=eval
+                        
+                    self.logger.log(self.iteration,algoName,pathData,evalData,pair,scenerio)
                 
             
         
