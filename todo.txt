@@ -7,10 +7,13 @@ env file:
 algos
 1. adding algos
 
-e
+evals
+1. adding more evals
+2. time counting
+3. 
 
 main file
-1. how to resume
+1. Running each iteration as a thread to avoid memory accumulation
 2. Mean evaluating system
 3. plotting grid,run individual everything
 4. Visualizing

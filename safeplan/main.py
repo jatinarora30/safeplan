@@ -1,5 +1,6 @@
 
 import json
+import os
 from logger import Logger
 from algos.a_star import A_star
 
@@ -17,7 +18,8 @@ class SafePlan:
         
         with open(self.runConfigPath) as file:
             data = json.load(file)
-            
+        
+        self.outputDir="outputs"
         self.envsDetails=data["envDetails"]
         self.algosDetails=data["algoDetails"]
         self.evalsDetails=data["evalDetails"]
@@ -36,7 +38,9 @@ class SafePlan:
         self.setUpEvals()
         self.setUpEnvs()
         
-        self.logger = Logger(self.runDetails,self.algos)
+        self.logger = Logger(self.runDetails,self.algos,self.outputDir)
+        self.runPath=os.path.join(self.outputDir,self.runDetails)
+        
         
         
     def setUpAlgos(self):
@@ -67,6 +71,16 @@ class SafePlan:
         
         return name,obj
     
+    def iterationRanCheck(self,it,algoName):   
+        iter="iter_"+ str(it)+".json"
+        path=os.path.join(self.logger.runPath,algoName,iter)
+        
+        if os.path.exists(path):
+            return True  
+        
+        
+        return False
+    
     def benchmark(self):
        
         for i in self.envs:
@@ -80,15 +94,15 @@ class SafePlan:
                 self.iteration=self.iteration+1
                 for algo in self.algos:
                     algoName,algoObj=self.getObjAndClass(algo)
-                    
-                    pathData=algoObj.plan(pair["start"],pair["goal"],grid)
-                    evalData={}
-                    for eval in self.evals:
-                        nameEval,objEval=self.getObjAndClass(eval)
-                        eval=objEval.eval(pair["start"],pair["goal"],grid,cellSize,pathData[1])
-                        evalData[nameEval]=eval
+                    if  not self.iterationRanCheck(self.iteration,algoName):
+                        pathData=algoObj.plan(pair["start"],pair["goal"],grid)
+                        evalData={}
+                        for eval in self.evals:
+                            nameEval,objEval=self.getObjAndClass(eval)
+                            eval=objEval.eval(pair["start"],pair["goal"],grid,cellSize,pathData[1])
+                            evalData[nameEval]=eval
                         
-                    self.logger.log(self.iteration,algoName,pathData,evalData,pair,scenerio)
+                        self.logger.log(self.iteration,algoName,pathData,evalData,pair,scenerio)
                 
             
         

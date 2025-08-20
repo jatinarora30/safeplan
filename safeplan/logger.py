@@ -2,13 +2,17 @@ import os
 import json
 class Logger:
     
-    def __init__(self,runDetails,algos):
+    def __init__(self,runDetails,algos,outputDir):
         self.algos=algos
         self.runDetails=runDetails
-        self.outputDir="outputs"
+        self.outputDir=outputDir
+        self.continueRun=False
+        
         self.createDir(self.outputDir)   
-        self.runPath=os.path.join("outputs",self.runDetails)
+        self.runPath=os.path.join(outputDir,self.runDetails)
         self.createDir(self.runPath)
+    
+        
         for algo in self.algos:
             name,_=self.getObjAndClass(algo)
             path=os.path.join(self.runPath,name)
@@ -37,19 +41,22 @@ class Logger:
             
             
     def log(self,iter,algo,pathData,evalData,pair,scenerio):
+        
+        
         filename="iter_"+str(iter)+".json"
         path=os.path.join(self.runPath,algo,filename)
         jsonData={}
         pathData=list(pathData)
+        jsonData["algo"]=algo
         jsonData["evaluation"]=evalData
         jsonData["startGoal"]=pair
-        
+            
         pathInfo={}
         pathInfo["success"]=pathData[0]
         pathInfo["path"]=pathData[1]
         pathInfo["info"]=pathData[2]
         jsonData["pathInfo"]=pathInfo
-        
+            
         envInfo={}
         scenerio=list(scenerio)
         envInfo["grid"]=scenerio[0].tolist()
@@ -57,12 +64,12 @@ class Logger:
         envInfo["envName"]=scenerio[2]
         envInfo["envDes"]=scenerio[3]
         jsonData["envInfo"]=envInfo
+            
         
-        print(jsonData)
         jsonStr = json.dumps(jsonData, indent=4)
         with open(path, "w") as f:
             f.write(jsonStr)
-        print(scenerio,pair)
+                
         
         
         
