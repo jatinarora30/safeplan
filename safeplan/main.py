@@ -1,16 +1,20 @@
 
 import json
 import os
-from logger import Logger
-from algos.a_star import A_star
+import time
+
+from .core.logger import Logger
+from .algos.a_star import A_star
 
 
 
-from envs.generate_grid import GenerateGrid
+
+
+from .envs.generate_grid import GenerateGrid
 
 
 
-from evals.path_cost import PathCost
+from .evals.path_cost import PathCost
 
 class SafePlan:
     def __init__(self,runConfigPath):
@@ -45,7 +49,7 @@ class SafePlan:
         
     def setUpAlgos(self):
         for k in self.algosDetails:
-            if k["name"]=="A_star":
+            if k["name"]=="A_Star":
                 self.algos.append({"A_Star",A_star()})
                 
     def setUpEvals(self):
@@ -85,25 +89,30 @@ class SafePlan:
        
         for i in self.envs:
             name,obj=self.getObjAndClass(i)
-            data=obj.getmap()
-            self.scenerios.append(data)
-        
-        for scenerio in self.scenerios:
+            scenerio=obj.getmap()
             (grid, cellSize, envName,envDes, startGoalPairs)=scenerio
             for pair in startGoalPairs:
                 self.iteration=self.iteration+1
                 for algo in self.algos:
                     algoName,algoObj=self.getObjAndClass(algo)
                     if  not self.iterationRanCheck(self.iteration,algoName):
+                        start = time.perf_counter()
                         pathData=algoObj.plan(pair["start"],pair["goal"],grid)
+                        end   = time.perf_counter()
+                        diff=(end-start)*1000
                         evalData={}
+                        evalData["Time"]=diff
+                        evalData["Success"]=pathData[0]
                         for eval in self.evals:
                             nameEval,objEval=self.getObjAndClass(eval)
                             eval=objEval.eval(pair["start"],pair["goal"],grid,cellSize,pathData[1])
                             evalData[nameEval]=eval
                         
+                        import gc; gc.collect()
                         self.logger.log(self.iteration,algoName,pathData,evalData,pair,scenerio)
-                
+                        del pathData, evalData
+        
+        print("Run Completed")
             
         
         

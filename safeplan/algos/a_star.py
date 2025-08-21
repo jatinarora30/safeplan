@@ -74,8 +74,8 @@ class A_star(BasePlanner):
         """
         cost=0
         for i in range(0,self.dimension):
-            cost+=np.square(abs(node1[i]-node2[i]))
-        return np.sqrt(cost)
+            cost+=abs(node1[i]-node2[i])
+        return cost
             
             
     def adjacentCoordinates(self,node):
@@ -143,18 +143,28 @@ class A_star(BasePlanner):
         heap=[]
         visited=set()
         parents={}
+        g_score = {self.start: 0}
         f0=self.heuristics(self.start,self.goal)
         heapq.heappush(heap,(f0,0,self.start))
         self.parent=None
         self.node=self.start
         
         while heap:
+            
             _,g,self.node=heapq.heappop(heap)
+            if self.node==self.goal:
+                break
+            
+            if self.node in visited:
+                continue
             visited.add(self.node)
         
             
             #calculating alternate nodes
             adjacentNodes=self.adjacentCoordinates(self.node)
+            if self.success==1:
+                break
+            
             
             for k in range(len(adjacentNodes)):
                 if self.isValid(adjacentNodes[k]) and self.grid[adjacentNodes[k]]==0 and adjacentNodes[k] not in visited:
@@ -163,13 +173,15 @@ class A_star(BasePlanner):
                         
                         parents[adjacentNodes[k]]=self.parent
                         self.success=1
+                        break
                     else:
-                        visited.add(adjacentNodes[k])
-                        parents[adjacentNodes[k]]=self.parent
-                        g_updated=g+self.heuristics(self.node,adjacentNodes[k])
-                        total_cost=self.heuristics(self.node,self.goal)+g_updated
-                        heapq.heappush(heap,(total_cost,g_updated,adjacentNodes[k]))
                         
+                        g_updated=g+1
+                        if g_updated < g_score.get(adjacentNodes[k], float('inf')):
+                            g_score[adjacentNodes[k]] = g_updated
+                            total_cost=self.heuristics(adjacentNodes[k],self.goal)+g_updated
+                            heapq.heappush(heap,(total_cost,g_updated,adjacentNodes[k]))
+                            parents[adjacentNodes[k]]=self.parent
                         
         if self.success==1:
             path_node=self.goal
