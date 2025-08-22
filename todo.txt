@@ -2,17 +2,13 @@ doxygen Doxyfile   : Generate documentation
 
 env file:
 - add csv support
+- correct base env
 - adding more envs
 
 algos
+- Faster A*
+- UPP
 -adding algos
 
 evals
 - adding more evals
-
-main file
-
-- Mean evaluating system (complete stats)
-- plotting grid
-- Visualizing
-- Running each iteration as a thread to avoid memory accumulation

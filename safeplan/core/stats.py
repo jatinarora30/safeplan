@@ -1,3 +1,8 @@
+"""
+@file stats.py
+@brief  Handles stats calculation of mean values of algo over all iterations in results folder
+"""
+
 import matplotlib.pyplot as plt
 import pandas as pd
 from pandas.plotting import table
@@ -135,5 +140,3 @@ class Stats:
             print("Values in all algorithms not same in iterations, can't compare")
 
         
-sf=Stats("/home/jatinarora/code/safeplan/safeplan/runs/run1.json")
-sf.compute()
