@@ -1,0 +1,220 @@
+\hypertarget{_2home_2jatinarora_2code_2safeplan_2safeplan_2core_2visualize_8py-example}{}\doxysection{/home/jatinarora/code/safeplan/safeplan/core/visualize.\+py}
+Render 2D or 3D paths for one or more algorithms.\begin{DoxyVerb}   This method reads the run configuration JSON file, retrieves
+   algorithm iteration results for a given iteration number, and
+   plots the environment grid/voxels with paths overlaid.
+
+   @param runConfigPath
+       Path to the run configuration JSON file. This file must
+\end{DoxyVerb}
+ contain {\ttfamily algo\+Details}, {\ttfamily eval\+Details}, and {\ttfamily run\+Details}. 
+\begin{DoxyParams}{Parameters}
+{\em iter\+No} & Iteration number to load ({\ttfamily iter\+\_\+$<$iter\+No$>$.json}). \\
+\hline
+{\em algos} & Optional list of algorithm names to visualize. If None, all algorithms listed in {\ttfamily algo\+Details} are used. \\
+\hline
+{\em graph\+Title} & Optional title for the generated plot. Defaults to {\ttfamily \char`\"{}\+Path Planning Plots\char`\"{}}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None. A matplotlib window is shown with the visualization.
+\end{DoxyReturn}
+
+\begin{DoxyItemize}
+\item Searches for algorithm outputs under\+: {\ttfamily outputs/$<$run\+Details$>$/$<$algo$>$/iter\+\_\+$<$iter\+No$>$.json}
+\item Each iteration file must contain\+:
+\begin{DoxyItemize}
+\item {\ttfamily path\+Info.\+path} \+: list of coordinates
+\item {\ttfamily start\+Goal.\+start} / {\ttfamily start\+Goal.\+goal}
+\item {\ttfamily env\+Info.\+grid} \+: 2D or 3D array
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em File\+Not\+Found\+Error} & If the run configuration file or any iteration file cannot be found on disk. \\
+\hline
+{\em Key\+Error} & If required keys are missing in the JSON structures. \\
+\hline
+{\em Value\+Error} & If the environment dimensionality is greater than 3.\\
+\hline
+\end{DoxyExceptions}
+\begin{DoxyNote}{Note}
+
+\begin{DoxyItemize}
+\item 2D environments are plotted using {\ttfamily imshow} with obstacles in black and paths as lines.
+\item 3D environments are plotted using voxel rendering and 3D line plots.
+\item Dimensions above 3 cannot be visualized.
+\end{DoxyItemize}
+\end{DoxyNote}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{@code}}
+\DoxyCodeLine{2            vis = Visualize()}
+\DoxyCodeLine{3            vis.see(\textcolor{stringliteral}{"{}configs/run\_001.json"{}}, iterNo=5,}
+\DoxyCodeLine{4                    algos=[\textcolor{stringliteral}{"{}A*"{}}, \textcolor{stringliteral}{"{}UPP"{}}],}
+\DoxyCodeLine{5                    graphTitle=\textcolor{stringliteral}{"{}Comparison of Paths"{}})}
+
+\end{DoxyCode}
+ 
+
+
+\begin{DoxyCodeInclude}{0}
+\DoxyCodeLine{1 \textcolor{keyword}{import} json}
+\DoxyCodeLine{2 \textcolor{keyword}{import} os}
+\DoxyCodeLine{3 \textcolor{keyword}{import} numpy \textcolor{keyword}{as} np}
+\DoxyCodeLine{4 \textcolor{keyword}{import} matplotlib.pyplot \textcolor{keyword}{as} plt}
+\DoxyCodeLine{5 \textcolor{keyword}{import} matplotlib.colors \textcolor{keyword}{as} mcolors}
+\DoxyCodeLine{6 }
+\DoxyCodeLine{7 \textcolor{keyword}{class }Visualize:}
+\DoxyCodeLine{8     \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{9 \textcolor{stringliteral}{    @class Visualize}}
+\DoxyCodeLine{10 \textcolor{stringliteral}{    @brief Utility to visualize 2D and 3D path planning results.}}
+\DoxyCodeLine{11 \textcolor{stringliteral}{}}
+\DoxyCodeLine{12 \textcolor{stringliteral}{    This class loads a run configuration JSON file and corresponding}}
+\DoxyCodeLine{13 \textcolor{stringliteral}{    algorithm iteration files to plot planned paths in either}}
+\DoxyCodeLine{14 \textcolor{stringliteral}{    grid-\/based (2D) or voxel-\/based (3D) environments.}}
+\DoxyCodeLine{15 \textcolor{stringliteral}{}}
+\DoxyCodeLine{16 \textcolor{stringliteral}{    The plots display:}}
+\DoxyCodeLine{17 \textcolor{stringliteral}{      -\/ Obstacles (black)}}
+\DoxyCodeLine{18 \textcolor{stringliteral}{      -\/ Free space (white)}}
+\DoxyCodeLine{19 \textcolor{stringliteral}{      -\/ Algorithm-\/generated paths (colored lines)}}
+\DoxyCodeLine{20 \textcolor{stringliteral}{      -\/ Start and goal positions (highlighted markers)}}
+\DoxyCodeLine{21 \textcolor{stringliteral}{    "{}"{}"{}}}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23     \textcolor{keyword}{def }see(self, runConfigPath, iterNo, algos=None, graphTitle=None):}
+\DoxyCodeLine{24         \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{25 \textcolor{stringliteral}{        @brief Render 2D or 3D paths for one or more algorithms.}}
+\DoxyCodeLine{26 \textcolor{stringliteral}{}}
+\DoxyCodeLine{27 \textcolor{stringliteral}{        This method reads the run configuration JSON file, retrieves}}
+\DoxyCodeLine{28 \textcolor{stringliteral}{        algorithm iteration results for a given iteration number, and}}
+\DoxyCodeLine{29 \textcolor{stringliteral}{        plots the environment grid/voxels with paths overlaid.}}
+\DoxyCodeLine{30 \textcolor{stringliteral}{}}
+\DoxyCodeLine{31 \textcolor{stringliteral}{        @param runConfigPath}}
+\DoxyCodeLine{32 \textcolor{stringliteral}{            Path to the run configuration JSON file. This file must}}
+\DoxyCodeLine{33 \textcolor{stringliteral}{            contain keys: `algoDetails`, `evalDetails`, and `runDetails`.}}
+\DoxyCodeLine{34 \textcolor{stringliteral}{        @param iterNo}}
+\DoxyCodeLine{35 \textcolor{stringliteral}{            Iteration number to load (`iter\_<iterNo>.json`).}}
+\DoxyCodeLine{36 \textcolor{stringliteral}{        @param algos}}
+\DoxyCodeLine{37 \textcolor{stringliteral}{            Optional list of algorithm names to visualize. If None,}}
+\DoxyCodeLine{38 \textcolor{stringliteral}{            all algorithms listed in `algoDetails` are used.}}
+\DoxyCodeLine{39 \textcolor{stringliteral}{        @param graphTitle}}
+\DoxyCodeLine{40 \textcolor{stringliteral}{            Optional title for the generated plot. Defaults to}}
+\DoxyCodeLine{41 \textcolor{stringliteral}{            `"{}Path Planning Plots"{}`.}}
+\DoxyCodeLine{42 \textcolor{stringliteral}{}}
+\DoxyCodeLine{43 \textcolor{stringliteral}{        @return}}
+\DoxyCodeLine{44 \textcolor{stringliteral}{            None. A matplotlib window is shown with the visualization.}}
+\DoxyCodeLine{45 \textcolor{stringliteral}{}}
+\DoxyCodeLine{46 \textcolor{stringliteral}{        @details}}
+\DoxyCodeLine{47 \textcolor{stringliteral}{            -\/ Searches for algorithm outputs under:}}
+\DoxyCodeLine{48 \textcolor{stringliteral}{              `outputs/<runDetails>/<algo>/iter\_<iterNo>.json`}}
+\DoxyCodeLine{49 \textcolor{stringliteral}{            -\/ Each iteration file must contain:}}
+\DoxyCodeLine{50 \textcolor{stringliteral}{                -\/ `pathInfo.path` : list of coordinates}}
+\DoxyCodeLine{51 \textcolor{stringliteral}{                -\/ `startGoal.start` / `startGoal.goal`}}
+\DoxyCodeLine{52 \textcolor{stringliteral}{                -\/ `envInfo.grid` : 2D or 3D array}}
+\DoxyCodeLine{53 \textcolor{stringliteral}{}}
+\DoxyCodeLine{54 \textcolor{stringliteral}{        @exception FileNotFoundError}}
+\DoxyCodeLine{55 \textcolor{stringliteral}{            If the run configuration file or any iteration file cannot}}
+\DoxyCodeLine{56 \textcolor{stringliteral}{            be found on disk.}}
+\DoxyCodeLine{57 \textcolor{stringliteral}{        @exception KeyError}}
+\DoxyCodeLine{58 \textcolor{stringliteral}{            If required keys are missing in the JSON structures.}}
+\DoxyCodeLine{59 \textcolor{stringliteral}{        @exception ValueError}}
+\DoxyCodeLine{60 \textcolor{stringliteral}{            If the environment dimensionality is greater than 3.}}
+\DoxyCodeLine{61 \textcolor{stringliteral}{}}
+\DoxyCodeLine{62 \textcolor{stringliteral}{        @note}}
+\DoxyCodeLine{63 \textcolor{stringliteral}{            -\/ 2D environments are plotted using `imshow` with obstacles}}
+\DoxyCodeLine{64 \textcolor{stringliteral}{              in black and paths as lines.}}
+\DoxyCodeLine{65 \textcolor{stringliteral}{            -\/ 3D environments are plotted using voxel rendering and}}
+\DoxyCodeLine{66 \textcolor{stringliteral}{              3D line plots.}}
+\DoxyCodeLine{67 \textcolor{stringliteral}{            -\/ Dimensions above 3 cannot be visualized.}}
+\DoxyCodeLine{68 \textcolor{stringliteral}{}}
+\DoxyCodeLine{69 \textcolor{stringliteral}{        @example}}
+\DoxyCodeLine{70 \textcolor{stringliteral}{            @code\{.py\}}}
+\DoxyCodeLine{71 \textcolor{stringliteral}{            vis = Visualize()}}
+\DoxyCodeLine{72 \textcolor{stringliteral}{            vis.see("{}configs/run\_001.json"{}, iterNo=5,}}
+\DoxyCodeLine{73 \textcolor{stringliteral}{                    algos=["{}A*"{}, "{}UPP"{}],}}
+\DoxyCodeLine{74 \textcolor{stringliteral}{                    graphTitle="{}Comparison of Paths"{})}}
+\DoxyCodeLine{75 \textcolor{stringliteral}{            @endcode}}
+\DoxyCodeLine{76 \textcolor{stringliteral}{        "{}"{}"{}}}
+\DoxyCodeLine{77         self.algos=algos}
+\DoxyCodeLine{78         self.outputDir = \textcolor{stringliteral}{"{}outputs"{}}}
+\DoxyCodeLine{79         self.iterFile=\textcolor{stringliteral}{"{}iter\_"{}}+str(iterNo)+\textcolor{stringliteral}{"{}.json"{}}}
+\DoxyCodeLine{80         self.graphTitle=graphTitle}
+\DoxyCodeLine{81         \textcolor{keywordflow}{if} self.graphTitle==\textcolor{keywordtype}{None}:}
+\DoxyCodeLine{82             self.graphTitle=\textcolor{stringliteral}{"{}Path Planning Plots"{}}}
+\DoxyCodeLine{83             }
+\DoxyCodeLine{84         }
+\DoxyCodeLine{85         self.runConfigPath = runConfigPath}
+\DoxyCodeLine{86         \textcolor{keyword}{with} open(self.runConfigPath) \textcolor{keyword}{as} file:}
+\DoxyCodeLine{87             data = json.load(file)}
+\DoxyCodeLine{88         self.algosDetails = data[\textcolor{stringliteral}{"{}algoDetails"{}}]}
+\DoxyCodeLine{89         self.evalsDetails = data[\textcolor{stringliteral}{"{}evalDetails"{}}]}
+\DoxyCodeLine{90         self.runDetails = data[\textcolor{stringliteral}{"{}runDetails"{}}]}
+\DoxyCodeLine{91         }
+\DoxyCodeLine{92         \textcolor{keywordflow}{if} self.algos==\textcolor{keywordtype}{None}:}
+\DoxyCodeLine{93         }
+\DoxyCodeLine{94             \textcolor{keywordflow}{for} k \textcolor{keywordflow}{in} self.algosDetails:}
+\DoxyCodeLine{95                 self.algos.append(k[\textcolor{stringliteral}{"{}name"{}}])}
+\DoxyCodeLine{96   }
+\DoxyCodeLine{97         self.runPath = os.path.join(self.outputDir, self.runDetails)}
+\DoxyCodeLine{98                 }
+\DoxyCodeLine{99         print(self.algos,self.runPath)}
+\DoxyCodeLine{100         self.algoPaths=\{\}}
+\DoxyCodeLine{101         }
+\DoxyCodeLine{102         \textcolor{keywordflow}{for} algo \textcolor{keywordflow}{in} self.algos:}
+\DoxyCodeLine{103             path = os.path.join(self.runPath, algo,self.iterFile)}
+\DoxyCodeLine{104             \textcolor{keyword}{with} open(path) \textcolor{keyword}{as} file:}
+\DoxyCodeLine{105                 data = json.load(file)}
+\DoxyCodeLine{106                 self.algoPaths[algo]=data[\textcolor{stringliteral}{"{}pathInfo"{}}][\textcolor{stringliteral}{"{}path"{}}]}
+\DoxyCodeLine{107                 self.start=data[\textcolor{stringliteral}{"{}startGoal"{}}][\textcolor{stringliteral}{"{}start"{}}]}
+\DoxyCodeLine{108                 self.goal=data[\textcolor{stringliteral}{"{}startGoal"{}}][\textcolor{stringliteral}{"{}goal"{}}]}
+\DoxyCodeLine{109                 self.grid=data[\textcolor{stringliteral}{"{}envInfo"{}}][\textcolor{stringliteral}{"{}grid"{}}]}
+\DoxyCodeLine{110                 }
+\DoxyCodeLine{111             self.grid=np.array(self.grid)}
+\DoxyCodeLine{112         }
+\DoxyCodeLine{113         self.dimension=len(self.grid.shape)}
+\DoxyCodeLine{114         }
+\DoxyCodeLine{115         \textcolor{keywordflow}{if} self.dimension==2:}
+\DoxyCodeLine{116             }
+\DoxyCodeLine{117             \textcolor{comment}{\# Plot Paths}}
+\DoxyCodeLine{118             plt.figure(figsize=(12, 12))}
+\DoxyCodeLine{119             cmap = mcolors.ListedColormap([\textcolor{stringliteral}{'white'}, \textcolor{stringliteral}{'black'}])}
+\DoxyCodeLine{120             bounds = [-\/0.5, 0.5, 1.5]}
+\DoxyCodeLine{121             norm = mcolors.BoundaryNorm(bounds, cmap.N)}
+\DoxyCodeLine{122             plt.imshow(self.grid, cmap=cmap, norm=norm, origin=\textcolor{stringliteral}{"{}upper"{}})}
+\DoxyCodeLine{123 }
+\DoxyCodeLine{124             \textcolor{keywordflow}{for} label, path \textcolor{keywordflow}{in} self.algoPaths.items():}
+\DoxyCodeLine{125                 \textcolor{keywordflow}{if} path:}
+\DoxyCodeLine{126                     path\_x, path\_y = zip(*path)}
+\DoxyCodeLine{127                     plt.plot(path\_y, path\_x, linewidth=2, label=label)}
+\DoxyCodeLine{128 }
+\DoxyCodeLine{129             plt.scatter(self.start[1], self.start[0], color=\textcolor{stringliteral}{'yellow'}, s=100, edgecolor=\textcolor{stringliteral}{'black'}, label=\textcolor{stringliteral}{'Start'})}
+\DoxyCodeLine{130             plt.scatter(self.goal[1], self.goal[0], color=\textcolor{stringliteral}{'red'}, s=100, edgecolor=\textcolor{stringliteral}{'black'}, label=\textcolor{stringliteral}{'Goal'})}
+\DoxyCodeLine{131             plt.title(self.graphTitle)}
+\DoxyCodeLine{132             plt.legend(loc=\textcolor{stringliteral}{"{}upper left"{}})}
+\DoxyCodeLine{133             plt.grid(\textcolor{keyword}{True}, color=\textcolor{stringliteral}{"{}gray"{}}, linestyle=\textcolor{stringliteral}{'-\/-\/'}, linewidth=0.5)}
+\DoxyCodeLine{134             plt.show()}
+\DoxyCodeLine{135                     }
+\DoxyCodeLine{136         \textcolor{keywordflow}{elif} self.dimension==3:}
+\DoxyCodeLine{137             fig = plt.figure()}
+\DoxyCodeLine{138             ax = fig.add\_subplot(111, projection=\textcolor{stringliteral}{'3d'})}
+\DoxyCodeLine{139             ax.voxels(self.grid, facecolors=\textcolor{stringliteral}{'red'}, edgecolor=\textcolor{stringliteral}{'k'}, alpha=0.5)}
+\DoxyCodeLine{140             \textcolor{keywordflow}{for} label, path \textcolor{keywordflow}{in} self.algoPaths.items():}
+\DoxyCodeLine{141                 \textcolor{keywordflow}{if} path:}
+\DoxyCodeLine{142                     path\_x, path\_y,path\_z = zip(*path)}
+\DoxyCodeLine{143                     ax.plot(path\_x, path\_y,path\_z, linewidth=2, label=label)}
+\DoxyCodeLine{144             ax.scatter(self.start[0], self.start[1],self.start[2], color=\textcolor{stringliteral}{'yellow'}, s=100, edgecolor=\textcolor{stringliteral}{'black'}, label=\textcolor{stringliteral}{'Start'})}
+\DoxyCodeLine{145             ax.scatter(self.goal[0], self.goal[1],self.goal[2], color=\textcolor{stringliteral}{'red'}, s=100, edgecolor=\textcolor{stringliteral}{'black'}, label=\textcolor{stringliteral}{'Goal'})}
+\DoxyCodeLine{146 }
+\DoxyCodeLine{147             ax.set\_xlabel(\textcolor{stringliteral}{'X'})}
+\DoxyCodeLine{148             ax.set\_ylabel(\textcolor{stringliteral}{'Y'})}
+\DoxyCodeLine{149             ax.set\_zlabel(\textcolor{stringliteral}{'Z'})}
+\DoxyCodeLine{150             ax.set\_title(self.graphTitle)}
+\DoxyCodeLine{151             plt.legend()}
+\DoxyCodeLine{152             plt.show()}
+\DoxyCodeLine{153 }
+\DoxyCodeLine{154             }
+\DoxyCodeLine{155         \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{156             print(\textcolor{stringliteral}{"{}Can't plot above 3 dimesions"{}})}
+
+\end{DoxyCodeInclude}
+ 

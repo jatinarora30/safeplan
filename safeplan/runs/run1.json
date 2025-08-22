@@ -3,6 +3,7 @@
   "evalDetails": [
 
     {"name": "PlanningTime"},
+    {"name": "JerkPerMeter"},
     {"name": "SuccessRate"},
     {"name": "OptimalDeviation"},
     {"name": "PathCost"},

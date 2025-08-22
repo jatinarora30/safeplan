@@ -1,0 +1,5 @@
+<map id="distance_to_goal.DistanceToGoal" name="distance_to_goal.DistanceToGoal">
+<area shape="rect" id="node1" title=" " alt="" coords="5,155,199,196"/>
+<area shape="rect" id="node2" href="$classbaseeval_1_1BaseEval.html" title="Abstract base/registry for evaluating planning algorithms." alt="" coords="29,80,175,107"/>
+<area shape="rect" id="node3" title=" " alt="" coords="77,5,127,32"/>
+</map>

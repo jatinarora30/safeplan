@@ -41,8 +41,8 @@ class DistanceToGoal(BaseEval):
         
         """
         if len(path)>0:
-            self.value = math.dist(path[len(path)-1],goal)
+            self.value = math.dist(path[len(path)-1],goal)*cellSize
         else:
-            self.value = math.dist(start,goal)
+            self.value = math.dist(start,goal)*cellSize
         
         return self.value

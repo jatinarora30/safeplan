@@ -1,0 +1,186 @@
+\hypertarget{classstats_1_1Stats}{}\doxysection{stats.\+Stats Class Reference}
+\label{classstats_1_1Stats}\index{stats.Stats@{stats.Stats}}
+
+
+A class to compute, compare, and visualize evaluation statistics for different algorithms based on run configurations and output data in JSON format.  
+
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{classstats_1_1Stats_ac000e805982830d9486d195d4e1700f0}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, \mbox{\hyperlink{classstats_1_1Stats_a43d983d58fb47897194329ad1c3e204e}{run\+Config\+Path}})
+\begin{DoxyCompactList}\small\item\em Initializes the \mbox{\hyperlink{classstats_1_1Stats}{Stats}} object by parsing the run configuration JSON file, creating necessary directories, and collecting details about algorithms and evaluations. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classstats_1_1Stats_af6a903e176641e5db2e71bc471c9c4f3}{create\+Dir}} (self, path)
+\begin{DoxyCompactList}\small\item\em Safely creates a directory if it does not already exist. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classstats_1_1Stats_a970cf044a2cdd8d7fe85d9ec87b67e8e}{check\+Values\+Same}} (self, \mbox{\hyperlink{classstats_1_1Stats_a813f7009ce6b4ae1aeb442b5108ab62f}{iterations}})
+\begin{DoxyCompactList}\small\item\em Checks if all algorithms have the same number of iterations. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classstats_1_1Stats_ab4106ca0715d10d8046a79d2151a9285}{compute}} (self)
+\begin{DoxyCompactList}\small\item\em Computes the average evaluation metrics across all iterations for each algorithm. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classstats_1_1Stats_a43d983d58fb47897194329ad1c3e204e}{run\+Config\+Path}}
+\item 
+\mbox{\hyperlink{classstats_1_1Stats_a51e8ebb272e09a501e00a593da37ad58}{output\+Dir}}
+\item 
+\mbox{\hyperlink{classstats_1_1Stats_aa6b071c64c878c541933e32cb061592e}{algos\+Details}}
+\item 
+\mbox{\hyperlink{classstats_1_1Stats_abed07b5d7336c056bbc668797888bda5}{evals\+Details}}
+\item 
+\mbox{\hyperlink{classstats_1_1Stats_abafff1542203f7bc48a887c2ff2fbb80}{run\+Details}}
+\item 
+\mbox{\hyperlink{classstats_1_1Stats_abb4205283622b0541138811b2a87cabf}{results\+Dir}}
+\item 
+\mbox{\hyperlink{classstats_1_1Stats_a813f7009ce6b4ae1aeb442b5108ab62f}{iterations}}
+\item 
+\mbox{\hyperlink{classstats_1_1Stats_a8d0a677f2c389b7d1871341fe9bff966}{algos}}
+\item 
+\mbox{\hyperlink{classstats_1_1Stats_a50ba380a82060e9dda896d7bbce6bc0a}{evals}}
+\item 
+\mbox{\hyperlink{classstats_1_1Stats_a8fca9d611f4283ef0377da3872cc5a24}{run\+Path}}
+\item 
+\mbox{\hyperlink{classstats_1_1Stats_a00c6f21c8d4ca682b526673722a8f2cb}{total\+Files}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A class to compute, compare, and visualize evaluation statistics for different algorithms based on run configurations and output data in JSON format. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classstats_1_1Stats_ac000e805982830d9486d195d4e1700f0}\label{classstats_1_1Stats_ac000e805982830d9486d195d4e1700f0}} 
+\index{stats.Stats@{stats.Stats}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!stats.Stats@{stats.Stats}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily def stats.\+Stats.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{run\+Config\+Path }\end{DoxyParamCaption})}
+
+
+
+Initializes the \mbox{\hyperlink{classstats_1_1Stats}{Stats}} object by parsing the run configuration JSON file, creating necessary directories, and collecting details about algorithms and evaluations. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em run\+Config\+Path} & Path to the run configuration JSON file. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classstats_1_1Stats_a970cf044a2cdd8d7fe85d9ec87b67e8e}\label{classstats_1_1Stats_a970cf044a2cdd8d7fe85d9ec87b67e8e}} 
+\index{stats.Stats@{stats.Stats}!checkValuesSame@{checkValuesSame}}
+\index{checkValuesSame@{checkValuesSame}!stats.Stats@{stats.Stats}}
+\doxysubsubsection{\texorpdfstring{checkValuesSame()}{checkValuesSame()}}
+{\footnotesize\ttfamily def stats.\+Stats.\+check\+Values\+Same (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{iterations }\end{DoxyParamCaption})}
+
+
+
+Checks if all algorithms have the same number of iterations. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em iterations} & Dictionary with algorithm names as keys and iteration counts as values.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+
+bool True if all values are the same, False otherwise. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classstats_1_1Stats_ab4106ca0715d10d8046a79d2151a9285}\label{classstats_1_1Stats_ab4106ca0715d10d8046a79d2151a9285}} 
+\index{stats.Stats@{stats.Stats}!compute@{compute}}
+\index{compute@{compute}!stats.Stats@{stats.Stats}}
+\doxysubsubsection{\texorpdfstring{compute()}{compute()}}
+{\footnotesize\ttfamily def stats.\+Stats.\+compute (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Computes the average evaluation metrics across all iterations for each algorithm. 
+
+Saves the results as a table image and a JSON file in the results directory. \mbox{\Hypertarget{classstats_1_1Stats_af6a903e176641e5db2e71bc471c9c4f3}\label{classstats_1_1Stats_af6a903e176641e5db2e71bc471c9c4f3}} 
+\index{stats.Stats@{stats.Stats}!createDir@{createDir}}
+\index{createDir@{createDir}!stats.Stats@{stats.Stats}}
+\doxysubsubsection{\texorpdfstring{createDir()}{createDir()}}
+{\footnotesize\ttfamily def stats.\+Stats.\+create\+Dir (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{path }\end{DoxyParamCaption})}
+
+
+
+Safely creates a directory if it does not already exist. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & The path of the directory to create. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classstats_1_1Stats_a8d0a677f2c389b7d1871341fe9bff966}\label{classstats_1_1Stats_a8d0a677f2c389b7d1871341fe9bff966}} 
+\index{stats.Stats@{stats.Stats}!algos@{algos}}
+\index{algos@{algos}!stats.Stats@{stats.Stats}}
+\doxysubsubsection{\texorpdfstring{algos}{algos}}
+{\footnotesize\ttfamily stats.\+Stats.\+algos}
+
+\mbox{\Hypertarget{classstats_1_1Stats_aa6b071c64c878c541933e32cb061592e}\label{classstats_1_1Stats_aa6b071c64c878c541933e32cb061592e}} 
+\index{stats.Stats@{stats.Stats}!algosDetails@{algosDetails}}
+\index{algosDetails@{algosDetails}!stats.Stats@{stats.Stats}}
+\doxysubsubsection{\texorpdfstring{algosDetails}{algosDetails}}
+{\footnotesize\ttfamily stats.\+Stats.\+algos\+Details}
+
+\mbox{\Hypertarget{classstats_1_1Stats_a50ba380a82060e9dda896d7bbce6bc0a}\label{classstats_1_1Stats_a50ba380a82060e9dda896d7bbce6bc0a}} 
+\index{stats.Stats@{stats.Stats}!evals@{evals}}
+\index{evals@{evals}!stats.Stats@{stats.Stats}}
+\doxysubsubsection{\texorpdfstring{evals}{evals}}
+{\footnotesize\ttfamily stats.\+Stats.\+evals}
+
+\mbox{\Hypertarget{classstats_1_1Stats_abed07b5d7336c056bbc668797888bda5}\label{classstats_1_1Stats_abed07b5d7336c056bbc668797888bda5}} 
+\index{stats.Stats@{stats.Stats}!evalsDetails@{evalsDetails}}
+\index{evalsDetails@{evalsDetails}!stats.Stats@{stats.Stats}}
+\doxysubsubsection{\texorpdfstring{evalsDetails}{evalsDetails}}
+{\footnotesize\ttfamily stats.\+Stats.\+evals\+Details}
+
+\mbox{\Hypertarget{classstats_1_1Stats_a813f7009ce6b4ae1aeb442b5108ab62f}\label{classstats_1_1Stats_a813f7009ce6b4ae1aeb442b5108ab62f}} 
+\index{stats.Stats@{stats.Stats}!iterations@{iterations}}
+\index{iterations@{iterations}!stats.Stats@{stats.Stats}}
+\doxysubsubsection{\texorpdfstring{iterations}{iterations}}
+{\footnotesize\ttfamily stats.\+Stats.\+iterations}
+
+\mbox{\Hypertarget{classstats_1_1Stats_a51e8ebb272e09a501e00a593da37ad58}\label{classstats_1_1Stats_a51e8ebb272e09a501e00a593da37ad58}} 
+\index{stats.Stats@{stats.Stats}!outputDir@{outputDir}}
+\index{outputDir@{outputDir}!stats.Stats@{stats.Stats}}
+\doxysubsubsection{\texorpdfstring{outputDir}{outputDir}}
+{\footnotesize\ttfamily stats.\+Stats.\+output\+Dir}
+
+\mbox{\Hypertarget{classstats_1_1Stats_abb4205283622b0541138811b2a87cabf}\label{classstats_1_1Stats_abb4205283622b0541138811b2a87cabf}} 
+\index{stats.Stats@{stats.Stats}!resultsDir@{resultsDir}}
+\index{resultsDir@{resultsDir}!stats.Stats@{stats.Stats}}
+\doxysubsubsection{\texorpdfstring{resultsDir}{resultsDir}}
+{\footnotesize\ttfamily stats.\+Stats.\+results\+Dir}
+
+\mbox{\Hypertarget{classstats_1_1Stats_a43d983d58fb47897194329ad1c3e204e}\label{classstats_1_1Stats_a43d983d58fb47897194329ad1c3e204e}} 
+\index{stats.Stats@{stats.Stats}!runConfigPath@{runConfigPath}}
+\index{runConfigPath@{runConfigPath}!stats.Stats@{stats.Stats}}
+\doxysubsubsection{\texorpdfstring{runConfigPath}{runConfigPath}}
+{\footnotesize\ttfamily stats.\+Stats.\+run\+Config\+Path}
+
+\mbox{\Hypertarget{classstats_1_1Stats_abafff1542203f7bc48a887c2ff2fbb80}\label{classstats_1_1Stats_abafff1542203f7bc48a887c2ff2fbb80}} 
+\index{stats.Stats@{stats.Stats}!runDetails@{runDetails}}
+\index{runDetails@{runDetails}!stats.Stats@{stats.Stats}}
+\doxysubsubsection{\texorpdfstring{runDetails}{runDetails}}
+{\footnotesize\ttfamily stats.\+Stats.\+run\+Details}
+
+\mbox{\Hypertarget{classstats_1_1Stats_a8fca9d611f4283ef0377da3872cc5a24}\label{classstats_1_1Stats_a8fca9d611f4283ef0377da3872cc5a24}} 
+\index{stats.Stats@{stats.Stats}!runPath@{runPath}}
+\index{runPath@{runPath}!stats.Stats@{stats.Stats}}
+\doxysubsubsection{\texorpdfstring{runPath}{runPath}}
+{\footnotesize\ttfamily stats.\+Stats.\+run\+Path}
+
+\mbox{\Hypertarget{classstats_1_1Stats_a00c6f21c8d4ca682b526673722a8f2cb}\label{classstats_1_1Stats_a00c6f21c8d4ca682b526673722a8f2cb}} 
+\index{stats.Stats@{stats.Stats}!totalFiles@{totalFiles}}
+\index{totalFiles@{totalFiles}!stats.Stats@{stats.Stats}}
+\doxysubsubsection{\texorpdfstring{totalFiles}{totalFiles}}
+{\footnotesize\ttfamily stats.\+Stats.\+total\+Files}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+safeplan/core/\mbox{\hyperlink{stats_8py}{stats.\+py}}\end{DoxyCompactItemize}

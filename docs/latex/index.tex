@@ -1,0 +1,69 @@
+\label{index_md_README}%
+\Hypertarget{index_md_README}%
+ {\bfseries{Safe\+Plan}} is a benchmarking suite for evaluating classical and modern path planners in robotics with a strong emphasis on {\bfseries{safety, smoothness, and optimality}}. ~\newline
+ Unlike existing frameworks (e.\+g., Path\+Bench), which primarily measure path cost and runtime, Safe\+Plan introduces {\bfseries{safety-\/critical and dynamics-\/aware metrics}} that better reflect the requirements of real robotic systems.
+
+\DoxyHorRuler{0}
+\hypertarget{index_autotoc_md2}{}\doxysection{✨ Key Features}\label{index_autotoc_md2}
+
+\begin{DoxyItemize}
+\item 🔹 {\bfseries{Planner-\/agnostic}}\+: Works with any planner that outputs a path on a grid or occupancy map. ~\newline
+
+\item 🔹 {\bfseries{Safety-\/aware metrics}}\+: Beyond length and time, includes clearance, risk exposure, danger zone violations. ~\newline
+
+\item 🔹 {\bfseries{Smoothness evaluation}}\+: Turning angles, jerk (third derivative of position), zig-\/zag count. ~\newline
+
+\item 🔹 {\bfseries{Optimality \& efficiency}}\+: Path cost deviation from shortest path, success rate, computation time. ~\newline
+
+\item 🔹 {\bfseries{Extensible framework}}\+: Add new metrics or planners with minimal boilerplate. ~\newline
+
+\item 🔹 {\bfseries{Batch evaluation}}\+: Run thousands of randomized start-\/goal trials across multiple maps and export results to CSV/plots.
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{index_autotoc_md4}{}\doxysection{📊 Evaluation Metrics}\label{index_autotoc_md4}
+Safe\+Plan provides a {\bfseries{rich set of metrics}} grouped into categories\+:\hypertarget{index_autotoc_md5}{}\doxysubsection{🔹 Efficiency}\label{index_autotoc_md5}
+
+\begin{DoxyItemize}
+\item {\bfseries{Path cost (m)}} – total path length in meters ~\newline
+
+\item {\bfseries{Computation time (ms)}} – wall-\/clock planning time ~\newline
+
+\item {\bfseries{Success rate (\%)}} – fraction of runs that reach the goal ~\newline
+
+\item {\bfseries{Distance to goal (m)}} – residual distance if failure ~\newline
+
+\item {\bfseries{Nodes in path}} – number of waypoints (before/after simplification) ~\newline
+
+\end{DoxyItemize}\hypertarget{index_autotoc_md6}{}\doxysubsection{🔹 Smoothness}\label{index_autotoc_md6}
+
+\begin{DoxyItemize}
+\item {\bfseries{Turning angle (°)}} – cumulative direction changes ~\newline
+
+\item {\bfseries{Jerk per meter}} – Cartesian jerk (third finite difference) normalized by path length ~\newline
+
+\item {\bfseries{Zig-\/zag count}} – number of rapid direction oscillations ~\newline
+
+\end{DoxyItemize}\hypertarget{index_autotoc_md7}{}\doxysubsection{🔹 Safety}\label{index_autotoc_md7}
+
+\begin{DoxyItemize}
+\item {\bfseries{Minimum clearance (m)}} – closest distance to any obstacle ~\newline
+
+\item {\bfseries{Clearance variability}} – variance of obstacle clearance along the path ~\newline
+
+\item {\bfseries{Danger zone violations}} – number of times path enters unsafe radii around obstacles ~\newline
+
+\item {\bfseries{Riskiness score}} – sum of inverse distances to obstacles (higher = riskier path) ~\newline
+
+\end{DoxyItemize}\hypertarget{index_autotoc_md8}{}\doxysubsection{🔹 Optimality}\label{index_autotoc_md8}
+
+\begin{DoxyItemize}
+\item {\bfseries{Optimal deviation (\%)}} – relative excess length compared to the true shortest path ~\newline
+
+\item {\bfseries{Optimality ratio}} – path cost / optimal cost ~\newline
+
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{index_autotoc_md10}{}\doxysection{🛠️ Installation}\label{index_autotoc_md10}
+\`{}\`{}\`{}bash git clone \href{https://github.com/}{\texttt{ https\+://github.\+com/}}$<$your-\/username$>$/safeplan.git cd safeplan pip install -\/r requirements.\+txt 

@@ -1,0 +1,43 @@
+\hypertarget{path__cost_8py}{}\doxysection{safeplan/evals/path\+\_\+cost.py File Reference}
+\label{path__cost_8py}\index{safeplan/evals/path\_cost.py@{safeplan/evals/path\_cost.py}}
+
+
+Path cost evaluator for planning algorithms.  
+
+
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classpath__cost_1_1PathCost}{path\+\_\+cost.\+Path\+Cost}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \mbox{\hyperlink{namespacepath__cost}{path\+\_\+cost}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Path cost evaluator for planning algorithms. 
+
+Implements Path cost evaluation based upon the path provided on the grid. It calculates eucledian distance between nodes for N -\/ dimensional path
+
+\begin{DoxyParagraph}{Inputs}
+
+\begin{DoxyItemize}
+\item {\ttfamily start} \+: tuple\mbox{[}int, ...\mbox{]} — start grid cell (e.\+g., (row, col))
+\item {\ttfamily goal} \+: tuple\mbox{[}int, ...\mbox{]} — goal grid cell
+\item {\ttfamily grid} \+: numpy.\+ndarray (N-\/D), values \{0=free, 1=obstacle\}
+\item {\ttfamily cell\+Size} \+: Size of cell(in m) for real world computation
+\item {\ttfamily Path} \+: Path given by planner to evaluate metrices
+\end{DoxyItemize}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Outputs}
+
+\begin{DoxyItemize}
+\item {\ttfamily val\+:} Path cost computed
+\end{DoxyItemize}
+\end{DoxyParagraph}
+\begin{DoxySeeAlso}{See also}
+Base\+Eval 
+\end{DoxySeeAlso}

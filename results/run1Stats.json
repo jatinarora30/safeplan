@@ -1,0 +1,11 @@
+{
+    "AStar": {
+        "PlanningTime": 1.518325009480274,
+        "JerkPerMeter": 0.023242793297477683,
+        "SuccessRate": 0.8333333333333334,
+        "OptimalDeviation": 0.0,
+        "PathCost": 27.549410759380276,
+        "DistanceToGoal": 0.6506279815492919,
+        "NodesInPath": 2.4166666666666665
+    }
+}

@@ -1,0 +1,13 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node1" title=" " alt="" coords="5,173,55,200"/>
+<area shape="rect" id="node2" href="$classbaseenv_1_1BaseEnv.html" title="Abstract base/registry for environment making for planning algorithms." alt="" coords="128,64,264,91"/>
+<area shape="rect" id="node4" href="$classbaseeval_1_1BaseEval.html" title="Abstract base/registry for evaluating planning algorithms." alt="" coords="123,173,269,200"/>
+<area shape="rect" id="node10" href="$classbaseplanner_1_1BasePlanner.html" title="Abstract base/registry for planning algorithms." alt="" coords="103,283,289,309"/>
+<area shape="rect" id="node3" href="$classgenerate__grid_1_1GenerateGrid.html" title="Generates and caches a discrete occupancy grid with polygonal obstacles." alt="" coords="340,5,543,32"/>
+<area shape="rect" id="node5" href="$classdistance__to__goal_1_1DistanceToGoal.html" title=" " alt="" coords="345,57,538,98"/>
+<area shape="rect" id="node6" href="$classjerk__per__meter_1_1JerkPerMeter.html" title=" " alt="" coords="337,123,545,149"/>
+<area shape="rect" id="node7" href="$classnodes__in__path_1_1NodesInPath.html" title=" " alt="" coords="341,173,542,200"/>
+<area shape="rect" id="node8" href="$classoptimal__deviation_1_1OptimalDeviation.html" title=" " alt="" coords="343,225,539,266"/>
+<area shape="rect" id="node9" href="$classpath__cost_1_1PathCost.html" title=" " alt="" coords="368,291,515,317"/>
+<area shape="rect" id="node11" href="$classa__star_1_1AStar.html" title=" " alt="" coords="391,341,491,368"/>
+</map>

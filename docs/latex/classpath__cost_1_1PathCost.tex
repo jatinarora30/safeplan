@@ -1,0 +1,96 @@
+\hypertarget{classpath__cost_1_1PathCost}{}\doxysection{path\+\_\+cost.\+Path\+Cost Class Reference}
+\label{classpath__cost_1_1PathCost}\index{path\_cost.PathCost@{path\_cost.PathCost}}
+
+
+Inheritance diagram for path\+\_\+cost.\+Path\+Cost\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=190pt]{classpath__cost_1_1PathCost__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for path\+\_\+cost.\+Path\+Cost\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=190pt]{classpath__cost_1_1PathCost__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{classpath__cost_1_1PathCost_a7fb3e90bbea92b641203754f28a487ca}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self)
+\begin{DoxyCompactList}\small\item\em Construct the class for Path cost evaluator. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classpath__cost_1_1PathCost_a7142d8f57aac169dabe60647ca5a0518}{eval}} (self, start, goal, grid, cell\+Size, path)
+\begin{DoxyCompactList}\small\item\em A eval function for Path cost evaluation, which evaluates on given start, goal, grid, cell\+Size, and Path returns path cost value. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classpath__cost_1_1PathCost_ae96261ac591d6b4ca6fbd4f3de7b8804}{value}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classpath__cost_1_1PathCost_a7fb3e90bbea92b641203754f28a487ca}\label{classpath__cost_1_1PathCost_a7fb3e90bbea92b641203754f28a487ca}} 
+\index{path\_cost.PathCost@{path\_cost.PathCost}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!path\_cost.PathCost@{path\_cost.PathCost}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily def path\+\_\+cost.\+Path\+Cost.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Construct the class for Path cost evaluator. 
+
+\begin{DoxyVerb}   @post Instance is initialized.
+\end{DoxyVerb}
+ 
+
+Reimplemented from \mbox{\hyperlink{classbaseeval_1_1BaseEval_aa79544b675e4c50fb3ec65e7029409f2}{baseeval.\+Base\+Eval}}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classpath__cost_1_1PathCost_a7142d8f57aac169dabe60647ca5a0518}\label{classpath__cost_1_1PathCost_a7142d8f57aac169dabe60647ca5a0518}} 
+\index{path\_cost.PathCost@{path\_cost.PathCost}!eval@{eval}}
+\index{eval@{eval}!path\_cost.PathCost@{path\_cost.PathCost}}
+\doxysubsubsection{\texorpdfstring{eval()}{eval()}}
+{\footnotesize\ttfamily def path\+\_\+cost.\+Path\+Cost.\+eval (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{start,  }\item[{}]{goal,  }\item[{}]{grid,  }\item[{}]{cell\+Size,  }\item[{}]{path }\end{DoxyParamCaption})}
+
+
+
+A eval function for Path cost evaluation, which evaluates on given start, goal, grid, cell\+Size, and Path returns path cost value. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em start} & Takes the n-\/dimensional start input \\
+\hline
+{\em goal} & Takes the n-\/dimension goal input \\
+\hline
+{\em grid} & Takes the N x N dimensional grid \\
+\hline
+{\em cell\+Size} & Takes input as cell size for computation \\
+\hline
+{\em Path} & Takes the path from star to goal in the form of a tuple \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+value Returns the path cost 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classpath__cost_1_1PathCost_ae96261ac591d6b4ca6fbd4f3de7b8804}\label{classpath__cost_1_1PathCost_ae96261ac591d6b4ca6fbd4f3de7b8804}} 
+\index{path\_cost.PathCost@{path\_cost.PathCost}!value@{value}}
+\index{value@{value}!path\_cost.PathCost@{path\_cost.PathCost}}
+\doxysubsubsection{\texorpdfstring{value}{value}}
+{\footnotesize\ttfamily path\+\_\+cost.\+Path\+Cost.\+value}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+safeplan/evals/\mbox{\hyperlink{path__cost_8py}{path\+\_\+cost.\+py}}\end{DoxyCompactItemize}

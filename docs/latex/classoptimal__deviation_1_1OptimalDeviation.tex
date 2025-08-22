@@ -1,0 +1,112 @@
+\hypertarget{classoptimal__deviation_1_1OptimalDeviation}{}\doxysection{optimal\+\_\+deviation.\+Optimal\+Deviation Class Reference}
+\label{classoptimal__deviation_1_1OptimalDeviation}\index{optimal\_deviation.OptimalDeviation@{optimal\_deviation.OptimalDeviation}}
+
+
+Inheritance diagram for optimal\+\_\+deviation.\+Optimal\+Deviation\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=227pt]{classoptimal__deviation_1_1OptimalDeviation__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for optimal\+\_\+deviation.\+Optimal\+Deviation\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=227pt]{classoptimal__deviation_1_1OptimalDeviation__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{classoptimal__deviation_1_1OptimalDeviation_a976c7a72b93f5524360a8661aca3c40e}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self)
+\begin{DoxyCompactList}\small\item\em Construct the class for Optimal Deviation evaluator. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classoptimal__deviation_1_1OptimalDeviation_a5cadbc73af59779ed5af32feba3e28ac}{eval}} (self, start, goal, grid, cell\+Size, path)
+\begin{DoxyCompactList}\small\item\em A eval function for Optimal deviation evaluation, which evaluates on given start, goal, grid, cell\+Size, and Path returns path cost value. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classoptimal__deviation_1_1OptimalDeviation_a0f3b14e78c1441a139177e4af61157a5}{value}}
+\item 
+\mbox{\hyperlink{classoptimal__deviation_1_1OptimalDeviation_aba334ce7bbda5ad96905eb19fd51a128}{planner}}
+\item 
+\mbox{\hyperlink{classoptimal__deviation_1_1OptimalDeviation_adcf78894b580c7552902979d8d2718e7}{path\+Cost}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classoptimal__deviation_1_1OptimalDeviation_a976c7a72b93f5524360a8661aca3c40e}\label{classoptimal__deviation_1_1OptimalDeviation_a976c7a72b93f5524360a8661aca3c40e}} 
+\index{optimal\_deviation.OptimalDeviation@{optimal\_deviation.OptimalDeviation}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!optimal\_deviation.OptimalDeviation@{optimal\_deviation.OptimalDeviation}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily def optimal\+\_\+deviation.\+Optimal\+Deviation.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Construct the class for Optimal Deviation evaluator. 
+
+\begin{DoxyVerb}   @post Instance is initialized.
+\end{DoxyVerb}
+ 
+
+Reimplemented from \mbox{\hyperlink{classbaseeval_1_1BaseEval_aa79544b675e4c50fb3ec65e7029409f2}{baseeval.\+Base\+Eval}}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classoptimal__deviation_1_1OptimalDeviation_a5cadbc73af59779ed5af32feba3e28ac}\label{classoptimal__deviation_1_1OptimalDeviation_a5cadbc73af59779ed5af32feba3e28ac}} 
+\index{optimal\_deviation.OptimalDeviation@{optimal\_deviation.OptimalDeviation}!eval@{eval}}
+\index{eval@{eval}!optimal\_deviation.OptimalDeviation@{optimal\_deviation.OptimalDeviation}}
+\doxysubsubsection{\texorpdfstring{eval()}{eval()}}
+{\footnotesize\ttfamily def optimal\+\_\+deviation.\+Optimal\+Deviation.\+eval (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{start,  }\item[{}]{goal,  }\item[{}]{grid,  }\item[{}]{cell\+Size,  }\item[{}]{path }\end{DoxyParamCaption})}
+
+
+
+A eval function for Optimal deviation evaluation, which evaluates on given start, goal, grid, cell\+Size, and Path returns path cost value. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em start} & Takes the n-\/dimensional start input \\
+\hline
+{\em goal} & Takes the n-\/dimension goal input \\
+\hline
+{\em grid} & Takes the N x N dimensional grid \\
+\hline
+{\em cell\+Size} & Takes input as cell size for computation \\
+\hline
+{\em Path} & Takes the path from star to goal in the form of a tuple \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+value Returns the optimal deviation in percent 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classoptimal__deviation_1_1OptimalDeviation_adcf78894b580c7552902979d8d2718e7}\label{classoptimal__deviation_1_1OptimalDeviation_adcf78894b580c7552902979d8d2718e7}} 
+\index{optimal\_deviation.OptimalDeviation@{optimal\_deviation.OptimalDeviation}!pathCost@{pathCost}}
+\index{pathCost@{pathCost}!optimal\_deviation.OptimalDeviation@{optimal\_deviation.OptimalDeviation}}
+\doxysubsubsection{\texorpdfstring{pathCost}{pathCost}}
+{\footnotesize\ttfamily optimal\+\_\+deviation.\+Optimal\+Deviation.\+path\+Cost}
+
+\mbox{\Hypertarget{classoptimal__deviation_1_1OptimalDeviation_aba334ce7bbda5ad96905eb19fd51a128}\label{classoptimal__deviation_1_1OptimalDeviation_aba334ce7bbda5ad96905eb19fd51a128}} 
+\index{optimal\_deviation.OptimalDeviation@{optimal\_deviation.OptimalDeviation}!planner@{planner}}
+\index{planner@{planner}!optimal\_deviation.OptimalDeviation@{optimal\_deviation.OptimalDeviation}}
+\doxysubsubsection{\texorpdfstring{planner}{planner}}
+{\footnotesize\ttfamily optimal\+\_\+deviation.\+Optimal\+Deviation.\+planner}
+
+\mbox{\Hypertarget{classoptimal__deviation_1_1OptimalDeviation_a0f3b14e78c1441a139177e4af61157a5}\label{classoptimal__deviation_1_1OptimalDeviation_a0f3b14e78c1441a139177e4af61157a5}} 
+\index{optimal\_deviation.OptimalDeviation@{optimal\_deviation.OptimalDeviation}!value@{value}}
+\index{value@{value}!optimal\_deviation.OptimalDeviation@{optimal\_deviation.OptimalDeviation}}
+\doxysubsubsection{\texorpdfstring{value}{value}}
+{\footnotesize\ttfamily optimal\+\_\+deviation.\+Optimal\+Deviation.\+value}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+safeplan/evals/\mbox{\hyperlink{optimal__deviation_8py}{optimal\+\_\+deviation.\+py}}\end{DoxyCompactItemize}

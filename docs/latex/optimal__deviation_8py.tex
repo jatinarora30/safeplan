@@ -1,0 +1,43 @@
+\hypertarget{optimal__deviation_8py}{}\doxysection{safeplan/evals/optimal\+\_\+deviation.py File Reference}
+\label{optimal__deviation_8py}\index{safeplan/evals/optimal\_deviation.py@{safeplan/evals/optimal\_deviation.py}}
+
+
+Deviation path length percent evaluator for planning algorithms.  
+
+
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classoptimal__deviation_1_1OptimalDeviation}{optimal\+\_\+deviation.\+Optimal\+Deviation}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \mbox{\hyperlink{namespaceoptimal__deviation}{optimal\+\_\+deviation}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Deviation path length percent evaluator for planning algorithms. 
+
+Implements Optimal deviation evaluation based upon the path provided on the grid.
+
+\begin{DoxyParagraph}{Inputs}
+
+\begin{DoxyItemize}
+\item {\ttfamily start} \+: tuple\mbox{[}int, ...\mbox{]} — start grid cell (e.\+g., (row, col))
+\item {\ttfamily goal} \+: tuple\mbox{[}int, ...\mbox{]} — goal grid cell
+\item {\ttfamily grid} \+: numpy.\+ndarray (N-\/D), values \{0=free, 1=obstacle\}
+\item {\ttfamily cell\+Size} \+: Size of cell(in m) for real world computation
+\item {\ttfamily Path} \+: Path given by planner to evaluate metrices
+\end{DoxyItemize}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Outputs}
+
+\begin{DoxyItemize}
+\item {\ttfamily val\+:} Path deviated from optimal path
+\end{DoxyItemize}
+\end{DoxyParagraph}
+\begin{DoxySeeAlso}{See also}
+Base\+Eval 
+\end{DoxySeeAlso}

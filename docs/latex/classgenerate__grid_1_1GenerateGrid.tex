@@ -1,0 +1,377 @@
+\hypertarget{classgenerate__grid_1_1GenerateGrid}{}\doxysection{generate\+\_\+grid.\+Generate\+Grid Class Reference}
+\label{classgenerate__grid_1_1GenerateGrid}\index{generate\_grid.GenerateGrid@{generate\_grid.GenerateGrid}}
+
+
+Generates and caches a discrete occupancy grid with polygonal obstacles.  
+
+
+
+
+Inheritance diagram for generate\+\_\+grid.\+Generate\+Grid\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=232pt]{classgenerate__grid_1_1GenerateGrid__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for generate\+\_\+grid.\+Generate\+Grid\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=232pt]{classgenerate__grid_1_1GenerateGrid__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{classgenerate__grid_1_1GenerateGrid_ac4ff4e77f56d0731690f737eef467e38}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, str \mbox{\hyperlink{classgenerate__grid_1_1GenerateGrid_a8a054201a3a9312cdd783ac4bbdfb91c}{config\+Folder}})
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+None \mbox{\hyperlink{classgenerate__grid_1_1GenerateGrid_abd580d9be287751fb210b50be01d7c27}{compute\+Halfspace}} (self)
+\begin{DoxyCompactList}\small\item\em Compute half-\/space representations (A, b) for all polygons. \end{DoxyCompactList}\item 
+tuple \mbox{\hyperlink{classgenerate__grid_1_1GenerateGrid_a38d62e784539eeeafbaedb68807be142}{get\+Random\+Free\+Cell}} (self)
+\begin{DoxyCompactList}\small\item\em Sample a random free cell uniformly from the grid. \end{DoxyCompactList}\item 
+None \mbox{\hyperlink{classgenerate__grid_1_1GenerateGrid_a8ab651b22973e984dd5faa621f1a9c51}{load\+Json}} (self)
+\begin{DoxyCompactList}\small\item\em Load the base environment configuration. \end{DoxyCompactList}\item 
+tuple \mbox{\hyperlink{classgenerate__grid_1_1GenerateGrid_a30b352ce2bebbb3b1d63606331859be2}{make\+Convex\+Hull}} (self, vertices)
+\begin{DoxyCompactList}\small\item\em Convert a set of polygon vertices to half-\/space form. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classgenerate__grid_1_1GenerateGrid_a8316efd8088c990a7c99274b639ac284}{in\+Polygons}} (self, x, float eps=1e-\/3)
+\begin{DoxyCompactList}\small\item\em Test if a point lies inside any polygon (inclusive, with tolerance). \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classgenerate__grid_1_1GenerateGrid_aa81e730d8e0c684eb75f6babec81812d}{getmap}} (self)
+\begin{DoxyCompactList}\small\item\em Build or load the occupancy grid and associated metadata. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classgenerate__grid_1_1GenerateGrid_ade2ff0acffce88145bdf40f9d269a7da}{path}}
+\item 
+\mbox{\hyperlink{classgenerate__grid_1_1GenerateGrid_a397daa89b3bb71f32364c18f5b967954}{grid\+\_\+suffix}}
+\item 
+\mbox{\hyperlink{classgenerate__grid_1_1GenerateGrid_a8a054201a3a9312cdd783ac4bbdfb91c}{config\+Folder}}
+\item 
+\mbox{\hyperlink{classgenerate__grid_1_1GenerateGrid_a3f427d6b5ed9bc602b0ebef653032b8e}{config\+Name}}
+\item 
+\mbox{\hyperlink{classgenerate__grid_1_1GenerateGrid_a4c5b97ea470e57dbba3c5e917c4e30c2}{final\+Grid}}
+\item 
+\mbox{\hyperlink{classgenerate__grid_1_1GenerateGrid_a7e18d0212c6fe734e370b6b6c330f697}{grid}}
+\item 
+\mbox{\hyperlink{classgenerate__grid_1_1GenerateGrid_a88a264fe84722cae8459a5a0136ca7db}{A}}
+\item 
+\mbox{\hyperlink{classgenerate__grid_1_1GenerateGrid_a1b7fd050a6d1b5f78aa1c0f1742c72bc}{b}}
+\item 
+\mbox{\hyperlink{classgenerate__grid_1_1GenerateGrid_a88b7b9c02e8962c4729f9f2b58849cb4}{grid\+Size}}
+\item 
+\mbox{\hyperlink{classgenerate__grid_1_1GenerateGrid_af4e27c2ee5931163960f9a27a3ccc730}{env\+Name}}
+\item 
+\mbox{\hyperlink{classgenerate__grid_1_1GenerateGrid_a587cc12bd0c5d0507103f5258e18bf11}{env\+Des}}
+\item 
+\mbox{\hyperlink{classgenerate__grid_1_1GenerateGrid_a2d7b768a7ccb313f19173ec156594ead}{dimension}}
+\item 
+\mbox{\hyperlink{classgenerate__grid_1_1GenerateGrid_a6d35e264963eed93ad5c3c2f0a0c7161}{cell\+Size}}
+\item 
+\mbox{\hyperlink{classgenerate__grid_1_1GenerateGrid_ad3c8c9be7890a7b3709f6cb557e431d0}{random\+Start\+Goal}}
+\item 
+\mbox{\hyperlink{classgenerate__grid_1_1GenerateGrid_a952a2fde3c6b3226841534e386cac33e}{polygons\+\_\+data}}
+\item 
+\mbox{\hyperlink{classgenerate__grid_1_1GenerateGrid_a63ba090afe9829f341a8bcd0e2a23849}{num\+Start\+Goals}}
+\item 
+\mbox{\hyperlink{classgenerate__grid_1_1GenerateGrid_a6b93796ae039f29722b92272247d1a29}{start\+Goal\+Pairs}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Generates and caches a discrete occupancy grid with polygonal obstacles. 
+
+The class loads a scene configuration (grid size, polygons, etc.), computes half-\/space representations for polygons, rasterizes them into a grid (1 = occupied, 0 = free), and optionally samples random start/goal pairs lying in free cells. The generated grid is cached to $<$config\+Name$>$\+\_\+grid.\+json for repeatability and faster subsequent runs.
+
+\begin{DoxyNote}{Note}
+
+\begin{DoxyItemize}
+\item Grid indexing is 0-\/based across all dimensions.
+\item Obstacles are considered \char`\"{}inside\char`\"{} if a cell index (interpreted as a point) satisfies all half-\/space inequalities for at least one polygon.
+\item Vertices are explicitly marked as occupied. 
+\end{DoxyItemize}
+\end{DoxyNote}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classgenerate__grid_1_1GenerateGrid_ac4ff4e77f56d0731690f737eef467e38}\label{classgenerate__grid_1_1GenerateGrid_ac4ff4e77f56d0731690f737eef467e38}} 
+\index{generate\_grid.GenerateGrid@{generate\_grid.GenerateGrid}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!generate\_grid.GenerateGrid@{generate\_grid.GenerateGrid}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily def generate\+\_\+grid.\+Generate\+Grid.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{str}]{config\+Folder }\end{DoxyParamCaption})}
+
+
+
+Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em config\+Folder} & Name of the configuration subfolder under ../safeplan/safeplan/configs/generate\+\_\+grid/ that contains the base JSON (without the \+\_\+grid suffix). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPostcond}{Postcondition}
+
+\begin{DoxyItemize}
+\item self.\+final\+Grid points to the output JSON cache path.
+\item Internal containers (grid, A, b) are initialized. 
+\end{DoxyItemize}
+\end{DoxyPostcond}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classgenerate__grid_1_1GenerateGrid_abd580d9be287751fb210b50be01d7c27}\label{classgenerate__grid_1_1GenerateGrid_abd580d9be287751fb210b50be01d7c27}} 
+\index{generate\_grid.GenerateGrid@{generate\_grid.GenerateGrid}!computeHalfspace@{computeHalfspace}}
+\index{computeHalfspace@{computeHalfspace}!generate\_grid.GenerateGrid@{generate\_grid.GenerateGrid}}
+\doxysubsubsection{\texorpdfstring{computeHalfspace()}{computeHalfspace()}}
+{\footnotesize\ttfamily  None generate\+\_\+grid.\+Generate\+Grid.\+compute\+Halfspace (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Compute half-\/space representations (A, b) for all polygons. 
+
+Uses {\ttfamily scipy.\+spatial.\+Convex\+Hull} to obtain the H-\/representation of each polygon from its vertices. Stores the results into {\ttfamily self.\+A} and {\ttfamily self.\+b} as parallel lists. \begin{DoxyPrecond}{Precondition}
+self.\+polygons\+\_\+data must be loaded via \mbox{\hyperlink{classgenerate__grid_1_1GenerateGrid_a8ab651b22973e984dd5faa621f1a9c51}{load\+Json()}}. 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+self.\+A\mbox{[}k\mbox{]}, self.\+b\mbox{[}k\mbox{]} hold the half-\/space for polygon k. 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{classgenerate__grid_1_1GenerateGrid_aa81e730d8e0c684eb75f6babec81812d}\label{classgenerate__grid_1_1GenerateGrid_aa81e730d8e0c684eb75f6babec81812d}} 
+\index{generate\_grid.GenerateGrid@{generate\_grid.GenerateGrid}!getmap@{getmap}}
+\index{getmap@{getmap}!generate\_grid.GenerateGrid@{generate\_grid.GenerateGrid}}
+\doxysubsubsection{\texorpdfstring{getmap()}{getmap()}}
+{\footnotesize\ttfamily def generate\+\_\+grid.\+Generate\+Grid.\+getmap (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Build or load the occupancy grid and associated metadata. 
+
+
+\begin{DoxyItemize}
+\item If a cached grid file ($<$config\+Name$>$\+\_\+grid.\+json) exists, load it.
+\item Else, load base config, build an N-\/D zero grid, mark obstacle cells by polygon half-\/space tests, and (optionally) generate random start/goal pairs in free cells. Then cache to JSON.
+\end{DoxyItemize}
+
+\begin{DoxyReturn}{Returns}
+Tuple (grid, cell\+Size, env\+Name, start\+Goal\+Pairs)\+:
+\begin{DoxyItemize}
+\item grid (np.\+ndarray)\+: N-\/D array of 0 (free) / 1 (occupied).
+\item cell\+Size (float/int)\+: Size of a cell in world units.
+\item env\+Name (str)\+: Environment name.
+\item start\+Goal\+Pairs (list)\+: List of dicts with \char`\"{}start\char`\"{} and \char`\"{}goal\char`\"{} tuples.
+\end{DoxyItemize}
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em File\+Not\+Found\+Error} & If neither the cache nor the base config exists. \\
+\hline
+\end{DoxyExceptions}
+\begin{DoxyPostcond}{Postcondition}
+
+\begin{DoxyItemize}
+\item self.\+grid is a numpy array with obstacles marked as 1.
+\item self.\+start\+Goal\+Pairs is populated (from config or randomly).
+\item A JSON cache is written when generating from base config. 
+\end{DoxyItemize}
+\end{DoxyPostcond}
+
+
+Reimplemented from \mbox{\hyperlink{classbaseenv_1_1BaseEnv_a581e2383cd7419ee9ceb7de9df088871}{baseenv.\+Base\+Env}}.
+
+\mbox{\Hypertarget{classgenerate__grid_1_1GenerateGrid_a38d62e784539eeeafbaedb68807be142}\label{classgenerate__grid_1_1GenerateGrid_a38d62e784539eeeafbaedb68807be142}} 
+\index{generate\_grid.GenerateGrid@{generate\_grid.GenerateGrid}!getRandomFreeCell@{getRandomFreeCell}}
+\index{getRandomFreeCell@{getRandomFreeCell}!generate\_grid.GenerateGrid@{generate\_grid.GenerateGrid}}
+\doxysubsubsection{\texorpdfstring{getRandomFreeCell()}{getRandomFreeCell()}}
+{\footnotesize\ttfamily  tuple generate\+\_\+grid.\+Generate\+Grid.\+get\+Random\+Free\+Cell (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Sample a random free cell uniformly from the grid. 
+
+\begin{DoxyReturn}{Returns}
+A tuple of indices (one per dimension) for a free cell (value == 0). 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Runtime\+Error} & If {\ttfamily self.\+grid} is not initialized. \\
+\hline
+\end{DoxyExceptions}
+\begin{DoxyNote}{Note}
+This loops until a free cell is found; for heavily occupied maps this may take longer. 
+\end{DoxyNote}
+\mbox{\Hypertarget{classgenerate__grid_1_1GenerateGrid_a8316efd8088c990a7c99274b639ac284}\label{classgenerate__grid_1_1GenerateGrid_a8316efd8088c990a7c99274b639ac284}} 
+\index{generate\_grid.GenerateGrid@{generate\_grid.GenerateGrid}!inPolygons@{inPolygons}}
+\index{inPolygons@{inPolygons}!generate\_grid.GenerateGrid@{generate\_grid.GenerateGrid}}
+\doxysubsubsection{\texorpdfstring{inPolygons()}{inPolygons()}}
+{\footnotesize\ttfamily  bool generate\+\_\+grid.\+Generate\+Grid.\+in\+Polygons (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{x,  }\item[{float }]{eps = {\ttfamily 1e-\/3} }\end{DoxyParamCaption})}
+
+
+
+Test if a point lies inside any polygon (inclusive, with tolerance). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & Point to test; will be cast to float ndarray (shape\+: D,). \\
+\hline
+{\em eps} & Numerical tolerance added to {\ttfamily b} when checking A @ x $<$= b + eps. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if x is inside at least one polygon; False otherwise. 
+\end{DoxyReturn}
+\begin{DoxyPrecond}{Precondition}
+self.\+A and self.\+b computed by \mbox{\hyperlink{classgenerate__grid_1_1GenerateGrid_abd580d9be287751fb210b50be01d7c27}{compute\+Halfspace()}}. 
+\end{DoxyPrecond}
+\mbox{\Hypertarget{classgenerate__grid_1_1GenerateGrid_a8ab651b22973e984dd5faa621f1a9c51}\label{classgenerate__grid_1_1GenerateGrid_a8ab651b22973e984dd5faa621f1a9c51}} 
+\index{generate\_grid.GenerateGrid@{generate\_grid.GenerateGrid}!loadJson@{loadJson}}
+\index{loadJson@{loadJson}!generate\_grid.GenerateGrid@{generate\_grid.GenerateGrid}}
+\doxysubsubsection{\texorpdfstring{loadJson()}{loadJson()}}
+{\footnotesize\ttfamily  None generate\+\_\+grid.\+Generate\+Grid.\+load\+Json (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Load the base environment configuration. 
+
+Reads {\ttfamily } $<$config\+Name$>$.json and populates\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{-\/ gridSize, envName, envDes, dimension, cellSize,}
+
+\end{DoxyCode}
+ random\+Start\+Goal, polygons\+\_\+data, num\+Start\+Goals, start\+Goal\+Pairs. 
+\begin{DoxyExceptions}{Exceptions}
+{\em File\+Not\+Found\+Error} & If the base configuration file does not exist. \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{classgenerate__grid_1_1GenerateGrid_a30b352ce2bebbb3b1d63606331859be2}\label{classgenerate__grid_1_1GenerateGrid_a30b352ce2bebbb3b1d63606331859be2}} 
+\index{generate\_grid.GenerateGrid@{generate\_grid.GenerateGrid}!makeConvexHull@{makeConvexHull}}
+\index{makeConvexHull@{makeConvexHull}!generate\_grid.GenerateGrid@{generate\_grid.GenerateGrid}}
+\doxysubsubsection{\texorpdfstring{makeConvexHull()}{makeConvexHull()}}
+{\footnotesize\ttfamily  tuple generate\+\_\+grid.\+Generate\+Grid.\+make\+Convex\+Hull (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{vertices }\end{DoxyParamCaption})}
+
+
+
+Convert a set of polygon vertices to half-\/space form. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vertices} & Iterable of vertex coordinates (shape\+: N x D). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+(A, b) where A @ x $<$= b describes the convex hull.
+\end{DoxyReturn}
+Uses {\ttfamily scipy.\+spatial.\+Convex\+Hull} to compute plane equations in the form \mbox{[}A $\vert$ c\mbox{]} so that A x + c = 0 for faces. We rearrange to A x $<$= b with b = -\/c. \begin{DoxyWarning}{Warning}
+Vertices must define a valid (non-\/degenerate) convex polygon/polytope. 
+\end{DoxyWarning}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classgenerate__grid_1_1GenerateGrid_a88a264fe84722cae8459a5a0136ca7db}\label{classgenerate__grid_1_1GenerateGrid_a88a264fe84722cae8459a5a0136ca7db}} 
+\index{generate\_grid.GenerateGrid@{generate\_grid.GenerateGrid}!A@{A}}
+\index{A@{A}!generate\_grid.GenerateGrid@{generate\_grid.GenerateGrid}}
+\doxysubsubsection{\texorpdfstring{A}{A}}
+{\footnotesize\ttfamily generate\+\_\+grid.\+Generate\+Grid.\+A}
+
+\mbox{\Hypertarget{classgenerate__grid_1_1GenerateGrid_a1b7fd050a6d1b5f78aa1c0f1742c72bc}\label{classgenerate__grid_1_1GenerateGrid_a1b7fd050a6d1b5f78aa1c0f1742c72bc}} 
+\index{generate\_grid.GenerateGrid@{generate\_grid.GenerateGrid}!b@{b}}
+\index{b@{b}!generate\_grid.GenerateGrid@{generate\_grid.GenerateGrid}}
+\doxysubsubsection{\texorpdfstring{b}{b}}
+{\footnotesize\ttfamily generate\+\_\+grid.\+Generate\+Grid.\+b}
+
+\mbox{\Hypertarget{classgenerate__grid_1_1GenerateGrid_a6d35e264963eed93ad5c3c2f0a0c7161}\label{classgenerate__grid_1_1GenerateGrid_a6d35e264963eed93ad5c3c2f0a0c7161}} 
+\index{generate\_grid.GenerateGrid@{generate\_grid.GenerateGrid}!cellSize@{cellSize}}
+\index{cellSize@{cellSize}!generate\_grid.GenerateGrid@{generate\_grid.GenerateGrid}}
+\doxysubsubsection{\texorpdfstring{cellSize}{cellSize}}
+{\footnotesize\ttfamily generate\+\_\+grid.\+Generate\+Grid.\+cell\+Size}
+
+\mbox{\Hypertarget{classgenerate__grid_1_1GenerateGrid_a8a054201a3a9312cdd783ac4bbdfb91c}\label{classgenerate__grid_1_1GenerateGrid_a8a054201a3a9312cdd783ac4bbdfb91c}} 
+\index{generate\_grid.GenerateGrid@{generate\_grid.GenerateGrid}!configFolder@{configFolder}}
+\index{configFolder@{configFolder}!generate\_grid.GenerateGrid@{generate\_grid.GenerateGrid}}
+\doxysubsubsection{\texorpdfstring{configFolder}{configFolder}}
+{\footnotesize\ttfamily generate\+\_\+grid.\+Generate\+Grid.\+config\+Folder}
+
+\mbox{\Hypertarget{classgenerate__grid_1_1GenerateGrid_a3f427d6b5ed9bc602b0ebef653032b8e}\label{classgenerate__grid_1_1GenerateGrid_a3f427d6b5ed9bc602b0ebef653032b8e}} 
+\index{generate\_grid.GenerateGrid@{generate\_grid.GenerateGrid}!configName@{configName}}
+\index{configName@{configName}!generate\_grid.GenerateGrid@{generate\_grid.GenerateGrid}}
+\doxysubsubsection{\texorpdfstring{configName}{configName}}
+{\footnotesize\ttfamily generate\+\_\+grid.\+Generate\+Grid.\+config\+Name}
+
+\mbox{\Hypertarget{classgenerate__grid_1_1GenerateGrid_a2d7b768a7ccb313f19173ec156594ead}\label{classgenerate__grid_1_1GenerateGrid_a2d7b768a7ccb313f19173ec156594ead}} 
+\index{generate\_grid.GenerateGrid@{generate\_grid.GenerateGrid}!dimension@{dimension}}
+\index{dimension@{dimension}!generate\_grid.GenerateGrid@{generate\_grid.GenerateGrid}}
+\doxysubsubsection{\texorpdfstring{dimension}{dimension}}
+{\footnotesize\ttfamily generate\+\_\+grid.\+Generate\+Grid.\+dimension}
+
+\mbox{\Hypertarget{classgenerate__grid_1_1GenerateGrid_a587cc12bd0c5d0507103f5258e18bf11}\label{classgenerate__grid_1_1GenerateGrid_a587cc12bd0c5d0507103f5258e18bf11}} 
+\index{generate\_grid.GenerateGrid@{generate\_grid.GenerateGrid}!envDes@{envDes}}
+\index{envDes@{envDes}!generate\_grid.GenerateGrid@{generate\_grid.GenerateGrid}}
+\doxysubsubsection{\texorpdfstring{envDes}{envDes}}
+{\footnotesize\ttfamily generate\+\_\+grid.\+Generate\+Grid.\+env\+Des}
+
+\mbox{\Hypertarget{classgenerate__grid_1_1GenerateGrid_af4e27c2ee5931163960f9a27a3ccc730}\label{classgenerate__grid_1_1GenerateGrid_af4e27c2ee5931163960f9a27a3ccc730}} 
+\index{generate\_grid.GenerateGrid@{generate\_grid.GenerateGrid}!envName@{envName}}
+\index{envName@{envName}!generate\_grid.GenerateGrid@{generate\_grid.GenerateGrid}}
+\doxysubsubsection{\texorpdfstring{envName}{envName}}
+{\footnotesize\ttfamily generate\+\_\+grid.\+Generate\+Grid.\+env\+Name}
+
+\mbox{\Hypertarget{classgenerate__grid_1_1GenerateGrid_a4c5b97ea470e57dbba3c5e917c4e30c2}\label{classgenerate__grid_1_1GenerateGrid_a4c5b97ea470e57dbba3c5e917c4e30c2}} 
+\index{generate\_grid.GenerateGrid@{generate\_grid.GenerateGrid}!finalGrid@{finalGrid}}
+\index{finalGrid@{finalGrid}!generate\_grid.GenerateGrid@{generate\_grid.GenerateGrid}}
+\doxysubsubsection{\texorpdfstring{finalGrid}{finalGrid}}
+{\footnotesize\ttfamily generate\+\_\+grid.\+Generate\+Grid.\+final\+Grid}
+
+\mbox{\Hypertarget{classgenerate__grid_1_1GenerateGrid_a7e18d0212c6fe734e370b6b6c330f697}\label{classgenerate__grid_1_1GenerateGrid_a7e18d0212c6fe734e370b6b6c330f697}} 
+\index{generate\_grid.GenerateGrid@{generate\_grid.GenerateGrid}!grid@{grid}}
+\index{grid@{grid}!generate\_grid.GenerateGrid@{generate\_grid.GenerateGrid}}
+\doxysubsubsection{\texorpdfstring{grid}{grid}}
+{\footnotesize\ttfamily generate\+\_\+grid.\+Generate\+Grid.\+grid}
+
+\mbox{\Hypertarget{classgenerate__grid_1_1GenerateGrid_a397daa89b3bb71f32364c18f5b967954}\label{classgenerate__grid_1_1GenerateGrid_a397daa89b3bb71f32364c18f5b967954}} 
+\index{generate\_grid.GenerateGrid@{generate\_grid.GenerateGrid}!grid\_suffix@{grid\_suffix}}
+\index{grid\_suffix@{grid\_suffix}!generate\_grid.GenerateGrid@{generate\_grid.GenerateGrid}}
+\doxysubsubsection{\texorpdfstring{grid\_suffix}{grid\_suffix}}
+{\footnotesize\ttfamily generate\+\_\+grid.\+Generate\+Grid.\+grid\+\_\+suffix}
+
+\mbox{\Hypertarget{classgenerate__grid_1_1GenerateGrid_a88b7b9c02e8962c4729f9f2b58849cb4}\label{classgenerate__grid_1_1GenerateGrid_a88b7b9c02e8962c4729f9f2b58849cb4}} 
+\index{generate\_grid.GenerateGrid@{generate\_grid.GenerateGrid}!gridSize@{gridSize}}
+\index{gridSize@{gridSize}!generate\_grid.GenerateGrid@{generate\_grid.GenerateGrid}}
+\doxysubsubsection{\texorpdfstring{gridSize}{gridSize}}
+{\footnotesize\ttfamily generate\+\_\+grid.\+Generate\+Grid.\+grid\+Size}
+
+\mbox{\Hypertarget{classgenerate__grid_1_1GenerateGrid_a63ba090afe9829f341a8bcd0e2a23849}\label{classgenerate__grid_1_1GenerateGrid_a63ba090afe9829f341a8bcd0e2a23849}} 
+\index{generate\_grid.GenerateGrid@{generate\_grid.GenerateGrid}!numStartGoals@{numStartGoals}}
+\index{numStartGoals@{numStartGoals}!generate\_grid.GenerateGrid@{generate\_grid.GenerateGrid}}
+\doxysubsubsection{\texorpdfstring{numStartGoals}{numStartGoals}}
+{\footnotesize\ttfamily generate\+\_\+grid.\+Generate\+Grid.\+num\+Start\+Goals}
+
+\mbox{\Hypertarget{classgenerate__grid_1_1GenerateGrid_ade2ff0acffce88145bdf40f9d269a7da}\label{classgenerate__grid_1_1GenerateGrid_ade2ff0acffce88145bdf40f9d269a7da}} 
+\index{generate\_grid.GenerateGrid@{generate\_grid.GenerateGrid}!path@{path}}
+\index{path@{path}!generate\_grid.GenerateGrid@{generate\_grid.GenerateGrid}}
+\doxysubsubsection{\texorpdfstring{path}{path}}
+{\footnotesize\ttfamily generate\+\_\+grid.\+Generate\+Grid.\+path}
+
+\mbox{\Hypertarget{classgenerate__grid_1_1GenerateGrid_a952a2fde3c6b3226841534e386cac33e}\label{classgenerate__grid_1_1GenerateGrid_a952a2fde3c6b3226841534e386cac33e}} 
+\index{generate\_grid.GenerateGrid@{generate\_grid.GenerateGrid}!polygons\_data@{polygons\_data}}
+\index{polygons\_data@{polygons\_data}!generate\_grid.GenerateGrid@{generate\_grid.GenerateGrid}}
+\doxysubsubsection{\texorpdfstring{polygons\_data}{polygons\_data}}
+{\footnotesize\ttfamily generate\+\_\+grid.\+Generate\+Grid.\+polygons\+\_\+data}
+
+\mbox{\Hypertarget{classgenerate__grid_1_1GenerateGrid_ad3c8c9be7890a7b3709f6cb557e431d0}\label{classgenerate__grid_1_1GenerateGrid_ad3c8c9be7890a7b3709f6cb557e431d0}} 
+\index{generate\_grid.GenerateGrid@{generate\_grid.GenerateGrid}!randomStartGoal@{randomStartGoal}}
+\index{randomStartGoal@{randomStartGoal}!generate\_grid.GenerateGrid@{generate\_grid.GenerateGrid}}
+\doxysubsubsection{\texorpdfstring{randomStartGoal}{randomStartGoal}}
+{\footnotesize\ttfamily generate\+\_\+grid.\+Generate\+Grid.\+random\+Start\+Goal}
+
+\mbox{\Hypertarget{classgenerate__grid_1_1GenerateGrid_a6b93796ae039f29722b92272247d1a29}\label{classgenerate__grid_1_1GenerateGrid_a6b93796ae039f29722b92272247d1a29}} 
+\index{generate\_grid.GenerateGrid@{generate\_grid.GenerateGrid}!startGoalPairs@{startGoalPairs}}
+\index{startGoalPairs@{startGoalPairs}!generate\_grid.GenerateGrid@{generate\_grid.GenerateGrid}}
+\doxysubsubsection{\texorpdfstring{startGoalPairs}{startGoalPairs}}
+{\footnotesize\ttfamily generate\+\_\+grid.\+Generate\+Grid.\+start\+Goal\+Pairs}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+safeplan/envs/\mbox{\hyperlink{generate__grid_8py}{generate\+\_\+grid.\+py}}\end{DoxyCompactItemize}

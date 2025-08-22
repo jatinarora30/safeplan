@@ -1,0 +1,43 @@
+\hypertarget{jerk__per__meter_8py}{}\doxysection{safeplan/evals/jerk\+\_\+per\+\_\+meter.py File Reference}
+\label{jerk__per__meter_8py}\index{safeplan/evals/jerk\_per\_meter.py@{safeplan/evals/jerk\_per\_meter.py}}
+
+
+Deviation Jerk Per Meter evaluator for planning algorithms.  
+
+
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classjerk__per__meter_1_1JerkPerMeter}{jerk\+\_\+per\+\_\+meter.\+Jerk\+Per\+Meter}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \mbox{\hyperlink{namespacejerk__per__meter}{jerk\+\_\+per\+\_\+meter}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Deviation Jerk Per Meter evaluator for planning algorithms. 
+
+Implements Jerk Per Meter evaluation based upon the path provided on the grid. It uses the third derivate of position with step size of 1
+
+\begin{DoxyParagraph}{Inputs}
+
+\begin{DoxyItemize}
+\item {\ttfamily start} \+: tuple\mbox{[}int, ...\mbox{]} — start grid cell (e.\+g., (row, col))
+\item {\ttfamily goal} \+: tuple\mbox{[}int, ...\mbox{]} — goal grid cell
+\item {\ttfamily grid} \+: numpy.\+ndarray (N-\/D), values \{0=free, 1=obstacle\}
+\item {\ttfamily cell\+Size} \+: Size of cell(in m) for real world computation
+\item {\ttfamily Path} \+: Path given by planner to evaluate metrices
+\end{DoxyItemize}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Outputs}
+
+\begin{DoxyItemize}
+\item {\ttfamily val\+:} Jerk per meter evaluated
+\end{DoxyItemize}
+\end{DoxyParagraph}
+\begin{DoxySeeAlso}{See also}
+Base\+Eval 
+\end{DoxySeeAlso}

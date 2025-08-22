@@ -18,9 +18,7 @@ Implements Optimal deviation evaluation based upon the path provided on the grid
 @see BaseEval
 
 """
-import numpy as np
 from .baseeval import BaseEval
-import math
 from ..algos.a_star import AStar
 from ..evals.path_cost import PathCost
 class OptimalDeviation(BaseEval):

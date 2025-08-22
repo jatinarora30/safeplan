@@ -19,6 +19,7 @@ from .evals.path_cost import PathCost
 from .evals.nodes_in_path import NodesInPath
 from .evals.optimal_deviation import OptimalDeviation
 from .evals.distance_to_goal import DistanceToGoal
+from .evals.jerk_per_meter import JerkPerMeter
 
 class SafePlan:
     def __init__(self,runConfigPath):
@@ -73,6 +74,8 @@ class SafePlan:
                 self.evals.append({"OptimalDeviation",OptimalDeviation()})
             if k["name"]=="DistanceToGoal":
                 self.evals.append({"DistanceToGoal",DistanceToGoal()})
+            if k["name"]=="JerkPerMeter":
+                self.evals.append({"JerkPerMeter",JerkPerMeter()})
     def setUpEnvs(self):
         for k in self.envsDetails:
             if "generateGrid" in k:
