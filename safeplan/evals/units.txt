@@ -1,3 +1,14 @@
-Path cost: in m
-Time: in ms
-Sucess: in percent
+Path cost: in m -done
+Time: in ms -done
+Success: in percent-done
+Distance to goal in failure -done
+Number of nodes in Path-done
+
+Turning Angle: in degrees
+Jerk:
+Optimal Deviation - done
+
+Minimum Clearance: in m
+clearance variability: taking minimum distance from obstacle at each point and variance of data
+Number of danger zones violation in certain radius
+LocalRisk: Sum of inverse distance

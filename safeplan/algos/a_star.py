@@ -1,5 +1,5 @@
 """
-@file a_star.py
+@file AStar.py
 @brief A* planner for N-dimensional occupancy grids.
 
 @details
@@ -39,7 +39,7 @@ import heapq
 import itertools
 import numpy as np
 
-class A_star(BasePlanner):
+class AStar(BasePlanner):
     
     def __init__(self):
         """

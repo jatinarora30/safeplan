@@ -46,8 +46,12 @@ class Stats:
         
         for k in self.evalsDetails:
             self.evals.append(k["name"])
-        self.evals.append("Success")
-        self.evals.append("Time")
+            if k["name"]=="SuccessRate":
+            
+                self.evals.append("SuccessRate")
+            if k["name"]=="PlanningTime":
+            
+                self.evals.append("PlanningTime")
 
         self.outputDir = "outputs"
         self.runPath = os.path.join(self.outputDir, self.runDetails)
@@ -117,7 +121,6 @@ class Stats:
                 
                 # Compute mean values
                 mean = {key: value / self.totalFiles for key, value in mean.items()}
-                mean["Success"] = mean["Success"] * 100  # Convert to percentage
                 meanAlgoData[algo] = mean
 
                 # Convert to DataFrame for display

@@ -1,16 +1,22 @@
 {
   "runDetails": "run1",
   "evalDetails": [
-    {"name": "PathCost", "args": {"normalize": true}}
+
+    {"name": "PlanningTime"},
+    {"name": "SuccessRate"},
+    {"name": "OptimalDeviation"},
+    {"name": "PathCost"},
+    {"name": "DistanceToGoal"},
+    {"name": "NodesInPath", "args": {"type":"RDP","epsilon":0.1}}
   ],
   "algoDetails": [
-    {"name": "A_Star", "args": {"diagonal": false, "tie_break": "g_first"}}
+    {"name": "AStar"}
   ],
   "envDetails": [
     {
       "generateGrid": [
-        {"name": "env1", "args": {}},
-        {"name": "env2", "args": {}}
+        {"name": "env1" },
+        {"name": "env2"}
       ]
     }
   ]
