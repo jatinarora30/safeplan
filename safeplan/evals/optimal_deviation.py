@@ -43,6 +43,7 @@ class OptimalDeviation(BaseEval):
         @return value Returns the optimal deviation in percent
         
         """
+        self.value=0
         optimalPath=self.planner.plan(start,goal,grid)
         optimalCost=self.pathCost.eval(None,None,None,cellSize,optimalPath[1])
         originalCost=self.pathCost.eval(None,None,None,cellSize,path)

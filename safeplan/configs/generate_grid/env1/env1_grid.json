@@ -2,102 +2,12 @@
     "startGoalPairs": [
         {
             "start": [
-                87,
-                89
+                82,
+                87
             ],
             "goal": [
-                32,
-                20
-            ]
-        },
-        {
-            "start": [
-                11,
-                3
-            ],
-            "goal": [
-                45,
-                54
-            ]
-        },
-        {
-            "start": [
-                65,
-                31
-            ],
-            "goal": [
-                27,
-                45
-            ]
-        },
-        {
-            "start": [
-                1,
-                15
-            ],
-            "goal": [
-                77,
-                42
-            ]
-        },
-        {
-            "start": [
-                87,
-                37
-            ],
-            "goal": [
-                19,
-                26
-            ]
-        },
-        {
-            "start": [
-                4,
-                93
-            ],
-            "goal": [
-                4,
-                54
-            ]
-        },
-        {
-            "start": [
-                3,
-                78
-            ],
-            "goal": [
-                98,
-                54
-            ]
-        },
-        {
-            "start": [
-                58,
-                57
-            ],
-            "goal": [
-                38,
-                29
-            ]
-        },
-        {
-            "start": [
-                78,
-                83
-            ],
-            "goal": [
-                88,
-                40
-            ]
-        },
-        {
-            "start": [
-                99,
-                32
-            ],
-            "goal": [
-                26,
-                33
+                79,
+                71
             ]
         }
     ],
@@ -10307,5 +10217,5 @@
     "envDes": "Maze type environment",
     "dimensionOfGrid": 2,
     "cellSize": 0.5,
-    "numStartGoals": 10
+    "numStartGoals": 1
 }

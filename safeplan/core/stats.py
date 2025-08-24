@@ -52,6 +52,9 @@ class Stats:
             if k["name"]=="PlanningTime":
             
                 self.evals.append("PlanningTime")
+            if k["name"]=="PeakMemory":
+            
+                self.evals.append("PeakMemory")
 
         self.outputDir = "outputs"
         self.runPath = os.path.join(self.outputDir, self.runDetails)

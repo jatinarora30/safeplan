@@ -45,7 +45,7 @@ class NodesInPath(BaseEval):
         @return value Returns the number of nodes in path based on type
         
         """
-        
+        self.value=0
         if self.type=="Simple":
             self.value=len(path)
             

@@ -214,7 +214,6 @@ class GenerateGrid(BaseEnv):
                         k = k + 1
                         pair["start"] = start
                         pair["goal"] = goal
-                        print(start)
                         self.startGoalPairs.append(pair)
             writeJson["startGoalPairs"] = self.startGoalPairs
 

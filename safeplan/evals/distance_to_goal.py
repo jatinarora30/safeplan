@@ -40,6 +40,7 @@ class DistanceToGoal(BaseEval):
         @return value Returns the distance to goal in failure case
         
         """
+        self.value=0
         if len(path)>0:
             self.value = math.dist(path[len(path)-1],goal)*cellSize
         else:

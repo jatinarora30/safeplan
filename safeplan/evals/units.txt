@@ -1,14 +1,142 @@
-Path cost: in m -done
-Time: in ms -done
-Success: in percent-done
-Distance to goal in failure -done
-Number of nodes in Path-done
+===============================
+SafePlan Benchmarking Metrics
+===============================
 
-Turning Angle: in degrees
-Jerk:
-Optimal Deviation - done
+1. Path Cost (m)
+----------------
+Definition:
+    Total geometric length of the path from start to goal.
+Computation:
+    Sum of Euclidean distances between consecutive waypoints, multiplied by cell size.
+Interpretation:
+    Lower cost means a shorter, more efficient path.
+Unit:
+    Meters (m).
 
-Minimum Clearance: in m
-clearance variability: taking minimum distance from obstacle at each point and variance of data
-Number of danger zones violation in certain radius
-LocalRisk: Sum of inverse distance
+2. Planning Time (ms)
+---------------------
+Definition:
+    CPU time taken by the planner to compute a path.
+Computation:
+    Wall-clock difference between start and end of plan() call.
+Interpretation:
+    Lower time = faster algorithm. Useful for benchmarking efficiency.
+Unit:
+    Milliseconds (ms).
+
+3. Success Rate (%)
+-------------------
+Definition:
+    Fraction of planning queries where a valid path to the goal is found.
+Computation:
+    (#successful plans / #total attempts) × 100
+Interpretation:
+    Higher success rate = more reliable planner.
+Unit:
+    Percentage (%).
+
+4. Distance to Goal (m, in failures)
+------------------------------------
+Definition:
+    Remaining Euclidean distance between the last reached node and the goal when planning fails.
+Computation:
+    Distance between last expanded/returned path node and goal.
+Interpretation:
+    Smaller values mean the planner got closer to the goal before failing.
+Unit:
+    Meters (m).
+
+5. Number of Nodes in Path
+---------------------------
+Definition:
+    Count of waypoints in the final planned path.
+Interpretation:
+    Reflects smoothness and simplicity; fewer nodes generally mean a straighter path.
+Unit:
+    Count (integer).
+
+6. Peak Memory (KB)
+-------------------
+Definition:
+    Maximum RAM used by the planner during execution.
+Computation:
+    Retrieved from OS metrics (RSS or working set peak).
+Interpretation:
+    Measures memory efficiency of the planner.
+Unit:
+    Kilobytes (KB).
+
+7. Turning Angle (°)
+--------------------
+Definition:
+    Sum of angular deviations between consecutive path segments.
+Computation:
+    Compute angle via dot product between vectors, sum all deviations.
+Interpretation:
+    High turning angles indicate a less smooth path with sharp turns.
+Unit:
+    Degrees (°).
+
+8. Jerk per Meter
+-----------------
+Definition:
+    Rate of change of acceleration along the path, normalized per unit distance.
+Computation:
+    Third derivative of position along the discretized path.
+Interpretation:
+    Captures dynamic smoothness. Lower jerk → smoother, more stable trajectories.
+Unit:
+    Dimensionless (jerk per meter).
+
+9. Optimal Deviation (%)
+------------------------
+Definition:
+    Deviation of path cost from the known optimal/shortest path.
+Computation:
+    ((path_cost - optimal_cost) / optimal_cost) × 100
+Interpretation:
+    Lower deviation indicates near-optimal performance.
+Unit:
+    Percentage (%).
+
+10. Minimum Clearance (m)
+-------------------------
+Definition:
+    Smallest distance from any path point to the nearest obstacle.
+Computation:
+    Distance Transform EDT at sampled points.
+Interpretation:
+    Higher clearance means safer paths, less risk of collision.
+Unit:
+    Meters (m).
+
+11. Average Minimum Clearance (m)
+---------------------------------
+Definition:
+    Mean clearance across all sampled path points.
+Interpretation:
+    Represents general safety margin maintained along the path.
+Unit:
+    Meters (m).
+
+12. Clearance Variability
+--------------------------
+Definition:
+    Variance in clearance values sampled along the path.
+Computation:
+    Variance of per-point minimum distances to obstacles.
+Interpretation:
+    Low variability = consistent safety margin; high variability = risky fluctuations.
+Unit:
+    Meters² (variance).
+
+13. Danger Zone Violations
+--------------------------
+Definition:
+    Number of times the path enters a predefined danger radius around obstacles.
+Computation:
+    Count of sampled points along the path where clearance < danger radius.
+Interpretation:
+    Higher values mean the path frequently risks collisions.
+Unit:
+    Count (integer).

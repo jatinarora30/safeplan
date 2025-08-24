@@ -12,4 +12,4 @@ sf.compute()
 
 
 vs=Visualize()
-vs.see("/home/jatinarora/code/safeplan/safeplan/runs/run1.json",2,["AStar"])
+vs.see("/home/jatinarora/code/safeplan/safeplan/runs/run1.json",1,["AStar"])

@@ -1,8 +1,13 @@
 {
   "runDetails": "run1",
   "evalDetails": [
-
     {"name": "PlanningTime"},
+    {"name": "MinimumClearance","args": {"pointSamples":100}},
+    {"name": "AverageMinimumClearance","args": {"pointSamples":100}},
+    {"name": "ClearanceVariability","args": {"pointSamples":100}},
+    {"name": "DangerViolations","args": {"pointSamples":100,"dangerRadius":1}},
+    {"name": "PeakMemory"},
+    {"name": "TurningAngle"},
     {"name": "JerkPerMeter"},
     {"name": "SuccessRate"},
     {"name": "OptimalDeviation"},
