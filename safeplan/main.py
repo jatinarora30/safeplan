@@ -5,6 +5,12 @@ import time
 from .core.logger import Logger
 
 from .algos.a_star import AStar
+from .algos.voronoi_planner import VoronoiPlanner
+from .algos.upp import UPP
+from .algos.rrt import RRT
+from .algos.dijkstra import Dijkstra
+from .algos.weighted_astar import WeightedAStar
+from .algos.sdf_astar import SDFAStar
 
 
 from .envs.generate_grid import GenerateGrid
@@ -22,6 +28,7 @@ from .evals.minimum_clearance import MinimumClearance
 from .evals.average_minimum_clearance import AverageMinimumClearance
 from .evals.clearance_variability import ClearanceVariability
 from .evals.danger_violations import DangerViolations
+from .evals.optisafe_index import OptiSafeIndex
 
 class SafePlan:
     def __init__(self,runConfigPath):
@@ -61,6 +68,18 @@ class SafePlan:
         for k in self.algosDetails:
             if k["name"]=="AStar":
                 self.algos.append(("AStar",AStar()))
+            if k["name"]=="SDFAStar":
+                self.algos.append(("SDFAStar",SDFAStar(k["args"]["k1"],k["args"]["k2"])))
+            if k["name"]=="WeightedAStar":
+                self.algos.append(("WeightedAStar",WeightedAStar(k["args"]["weight"])))
+            if k["name"]=="Dijkstra":
+                self.algos.append(("Dijkstra",Dijkstra()))
+            if k["name"]=="RRT":
+                self.algos.append(("RRT",RRT(k["args"]["maxIter"],k["args"]["goalSampleRate"],k["args"]["stepSize"],k["args"]["pointSamples"],)))
+            if k["name"]=="VoronoiPlanner":
+                self.algos.append(("VoronoiPlanner",VoronoiPlanner(k["args"]["pointSamples"],k["args"]["knn"])))
+            if k["name"]=="UPP":
+                self.algos.append(("UPP",UPP(k["args"]["alpha"],k["args"]["beta"],k["args"]["radius"],k["args"]["epsilon"])))
                 
     def setUpEvals(self):
         for k in self.evalsDetails:
@@ -82,6 +101,8 @@ class SafePlan:
                 self.evals.append(("JerkPerMeter",JerkPerMeter()))
             if k["name"]=="TurningAngle":
                 self.evals.append(("TurningAngle",TurningAngle()))
+            if k["name"]=="OptiSafeIndex":
+                self.evals.append(("OptiSafeIndex",OptiSafeIndex(k["args"]["pointSamples"],k["args"]["knn"])))
             if k["name"]=="MinimumClearance":
                 self.evals.append(("MinimumClearance",MinimumClearance(k["args"]["pointSamples"])))
             if k["name"]=="AverageMinimumClearance":

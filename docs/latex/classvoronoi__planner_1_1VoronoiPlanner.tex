@@ -1,0 +1,320 @@
+\hypertarget{classvoronoi__planner_1_1VoronoiPlanner}{}\doxysection{voronoi\+\_\+planner.\+Voronoi\+Planner Class Reference}
+\label{classvoronoi__planner_1_1VoronoiPlanner}\index{voronoi\_planner.VoronoiPlanner@{voronoi\_planner.VoronoiPlanner}}
+
+
+Path planner using a Voronoi roadmap with A$\ast$ search.  
+
+
+
+
+Inheritance diagram for voronoi\+\_\+planner.\+Voronoi\+Planner\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=251pt]{classvoronoi__planner_1_1VoronoiPlanner__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for voronoi\+\_\+planner.\+Voronoi\+Planner\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=251pt]{classvoronoi__planner_1_1VoronoiPlanner__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{classvoronoi__planner_1_1VoronoiPlanner_ac25022b10a27938093d40948e4854810}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, \mbox{\hyperlink{classvoronoi__planner_1_1VoronoiPlanner_ae0a50957e745d215ec872a83b8113156}{point\+Samples}}, \mbox{\hyperlink{classvoronoi__planner_1_1VoronoiPlanner_abd79a8e26622df45b033aabb1eb9498f}{knn}})
+\begin{DoxyCompactList}\small\item\em Construct the Voronoi planner. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classvoronoi__planner_1_1VoronoiPlanner_a9415ab52601644712e0f83a908a4c69a}{get\+Obstacle\+Centers}} (self, \mbox{\hyperlink{classvoronoi__planner_1_1VoronoiPlanner_a672c56e6d7b19a4eea729410dc0296fd}{grid}})
+\begin{DoxyCompactList}\small\item\em Compute centroids of connected obstacle components. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classvoronoi__planner_1_1VoronoiPlanner_aec0c7bc228c11a8ef7247d33b56f41b8}{is\+Edge\+Free}} (self, pt1, pt2)
+\begin{DoxyCompactList}\small\item\em Check if the segment between two points is collision-\/free. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classvoronoi__planner_1_1VoronoiPlanner_ab26a9e362b5b2f27cf462b76038361e4}{is\+Valid}} (self, grid\+\_\+cell)
+\begin{DoxyCompactList}\small\item\em Check whether a grid-\/cell index lies within bounds. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classvoronoi__planner_1_1VoronoiPlanner_adbc55534cb13d45bec8c8845de5caaa7}{nearest\+Vertex}} (self, point)
+\begin{DoxyCompactList}\small\item\em Return indices of the K nearest Voronoi vertices to a query point. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classvoronoi__planner_1_1VoronoiPlanner_a9e147fcbad5ce18d4d69dcc5f4d45295}{plan}} (self, \mbox{\hyperlink{classvoronoi__planner_1_1VoronoiPlanner_a258a92e555a9cb5ebbb795d2f7639aff}{start}}, \mbox{\hyperlink{classvoronoi__planner_1_1VoronoiPlanner_a2a44eb3b66a39c04250072d84634ef1d}{goal}}, \mbox{\hyperlink{classvoronoi__planner_1_1VoronoiPlanner_a672c56e6d7b19a4eea729410dc0296fd}{grid}})
+\begin{DoxyCompactList}\small\item\em Plan a path from {\ttfamily start} to {\ttfamily goal} over {\ttfamily grid} via a Voronoi roadmap. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classvoronoi__planner_1_1VoronoiPlanner_aac545ec66ede048323a2862413459ccf}{success}}
+\item 
+\mbox{\hyperlink{classvoronoi__planner_1_1VoronoiPlanner_ae0a50957e745d215ec872a83b8113156}{point\+Samples}}
+\item 
+\mbox{\hyperlink{classvoronoi__planner_1_1VoronoiPlanner_abd79a8e26622df45b033aabb1eb9498f}{knn}}
+\item 
+\mbox{\hyperlink{classvoronoi__planner_1_1VoronoiPlanner_ad4e88ea3f5489d2966fc239665ef4538}{info}}
+\item 
+\mbox{\hyperlink{classvoronoi__planner_1_1VoronoiPlanner_a43f39df0da6cc7319cd932d2cea638fd}{path}}
+\item 
+\mbox{\hyperlink{classvoronoi__planner_1_1VoronoiPlanner_a258a92e555a9cb5ebbb795d2f7639aff}{start}}
+\item 
+\mbox{\hyperlink{classvoronoi__planner_1_1VoronoiPlanner_a2a44eb3b66a39c04250072d84634ef1d}{goal}}
+\item 
+\mbox{\hyperlink{classvoronoi__planner_1_1VoronoiPlanner_a672c56e6d7b19a4eea729410dc0296fd}{grid}}
+\item 
+\mbox{\hyperlink{classvoronoi__planner_1_1VoronoiPlanner_af3ca98fbf44453c755bb759618ed0c89}{dimension}}
+\item 
+\mbox{\hyperlink{classvoronoi__planner_1_1VoronoiPlanner_a5d9d5b607feae75f0087bb508c9774cc}{sizes}}
+\item 
+\mbox{\hyperlink{classvoronoi__planner_1_1VoronoiPlanner_ad0ce608b70b414ccd84e39751021d839}{voronoi\+Points}}
+\item 
+\mbox{\hyperlink{classvoronoi__planner_1_1VoronoiPlanner_a57470478ed8a0fdbbc1e2b7a438da583}{G}}
+\item 
+\mbox{\hyperlink{classvoronoi__planner_1_1VoronoiPlanner_a7f8230c008b4c7b1c38cd83d3ef2824a}{start\+ID}}
+\item 
+\mbox{\hyperlink{classvoronoi__planner_1_1VoronoiPlanner_a5f301d522eed68430c684beb27d9f8c2}{goal\+ID}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Path planner using a Voronoi roadmap with A$\ast$ search. 
+
+The planner assembles a sparse roadmap that tends to maximize clearance from obstacles by leveraging the Voronoi diagram of obstacle-\/cluster centroids. Start and goal are connected to nearby Voronoi vertices if those connections are collision-\/free, and the shortest path on that graph (by Euclidean edge weights) is computed via A$\ast$ with a Euclidean heuristic. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classvoronoi__planner_1_1VoronoiPlanner_ac25022b10a27938093d40948e4854810}\label{classvoronoi__planner_1_1VoronoiPlanner_ac25022b10a27938093d40948e4854810}} 
+\index{voronoi\_planner.VoronoiPlanner@{voronoi\_planner.VoronoiPlanner}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!voronoi\_planner.VoronoiPlanner@{voronoi\_planner.VoronoiPlanner}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily def voronoi\+\_\+planner.\+Voronoi\+Planner.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{point\+Samples,  }\item[{}]{knn }\end{DoxyParamCaption})}
+
+
+
+Construct the Voronoi planner. 
+
+\begin{DoxyVerb}   @param pointSamples int
+          Number of interpolation samples used when checking whether a
+          straight-line edge is free of obstacles.
+   @param knn int
+          Number of nearest Voronoi vertices to attempt to connect for
+          both start and goal.
+
+   @post Instance is initialized with empty path and diagnostics.
+\end{DoxyVerb}
+ 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classvoronoi__planner_1_1VoronoiPlanner_a9415ab52601644712e0f83a908a4c69a}\label{classvoronoi__planner_1_1VoronoiPlanner_a9415ab52601644712e0f83a908a4c69a}} 
+\index{voronoi\_planner.VoronoiPlanner@{voronoi\_planner.VoronoiPlanner}!getObstacleCenters@{getObstacleCenters}}
+\index{getObstacleCenters@{getObstacleCenters}!voronoi\_planner.VoronoiPlanner@{voronoi\_planner.VoronoiPlanner}}
+\doxysubsubsection{\texorpdfstring{getObstacleCenters()}{getObstacleCenters()}}
+{\footnotesize\ttfamily def voronoi\+\_\+planner.\+Voronoi\+Planner.\+get\+Obstacle\+Centers (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{grid }\end{DoxyParamCaption})}
+
+
+
+Compute centroids of connected obstacle components. 
+
+\begin{DoxyVerb}   @details
+   Uses `scipy.ndimage.label` to identify connected components (features)
+   of obstacle cells (grid==1). For each component, computes the mean of
+   its indices as the centroid (in continuous coordinates).
+
+   @param grid numpy.ndarray
+          N-D occupancy grid with {0=free, 1=obstacle}.
+
+   @return numpy.ndarray
+           Array of shape (M, N) with centroids of M components in N dims.
+           Returns an empty array if no obstacles are present.
+\end{DoxyVerb}
+ \mbox{\Hypertarget{classvoronoi__planner_1_1VoronoiPlanner_aec0c7bc228c11a8ef7247d33b56f41b8}\label{classvoronoi__planner_1_1VoronoiPlanner_aec0c7bc228c11a8ef7247d33b56f41b8}} 
+\index{voronoi\_planner.VoronoiPlanner@{voronoi\_planner.VoronoiPlanner}!isEdgeFree@{isEdgeFree}}
+\index{isEdgeFree@{isEdgeFree}!voronoi\_planner.VoronoiPlanner@{voronoi\_planner.VoronoiPlanner}}
+\doxysubsubsection{\texorpdfstring{isEdgeFree()}{isEdgeFree()}}
+{\footnotesize\ttfamily def voronoi\+\_\+planner.\+Voronoi\+Planner.\+is\+Edge\+Free (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{pt1,  }\item[{}]{pt2 }\end{DoxyParamCaption})}
+
+
+
+Check if the segment between two points is collision-\/free. 
+
+\begin{DoxyVerb}   @details
+   Samples `self.pointSamples` points linearly between @p pt1 and @p pt2.
+   Each sample is rounded to the nearest grid index; if any sample is
+   out-of-bounds or falls on an obstacle cell (grid==1), the edge is
+   considered in collision.
+
+   @param pt1 sequence[float]
+          Segment start (continuous coordinates).
+   @param pt2 sequence[float]
+          Segment end (continuous coordinates).
+
+   @return bool
+           True if all sampled points lie within the grid and in free
+           cells; False otherwise.
+\end{DoxyVerb}
+ \mbox{\Hypertarget{classvoronoi__planner_1_1VoronoiPlanner_ab26a9e362b5b2f27cf462b76038361e4}\label{classvoronoi__planner_1_1VoronoiPlanner_ab26a9e362b5b2f27cf462b76038361e4}} 
+\index{voronoi\_planner.VoronoiPlanner@{voronoi\_planner.VoronoiPlanner}!isValid@{isValid}}
+\index{isValid@{isValid}!voronoi\_planner.VoronoiPlanner@{voronoi\_planner.VoronoiPlanner}}
+\doxysubsubsection{\texorpdfstring{isValid()}{isValid()}}
+{\footnotesize\ttfamily def voronoi\+\_\+planner.\+Voronoi\+Planner.\+is\+Valid (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{grid\+\_\+cell }\end{DoxyParamCaption})}
+
+
+
+Check whether a grid-\/cell index lies within bounds. 
+
+\begin{DoxyVerb}   @param grid_cell tuple[int, ...]
+          N-dimensional integer grid index.
+
+   @return bool
+           True iff all indices are within the grid extents; False otherwise.
+\end{DoxyVerb}
+ \mbox{\Hypertarget{classvoronoi__planner_1_1VoronoiPlanner_adbc55534cb13d45bec8c8845de5caaa7}\label{classvoronoi__planner_1_1VoronoiPlanner_adbc55534cb13d45bec8c8845de5caaa7}} 
+\index{voronoi\_planner.VoronoiPlanner@{voronoi\_planner.VoronoiPlanner}!nearestVertex@{nearestVertex}}
+\index{nearestVertex@{nearestVertex}!voronoi\_planner.VoronoiPlanner@{voronoi\_planner.VoronoiPlanner}}
+\doxysubsubsection{\texorpdfstring{nearestVertex()}{nearestVertex()}}
+{\footnotesize\ttfamily def voronoi\+\_\+planner.\+Voronoi\+Planner.\+nearest\+Vertex (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{point }\end{DoxyParamCaption})}
+
+
+
+Return indices of the K nearest Voronoi vertices to a query point. 
+
+\begin{DoxyVerb}   @details
+   Computes Euclidean distance from @p point to each finite Voronoi vertex
+   and returns up to `self.knn` indices of the closest ones.
+
+   @param point sequence[float]
+          Query location in continuous coordinates.
+
+   @return list[int]
+           Indices of up to K nearest Voronoi vertices.
+\end{DoxyVerb}
+ \mbox{\Hypertarget{classvoronoi__planner_1_1VoronoiPlanner_a9e147fcbad5ce18d4d69dcc5f4d45295}\label{classvoronoi__planner_1_1VoronoiPlanner_a9e147fcbad5ce18d4d69dcc5f4d45295}} 
+\index{voronoi\_planner.VoronoiPlanner@{voronoi\_planner.VoronoiPlanner}!plan@{plan}}
+\index{plan@{plan}!voronoi\_planner.VoronoiPlanner@{voronoi\_planner.VoronoiPlanner}}
+\doxysubsubsection{\texorpdfstring{plan()}{plan()}}
+{\footnotesize\ttfamily def voronoi\+\_\+planner.\+Voronoi\+Planner.\+plan (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{start,  }\item[{}]{goal,  }\item[{}]{grid }\end{DoxyParamCaption})}
+
+
+
+Plan a path from {\ttfamily start} to {\ttfamily goal} over {\ttfamily grid} via a Voronoi roadmap. 
+
+\begin{DoxyVerb}   @details
+   Algorithm flow:
+     1. Validate inputs and trivial cases (invalid cells, obstacles, equality).
+     2. Attempt straight-line path; if collision-free, return immediately.
+     3. If enough obstacle components exist (>4), build the Voronoi diagram
+        from obstacle-centroid sites.
+     4. Construct a graph whose nodes are Voronoi vertices (plus start/goal)
+        and whose edges are Voronoi edges that pass collision checks.
+     5. Connect start/goal to their @ref knn nearest Voronoi vertices if
+        those connections are collision-free.
+     6. Run A* (NetworkX) with Euclidean edge weights and heuristic to
+        obtain the shortest path on the roadmap; convert to integer grid
+        positions.
+
+   @param start tuple[int, ...]
+          Start grid cell.
+   @param goal tuple[int, ...]
+          Goal grid cell.
+   @param grid numpy.ndarray
+          N-D occupancy grid with {0=free, 1=obstacle}.
+
+   @return success int
+           1 if a path is found, else 0.
+   @return path list[tuple[int, ...]]
+           Path from start to goal (inclusive) when found; else empty or 0.
+   @return info list[str] or str
+           Diagnostics on failure or a brief status message on success.
+
+   @throws None
+           Any `networkx.NetworkXNoPath` exception is caught and encoded in
+           the return values.
+\end{DoxyVerb}
+ 
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classvoronoi__planner_1_1VoronoiPlanner_af3ca98fbf44453c755bb759618ed0c89}\label{classvoronoi__planner_1_1VoronoiPlanner_af3ca98fbf44453c755bb759618ed0c89}} 
+\index{voronoi\_planner.VoronoiPlanner@{voronoi\_planner.VoronoiPlanner}!dimension@{dimension}}
+\index{dimension@{dimension}!voronoi\_planner.VoronoiPlanner@{voronoi\_planner.VoronoiPlanner}}
+\doxysubsubsection{\texorpdfstring{dimension}{dimension}}
+{\footnotesize\ttfamily voronoi\+\_\+planner.\+Voronoi\+Planner.\+dimension}
+
+\mbox{\Hypertarget{classvoronoi__planner_1_1VoronoiPlanner_a57470478ed8a0fdbbc1e2b7a438da583}\label{classvoronoi__planner_1_1VoronoiPlanner_a57470478ed8a0fdbbc1e2b7a438da583}} 
+\index{voronoi\_planner.VoronoiPlanner@{voronoi\_planner.VoronoiPlanner}!G@{G}}
+\index{G@{G}!voronoi\_planner.VoronoiPlanner@{voronoi\_planner.VoronoiPlanner}}
+\doxysubsubsection{\texorpdfstring{G}{G}}
+{\footnotesize\ttfamily voronoi\+\_\+planner.\+Voronoi\+Planner.\+G}
+
+\mbox{\Hypertarget{classvoronoi__planner_1_1VoronoiPlanner_a2a44eb3b66a39c04250072d84634ef1d}\label{classvoronoi__planner_1_1VoronoiPlanner_a2a44eb3b66a39c04250072d84634ef1d}} 
+\index{voronoi\_planner.VoronoiPlanner@{voronoi\_planner.VoronoiPlanner}!goal@{goal}}
+\index{goal@{goal}!voronoi\_planner.VoronoiPlanner@{voronoi\_planner.VoronoiPlanner}}
+\doxysubsubsection{\texorpdfstring{goal}{goal}}
+{\footnotesize\ttfamily voronoi\+\_\+planner.\+Voronoi\+Planner.\+goal}
+
+\mbox{\Hypertarget{classvoronoi__planner_1_1VoronoiPlanner_a5f301d522eed68430c684beb27d9f8c2}\label{classvoronoi__planner_1_1VoronoiPlanner_a5f301d522eed68430c684beb27d9f8c2}} 
+\index{voronoi\_planner.VoronoiPlanner@{voronoi\_planner.VoronoiPlanner}!goalID@{goalID}}
+\index{goalID@{goalID}!voronoi\_planner.VoronoiPlanner@{voronoi\_planner.VoronoiPlanner}}
+\doxysubsubsection{\texorpdfstring{goalID}{goalID}}
+{\footnotesize\ttfamily voronoi\+\_\+planner.\+Voronoi\+Planner.\+goal\+ID}
+
+\mbox{\Hypertarget{classvoronoi__planner_1_1VoronoiPlanner_a672c56e6d7b19a4eea729410dc0296fd}\label{classvoronoi__planner_1_1VoronoiPlanner_a672c56e6d7b19a4eea729410dc0296fd}} 
+\index{voronoi\_planner.VoronoiPlanner@{voronoi\_planner.VoronoiPlanner}!grid@{grid}}
+\index{grid@{grid}!voronoi\_planner.VoronoiPlanner@{voronoi\_planner.VoronoiPlanner}}
+\doxysubsubsection{\texorpdfstring{grid}{grid}}
+{\footnotesize\ttfamily voronoi\+\_\+planner.\+Voronoi\+Planner.\+grid}
+
+\mbox{\Hypertarget{classvoronoi__planner_1_1VoronoiPlanner_ad4e88ea3f5489d2966fc239665ef4538}\label{classvoronoi__planner_1_1VoronoiPlanner_ad4e88ea3f5489d2966fc239665ef4538}} 
+\index{voronoi\_planner.VoronoiPlanner@{voronoi\_planner.VoronoiPlanner}!info@{info}}
+\index{info@{info}!voronoi\_planner.VoronoiPlanner@{voronoi\_planner.VoronoiPlanner}}
+\doxysubsubsection{\texorpdfstring{info}{info}}
+{\footnotesize\ttfamily voronoi\+\_\+planner.\+Voronoi\+Planner.\+info}
+
+\mbox{\Hypertarget{classvoronoi__planner_1_1VoronoiPlanner_abd79a8e26622df45b033aabb1eb9498f}\label{classvoronoi__planner_1_1VoronoiPlanner_abd79a8e26622df45b033aabb1eb9498f}} 
+\index{voronoi\_planner.VoronoiPlanner@{voronoi\_planner.VoronoiPlanner}!knn@{knn}}
+\index{knn@{knn}!voronoi\_planner.VoronoiPlanner@{voronoi\_planner.VoronoiPlanner}}
+\doxysubsubsection{\texorpdfstring{knn}{knn}}
+{\footnotesize\ttfamily voronoi\+\_\+planner.\+Voronoi\+Planner.\+knn}
+
+\mbox{\Hypertarget{classvoronoi__planner_1_1VoronoiPlanner_a43f39df0da6cc7319cd932d2cea638fd}\label{classvoronoi__planner_1_1VoronoiPlanner_a43f39df0da6cc7319cd932d2cea638fd}} 
+\index{voronoi\_planner.VoronoiPlanner@{voronoi\_planner.VoronoiPlanner}!path@{path}}
+\index{path@{path}!voronoi\_planner.VoronoiPlanner@{voronoi\_planner.VoronoiPlanner}}
+\doxysubsubsection{\texorpdfstring{path}{path}}
+{\footnotesize\ttfamily voronoi\+\_\+planner.\+Voronoi\+Planner.\+path}
+
+\mbox{\Hypertarget{classvoronoi__planner_1_1VoronoiPlanner_ae0a50957e745d215ec872a83b8113156}\label{classvoronoi__planner_1_1VoronoiPlanner_ae0a50957e745d215ec872a83b8113156}} 
+\index{voronoi\_planner.VoronoiPlanner@{voronoi\_planner.VoronoiPlanner}!pointSamples@{pointSamples}}
+\index{pointSamples@{pointSamples}!voronoi\_planner.VoronoiPlanner@{voronoi\_planner.VoronoiPlanner}}
+\doxysubsubsection{\texorpdfstring{pointSamples}{pointSamples}}
+{\footnotesize\ttfamily voronoi\+\_\+planner.\+Voronoi\+Planner.\+point\+Samples}
+
+\mbox{\Hypertarget{classvoronoi__planner_1_1VoronoiPlanner_a5d9d5b607feae75f0087bb508c9774cc}\label{classvoronoi__planner_1_1VoronoiPlanner_a5d9d5b607feae75f0087bb508c9774cc}} 
+\index{voronoi\_planner.VoronoiPlanner@{voronoi\_planner.VoronoiPlanner}!sizes@{sizes}}
+\index{sizes@{sizes}!voronoi\_planner.VoronoiPlanner@{voronoi\_planner.VoronoiPlanner}}
+\doxysubsubsection{\texorpdfstring{sizes}{sizes}}
+{\footnotesize\ttfamily voronoi\+\_\+planner.\+Voronoi\+Planner.\+sizes}
+
+\mbox{\Hypertarget{classvoronoi__planner_1_1VoronoiPlanner_a258a92e555a9cb5ebbb795d2f7639aff}\label{classvoronoi__planner_1_1VoronoiPlanner_a258a92e555a9cb5ebbb795d2f7639aff}} 
+\index{voronoi\_planner.VoronoiPlanner@{voronoi\_planner.VoronoiPlanner}!start@{start}}
+\index{start@{start}!voronoi\_planner.VoronoiPlanner@{voronoi\_planner.VoronoiPlanner}}
+\doxysubsubsection{\texorpdfstring{start}{start}}
+{\footnotesize\ttfamily voronoi\+\_\+planner.\+Voronoi\+Planner.\+start}
+
+\mbox{\Hypertarget{classvoronoi__planner_1_1VoronoiPlanner_a7f8230c008b4c7b1c38cd83d3ef2824a}\label{classvoronoi__planner_1_1VoronoiPlanner_a7f8230c008b4c7b1c38cd83d3ef2824a}} 
+\index{voronoi\_planner.VoronoiPlanner@{voronoi\_planner.VoronoiPlanner}!startID@{startID}}
+\index{startID@{startID}!voronoi\_planner.VoronoiPlanner@{voronoi\_planner.VoronoiPlanner}}
+\doxysubsubsection{\texorpdfstring{startID}{startID}}
+{\footnotesize\ttfamily voronoi\+\_\+planner.\+Voronoi\+Planner.\+start\+ID}
+
+\mbox{\Hypertarget{classvoronoi__planner_1_1VoronoiPlanner_aac545ec66ede048323a2862413459ccf}\label{classvoronoi__planner_1_1VoronoiPlanner_aac545ec66ede048323a2862413459ccf}} 
+\index{voronoi\_planner.VoronoiPlanner@{voronoi\_planner.VoronoiPlanner}!success@{success}}
+\index{success@{success}!voronoi\_planner.VoronoiPlanner@{voronoi\_planner.VoronoiPlanner}}
+\doxysubsubsection{\texorpdfstring{success}{success}}
+{\footnotesize\ttfamily voronoi\+\_\+planner.\+Voronoi\+Planner.\+success}
+
+\mbox{\Hypertarget{classvoronoi__planner_1_1VoronoiPlanner_ad0ce608b70b414ccd84e39751021d839}\label{classvoronoi__planner_1_1VoronoiPlanner_ad0ce608b70b414ccd84e39751021d839}} 
+\index{voronoi\_planner.VoronoiPlanner@{voronoi\_planner.VoronoiPlanner}!voronoiPoints@{voronoiPoints}}
+\index{voronoiPoints@{voronoiPoints}!voronoi\_planner.VoronoiPlanner@{voronoi\_planner.VoronoiPlanner}}
+\doxysubsubsection{\texorpdfstring{voronoiPoints}{voronoiPoints}}
+{\footnotesize\ttfamily voronoi\+\_\+planner.\+Voronoi\+Planner.\+voronoi\+Points}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+safeplan/algos/\mbox{\hyperlink{voronoi__planner_8py}{voronoi\+\_\+planner.\+py}}\end{DoxyCompactItemize}

@@ -7,7 +7,7 @@
 Provides a common interface for evaluation from start, goal and grid 
 """
 from abc import ABC
-from typing import Any, List, Sequence, Tuple
+from typing import Any, Sequence, Tuple
 
 Coord=Tuple[int,...]
 Path= list(Coord)

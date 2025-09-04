@@ -1,5 +1,7 @@
 <map id="baseplanner.BasePlanner" name="baseplanner.BasePlanner">
-<area shape="rect" id="node1" title="Abstract base/registry for planning algorithms." alt="" coords="5,80,192,107"/>
-<area shape="rect" id="node3" href="$classa__star_1_1AStar.html" title=" " alt="" coords="49,155,149,181"/>
-<area shape="rect" id="node2" title=" " alt="" coords="74,5,123,32"/>
+<area shape="rect" id="node1" title="Abstract base/registry for planning algorithms." alt="" coords="74,80,261,107"/>
+<area shape="rect" id="node3" href="$classa__star_1_1AStar.html" title=" " alt="" coords="5,155,105,181"/>
+<area shape="rect" id="node4" href="$classupp_1_1UPP.html" title="A*&#45;style planner with a blended optimality + safety heuristic." alt="" coords="129,155,205,181"/>
+<area shape="rect" id="node5" href="$classvoronoi__planner_1_1VoronoiPlanner.html" title="Path planner using a Voronoi roadmap with A* search." alt="" coords="229,155,457,181"/>
+<area shape="rect" id="node2" title=" " alt="" coords="143,5,192,32"/>
 </map>

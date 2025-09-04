@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['plan_191',['plan',['../classa__star_1_1AStar.html#ad59253f28ffcb7eed5c8411d37e99917',1,'a_star.AStar.plan()'],['../classbaseplanner_1_1BasePlanner.html#adb37fa200b73e980309e57631c9046ed',1,'baseplanner.BasePlanner.plan()']]]
+  ['nearestvertex_266',['nearestVertex',['../classvoronoi__planner_1_1VoronoiPlanner.html#adbc55534cb13d45bec8c8845de5caaa7',1,'voronoi_planner::VoronoiPlanner']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['nodesinpath_134',['NodesInPath',['../classnodes__in__path_1_1NodesInPath.html',1,'nodes_in_path']]]
+  ['logger_182',['Logger',['../classlogger_1_1Logger.html',1,'logger']]]
 ];

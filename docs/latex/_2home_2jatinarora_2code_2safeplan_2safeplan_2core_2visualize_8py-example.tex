@@ -149,72 +149,74 @@ None. A matplotlib window is shown with the visualization.
 \DoxyCodeLine{88         self.algosDetails = data[\textcolor{stringliteral}{"{}algoDetails"{}}]}
 \DoxyCodeLine{89         self.evalsDetails = data[\textcolor{stringliteral}{"{}evalDetails"{}}]}
 \DoxyCodeLine{90         self.runDetails = data[\textcolor{stringliteral}{"{}runDetails"{}}]}
-\DoxyCodeLine{91         }
-\DoxyCodeLine{92         \textcolor{keywordflow}{if} self.algos==\textcolor{keywordtype}{None}:}
-\DoxyCodeLine{93         }
-\DoxyCodeLine{94             \textcolor{keywordflow}{for} k \textcolor{keywordflow}{in} self.algosDetails:}
-\DoxyCodeLine{95                 self.algos.append(k[\textcolor{stringliteral}{"{}name"{}}])}
-\DoxyCodeLine{96   }
-\DoxyCodeLine{97         self.runPath = os.path.join(self.outputDir, self.runDetails)}
-\DoxyCodeLine{98                 }
-\DoxyCodeLine{99         print(self.algos,self.runPath)}
-\DoxyCodeLine{100         self.algoPaths=\{\}}
-\DoxyCodeLine{101         }
-\DoxyCodeLine{102         \textcolor{keywordflow}{for} algo \textcolor{keywordflow}{in} self.algos:}
-\DoxyCodeLine{103             path = os.path.join(self.runPath, algo,self.iterFile)}
-\DoxyCodeLine{104             \textcolor{keyword}{with} open(path) \textcolor{keyword}{as} file:}
-\DoxyCodeLine{105                 data = json.load(file)}
-\DoxyCodeLine{106                 self.algoPaths[algo]=data[\textcolor{stringliteral}{"{}pathInfo"{}}][\textcolor{stringliteral}{"{}path"{}}]}
-\DoxyCodeLine{107                 self.start=data[\textcolor{stringliteral}{"{}startGoal"{}}][\textcolor{stringliteral}{"{}start"{}}]}
-\DoxyCodeLine{108                 self.goal=data[\textcolor{stringliteral}{"{}startGoal"{}}][\textcolor{stringliteral}{"{}goal"{}}]}
-\DoxyCodeLine{109                 self.grid=data[\textcolor{stringliteral}{"{}envInfo"{}}][\textcolor{stringliteral}{"{}grid"{}}]}
-\DoxyCodeLine{110                 }
-\DoxyCodeLine{111             self.grid=np.array(self.grid)}
-\DoxyCodeLine{112         }
-\DoxyCodeLine{113         self.dimension=len(self.grid.shape)}
+\DoxyCodeLine{91         print(self.algosDetails)}
+\DoxyCodeLine{92         }
+\DoxyCodeLine{93         \textcolor{keywordflow}{if} self.algos==\textcolor{keywordtype}{None}:}
+\DoxyCodeLine{94             self.algos=[]}
+\DoxyCodeLine{95         }
+\DoxyCodeLine{96             \textcolor{keywordflow}{for} k \textcolor{keywordflow}{in} self.algosDetails:}
+\DoxyCodeLine{97                 self.algos.append(k[\textcolor{stringliteral}{"{}name"{}}])}
+\DoxyCodeLine{98   }
+\DoxyCodeLine{99         self.runPath = os.path.join(self.outputDir, self.runDetails)}
+\DoxyCodeLine{100                 }
+\DoxyCodeLine{101         print(self.algos,self.runPath)}
+\DoxyCodeLine{102         self.algoPaths=\{\}}
+\DoxyCodeLine{103         }
+\DoxyCodeLine{104         \textcolor{keywordflow}{for} algo \textcolor{keywordflow}{in} self.algos:}
+\DoxyCodeLine{105             path = os.path.join(self.runPath, algo,self.iterFile)}
+\DoxyCodeLine{106             \textcolor{keyword}{with} open(path) \textcolor{keyword}{as} file:}
+\DoxyCodeLine{107                 data = json.load(file)}
+\DoxyCodeLine{108                 self.algoPaths[algo]=data[\textcolor{stringliteral}{"{}pathInfo"{}}][\textcolor{stringliteral}{"{}path"{}}]}
+\DoxyCodeLine{109                 self.start=data[\textcolor{stringliteral}{"{}startGoal"{}}][\textcolor{stringliteral}{"{}start"{}}]}
+\DoxyCodeLine{110                 self.goal=data[\textcolor{stringliteral}{"{}startGoal"{}}][\textcolor{stringliteral}{"{}goal"{}}]}
+\DoxyCodeLine{111                 self.grid=data[\textcolor{stringliteral}{"{}envInfo"{}}][\textcolor{stringliteral}{"{}grid"{}}]}
+\DoxyCodeLine{112                 }
+\DoxyCodeLine{113             self.grid=np.array(self.grid)}
 \DoxyCodeLine{114         }
-\DoxyCodeLine{115         \textcolor{keywordflow}{if} self.dimension==2:}
-\DoxyCodeLine{116             }
-\DoxyCodeLine{117             \textcolor{comment}{\# Plot Paths}}
-\DoxyCodeLine{118             plt.figure(figsize=(12, 12))}
-\DoxyCodeLine{119             cmap = mcolors.ListedColormap([\textcolor{stringliteral}{'white'}, \textcolor{stringliteral}{'black'}])}
-\DoxyCodeLine{120             bounds = [-\/0.5, 0.5, 1.5]}
-\DoxyCodeLine{121             norm = mcolors.BoundaryNorm(bounds, cmap.N)}
-\DoxyCodeLine{122             plt.imshow(self.grid, cmap=cmap, norm=norm, origin=\textcolor{stringliteral}{"{}upper"{}})}
-\DoxyCodeLine{123 }
-\DoxyCodeLine{124             \textcolor{keywordflow}{for} label, path \textcolor{keywordflow}{in} self.algoPaths.items():}
-\DoxyCodeLine{125                 \textcolor{keywordflow}{if} path:}
-\DoxyCodeLine{126                     path\_x, path\_y = zip(*path)}
-\DoxyCodeLine{127                     plt.plot(path\_y, path\_x, linewidth=2, label=label)}
-\DoxyCodeLine{128 }
-\DoxyCodeLine{129             plt.scatter(self.start[1], self.start[0], color=\textcolor{stringliteral}{'yellow'}, s=100, edgecolor=\textcolor{stringliteral}{'black'}, label=\textcolor{stringliteral}{'Start'})}
-\DoxyCodeLine{130             plt.scatter(self.goal[1], self.goal[0], color=\textcolor{stringliteral}{'red'}, s=100, edgecolor=\textcolor{stringliteral}{'black'}, label=\textcolor{stringliteral}{'Goal'})}
-\DoxyCodeLine{131             plt.title(self.graphTitle)}
-\DoxyCodeLine{132             plt.legend(loc=\textcolor{stringliteral}{"{}upper left"{}})}
-\DoxyCodeLine{133             plt.grid(\textcolor{keyword}{True}, color=\textcolor{stringliteral}{"{}gray"{}}, linestyle=\textcolor{stringliteral}{'-\/-\/'}, linewidth=0.5)}
-\DoxyCodeLine{134             plt.show()}
-\DoxyCodeLine{135                     }
-\DoxyCodeLine{136         \textcolor{keywordflow}{elif} self.dimension==3:}
-\DoxyCodeLine{137             fig = plt.figure()}
-\DoxyCodeLine{138             ax = fig.add\_subplot(111, projection=\textcolor{stringliteral}{'3d'})}
-\DoxyCodeLine{139             ax.voxels(self.grid, facecolors=\textcolor{stringliteral}{'red'}, edgecolor=\textcolor{stringliteral}{'k'}, alpha=0.5)}
-\DoxyCodeLine{140             \textcolor{keywordflow}{for} label, path \textcolor{keywordflow}{in} self.algoPaths.items():}
-\DoxyCodeLine{141                 \textcolor{keywordflow}{if} path:}
-\DoxyCodeLine{142                     path\_x, path\_y,path\_z = zip(*path)}
-\DoxyCodeLine{143                     ax.plot(path\_x, path\_y,path\_z, linewidth=2, label=label)}
-\DoxyCodeLine{144             ax.scatter(self.start[0], self.start[1],self.start[2], color=\textcolor{stringliteral}{'yellow'}, s=100, edgecolor=\textcolor{stringliteral}{'black'}, label=\textcolor{stringliteral}{'Start'})}
-\DoxyCodeLine{145             ax.scatter(self.goal[0], self.goal[1],self.goal[2], color=\textcolor{stringliteral}{'red'}, s=100, edgecolor=\textcolor{stringliteral}{'black'}, label=\textcolor{stringliteral}{'Goal'})}
-\DoxyCodeLine{146 }
-\DoxyCodeLine{147             ax.set\_xlabel(\textcolor{stringliteral}{'X'})}
-\DoxyCodeLine{148             ax.set\_ylabel(\textcolor{stringliteral}{'Y'})}
-\DoxyCodeLine{149             ax.set\_zlabel(\textcolor{stringliteral}{'Z'})}
-\DoxyCodeLine{150             ax.set\_title(self.graphTitle)}
-\DoxyCodeLine{151             plt.legend()}
-\DoxyCodeLine{152             plt.show()}
-\DoxyCodeLine{153 }
-\DoxyCodeLine{154             }
-\DoxyCodeLine{155         \textcolor{keywordflow}{else}:}
-\DoxyCodeLine{156             print(\textcolor{stringliteral}{"{}Can't plot above 3 dimesions"{}})}
+\DoxyCodeLine{115         self.dimension=len(self.grid.shape)}
+\DoxyCodeLine{116         }
+\DoxyCodeLine{117         \textcolor{keywordflow}{if} self.dimension==2:}
+\DoxyCodeLine{118             }
+\DoxyCodeLine{119             \textcolor{comment}{\# Plot Paths}}
+\DoxyCodeLine{120             plt.figure(figsize=(12, 12))}
+\DoxyCodeLine{121             cmap = mcolors.ListedColormap([\textcolor{stringliteral}{'white'}, \textcolor{stringliteral}{'black'}])}
+\DoxyCodeLine{122             bounds = [-\/0.5, 0.5, 1.5]}
+\DoxyCodeLine{123             norm = mcolors.BoundaryNorm(bounds, cmap.N)}
+\DoxyCodeLine{124             plt.imshow(self.grid, cmap=cmap, norm=norm, origin=\textcolor{stringliteral}{"{}upper"{}})}
+\DoxyCodeLine{125 }
+\DoxyCodeLine{126             \textcolor{keywordflow}{for} label, path \textcolor{keywordflow}{in} self.algoPaths.items():}
+\DoxyCodeLine{127                 \textcolor{keywordflow}{if} path:}
+\DoxyCodeLine{128                     path\_x, path\_y = zip(*path)}
+\DoxyCodeLine{129                     plt.plot(path\_y, path\_x, linewidth=2, label=label)}
+\DoxyCodeLine{130 }
+\DoxyCodeLine{131             plt.scatter(self.start[1], self.start[0], color=\textcolor{stringliteral}{'yellow'}, s=100, edgecolor=\textcolor{stringliteral}{'black'}, label=\textcolor{stringliteral}{'Start'})}
+\DoxyCodeLine{132             plt.scatter(self.goal[1], self.goal[0], color=\textcolor{stringliteral}{'red'}, s=100, edgecolor=\textcolor{stringliteral}{'black'}, label=\textcolor{stringliteral}{'Goal'})}
+\DoxyCodeLine{133             plt.title(self.graphTitle)}
+\DoxyCodeLine{134             plt.legend(loc=\textcolor{stringliteral}{"{}upper left"{}})}
+\DoxyCodeLine{135             plt.grid(\textcolor{keyword}{True}, color=\textcolor{stringliteral}{"{}gray"{}}, linestyle=\textcolor{stringliteral}{'-\/-\/'}, linewidth=0.5)}
+\DoxyCodeLine{136             plt.show()}
+\DoxyCodeLine{137                     }
+\DoxyCodeLine{138         \textcolor{keywordflow}{elif} self.dimension==3:}
+\DoxyCodeLine{139             fig = plt.figure()}
+\DoxyCodeLine{140             ax = fig.add\_subplot(111, projection=\textcolor{stringliteral}{'3d'})}
+\DoxyCodeLine{141             ax.voxels(self.grid, facecolors=\textcolor{stringliteral}{'red'}, edgecolor=\textcolor{stringliteral}{'k'}, alpha=0.5)}
+\DoxyCodeLine{142             \textcolor{keywordflow}{for} label, path \textcolor{keywordflow}{in} self.algoPaths.items():}
+\DoxyCodeLine{143                 \textcolor{keywordflow}{if} path:}
+\DoxyCodeLine{144                     path\_x, path\_y,path\_z = zip(*path)}
+\DoxyCodeLine{145                     ax.plot(path\_x, path\_y,path\_z, linewidth=2, label=label)}
+\DoxyCodeLine{146             ax.scatter(self.start[0], self.start[1],self.start[2], color=\textcolor{stringliteral}{'yellow'}, s=100, edgecolor=\textcolor{stringliteral}{'black'}, label=\textcolor{stringliteral}{'Start'})}
+\DoxyCodeLine{147             ax.scatter(self.goal[0], self.goal[1],self.goal[2], color=\textcolor{stringliteral}{'red'}, s=100, edgecolor=\textcolor{stringliteral}{'black'}, label=\textcolor{stringliteral}{'Goal'})}
+\DoxyCodeLine{148 }
+\DoxyCodeLine{149             ax.set\_xlabel(\textcolor{stringliteral}{'X'})}
+\DoxyCodeLine{150             ax.set\_ylabel(\textcolor{stringliteral}{'Y'})}
+\DoxyCodeLine{151             ax.set\_zlabel(\textcolor{stringliteral}{'Z'})}
+\DoxyCodeLine{152             ax.set\_title(self.graphTitle)}
+\DoxyCodeLine{153             plt.legend()}
+\DoxyCodeLine{154             plt.show()}
+\DoxyCodeLine{155 }
+\DoxyCodeLine{156             }
+\DoxyCodeLine{157         \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{158             print(\textcolor{stringliteral}{"{}Can't plot above 3 dimesions"{}})}
 
 \end{DoxyCodeInclude}
  

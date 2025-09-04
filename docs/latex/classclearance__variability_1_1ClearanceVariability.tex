@@ -1,0 +1,112 @@
+\hypertarget{classclearance__variability_1_1ClearanceVariability}{}\doxysection{clearance\+\_\+variability.\+Clearance\+Variability Class Reference}
+\label{classclearance__variability_1_1ClearanceVariability}\index{clearance\_variability.ClearanceVariability@{clearance\_variability.ClearanceVariability}}
+
+
+Inheritance diagram for clearance\+\_\+variability.\+Clearance\+Variability\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=249pt]{classclearance__variability_1_1ClearanceVariability__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for clearance\+\_\+variability.\+Clearance\+Variability\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=249pt]{classclearance__variability_1_1ClearanceVariability__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{classclearance__variability_1_1ClearanceVariability_aacbb263d532d53ef083c2428d61f30be}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, \mbox{\hyperlink{classclearance__variability_1_1ClearanceVariability_a065ecadeb3fce92d6204618ff5fb172d}{point\+Samples}})
+\begin{DoxyCompactList}\small\item\em Construct the class for Clearance Variability evaluator. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classclearance__variability_1_1ClearanceVariability_aff11f58592b101aa5b7aa4dd6cc103b6}{eval}} (self, start, goal, grid, cell\+Size, path)
+\begin{DoxyCompactList}\small\item\em A eval function for Clearance Variability evaluation, which evaluates on given start, goal, grid, cell\+Size, and Path returns Clearance Variability value. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classclearance__variability_1_1ClearanceVariability_ae41c87f945320fb243fd58c9aa7a2fd3}{value}}
+\item 
+\mbox{\hyperlink{classclearance__variability_1_1ClearanceVariability_a065ecadeb3fce92d6204618ff5fb172d}{point\+Samples}}
+\item 
+\mbox{\hyperlink{classclearance__variability_1_1ClearanceVariability_a8a3f7cb6b91bf76e4db2f23d345e558f}{dimension}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classclearance__variability_1_1ClearanceVariability_aacbb263d532d53ef083c2428d61f30be}\label{classclearance__variability_1_1ClearanceVariability_aacbb263d532d53ef083c2428d61f30be}} 
+\index{clearance\_variability.ClearanceVariability@{clearance\_variability.ClearanceVariability}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!clearance\_variability.ClearanceVariability@{clearance\_variability.ClearanceVariability}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily def clearance\+\_\+variability.\+Clearance\+Variability.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{point\+Samples }\end{DoxyParamCaption})}
+
+
+
+Construct the class for Clearance Variability evaluator. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em point\+Samples} & Takes input number of point samples between 2 points to calculate distance \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPostcond}{Postcondition}
+Instance is initialized. 
+\end{DoxyPostcond}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classclearance__variability_1_1ClearanceVariability_aff11f58592b101aa5b7aa4dd6cc103b6}\label{classclearance__variability_1_1ClearanceVariability_aff11f58592b101aa5b7aa4dd6cc103b6}} 
+\index{clearance\_variability.ClearanceVariability@{clearance\_variability.ClearanceVariability}!eval@{eval}}
+\index{eval@{eval}!clearance\_variability.ClearanceVariability@{clearance\_variability.ClearanceVariability}}
+\doxysubsubsection{\texorpdfstring{eval()}{eval()}}
+{\footnotesize\ttfamily def clearance\+\_\+variability.\+Clearance\+Variability.\+eval (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{start,  }\item[{}]{goal,  }\item[{}]{grid,  }\item[{}]{cell\+Size,  }\item[{}]{path }\end{DoxyParamCaption})}
+
+
+
+A eval function for Clearance Variability evaluation, which evaluates on given start, goal, grid, cell\+Size, and Path returns Clearance Variability value. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em start} & Takes the n-\/dimensional start input \\
+\hline
+{\em goal} & Takes the n-\/dimension goal input \\
+\hline
+{\em grid} & Takes the N x N dimensional grid \\
+\hline
+{\em cell\+Size} & Takes input as cell size for computation \\
+\hline
+{\em Path} & Takes the path from star to goal in the form of a tuple \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+value Returns the Clearance Variability 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classclearance__variability_1_1ClearanceVariability_a8a3f7cb6b91bf76e4db2f23d345e558f}\label{classclearance__variability_1_1ClearanceVariability_a8a3f7cb6b91bf76e4db2f23d345e558f}} 
+\index{clearance\_variability.ClearanceVariability@{clearance\_variability.ClearanceVariability}!dimension@{dimension}}
+\index{dimension@{dimension}!clearance\_variability.ClearanceVariability@{clearance\_variability.ClearanceVariability}}
+\doxysubsubsection{\texorpdfstring{dimension}{dimension}}
+{\footnotesize\ttfamily clearance\+\_\+variability.\+Clearance\+Variability.\+dimension}
+
+\mbox{\Hypertarget{classclearance__variability_1_1ClearanceVariability_a065ecadeb3fce92d6204618ff5fb172d}\label{classclearance__variability_1_1ClearanceVariability_a065ecadeb3fce92d6204618ff5fb172d}} 
+\index{clearance\_variability.ClearanceVariability@{clearance\_variability.ClearanceVariability}!pointSamples@{pointSamples}}
+\index{pointSamples@{pointSamples}!clearance\_variability.ClearanceVariability@{clearance\_variability.ClearanceVariability}}
+\doxysubsubsection{\texorpdfstring{pointSamples}{pointSamples}}
+{\footnotesize\ttfamily clearance\+\_\+variability.\+Clearance\+Variability.\+point\+Samples}
+
+\mbox{\Hypertarget{classclearance__variability_1_1ClearanceVariability_ae41c87f945320fb243fd58c9aa7a2fd3}\label{classclearance__variability_1_1ClearanceVariability_ae41c87f945320fb243fd58c9aa7a2fd3}} 
+\index{clearance\_variability.ClearanceVariability@{clearance\_variability.ClearanceVariability}!value@{value}}
+\index{value@{value}!clearance\_variability.ClearanceVariability@{clearance\_variability.ClearanceVariability}}
+\doxysubsubsection{\texorpdfstring{value}{value}}
+{\footnotesize\ttfamily clearance\+\_\+variability.\+Clearance\+Variability.\+value}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+safeplan/evals/\mbox{\hyperlink{clearance__variability_8py}{clearance\+\_\+variability.\+py}}\end{DoxyCompactItemize}

@@ -20,7 +20,6 @@ Implements Jerk Per Meter evaluation based upon the path provided on the grid. I
 """
 import numpy as np
 from .baseeval import BaseEval
-import math
 from ..evals.path_cost import PathCost
 class JerkPerMeter(BaseEval):
     def __init__(self):

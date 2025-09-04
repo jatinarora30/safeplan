@@ -15,15 +15,17 @@ class Stats:
     based on run configurations and output data in JSON format.
     """
     
-    def __init__(self, runConfigPath):
+    def __init__(self, runConfigPath,saveStatsImage=False):
         """
         Initializes the Stats object by parsing the run configuration JSON file,
         creating necessary directories, and collecting details about algorithms and evaluations.
         
         Args:
             runConfigPath (str): Path to the run configuration JSON file.
+            runConfigPath (bool): Param to save the image in table format
         """
         self.runConfigPath = runConfigPath
+        self.saveStatsImage=saveStatsImage
         
         with open(self.runConfigPath) as file:
             data = json.load(file)
@@ -132,11 +134,12 @@ class Stats:
             print(df)
 
             # Plot as a table
-            ax = plt.subplot(111, frame_on=False)
-            ax.xaxis.set_visible(False)
-            ax.yaxis.set_visible(False)
-            table(ax, df, loc="center")
-            plt.savefig(self.resultsDir + "/" + self.runDetails + ".png")
+            if self.saveStatsImage:
+                ax = plt.subplot(111, frame_on=False)
+                ax.xaxis.set_visible(False)
+                ax.yaxis.set_visible(False)
+                table(ax, df, loc="center")
+                plt.savefig(self.resultsDir + "/" + self.runDetails + ".png")
 
             # Save JSON summary
             meanAlgoData = json.dumps(meanAlgoData, indent=4)

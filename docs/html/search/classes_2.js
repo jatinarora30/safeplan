@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['distancetogoal_130',['DistanceToGoal',['../classdistance__to__goal_1_1DistanceToGoal.html',1,'distance_to_goal']]]
+  ['clearancevariability_177',['ClearanceVariability',['../classclearance__variability_1_1ClearanceVariability.html',1,'clearance_variability']]]
 ];

@@ -18,35 +18,45 @@ Unlike existing frameworks (e.g., PathBench), which primarily measure path cost 
 
 ## 📊 Evaluation Metrics
 
-SafePlan provides a **rich set of metrics** grouped into categories:
+SafePlan provides a **rich set of metrics** :
 
-### 🔹 Efficiency
-- **Path cost (m)** – total path length in meters  
-- **Computation time (ms)** – wall-clock planning time  
-- **Success rate (%)** – fraction of runs that reach the goal  
-- **Distance to goal (m)** – residual distance if failure  
-- **Nodes in path** – number of waypoints (before/after simplification)  
+# SafePlan Benchmarking Metrics (Summary)
 
-### 🔹 Smoothness
-- **Turning angle (°)** – cumulative direction changes  
-- **Jerk per meter** – Cartesian jerk (third finite difference) normalized by path length  
-- **Zig-zag count** – number of rapid direction oscillations  
+- **Path Cost (m):**  
+  Total geometric length of the path in meters, based on Euclidean distance between waypoints. Lower cost indicates a shorter and more efficient route.  
 
-### 🔹 Safety
-- **Minimum clearance (m)** – closest distance to any obstacle  
-- **Clearance variability** – variance of obstacle clearance along the path  
-- **Danger zone violations** – number of times path enters unsafe radii around obstacles  
-- **Riskiness score** – sum of inverse distances to obstacles (higher = riskier path)  
+- **Planning Time (ms):**  
+  The time taken by the planner to generate a path, measured in milliseconds. Faster planners achieve lower values.  
 
-### 🔹 Optimality
-- **Optimal deviation (%)** – relative excess length compared to the true shortest path  
-- **Optimality ratio** – path cost / optimal cost  
+- **Success Rate (%):**  
+  Percentage of planning attempts that successfully reach the goal. Higher success rate reflects reliability of the algorithm.  
 
----
+- **Distance to Goal (m, failures):**  
+  Distance from the last explored path node to the goal when planning fails. Smaller values show the planner got closer to success.  
 
-## 🛠️ Installation
+- **Nodes in Path:**  
+  Number of waypoints in the final path. Fewer nodes suggest a smoother, simpler, and more direct path.  
 
-```bash
-git clone https://github.com/<your-username>/safeplan.git
-cd safeplan
-pip install -r requirements.txt
+- **Peak Memory (KB):**  
+  Maximum RAM used by the planner during execution. Lower values indicate more memory-efficient planning.  
+
+- **Turning Angle (°):**  
+  Sum of all angular deviations along the path. High turning angles mean sharper, less smooth turns.  
+
+- **Jerk per Meter:**  
+  Rate of change of acceleration normalized by distance. Captures path smoothness—lower jerk means more stable and comfortable trajectories.  
+
+- **Optimal Deviation (%):**  
+  Deviation of the computed path length from the known optimal path. Lower percentages mean closer-to-optimal planning.  
+
+- **Minimum Clearance (m):**  
+  The smallest distance between the path and any obstacle. Higher values reflect safer paths.  
+
+- **Average Clearance (m):**  
+  Mean clearance maintained along the path. Represents the overall safety margin to obstacles.  
+
+- **Clearance Variability:**  
+  Variance of clearance distances along the path. Low variability indicates consistent safety, while high variability indicates fluctuating risk.  
+
+- **Danger Zone Violations:**  
+  Number of times the path enters within a predefined danger radius around obstacles. Higher counts suggest higher collision risk.  

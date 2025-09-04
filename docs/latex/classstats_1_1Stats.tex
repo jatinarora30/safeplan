@@ -8,7 +8,7 @@ A class to compute, compare, and visualize evaluation statistics for different a
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-def \mbox{\hyperlink{classstats_1_1Stats_ac000e805982830d9486d195d4e1700f0}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, \mbox{\hyperlink{classstats_1_1Stats_a43d983d58fb47897194329ad1c3e204e}{run\+Config\+Path}})
+def \mbox{\hyperlink{classstats_1_1Stats_ac76aebd543530e070576fb655829c2c3}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, \mbox{\hyperlink{classstats_1_1Stats_a43d983d58fb47897194329ad1c3e204e}{run\+Config\+Path}}, \mbox{\hyperlink{classstats_1_1Stats_a66327072aa5b07d47c4680a12b30ac14}{save\+Stats\+Image}}=False)
 \begin{DoxyCompactList}\small\item\em Initializes the \mbox{\hyperlink{classstats_1_1Stats}{Stats}} object by parsing the run configuration JSON file, creating necessary directories, and collecting details about algorithms and evaluations. \end{DoxyCompactList}\item 
 def \mbox{\hyperlink{classstats_1_1Stats_af6a903e176641e5db2e71bc471c9c4f3}{create\+Dir}} (self, path)
 \begin{DoxyCompactList}\small\item\em Safely creates a directory if it does not already exist. \end{DoxyCompactList}\item 
@@ -20,6 +20,8 @@ def \mbox{\hyperlink{classstats_1_1Stats_ab4106ca0715d10d8046a79d2151a9285}{comp
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{classstats_1_1Stats_a43d983d58fb47897194329ad1c3e204e}{run\+Config\+Path}}
+\item 
+\mbox{\hyperlink{classstats_1_1Stats_a66327072aa5b07d47c4680a12b30ac14}{save\+Stats\+Image}}
 \item 
 \mbox{\hyperlink{classstats_1_1Stats_a51e8ebb272e09a501e00a593da37ad58}{output\+Dir}}
 \item 
@@ -47,11 +49,11 @@ def \mbox{\hyperlink{classstats_1_1Stats_ab4106ca0715d10d8046a79d2151a9285}{comp
 A class to compute, compare, and visualize evaluation statistics for different algorithms based on run configurations and output data in JSON format. 
 
 \doxysubsection{Constructor \& Destructor Documentation}
-\mbox{\Hypertarget{classstats_1_1Stats_ac000e805982830d9486d195d4e1700f0}\label{classstats_1_1Stats_ac000e805982830d9486d195d4e1700f0}} 
+\mbox{\Hypertarget{classstats_1_1Stats_ac76aebd543530e070576fb655829c2c3}\label{classstats_1_1Stats_ac76aebd543530e070576fb655829c2c3}} 
 \index{stats.Stats@{stats.Stats}!\_\_init\_\_@{\_\_init\_\_}}
 \index{\_\_init\_\_@{\_\_init\_\_}!stats.Stats@{stats.Stats}}
 \doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
-{\footnotesize\ttfamily def stats.\+Stats.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{run\+Config\+Path }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily def stats.\+Stats.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{run\+Config\+Path,  }\item[{}]{save\+Stats\+Image = {\ttfamily False} }\end{DoxyParamCaption})}
 
 
 
@@ -60,6 +62,8 @@ Initializes the \mbox{\hyperlink{classstats_1_1Stats}{Stats}} object by parsing 
 
 \begin{DoxyParams}{Parameters}
 {\em run\+Config\+Path} & Path to the run configuration JSON file. \\
+\hline
+{\em run\+Config\+Path} & Param to save the image in table format \\
 \hline
 \end{DoxyParams}
 
@@ -172,6 +176,12 @@ Safely creates a directory if it does not already exist.
 \index{runPath@{runPath}!stats.Stats@{stats.Stats}}
 \doxysubsubsection{\texorpdfstring{runPath}{runPath}}
 {\footnotesize\ttfamily stats.\+Stats.\+run\+Path}
+
+\mbox{\Hypertarget{classstats_1_1Stats_a66327072aa5b07d47c4680a12b30ac14}\label{classstats_1_1Stats_a66327072aa5b07d47c4680a12b30ac14}} 
+\index{stats.Stats@{stats.Stats}!saveStatsImage@{saveStatsImage}}
+\index{saveStatsImage@{saveStatsImage}!stats.Stats@{stats.Stats}}
+\doxysubsubsection{\texorpdfstring{saveStatsImage}{saveStatsImage}}
+{\footnotesize\ttfamily stats.\+Stats.\+save\+Stats\+Image}
 
 \mbox{\Hypertarget{classstats_1_1Stats_a00c6f21c8d4ca682b526673722a8f2cb}\label{classstats_1_1Stats_a00c6f21c8d4ca682b526673722a8f2cb}} 
 \index{stats.Stats@{stats.Stats}!totalFiles@{totalFiles}}

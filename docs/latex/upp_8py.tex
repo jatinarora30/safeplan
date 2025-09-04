@@ -1,0 +1,72 @@
+\hypertarget{upp_8py}{}\doxysection{safeplan/algos/upp.py File Reference}
+\label{upp_8py}\index{safeplan/algos/upp.py@{safeplan/algos/upp.py}}
+
+
+Universal Path Planner (UPP) with safety-\/aware heuristic for N-\/dimensional occupancy grids.  
+
+
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classupp_1_1UPP}{upp.\+UPP}}
+\begin{DoxyCompactList}\small\item\em A$\ast$-\/style planner with a blended optimality + safety heuristic. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \mbox{\hyperlink{namespaceupp}{upp}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Universal Path Planner (UPP) with safety-\/aware heuristic for N-\/dimensional occupancy grids. 
+
+Implements an A$\ast$-\/style search over an N-\/D Num\+Py occupancy grid where {\ttfamily 0} denotes free space and {\ttfamily 1} denotes an obstacle. UPP augments the search heuristic with a precomputed, obstacle-\/induced safety potential to encourage safer (higher-\/clearance) paths.
+
+The combined heuristic is\+: \[ h_{\text{UPP}}(n, g) \;=\; \alpha \, \mathrm{Manhattan}(n, g) + (1-\alpha)\, \mathrm{Chebyshev}(n, g) \;+\; \beta \cdot S(n) \] where\+:
+\begin{DoxyItemize}
+\item $\alpha \in [0,1]$ blends Manhattan and Chebyshev distances,
+\item $S(n)$ is a safety potential computed once per {\ttfamily plan()} call by convolving the obstacle mask with an inverse Chebyshev-\/distance kernel $K(r)=1/(r+\epsilon)$ for radii $1 \le r \le R$ using FFT-\/based convolution.
+\end{DoxyItemize}
+
+\begin{DoxyParagraph}{Inputs}
+
+\begin{DoxyItemize}
+\item {\ttfamily start} \+: tuple\mbox{[}int, ...\mbox{]} — start grid cell (e.\+g., (row, col))
+\item {\ttfamily goal} \+: tuple\mbox{[}int, ...\mbox{]} — goal grid cell
+\item {\ttfamily grid} \+: numpy.\+ndarray (N-\/D), values \{0=free, 1=obstacle\}
+\end{DoxyItemize}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Hyperparameters (constructor)}
+
+\begin{DoxyItemize}
+\item {\ttfamily alpha} \+: float in \mbox{[}0,1\mbox{]} — blend between Manhattan and Chebyshev in the optimality term
+\item {\ttfamily beta} \+: float ≥ 0 — scale for the safety potential term
+\item {\ttfamily radius} \+: int ≥ 0 — Chebyshev radius R for the safety kernel support
+\item {\ttfamily epsilon} \+: float $>$ 0 — small constant to avoid division by zero in 1/(r+ε)
+\end{DoxyItemize}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Outputs}
+
+\begin{DoxyItemize}
+\item {\ttfamily success} \+: int — 1 if a path is found, else 0
+\item {\ttfamily path} \+: list\mbox{[}tuple\mbox{[}int, ...\mbox{]}\mbox{]} — sequence of cells from start→goal (inclusive)
+\item {\ttfamily info} \+: list\mbox{[}str\mbox{]} — diagnostics (e.\+g., \char`\"{}\+Invalid goal\char`\"{}, \char`\"{}\+Failed to reconstruct path.\char`\"{})
+\end{DoxyItemize}
+\end{DoxyParagraph}
+\begin{DoxyNote}{Note}
+
+\begin{DoxyItemize}
+\item Neighborhood\+: by default, all 3$^\wedge$N -\/ 1 offsets in \{-\/1,0,1\}$^\wedge$N \textbackslash{} \{0\} are used (axis-\/aligned and diagonal moves).
+\item Step costs\+: axis-\/aligned step = 1.\+0; diagonal/multi-\/axis step = Euclidean length of the offset vector.
+\item Boundaries\+: safety convolution uses zero-\/padding; safety outside the grid is treated as 0.
+\end{DoxyItemize}
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+Base\+Planner
+\end{DoxySeeAlso}
+@references
+\begin{DoxyItemize}
+\item UPP (paper, preprint)\+: \href{https://arxiv.org/pdf/2505.23197}{\texttt{ https\+://arxiv.\+org/pdf/2505.\+23197}}
+\item Sci\+Py fftconvolve\+: \href{https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.fftconvolve.html}{\texttt{ https\+://docs.\+scipy.\+org/doc/scipy/reference/generated/scipy.\+signal.\+fftconvolve.\+html}}
+\item Chebyshev distance\+: \href{https://en.wikipedia.org/wiki/Chebyshev_distance}{\texttt{ https\+://en.\+wikipedia.\+org/wiki/\+Chebyshev\+\_\+distance}} 
+\end{DoxyItemize}

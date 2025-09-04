@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['logger_225',['logger',['../classmain_1_1SafePlan.html#a86cc9847bc9ff3c4eeae1ea5685e2883',1,'main::SafePlan']]]
+  ['knn_310',['knn',['../classvoronoi__planner_1_1VoronoiPlanner.html#abd79a8e26622df45b033aabb1eb9498f',1,'voronoi_planner::VoronoiPlanner']]]
 ];

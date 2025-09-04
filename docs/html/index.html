@@ -86,55 +86,50 @@ $(function() {
 <hr  />
 <h1><a class="anchor" id="autotoc_md4"></a>
 📊 Evaluation Metrics</h1>
-<p>SafePlan provides a <b>rich set of metrics</b> grouped into categories:</p>
-<h2><a class="anchor" id="autotoc_md5"></a>
-🔹 Efficiency</h2>
+<p>SafePlan provides a <b>rich set of metrics</b> :</p>
+<h1><a class="anchor" id="autotoc_md5"></a>
+SafePlan Benchmarking Metrics (Summary)</h1>
 <ul>
-<li><b>Path cost (m)</b> – total path length in meters <br  />
+<li><b>Path Cost (m):</b> <br  />
+ Total geometric length of the path in meters, based on Euclidean distance between waypoints. Lower cost indicates a shorter and more efficient route. <br  />
 </li>
-<li><b>Computation time (ms)</b> – wall-clock planning time <br  />
+<li><b>Planning Time (ms):</b> <br  />
+ The time taken by the planner to generate a path, measured in milliseconds. Faster planners achieve lower values. <br  />
 </li>
-<li><b>Success rate (%)</b> – fraction of runs that reach the goal <br  />
+<li><b>Success Rate (%):</b> <br  />
+ Percentage of planning attempts that successfully reach the goal. Higher success rate reflects reliability of the algorithm. <br  />
 </li>
-<li><b>Distance to goal (m)</b> – residual distance if failure <br  />
+<li><b>Distance to Goal (m, failures):</b> <br  />
+ Distance from the last explored path node to the goal when planning fails. Smaller values show the planner got closer to success. <br  />
 </li>
-<li><b>Nodes in path</b> – number of waypoints (before/after simplification) <br  />
+<li><b>Nodes in Path:</b> <br  />
+ Number of waypoints in the final path. Fewer nodes suggest a smoother, simpler, and more direct path. <br  />
 </li>
+<li><b>Peak Memory (KB):</b> <br  />
+ Maximum RAM used by the planner during execution. Lower values indicate more memory-efficient planning. <br  />
+</li>
+<li><b>Turning Angle (°):</b> <br  />
+ Sum of all angular deviations along the path. High turning angles mean sharper, less smooth turns. <br  />
+</li>
+<li><b>Jerk per Meter:</b> <br  />
+ Rate of change of acceleration normalized by distance. Captures path smoothness—lower jerk means more stable and comfortable trajectories. <br  />
+</li>
+<li><b>Optimal Deviation (%):</b> <br  />
+ Deviation of the computed path length from the known optimal path. Lower percentages mean closer-to-optimal planning. <br  />
+</li>
+<li><b>Minimum Clearance (m):</b> <br  />
+ The smallest distance between the path and any obstacle. Higher values reflect safer paths. <br  />
+</li>
+<li><b>Average Clearance (m):</b> <br  />
+ Mean clearance maintained along the path. Represents the overall safety margin to obstacles. <br  />
+</li>
+<li><b>Clearance Variability:</b> <br  />
+ Variance of clearance distances along the path. Low variability indicates consistent safety, while high variability indicates fluctuating risk. <br  />
+</li>
+<li><b>Danger Zone Violations:</b> <br  />
+ Number of times the path enters within a predefined danger radius around obstacles. Higher counts suggest higher collision risk. <br  />
+ </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md6"></a>
-🔹 Smoothness</h2>
-<ul>
-<li><b>Turning angle (°)</b> – cumulative direction changes <br  />
-</li>
-<li><b>Jerk per meter</b> – Cartesian jerk (third finite difference) normalized by path length <br  />
-</li>
-<li><b>Zig-zag count</b> – number of rapid direction oscillations <br  />
-</li>
-</ul>
-<h2><a class="anchor" id="autotoc_md7"></a>
-🔹 Safety</h2>
-<ul>
-<li><b>Minimum clearance (m)</b> – closest distance to any obstacle <br  />
-</li>
-<li><b>Clearance variability</b> – variance of obstacle clearance along the path <br  />
-</li>
-<li><b>Danger zone violations</b> – number of times path enters unsafe radii around obstacles <br  />
-</li>
-<li><b>Riskiness score</b> – sum of inverse distances to obstacles (higher = riskier path) <br  />
-</li>
-</ul>
-<h2><a class="anchor" id="autotoc_md8"></a>
-🔹 Optimality</h2>
-<ul>
-<li><b>Optimal deviation (%)</b> – relative excess length compared to the true shortest path <br  />
-</li>
-<li><b>Optimality ratio</b> – path cost / optimal cost <br  />
-</li>
-</ul>
-<hr  />
-<h1><a class="anchor" id="autotoc_md10"></a>
-🛠️ Installation</h1>
-<p>```bash git clone <a href="https://github.com/">https://github.com/</a>&lt;your-username&gt;/safeplan.git cd safeplan pip install -r requirements.txt </p>
 </div></div><!-- PageDoc -->
 </div><!-- contents -->
 <!-- start footer part -->

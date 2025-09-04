@@ -1,0 +1,90 @@
+\hypertarget{namespacememory}{}\doxysection{memory Namespace Reference}
+\label{namespacememory}\index{memory@{memory}}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{namespacememory_adbad027858ab25fa0e569cc92131a097}{alloc\+\_\+mb}} (mb)
+\item 
+def \mbox{\hyperlink{namespacememory_a75802584b9389725a8cbef0932ec9c7e}{get\+\_\+mem\+\_\+kb}} ()
+\begin{DoxyCompactList}\small\item\em Return (rss\+\_\+now\+\_\+kb, peak\+\_\+kb). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacememory_a8fedc352a1334dc683b5cdc5228b081a}{rss0}}
+\item 
+\mbox{\hyperlink{namespacememory_a3ce038a83d6906d1c9489e03a81d1278}{peak0}}
+\item 
+\mbox{\hyperlink{namespacememory_acd16d3702ffed48484eeaf2ef474e546}{t0}} = time.\+perf\+\_\+counter()
+\item 
+def \mbox{\hyperlink{namespacememory_a1908fce0adb26a085c1d890bb7199843}{result}} = \mbox{\hyperlink{namespacememory_adbad027858ab25fa0e569cc92131a097}{alloc\+\_\+mb}}(2)
+\item 
+tuple \mbox{\hyperlink{namespacememory_a14929368d89ef8a00bae7c726eddc7cd}{dt\+\_\+ms}} = (time.\+perf\+\_\+counter() -\/ \mbox{\hyperlink{namespacememory_acd16d3702ffed48484eeaf2ef474e546}{t0}}) $\ast$ 1000
+\item 
+\mbox{\hyperlink{namespacememory_ac91c9128886e957da8ae1c4a910a2150}{rss1}}
+\item 
+\mbox{\hyperlink{namespacememory_aa5a5d8220450b48f196029b0cc2ac7e5}{peak1}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{namespacememory_adbad027858ab25fa0e569cc92131a097}\label{namespacememory_adbad027858ab25fa0e569cc92131a097}} 
+\index{memory@{memory}!alloc\_mb@{alloc\_mb}}
+\index{alloc\_mb@{alloc\_mb}!memory@{memory}}
+\doxysubsubsection{\texorpdfstring{alloc\_mb()}{alloc\_mb()}}
+{\footnotesize\ttfamily def memory.\+alloc\+\_\+mb (\begin{DoxyParamCaption}\item[{}]{mb }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacememory_a75802584b9389725a8cbef0932ec9c7e}\label{namespacememory_a75802584b9389725a8cbef0932ec9c7e}} 
+\index{memory@{memory}!get\_mem\_kb@{get\_mem\_kb}}
+\index{get\_mem\_kb@{get\_mem\_kb}!memory@{memory}}
+\doxysubsubsection{\texorpdfstring{get\_mem\_kb()}{get\_mem\_kb()}}
+{\footnotesize\ttfamily def memory.\+get\+\_\+mem\+\_\+kb (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Return (rss\+\_\+now\+\_\+kb, peak\+\_\+kb). 
+
+Peak is lifetime peak if available. 
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{namespacememory_a14929368d89ef8a00bae7c726eddc7cd}\label{namespacememory_a14929368d89ef8a00bae7c726eddc7cd}} 
+\index{memory@{memory}!dt\_ms@{dt\_ms}}
+\index{dt\_ms@{dt\_ms}!memory@{memory}}
+\doxysubsubsection{\texorpdfstring{dt\_ms}{dt\_ms}}
+{\footnotesize\ttfamily tuple memory.\+dt\+\_\+ms = (time.\+perf\+\_\+counter() -\/ \mbox{\hyperlink{namespacememory_acd16d3702ffed48484eeaf2ef474e546}{t0}}) $\ast$ 1000}
+
+\mbox{\Hypertarget{namespacememory_a3ce038a83d6906d1c9489e03a81d1278}\label{namespacememory_a3ce038a83d6906d1c9489e03a81d1278}} 
+\index{memory@{memory}!peak0@{peak0}}
+\index{peak0@{peak0}!memory@{memory}}
+\doxysubsubsection{\texorpdfstring{peak0}{peak0}}
+{\footnotesize\ttfamily memory.\+peak0}
+
+\mbox{\Hypertarget{namespacememory_aa5a5d8220450b48f196029b0cc2ac7e5}\label{namespacememory_aa5a5d8220450b48f196029b0cc2ac7e5}} 
+\index{memory@{memory}!peak1@{peak1}}
+\index{peak1@{peak1}!memory@{memory}}
+\doxysubsubsection{\texorpdfstring{peak1}{peak1}}
+{\footnotesize\ttfamily memory.\+peak1}
+
+\mbox{\Hypertarget{namespacememory_a1908fce0adb26a085c1d890bb7199843}\label{namespacememory_a1908fce0adb26a085c1d890bb7199843}} 
+\index{memory@{memory}!result@{result}}
+\index{result@{result}!memory@{memory}}
+\doxysubsubsection{\texorpdfstring{result}{result}}
+{\footnotesize\ttfamily def memory.\+result = \mbox{\hyperlink{namespacememory_adbad027858ab25fa0e569cc92131a097}{alloc\+\_\+mb}}(2)}
+
+\mbox{\Hypertarget{namespacememory_a8fedc352a1334dc683b5cdc5228b081a}\label{namespacememory_a8fedc352a1334dc683b5cdc5228b081a}} 
+\index{memory@{memory}!rss0@{rss0}}
+\index{rss0@{rss0}!memory@{memory}}
+\doxysubsubsection{\texorpdfstring{rss0}{rss0}}
+{\footnotesize\ttfamily memory.\+rss0}
+
+\mbox{\Hypertarget{namespacememory_ac91c9128886e957da8ae1c4a910a2150}\label{namespacememory_ac91c9128886e957da8ae1c4a910a2150}} 
+\index{memory@{memory}!rss1@{rss1}}
+\index{rss1@{rss1}!memory@{memory}}
+\doxysubsubsection{\texorpdfstring{rss1}{rss1}}
+{\footnotesize\ttfamily memory.\+rss1}
+
+\mbox{\Hypertarget{namespacememory_acd16d3702ffed48484eeaf2ef474e546}\label{namespacememory_acd16d3702ffed48484eeaf2ef474e546}} 
+\index{memory@{memory}!t0@{t0}}
+\index{t0@{t0}!memory@{memory}}
+\doxysubsubsection{\texorpdfstring{t0}{t0}}
+{\footnotesize\ttfamily memory.\+t0 = time.\+perf\+\_\+counter()}
+

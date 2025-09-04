@@ -19,7 +19,6 @@ Implements Nodes in path evaluation based upon the path provided on the grid.
 @see BaseEval
 
 """
-import numpy as np
 from .baseeval import BaseEval
 from rdp import rdp
 class NodesInPath(BaseEval):

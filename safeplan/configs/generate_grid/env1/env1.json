@@ -1,14 +1,17 @@
 {
-    "envName": "Env1",
-    "envDes": "Maze type environment",
-    "gridSize": 100,
-    "cellSize":0.5,
-    "dimensionOfGrid": 2,
-    "randomStartGoal": true,
-    "numStartGoals": 1,
-    "startGoalPairs": [],
-    "polygons": [
-        {"polygon": [[0, 0],[0,5],[5,5],[5,0]]},
-        {"polygon": [[7, 7],[7,9],[9,9],[9,7]]}
-    ]
+  "envName": "Env1",
+  "envDes": "Cluttered Env",
+  "gridSize": 1000,
+  "cellSize": 0.05,
+  "dimensionOfGrid": 2,
+  "randomStartGoal": true,
+  "numStartGoals": 1,
+  "startGoalPairs": [],
+  "polygons": [                    
+    { "polygon": [[200,200],[200,400],[400,400],[400,200]] },               
+    { "polygon": [[600,100],[650,300],[700,100]] },                         
+    { "polygon": [[750,750],[750,850],[850,850],[850,750]] },               
+    { "polygon": [[300,700],[300,900],[350,900],[350,700]] },                
+    { "polygon": [[500,500],[520,520],[540,500],[520,480]] }                
+  ]
 }

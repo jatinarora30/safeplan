@@ -1,0 +1,22 @@
+NAMOA* — Exact multi-objective A*: return the Pareto set over (length, safety/clearance) and pick your preferred trade-off. 
+ACM Digital Library
+
+BOA* / BOBA* — Faster bi-objective A* (and a bi-directional variant) that still yields Pareto-optimal (length, safety) solutions. 
+NSF Public Access Repository
+arXiv
+
+BCP-BOA* — Bounded-cost bi-objective search to get a high-quality safety/length solution under a cost cap, efficiently. 
+IDM Lab
+
+ERCA* — Enhanced Resource-Constrained A*: minimize length subject to budgets (e.g., risk/clearance violations) — optimal if feasible. 
+Zhongqiang Richard Ren
+
+LARAC / GEN-LARAC — Lagrangian-relaxation solvers for constrained shortest path (treat safety as a hard constraint). 
+University of Oklahoma Computer Science
+University of Oklahoma Computer Science
+
+CBF-RRT* — Sampling-based planner with Control Barrier Functions; enforces safety constraints while retaining RRT*’s asymptotic optimality. 
+Belta Research Group
+
+CC-RRT / CC-RRT* — Chance-constrained RRT variants: minimize cost with a probabilistic collision bound (safety under uncertainty). 
+DSpace at MIT

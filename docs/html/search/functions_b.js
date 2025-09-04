@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['see_192',['see',['../classvisualize_1_1Visualize.html#aa35a4faeaa4441e0532ba4b5565a3c66',1,'visualize::Visualize']]],
-  ['setupalgos_193',['setUpAlgos',['../classmain_1_1SafePlan.html#aacd8ced046518c57376356fca7761b96',1,'main::SafePlan']]],
-  ['setupenvs_194',['setUpEnvs',['../classmain_1_1SafePlan.html#ae0d98fcafc354ea02ae61bd04f15d8d5',1,'main::SafePlan']]],
-  ['setupevals_195',['setUpEvals',['../classmain_1_1SafePlan.html#add0c201c68e55aa38f449f49e13d4c80',1,'main::SafePlan']]]
+  ['plan_267',['plan',['../classa__star_1_1AStar.html#ad59253f28ffcb7eed5c8411d37e99917',1,'a_star.AStar.plan()'],['../classbaseplanner_1_1BasePlanner.html#adb37fa200b73e980309e57631c9046ed',1,'baseplanner.BasePlanner.plan()'],['../classupp_1_1UPP.html#a594f93c00f5c628b453a0ff0ccf140f3',1,'upp.UPP.plan()'],['../classvoronoi__planner_1_1VoronoiPlanner.html#a9e147fcbad5ce18d4d69dcc5f4d45295',1,'voronoi_planner.VoronoiPlanner.plan()']]],
+  ['precomputesafety_268',['precomputeSafety',['../classupp_1_1UPP.html#a7897d08ab9fb1ec5a39ef49e6d1f809d',1,'upp::UPP']]]
 ];

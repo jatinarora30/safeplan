@@ -1,6 +1,8 @@
 var searchData=
 [
-  ['main_72',['main',['../namespacemain.html',1,'']]],
-  ['main_2epy_73',['main.py',['../main_8py.html',1,'']]],
-  ['makeconvexhull_74',['makeConvexHull',['../classgenerate__grid_1_1GenerateGrid.html#a30b352ce2bebbb3b1d63606331859be2',1,'generate_grid::GenerateGrid']]]
+  ['loadjson_87',['loadJson',['../classgenerate__grid_1_1GenerateGrid.html#a8ab651b22973e984dd5faa621f1a9c51',1,'generate_grid::GenerateGrid']]],
+  ['log_88',['log',['../classlogger_1_1Logger.html#af2a8971a0b72fd863702c2c867ea3072',1,'logger::Logger']]],
+  ['logger_89',['logger',['../namespacelogger.html',1,'logger'],['../classmain_1_1SafePlan.html#a86cc9847bc9ff3c4eeae1ea5685e2883',1,'main.SafePlan.logger()']]],
+  ['logger_90',['Logger',['../classlogger_1_1Logger.html',1,'logger']]],
+  ['logger_2epy_91',['logger.py',['../logger_8py.html',1,'']]]
 ];

@@ -1,0 +1,112 @@
+\hypertarget{classminimum__clearance_1_1MinimumClearance}{}\doxysection{minimum\+\_\+clearance.\+Minimum\+Clearance Class Reference}
+\label{classminimum__clearance_1_1MinimumClearance}\index{minimum\_clearance.MinimumClearance@{minimum\_clearance.MinimumClearance}}
+
+
+Inheritance diagram for minimum\+\_\+clearance.\+Minimum\+Clearance\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=246pt]{classminimum__clearance_1_1MinimumClearance__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for minimum\+\_\+clearance.\+Minimum\+Clearance\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=246pt]{classminimum__clearance_1_1MinimumClearance__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{classminimum__clearance_1_1MinimumClearance_a39175d18bd8c19b574eb596f8995b333}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, \mbox{\hyperlink{classminimum__clearance_1_1MinimumClearance_a660e7f245fbfc5da08d5bb342a851a53}{point\+Samples}})
+\begin{DoxyCompactList}\small\item\em Construct the class for Minimum Clearance evaluator. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classminimum__clearance_1_1MinimumClearance_a7d053129dd9acf99888813ae68b9e20b}{eval}} (self, start, goal, grid, cell\+Size, path)
+\begin{DoxyCompactList}\small\item\em A eval function for Minimum Clearance evaluation, which evaluates on given start, goal, grid, cell\+Size, and Path returns Minimum Clearance value. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classminimum__clearance_1_1MinimumClearance_acf61fbbbb4b7856114d1219f92301974}{value}}
+\item 
+\mbox{\hyperlink{classminimum__clearance_1_1MinimumClearance_a660e7f245fbfc5da08d5bb342a851a53}{point\+Samples}}
+\item 
+\mbox{\hyperlink{classminimum__clearance_1_1MinimumClearance_a7a6e35ca2bbc040c8f52054824f38d43}{dimension}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classminimum__clearance_1_1MinimumClearance_a39175d18bd8c19b574eb596f8995b333}\label{classminimum__clearance_1_1MinimumClearance_a39175d18bd8c19b574eb596f8995b333}} 
+\index{minimum\_clearance.MinimumClearance@{minimum\_clearance.MinimumClearance}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!minimum\_clearance.MinimumClearance@{minimum\_clearance.MinimumClearance}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily def minimum\+\_\+clearance.\+Minimum\+Clearance.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{point\+Samples }\end{DoxyParamCaption})}
+
+
+
+Construct the class for Minimum Clearance evaluator. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em point\+Samples} & Takes input number of point samples between 2 points to calculate distance \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPostcond}{Postcondition}
+Instance is initialized. 
+\end{DoxyPostcond}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classminimum__clearance_1_1MinimumClearance_a7d053129dd9acf99888813ae68b9e20b}\label{classminimum__clearance_1_1MinimumClearance_a7d053129dd9acf99888813ae68b9e20b}} 
+\index{minimum\_clearance.MinimumClearance@{minimum\_clearance.MinimumClearance}!eval@{eval}}
+\index{eval@{eval}!minimum\_clearance.MinimumClearance@{minimum\_clearance.MinimumClearance}}
+\doxysubsubsection{\texorpdfstring{eval()}{eval()}}
+{\footnotesize\ttfamily def minimum\+\_\+clearance.\+Minimum\+Clearance.\+eval (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{start,  }\item[{}]{goal,  }\item[{}]{grid,  }\item[{}]{cell\+Size,  }\item[{}]{path }\end{DoxyParamCaption})}
+
+
+
+A eval function for Minimum Clearance evaluation, which evaluates on given start, goal, grid, cell\+Size, and Path returns Minimum Clearance value. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em start} & Takes the n-\/dimensional start input \\
+\hline
+{\em goal} & Takes the n-\/dimension goal input \\
+\hline
+{\em grid} & Takes the N x N dimensional grid \\
+\hline
+{\em cell\+Size} & Takes input as cell size for computation \\
+\hline
+{\em Path} & Takes the path from star to goal in the form of a tuple \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+value Returns the Minimum Clearance 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classminimum__clearance_1_1MinimumClearance_a7a6e35ca2bbc040c8f52054824f38d43}\label{classminimum__clearance_1_1MinimumClearance_a7a6e35ca2bbc040c8f52054824f38d43}} 
+\index{minimum\_clearance.MinimumClearance@{minimum\_clearance.MinimumClearance}!dimension@{dimension}}
+\index{dimension@{dimension}!minimum\_clearance.MinimumClearance@{minimum\_clearance.MinimumClearance}}
+\doxysubsubsection{\texorpdfstring{dimension}{dimension}}
+{\footnotesize\ttfamily minimum\+\_\+clearance.\+Minimum\+Clearance.\+dimension}
+
+\mbox{\Hypertarget{classminimum__clearance_1_1MinimumClearance_a660e7f245fbfc5da08d5bb342a851a53}\label{classminimum__clearance_1_1MinimumClearance_a660e7f245fbfc5da08d5bb342a851a53}} 
+\index{minimum\_clearance.MinimumClearance@{minimum\_clearance.MinimumClearance}!pointSamples@{pointSamples}}
+\index{pointSamples@{pointSamples}!minimum\_clearance.MinimumClearance@{minimum\_clearance.MinimumClearance}}
+\doxysubsubsection{\texorpdfstring{pointSamples}{pointSamples}}
+{\footnotesize\ttfamily minimum\+\_\+clearance.\+Minimum\+Clearance.\+point\+Samples}
+
+\mbox{\Hypertarget{classminimum__clearance_1_1MinimumClearance_acf61fbbbb4b7856114d1219f92301974}\label{classminimum__clearance_1_1MinimumClearance_acf61fbbbb4b7856114d1219f92301974}} 
+\index{minimum\_clearance.MinimumClearance@{minimum\_clearance.MinimumClearance}!value@{value}}
+\index{value@{value}!minimum\_clearance.MinimumClearance@{minimum\_clearance.MinimumClearance}}
+\doxysubsubsection{\texorpdfstring{value}{value}}
+{\footnotesize\ttfamily minimum\+\_\+clearance.\+Minimum\+Clearance.\+value}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+safeplan/evals/\mbox{\hyperlink{minimum__clearance_8py}{minimum\+\_\+clearance.\+py}}\end{DoxyCompactItemize}

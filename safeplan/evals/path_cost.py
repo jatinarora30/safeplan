@@ -19,7 +19,6 @@ It calculates eucledian distance between nodes for N - dimensional path
 @see BaseEval
 
 """
-import numpy as np
 from .baseeval import BaseEval
 import math
 class PathCost(BaseEval):

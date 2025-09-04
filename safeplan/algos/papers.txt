@@ -1,0 +1,13 @@
+Traditional
+Dijkstra: https://www.semanticscholar.org/paper/A-note-on-two-problems-in-connexion-with-graphs-Dijkstra/45786063578e814444b8247028970758bbbd0488 
+A*: https://ieeexplore.ieee.org/document/4082128 
+Vornoi: https://dl.acm.org/doi/10.1145/116873.116880 
+RRT: https://www.semanticscholar.org/paper/Rapidly-exploring-random-trees-%3A-a-new-tool-for-LaValle/d967d9550f831a8b3f5cb00f8835a4c866da60ad
+Weighted A*: https://www.sciencedirect.com/science/article/pii/S000437020900068X 
+
+Safe 
+UPP: https://arxiv.org/pdf/2505.23197 
+SDF A*: https://ieeexplore.ieee.org/document/10364842/ 
+Optimized A*: 
+CBF-RRT:
+

@@ -1,0 +1,122 @@
+\hypertarget{classdanger__violations_1_1DangerViolations}{}\doxysection{danger\+\_\+violations.\+Danger\+Violations Class Reference}
+\label{classdanger__violations_1_1DangerViolations}\index{danger\_violations.DangerViolations@{danger\_violations.DangerViolations}}
+
+
+Inheritance diagram for danger\+\_\+violations.\+Danger\+Violations\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=222pt]{classdanger__violations_1_1DangerViolations__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for danger\+\_\+violations.\+Danger\+Violations\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=222pt]{classdanger__violations_1_1DangerViolations__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{classdanger__violations_1_1DangerViolations_a35e4c3f840af9137114f9c3a9cbe24f8}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, \mbox{\hyperlink{classdanger__violations_1_1DangerViolations_a220fef4b383f34406806b6a60830dd37}{point\+Samples}}, \mbox{\hyperlink{classdanger__violations_1_1DangerViolations_ad02621c62018d8df2ed6593ee6a157fd}{danger\+Radius}})
+\begin{DoxyCompactList}\small\item\em Construct the class for Danger Violations evaluator. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classdanger__violations_1_1DangerViolations_a3d209f7547e17f40d3fcd27ce9640f2a}{eval}} (self, start, goal, grid, cell\+Size, path)
+\begin{DoxyCompactList}\small\item\em A eval function for Danger Violations evaluation, which evaluates on given start, goal, grid, cell\+Size, and Path returns Danger Violations value. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classdanger__violations_1_1DangerViolations_a4f2bbb987ca451923251f16a690a0414}{value}}
+\item 
+\mbox{\hyperlink{classdanger__violations_1_1DangerViolations_a220fef4b383f34406806b6a60830dd37}{point\+Samples}}
+\item 
+\mbox{\hyperlink{classdanger__violations_1_1DangerViolations_ad02621c62018d8df2ed6593ee6a157fd}{danger\+Radius}}
+\item 
+\mbox{\hyperlink{classdanger__violations_1_1DangerViolations_a576100580dd8387234228b51dd1a9120}{dimension}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classdanger__violations_1_1DangerViolations_a35e4c3f840af9137114f9c3a9cbe24f8}\label{classdanger__violations_1_1DangerViolations_a35e4c3f840af9137114f9c3a9cbe24f8}} 
+\index{danger\_violations.DangerViolations@{danger\_violations.DangerViolations}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!danger\_violations.DangerViolations@{danger\_violations.DangerViolations}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily def danger\+\_\+violations.\+Danger\+Violations.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{point\+Samples,  }\item[{}]{danger\+Radius }\end{DoxyParamCaption})}
+
+
+
+Construct the class for Danger Violations evaluator. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em point\+Samples} & Takes input number of point samples between 2 points to calculate distance \\
+\hline
+{\em danger\+Radius} & Takes input of radius in which if there is obstacle it is harmful \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPostcond}{Postcondition}
+Instance is initialized. 
+\end{DoxyPostcond}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classdanger__violations_1_1DangerViolations_a3d209f7547e17f40d3fcd27ce9640f2a}\label{classdanger__violations_1_1DangerViolations_a3d209f7547e17f40d3fcd27ce9640f2a}} 
+\index{danger\_violations.DangerViolations@{danger\_violations.DangerViolations}!eval@{eval}}
+\index{eval@{eval}!danger\_violations.DangerViolations@{danger\_violations.DangerViolations}}
+\doxysubsubsection{\texorpdfstring{eval()}{eval()}}
+{\footnotesize\ttfamily def danger\+\_\+violations.\+Danger\+Violations.\+eval (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{start,  }\item[{}]{goal,  }\item[{}]{grid,  }\item[{}]{cell\+Size,  }\item[{}]{path }\end{DoxyParamCaption})}
+
+
+
+A eval function for Danger Violations evaluation, which evaluates on given start, goal, grid, cell\+Size, and Path returns Danger Violations value. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em start} & Takes the n-\/dimensional start input \\
+\hline
+{\em goal} & Takes the n-\/dimension goal input \\
+\hline
+{\em grid} & Takes the N x N dimensional grid \\
+\hline
+{\em cell\+Size} & Takes input as cell size for computation \\
+\hline
+{\em Path} & Takes the path from star to goal in the form of a tuple \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+value Returns the Danger Violations 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classdanger__violations_1_1DangerViolations_ad02621c62018d8df2ed6593ee6a157fd}\label{classdanger__violations_1_1DangerViolations_ad02621c62018d8df2ed6593ee6a157fd}} 
+\index{danger\_violations.DangerViolations@{danger\_violations.DangerViolations}!dangerRadius@{dangerRadius}}
+\index{dangerRadius@{dangerRadius}!danger\_violations.DangerViolations@{danger\_violations.DangerViolations}}
+\doxysubsubsection{\texorpdfstring{dangerRadius}{dangerRadius}}
+{\footnotesize\ttfamily danger\+\_\+violations.\+Danger\+Violations.\+danger\+Radius}
+
+\mbox{\Hypertarget{classdanger__violations_1_1DangerViolations_a576100580dd8387234228b51dd1a9120}\label{classdanger__violations_1_1DangerViolations_a576100580dd8387234228b51dd1a9120}} 
+\index{danger\_violations.DangerViolations@{danger\_violations.DangerViolations}!dimension@{dimension}}
+\index{dimension@{dimension}!danger\_violations.DangerViolations@{danger\_violations.DangerViolations}}
+\doxysubsubsection{\texorpdfstring{dimension}{dimension}}
+{\footnotesize\ttfamily danger\+\_\+violations.\+Danger\+Violations.\+dimension}
+
+\mbox{\Hypertarget{classdanger__violations_1_1DangerViolations_a220fef4b383f34406806b6a60830dd37}\label{classdanger__violations_1_1DangerViolations_a220fef4b383f34406806b6a60830dd37}} 
+\index{danger\_violations.DangerViolations@{danger\_violations.DangerViolations}!pointSamples@{pointSamples}}
+\index{pointSamples@{pointSamples}!danger\_violations.DangerViolations@{danger\_violations.DangerViolations}}
+\doxysubsubsection{\texorpdfstring{pointSamples}{pointSamples}}
+{\footnotesize\ttfamily danger\+\_\+violations.\+Danger\+Violations.\+point\+Samples}
+
+\mbox{\Hypertarget{classdanger__violations_1_1DangerViolations_a4f2bbb987ca451923251f16a690a0414}\label{classdanger__violations_1_1DangerViolations_a4f2bbb987ca451923251f16a690a0414}} 
+\index{danger\_violations.DangerViolations@{danger\_violations.DangerViolations}!value@{value}}
+\index{value@{value}!danger\_violations.DangerViolations@{danger\_violations.DangerViolations}}
+\doxysubsubsection{\texorpdfstring{value}{value}}
+{\footnotesize\ttfamily danger\+\_\+violations.\+Danger\+Violations.\+value}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+safeplan/evals/\mbox{\hyperlink{danger__violations_8py}{danger\+\_\+violations.\+py}}\end{DoxyCompactItemize}

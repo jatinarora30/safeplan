@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['path_5fcost_2epy_168',['path_cost.py',['../path__cost_8py.html',1,'']]]
+  ['optimal_5fdeviation_2epy_232',['optimal_deviation.py',['../optimal__deviation_8py.html',1,'']]],
+  ['optisafe_5findex_2epy_233',['optisafe_index.py',['../optisafe__index_8py.html',1,'']]]
 ];

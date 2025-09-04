@@ -88,8 +88,10 @@ class Visualize:
         self.algosDetails = data["algoDetails"]
         self.evalsDetails = data["evalDetails"]
         self.runDetails = data["runDetails"]
+        print(self.algosDetails)
         
         if self.algos==None:
+            self.algos=[]
         
             for k in self.algosDetails:
                 self.algos.append(k["name"])

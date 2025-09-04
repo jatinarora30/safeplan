@@ -1,13 +1,21 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" title=" " alt="" coords="5,173,55,200"/>
-<area shape="rect" id="node2" href="$classbaseenv_1_1BaseEnv.html" title="Abstract base/registry for environment making for planning algorithms." alt="" coords="128,64,264,91"/>
-<area shape="rect" id="node4" href="$classbaseeval_1_1BaseEval.html" title="Abstract base/registry for evaluating planning algorithms." alt="" coords="123,173,269,200"/>
-<area shape="rect" id="node10" href="$classbaseplanner_1_1BasePlanner.html" title="Abstract base/registry for planning algorithms." alt="" coords="103,283,289,309"/>
-<area shape="rect" id="node3" href="$classgenerate__grid_1_1GenerateGrid.html" title="Generates and caches a discrete occupancy grid with polygonal obstacles." alt="" coords="340,5,543,32"/>
-<area shape="rect" id="node5" href="$classdistance__to__goal_1_1DistanceToGoal.html" title=" " alt="" coords="345,57,538,98"/>
-<area shape="rect" id="node6" href="$classjerk__per__meter_1_1JerkPerMeter.html" title=" " alt="" coords="337,123,545,149"/>
-<area shape="rect" id="node7" href="$classnodes__in__path_1_1NodesInPath.html" title=" " alt="" coords="341,173,542,200"/>
-<area shape="rect" id="node8" href="$classoptimal__deviation_1_1OptimalDeviation.html" title=" " alt="" coords="343,225,539,266"/>
-<area shape="rect" id="node9" href="$classpath__cost_1_1PathCost.html" title=" " alt="" coords="368,291,515,317"/>
-<area shape="rect" id="node11" href="$classa__star_1_1AStar.html" title=" " alt="" coords="391,341,491,368"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,377,55,404"/>
+<area shape="rect" id="node2" href="$classbaseenv_1_1BaseEnv.html" title="Abstract base/registry for environment making for planning algorithms." alt="" coords="128,167,264,193"/>
+<area shape="rect" id="node4" href="$classbaseeval_1_1BaseEval.html" title="Abstract base/registry for evaluating planning algorithms." alt="" coords="123,377,269,404"/>
+<area shape="rect" id="node16" href="$classbaseplanner_1_1BasePlanner.html" title="Abstract base/registry for planning algorithms." alt="" coords="103,731,289,757"/>
+<area shape="rect" id="node3" href="$classgenerate__grid_1_1GenerateGrid.html" title="Generates and caches a discrete occupancy grid with polygonal obstacles." alt="" coords="350,5,553,32"/>
+<area shape="rect" id="node5" href="$classaverage__minimum__clearance_1_1AverageMinimumClearance.html" title=" " alt="" coords="342,57,561,98"/>
+<area shape="rect" id="node6" href="$classclearance__variability_1_1ClearanceVariability.html" title=" " alt="" coords="339,122,564,163"/>
+<area shape="rect" id="node7" href="$classdanger__violations_1_1DangerViolations.html" title=" " alt="" coords="357,187,546,229"/>
+<area shape="rect" id="node8" href="$classdistance__to__goal_1_1DistanceToGoal.html" title=" " alt="" coords="355,253,548,294"/>
+<area shape="rect" id="node9" href="$classjerk__per__meter_1_1JerkPerMeter.html" title=" " alt="" coords="347,319,555,345"/>
+<area shape="rect" id="node10" href="$classminimum__clearance_1_1MinimumClearance.html" title=" " alt="" coords="341,370,562,411"/>
+<area shape="rect" id="node11" href="$classnodes__in__path_1_1NodesInPath.html" title=" " alt="" coords="351,436,552,463"/>
+<area shape="rect" id="node12" href="$classoptimal__deviation_1_1OptimalDeviation.html" title=" " alt="" coords="353,487,549,529"/>
+<area shape="rect" id="node13" href="$classoptisafe__index_1_1OptiSafeIndex.html" title=" " alt="" coords="344,553,559,580"/>
+<area shape="rect" id="node14" href="$classpath__cost_1_1PathCost.html" title=" " alt="" coords="378,604,525,631"/>
+<area shape="rect" id="node15" href="$classturning__angle_1_1TurningAngle.html" title=" " alt="" coords="352,655,551,681"/>
+<area shape="rect" id="node17" href="$classa__star_1_1AStar.html" title=" " alt="" coords="401,705,501,732"/>
+<area shape="rect" id="node18" href="$classupp_1_1UPP.html" title="A*&#45;style planner with a blended optimality + safety heuristic." alt="" coords="413,756,489,783"/>
+<area shape="rect" id="node19" href="$classvoronoi__planner_1_1VoronoiPlanner.html" title="Path planner using a Voronoi roadmap with A* search." alt="" coords="337,807,565,833"/>
 </map>

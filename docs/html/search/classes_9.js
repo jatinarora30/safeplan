@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['safeplan_137',['SafePlan',['../classmain_1_1SafePlan.html',1,'main']]],
-  ['stats_138',['Stats',['../classstats_1_1Stats.html',1,'stats']]]
+  ['optimaldeviation_185',['OptimalDeviation',['../classoptimal__deviation_1_1OptimalDeviation.html',1,'optimal_deviation']]],
+  ['optisafeindex_186',['OptiSafeIndex',['../classoptisafe__index_1_1OptiSafeIndex.html',1,'optisafe_index']]]
 ];

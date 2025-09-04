@@ -34,7 +34,6 @@ and neighborhood definition are provided by @ref heuristics() and
 
 
 from .baseplanner import BasePlanner
-import math 
 import heapq
 import itertools
 import numpy as np
@@ -141,9 +140,10 @@ class AStar(BasePlanner):
             return self.success,self.path,self.info
         
         heap=[]
-        visited=set()
+        visited=np.zeros(self.grid.shape,bool)
         parents={}
-        g_score = {self.start: 0}
+        g_score = np.full(self.grid.shape, np.inf, np.float32)
+        g_score[self.start]=0
         f0=self.heuristics(self.start,self.goal)
         heapq.heappush(heap,(f0,0,self.start))
         self.parent=None
@@ -155,19 +155,18 @@ class AStar(BasePlanner):
             if self.node==self.goal:
                 break
             
-            if self.node in visited:
+            if visited[self.node]:
                 continue
-            visited.add(self.node)
+            
+            visited[self.node]=1
         
             
             #calculating alternate nodes
             adjacentNodes=self.adjacentCoordinates(self.node)
-            if self.success==1:
-                break
             
             
             for k in range(len(adjacentNodes)):
-                if self.isValid(adjacentNodes[k]) and self.grid[adjacentNodes[k]]==0 and adjacentNodes[k] not in visited:
+                if self.isValid(adjacentNodes[k]) and self.grid[adjacentNodes[k]]==0 and visited[adjacentNodes[k]]==0:
                     self.parent=self.node
                     if adjacentNodes[k]==self.goal:
                         
@@ -176,21 +175,30 @@ class AStar(BasePlanner):
                         break
                     else:
                         
-                        g_updated=g+1
-                        if g_updated < g_score.get(adjacentNodes[k], float('inf')):
+                        delta = tuple(adjacentNodes[k][i] - self.node[i] for i in range(self.dimension))
+                        is_axis_step = sum(abs(d) for d in delta) == 1
+                        step_cost = 1.0 if is_axis_step else float(np.linalg.norm(delta, ord=2))  # or Chebyshev via max(abs(d))
+                        g_updated = g + step_cost
+                        if g_updated < g_score[adjacentNodes[k]]:
                             g_score[adjacentNodes[k]] = g_updated
                             total_cost=self.heuristics(adjacentNodes[k],self.goal)+g_updated
                             heapq.heappush(heap,(total_cost,g_updated,adjacentNodes[k]))
                             parents[adjacentNodes[k]]=self.parent
-                        
-        if self.success==1:
-            path_node=self.goal
-            while path_node!=self.start:
+            if self.success==1:
+                break                 
+        
+        if self.success == 1:
+            path_node = self.goal
+            while path_node is not None and path_node != self.start:
                 self.path.append(path_node)
-                path_node=parents.get(path_node)
-                
+                path_node = parents.get(path_node)
+            if path_node != self.start:         
+                self.info.append("Failed to reconstruct path.")
+                self.success, self.path = 0, []
+                return self.success, self.path, self.info
             self.path.append(self.start)
             self.path.reverse()
+
             
         
         return self.success,self.path,self.info

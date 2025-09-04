@@ -22,7 +22,6 @@ It calculates eucledian distance between nodes for N - dimensional path
 from scipy.ndimage import distance_transform_edt
 import numpy as np
 from .baseeval import BaseEval
-import math
 class MinimumClearance(BaseEval):
     def __init__(self,pointSamples):
         """

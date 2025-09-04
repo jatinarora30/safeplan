@@ -6,9 +6,13 @@ env file:
 - adding more envs
 
 algos
+- VoronoiPlanner (find obstacles center, create VoronoiPlanner diagram,make graph, eliminate edges with obstacles, find path)
 - Faster A*
 - UPP
+-VoronoiPlanner
 -adding algos
 
 evals
 - adding more evals
+
+optsafe ,vornoi documentation,upp

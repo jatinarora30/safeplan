@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['optimaldeviation_135',['OptimalDeviation',['../classoptimal__deviation_1_1OptimalDeviation.html',1,'optimal_deviation']]]
+  ['minimumclearance_183',['MinimumClearance',['../classminimum__clearance_1_1MinimumClearance.html',1,'minimum_clearance']]]
 ];
