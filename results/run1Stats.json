@@ -1,58 +1,10 @@
 {
-    "VoronoiPlanner": {
-        "PlanningTime": 12.360399938188493,
+    "OptimizedAStar": {
+        "PlanningTime": 465.03776000463404,
         "TurningAngle": 0.0,
-        "MinimumClearance": 1.2539936203984454,
+        "MinimumClearance": 0.6810076538844809,
         "SuccessRate": 1.0,
-        "PathCost": 28.866676289451824,
-        "OptiSafeIndex": 1.0
-    },
-    "UPP": {
-        "PlanningTime": 425.8267000550404,
-        "TurningAngle": 46.8069005149157,
-        "MinimumClearance": 2.45,
-        "SuccessRate": 1.0,
-        "PathCost": 31.24421715174815,
-        "OptiSafeIndex": 1.0
-    },
-    "RRT": {
-        "PlanningTime": 352.12179995141923,
-        "TurningAngle": 2927.0599414674202,
-        "MinimumClearance": 0.1118033988749895,
-        "SuccessRate": 1.0,
-        "PathCost": 35.28172821311476,
-        "OptiSafeIndex": 0.13516773754950392
-    },
-    "AStar": {
-        "PlanningTime": 38.72660000342876,
-        "TurningAngle": 46.8069005149157,
-        "MinimumClearance": 2.45,
-        "SuccessRate": 1.0,
-        "PathCost": 31.24421715174815,
-        "OptiSafeIndex": 1.0
-    },
-    "Dijkstra": {
-        "PlanningTime": 24660.297899972647,
-        "TurningAngle": 181.79718278610673,
-        "MinimumClearance": 2.1,
-        "SuccessRate": 1.0,
-        "PathCost": 31.24421715174815,
-        "OptiSafeIndex": 1.0
-    },
-    "WeightedAStar": {
-        "PlanningTime": 41.27279995009303,
-        "TurningAngle": 46.8069005149157,
-        "MinimumClearance": 2.45,
-        "SuccessRate": 1.0,
-        "PathCost": 31.24421715174815,
-        "OptiSafeIndex": 1.0
-    },
-    "SDFAStar": {
-        "PlanningTime": 2978.334299987182,
-        "TurningAngle": 586.739531277705,
-        "MinimumClearance": 2.5500000000000003,
-        "SuccessRate": 1.0,
-        "PathCost": 32.586857838867495,
-        "OptiSafeIndex": 0.9366903679930673
+        "PathCost": 30.709408878281057,
+        "OptiSafeIndex": 0.6522982257479014
     }
 }

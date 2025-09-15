@@ -5,9 +5,9 @@ Vornoi: https://dl.acm.org/doi/10.1145/116873.116880
 RRT: https://www.semanticscholar.org/paper/Rapidly-exploring-random-trees-%3A-a-new-tool-for-LaValle/d967d9550f831a8b3f5cb00f8835a4c866da60ad
 Weighted A*: https://www.sciencedirect.com/science/article/pii/S000437020900068X 
 
+
 Safe 
 UPP: https://arxiv.org/pdf/2505.23197 
 SDF A*: https://ieeexplore.ieee.org/document/10364842/ 
-Optimized A*: 
-CBF-RRT:
-
+Optimized A*: https://www.mdpi.com/1424-8220/24/10/3149
+CBF-RRT: https://arxiv.org/pdf/2011.06748 

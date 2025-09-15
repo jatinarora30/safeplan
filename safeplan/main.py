@@ -11,12 +11,10 @@ from .algos.rrt import RRT
 from .algos.dijkstra import Dijkstra
 from .algos.weighted_astar import WeightedAStar
 from .algos.sdf_astar import SDFAStar
-
+from .algos.cbf_rrt import CBFRRT
+from .algos.optimized_astar import OptimizedAStar
 
 from .envs.generate_grid import GenerateGrid
-
-
-
 
 from .evals.path_cost import PathCost
 from .evals.nodes_in_path import NodesInPath
@@ -68,6 +66,8 @@ class SafePlan:
         for k in self.algosDetails:
             if k["name"]=="AStar":
                 self.algos.append(("AStar",AStar()))
+            if k["name"]=="OptimizedAStar":
+                self.algos.append(("OptimizedAStar",OptimizedAStar(k["args"]["turnPenaltyCoefficients"],k["args"]["safetyDistGridRadius"],k["args"]["maxInflateIter"],k["args"]["pointSamples"])))
             if k["name"]=="SDFAStar":
                 self.algos.append(("SDFAStar",SDFAStar(k["args"]["k1"],k["args"]["k2"])))
             if k["name"]=="WeightedAStar":
@@ -75,7 +75,9 @@ class SafePlan:
             if k["name"]=="Dijkstra":
                 self.algos.append(("Dijkstra",Dijkstra()))
             if k["name"]=="RRT":
-                self.algos.append(("RRT",RRT(k["args"]["maxIter"],k["args"]["goalSampleRate"],k["args"]["stepSize"],k["args"]["pointSamples"],)))
+                self.algos.append(("RRT",RRT(k["args"]["maxIter"],k["args"]["goalSampleRate"],k["args"]["stepSize"],k["args"]["pointSamples"])))
+            if k["name"]=="CBFRRT":
+                self.algos.append(("CBFRRT",CBFRRT(k["args"]["maxIter"],k["args"]["goalSampleRate"],k["args"]["stepSize"],k["args"]["pointSamples"],k["args"]["gamma1"],k["args"]["gamma2"])))
             if k["name"]=="VoronoiPlanner":
                 self.algos.append(("VoronoiPlanner",VoronoiPlanner(k["args"]["pointSamples"],k["args"]["knn"])))
             if k["name"]=="UPP":

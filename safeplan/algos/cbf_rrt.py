@@ -10,6 +10,7 @@ start toward random samples (with goal bias), adding a new node at most
 A path is returned once the tree connects to the goal via a collision-free edge.
 
 Collision checking (@ref isEdgeFree()) samples @p pointSamples points along a
+Collision checking (@ref isEdgeFree()) samples @p pointSamples points along a
 candidate segment, rounds them to the nearest grid indices, and rejects the edge
 if any sampled index is out of bounds or lies on an obstacle (grid==1).
 
@@ -50,7 +51,7 @@ edge checking. Worst case ≈ O(maxIter·(|V| + pointSamples)).
 from .baseplanner import BasePlanner
 import random
 import numpy as np
-
+from scipy.ndimage import label
 class CBFRRT(BasePlanner):
     """
     @class RRT
@@ -78,7 +79,7 @@ class CBFRRT(BasePlanner):
     - @p start, @p goal, @p grid — problem definition set in @ref plan()
     """
 
-    def __init__(self,maxIter,goalSampleRate,stepSize,pointSamples):
+    def __init__(self,maxIter,goalSampleRate,stepSize,pointSamples,gamma1,gamma2):
         """
         @brief Construct the class for A* planner
 
@@ -88,6 +89,8 @@ class CBFRRT(BasePlanner):
         self.goalSampleRate = goalSampleRate
         self.stepSize=stepSize
         self.pointSamples=pointSamples
+        self.gamma1=gamma1
+        self.gamma2=gamma2
         
         self.success=0
         self.info=[]
@@ -194,6 +197,51 @@ class CBFRRT(BasePlanner):
             if not (0 <= grid_cell[i] < self.grid.shape[i]):
                 return False
         return True
+    
+    def getObstacleCentersRadii(self):
+        """
+        Find centers and radii of connected obstacle components.
+        - Center: mean of indices (centroid)
+        - Radius: max distance from centroid to any cell in that component
+        """
+        labeled_grid, num_features = label(self.grid)
+        centers, radii = [], []
+        for label_num in range(1, num_features + 1):
+            positions = np.argwhere(labeled_grid == label_num)  # cells in this obstacle
+            center = positions.mean(axis=0)                     # centroid
+            # compute radius as farthest cell from centroid
+            if len(positions) > 0:
+                dists = np.linalg.norm(positions - center, axis=1)
+                radius = dists.max()
+            else:
+                radius = 0.0
+            centers.append(center)
+            radii.append(radius)
+
+        return np.array(centers), np.array(radii)
+    
+    def heuristics(self,node1,node2):
+        """
+        A function to return the cost of heuristics between two nodes depending on the eucledian cost 
+        @param node1 Takes input first node two get distance between distances
+        @param node2 Takes input second node two get distance between distances
+        @return cost Returns the eucledian cost between two nodes
+        """
+        cost=0
+        for i in range(0,self.dimension):
+            cost+=np.square(abs(node1[i]-node2[i]))
+        return cost
+    
+    def isSafe(self,cell,vel):
+        for i in range(len(self.radius)):
+            b=self.heuristics(cell,self.obsctaclesCenters[i])-np.square(self.radius[i])
+            bDot=2*np.dot(np.array(cell)-np.array(self.obsctaclesCenters[i]),vel)
+            b1=b*self.gamma1+bDot
+            b1Dot=self.gamma1*bDot+2*np.sum(np.square(vel))    
+            if b1Dot+self.gamma2*b1>=0:
+                return True
+        return False
+    
     def plan(self,start,goal,grid):
         """
         A Plan function  for A*, which plans on given start,goal and grid returns Path, Sucess, info
@@ -237,6 +285,7 @@ class CBFRRT(BasePlanner):
             self.success = 1
             self.path = [self.start]
             return self.success,self.path,self.info
+        self.obsctaclesCenters,self.radius=self.getObstacleCentersRadii()
         
         parents={}
         tree=[self.start]
@@ -253,6 +302,8 @@ class CBFRRT(BasePlanner):
                 continue
             
             if not (self.isValid(steeredPoint) and self.isEdgeFree(steeredPoint,nearestNode) and self.grid[steeredPoint]==0):
+                continue
+            if not self.isSafe(steeredPoint,steer):
                 continue
             tree.append(steeredPoint)
             parents[steeredPoint]=nearestNode

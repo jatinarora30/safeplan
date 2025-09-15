@@ -9,13 +9,7 @@
     {"name": "OptiSafeIndex","args": {"pointSamples":100,"knn":1000}}
   ],
   "algoDetails": [
-    {"name": "VoronoiPlanner","args": {"pointSamples":100,"knn":1000}},
-    {"name": "UPP","args": {"alpha":0.5,"beta":3,"radius":10,"epsilon":0.01}},
-    {"name": "RRT","args": {"maxIter":10000,"goalSampleRate":0.05,"stepSize":7,"pointSamples":100}},
-    {"name": "AStar"},
-    {"name": "Dijkstra"},
-    {"name": "WeightedAStar","args": {"weight":1.2}},
-    {"name": "SDFAStar" , "args": {"k1":5,"k2":5}}
+    {"name": "OptimizedAStar" , "args": {"turnPenaltyCoefficients":0.5,"safetyDistGridRadius":100,"maxInflateIter":100,"pointSamples":100}}
   ],
   "envDetails": [
     {

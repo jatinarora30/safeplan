@@ -11,4 +11,4 @@ sf=Stats("/home/jatinarora/code/safeplan/safeplan/runs/run1.json")
 sf.compute()
 
 vs=Visualize()
-vs.see("/home/jatinarora/code/safeplan/safeplan/runs/run1.json",iterNo=1)
+vs.see("/home/jatinarora/code/safeplan/safeplan/runs/run1.json",iterNo=4)

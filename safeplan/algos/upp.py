@@ -1,43 +1,4 @@
-"""
-@file upp.py
-@brief Universal Path Planner (UPP) with safety-aware heuristic for N-dimensional occupancy grids.
 
-@details
-Implements an A*-style search over an N-D NumPy occupancy grid where `0` denotes
-free space and `1` denotes an obstacle. UPP augments the search heuristic with a
-precomputed, obstacle-induced safety potential to encourage safer (higher-clearance)
-paths.
-
-@par Inputs
-- @p start : tuple[int, ...] — start grid cell (e.g., (row, col))
-- @p goal  : tuple[int, ...] — goal grid cell
-- @p grid  : numpy.ndarray (N-D), values {0=free, 1=obstacle}
-
-@par Hyperparameters (constructor)
-- @p alpha   : float in [0,1] — blend between Manhattan and Chebyshev in the optimality term
-- @p beta    : float ≥ 0 — scale for the safety potential term
-- @p radius  : int ≥ 0 — Chebyshev radius R for the safety kernel support
-- @p epsilon : float > 0 — small constant to avoid division by zero in 1/(r+ε)
-
-@par Outputs
-- @p success : int — 1 if a path is found, else 0
-- @p path    : list[tuple[int, ...]] — sequence of cells from start→goal (inclusive)
-- @p info    : list[str] — diagnostics (e.g., "Invalid goal", "Failed to reconstruct path.")
-
-@note
-- Neighborhood: by default, all 3^N - 1 offsets in {-1,0,1}^N \ {0} are used
-  (axis-aligned and diagonal moves).
-- Step costs: axis-aligned step = 1.0; diagonal/multi-axis step = Euclidean length
-  of the offset vector.
-- Boundaries: safety convolution uses zero-padding; safety outside the grid is treated as 0.
-
-@see BasePlanner
-
-@references
-- UPP (paper, preprint): https://arxiv.org/pdf/2505.23197
-- SciPy fftconvolve: https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.fftconvolve.html
-- Chebyshev distance: https://en.wikipedia.org/wiki/Chebyshev_distance
-"""
 
 from .baseplanner import BasePlanner
 import heapq
@@ -45,47 +6,9 @@ import itertools
 import numpy as np
 
 class UPP(BasePlanner):
-    r"""
-    @class UPP
-    @brief A*-style planner with a blended optimality + safety heuristic.
-
-    @details
-    UPP biases search toward safer regions by adding a precomputed safety
-    potential to a goal-directed distance heuristic. The potential is the FFT
-    convolution of the obstacle mask with a 1/(d_inf+ε) kernel over Chebyshev
-    radius R, capturing multi-scale obstacle influence.
-
-    @var alpha
-        (float) Blend factor for Manhattan vs. Chebyshev distances.
-    @var beta
-        (float) Weight on the safety potential term.
-    @var R
-        (int) Chebyshev radius for the safety kernel support.
-    @var epsilon
-        (float) Small constant to avoid division by zero in the kernel.
-    @var success
-        (int) Planning outcome: 1 on success, 0 on failure.
-    @var info
-        (list[str]) Diagnostics for the last planning attempt.
-    @var path
-        (list[tuple[int, ...]]) Planned path start→goal (inclusive) when found.
-    """
 
     def __init__(self,alpha,beta,radius,epsilon):
-        r"""
-        @brief Construct the UPP planner with safety-aware heuristic.
 
-        @param alpha float in [0,1]
-               Blend between Manhattan and Chebyshev distances.
-        @param beta float ≥ 0
-               Weight for the precomputed safety potential.
-        @param radius int ≥ 0
-               Chebyshev radius R used to build the safety kernel.
-        @param epsilon float > 0
-               Stabilizer for 1/(r+ε) kernel near obstacles.
-
-        @post Instance is initialized with empty path and diagnostics.
-        """
         self.alpha=alpha
         self.beta=beta
         self.R=radius
@@ -97,15 +20,7 @@ class UPP(BasePlanner):
         self.path= []
 
     def isValid(self, grid_cell):
-        r"""
-        @brief Check whether a grid-cell index lies within grid bounds.
-
-        @param grid_cell tuple[int, ...]
-               N-dimensional integer grid index.
-
-        @return bool
-                True iff all indices are within the corresponding grid extents.
-        """
+        
         for i in range(self.dimension):
             if not (0 <= grid_cell[i] < self.grid.shape[i]):
                 return False
@@ -211,53 +126,11 @@ class UPP(BasePlanner):
         self.preSafety = S                               # Save the safety influence map for use in planning
 
     def combinedHeuristics(self,node1,node2):
-        r"""
-        @brief Combined UPP heuristic: optimality + safety.
-
-
-        @param node1 tuple[int, ...]
-               Current node where the heuristic is evaluated.
-        @param node2 tuple[int, ...]
-               Goal node.
-
-        @return float
-                Heuristic estimate incorporating safety potential at @p node1.
-        """
         optimalCost=self.alpha*self.manhattanHeuristics(node1,node2)+(1-self.alpha)*self.chebyshevHeuristics(node1,node2)
         safetyCost=self.preSafety[node1]
         return optimalCost+self.beta*safetyCost
 
     def plan(self,start,goal,grid):
-        r"""
-        @brief Plan a path from @p start to @p goal over @p grid using UPP.
-
-        @details
-        Algorithm flow:
-          1. Validate inputs and trivial cases (invalid cells, obstacles, equality).
-          2. Precompute the safety potential via @ref precomputeSafety().
-          3. Initialize open set with the start node (g=0, f=h_UPP(start,goal)).
-          4. Pop the node with smallest f. If it is the goal, stop.
-          5. For each valid, free neighbor, compute tentative g using step cost
-             (axis=1.0, diagonal=Euclidean), and push with f = g + h_UPP.
-          6. Reconstruct path via recorded parents if goal reached.
-
-        @param start tuple[int, ...]
-               Start grid cell.
-        @param goal tuple[int, ...]
-               Goal grid cell.
-        @param grid numpy.ndarray
-               N-D occupancy grid with {0=free, 1=obstacle}.
-
-        @return success int
-                1 if a path was found, else 0.
-        @return path list[tuple[int, ...]]
-                Path from start to goal (inclusive) if found; else empty.
-        @return info list[str]
-                Diagnostics about failures or special cases.
-
-        @throws None
-                Errors are handled via diagnostics and return values.
-        """
         self.start=tuple(start)
         self.goal=tuple(goal)
         self.grid=grid
