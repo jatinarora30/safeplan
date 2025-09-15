@@ -4,6 +4,7 @@ import os
 import sys
 import subprocess
 import time
+import gc  # NEW
 
 from .core.logger import Logger
 
@@ -30,7 +31,38 @@ from .evals.average_minimum_clearance import AverageMinimumClearance
 from .evals.clearance_variability import ClearanceVariability
 from .evals.danger_violations import DangerViolations
 from .evals.optisafe_index import OptiSafeIndex
+try:
+    import psutil
+    _PROC = psutil.Process()
+except Exception:
+    _PROC = None
 
+def _log_rss(tag):
+    if _PROC is None:
+        return
+    try:
+        rss = _PROC.memory_info().rss / (1024 * 1024)
+        print(f"[mem] {tag}: parent RSS={rss:.1f} MB")
+    except Exception:
+        pass
+
+
+# --- NEW: helper to return memory to the OS (glibc) ---
+import ctypes, ctypes.util  # NEW
+_LIBC = None  # NEW
+def _malloc_trim():  # NEW
+    """Ask glibc to return free heap pages to the OS; harmless elsewhere."""
+    global _LIBC
+    try:
+        if _LIBC is None:
+            path = ctypes.util.find_library("c")
+            if not path:
+                return
+            _LIBC = ctypes.CDLL(path)
+        _LIBC.malloc_trim(0)
+    except Exception:
+        pass
+# --- end NEW ---
 
 class SafePlan:
     def __init__(self, runConfigPath):
@@ -47,14 +79,13 @@ class SafePlan:
         self.iteration = 0
         self.isSuccessEval = 0
         self.isPlanningTimeEval = 0
-        self.isPeakMemoryEval = 0  # ensure attribute exists for children
-        # optional: flush page cache every N jobs (set via env)
+        self.isPeakMemoryEval = 0  # keep attribute but we won't use it
+
         try:
             self.syncEvery = int(os.environ.get("SAFEPLAN_SYNC_EVERY", "0"))
         except Exception:
             self.syncEvery = 0
 
-        # classes objects lists
         self.envs = []
         self.algos = []
         self.evals = []
@@ -72,39 +103,49 @@ class SafePlan:
     def _get_pairs_count_via_child(self, env_idx: int) -> int:
         import re
 
-        module_path = self.__class__.__module__
         pkg_dir = os.path.dirname(os.path.abspath(__file__))
         project_root = os.path.dirname(pkg_dir)
 
         payload = json.dumps({"run_config": self.runConfigPath, "env_idx": int(env_idx)}, ensure_ascii=False)
 
-        # Child: silence both stdout & stderr during setup; then print a single sentinel line.
+        # Child: load run_config.json directly; build env list the same way setUpEnvs does.
         child_code = (
-            "import os, json, contextlib\n"
-            "mod = __import__(os.environ['SP_MOD'], fromlist=['SafePlan','GenerateGrid'])\n"
-            "SafePlan = getattr(mod, 'SafePlan')\n"
-            "GenerateGrid = getattr(mod, 'GenerateGrid', None)\n"
+            "import os, json\n"
+            "from safeplan.envs.generate_grid import GenerateGrid\n"
             "args = json.loads(os.environ['SAFEPLAN_CHILD_ARGS'])\n"
-            "with open(os.devnull, 'w') as devnull, contextlib.redirect_stdout(devnull), contextlib.redirect_stderr(devnull):\n"
-            "    sf = SafePlan(args['run_config'])\n"
-            "    name, spec = sf.getObjAndClass(sf.envs[int(args['env_idx'])])\n"
-            "    if isinstance(spec, dict) and spec.get('type') == 'generateGrid' and GenerateGrid is not None:\n"
-            "        env_obj = GenerateGrid(spec['name'])\n"
-            "    else:\n"
-            "        env_obj = spec\n"
-            "    (grid, cellSize, envName, envDes, startGoalPairs) = env_obj.getmap()\n"
+            "with open(args['run_config']) as f:\n"
+            "    data = json.load(f)\n"
+            "envsDetails = data['envDetails']\n"
+            "env_specs = []\n"
+            "for k in envsDetails:\n"
+            "    if 'generateGrid' in k:\n"
+            "        for p in k['generateGrid']:\n"
+            "            env_specs.append({'type':'generateGrid','name': p['name']})\n"
+            "spec = env_specs[int(args['env_idx'])]\n"
+            "env_obj = GenerateGrid(spec['name'])\n"
+            "(grid, cellSize, envName, envDes, startGoalPairs) = env_obj.getmap()\n"
             "print('PAIR_COUNT=' + str(len(startGoalPairs)))\n"
         )
 
         env = os.environ.copy()
-        env["SP_MOD"] = module_path
         env["SAFEPLAN_CHILD_ARGS"] = payload
         env["PYTHONPATH"] = project_root + (os.pathsep + env.get("PYTHONPATH", ""))
+        # lean children
+        env.setdefault("MALLOC_ARENA_MAX", "2")
+        env.setdefault("MALLOC_TRIM_THRESHOLD_", "131072")
+        env.setdefault("MALLOC_TOP_PAD_", "0")
+        env.setdefault("MALLOC_MMAP_THRESHOLD_", "131072")
+        env.setdefault("PYTHONMALLOC", "malloc")
+        env.setdefault("PYTHONDONTWRITEBYTECODE", "1")
+        env.setdefault("OMP_NUM_THREADS", "1")
+        env.setdefault("OPENBLAS_NUM_THREADS", "1")
+        env.setdefault("MKL_NUM_THREADS", "1")
 
         res = subprocess.run(
             [sys.executable, "-X", "utf8", "-c", child_code],
             stdout=subprocess.PIPE,
-            stderr=subprocess.DEVNULL,  # avoid pipe fill
+            stderr=subprocess.PIPE,        # capture for debugging
+            stdin=subprocess.DEVNULL,
             text=True,
             encoding="utf-8",
             errors="replace",
@@ -113,13 +154,17 @@ class SafePlan:
             close_fds=True,
         )
         if res.returncode != 0:
-            raise RuntimeError(f"pair-count child failed for env {env_idx}")
+            raise RuntimeError(
+                f"pair-count child failed for env {env_idx}\n"
+                f"stdout:\n{res.stdout}\n\nstderr:\n{res.stderr}"
+            )
 
         count = None
         for line in res.stdout.splitlines():
             m = re.search(r"PAIR_COUNT=(\d+)\s*$", line)
             if m:
                 count = int(m.group(1))
+                break
         if count is None:
             raise ValueError(f"Could not parse pair count from child output:\n{res.stdout}")
         return count
@@ -140,7 +185,7 @@ class SafePlan:
             ensure_ascii=False,
         )
 
-        # Child: print [skip]/[ok] lines outside the heavy redirected block
+        # Child: print [skip]/[ok]
         child_code = (
             "import os, json, time, gc, contextlib\n"
             "mod = __import__(os.environ['SP_MOD'], fromlist=['SafePlan','GenerateGrid'])\n"
@@ -172,12 +217,6 @@ class SafePlan:
             "        evalData[nameEval] = objEval.eval(pair['start'], pair['goal'], grid, cellSize, pathData[1])\n"
             "    if getattr(sf, 'isSuccessEval', 0): evalData['SuccessRate'] = pathData[0]\n"
             "    if getattr(sf, 'isPlanningTimeEval', 0): evalData['PlanningTime'] = diff_ms\n"
-            "    if getattr(sf, 'isPeakMemoryEval', 0):\n"
-            "        try:\n"
-            "            import tracemalloc\n"
-            "            _, peak = tracemalloc.get_traced_memory(); evalData['PeakMemory'] = peak\n"
-            "        except Exception:\n"
-            "            pass\n"
             "    sf.logger.log(sf.iteration, algoName, pathData, evalData, pair,\n"
             "                  (grid, cellSize, envName, envDes, startGoalPairs))\n"
             "    del pathData, evalData; gc.collect()\n"
@@ -188,13 +227,30 @@ class SafePlan:
         env["SP_MOD"] = module_path
         env["SAFEPLAN_CHILD_ARGS"] = payload
         env["PYTHONPATH"] = project_root + (os.pathsep + env.get("PYTHONPATH", ""))
+        # --- NEW: allocator & runtime knobs for leaner children ---
+        env.setdefault("MALLOC_ARENA_MAX", "2")
+        env.setdefault("MALLOC_TRIM_THRESHOLD_", "131072")
+        env.setdefault("MALLOC_TOP_PAD_", "0")
+        env.setdefault("MALLOC_MMAP_THRESHOLD_", "131072")
+        env.setdefault("PYTHONMALLOC", "malloc")
+        env.setdefault("PYTHONDONTWRITEBYTECODE", "1")
+        env.setdefault("OMP_NUM_THREADS", "1")
+        env.setdefault("OPENBLAS_NUM_THREADS", "1")
+        env.setdefault("MKL_NUM_THREADS", "1")
+        # --- end NEW ---
 
         subprocess.run(
-            [sys.executable, "-X", "utf8", "-c", child_code],
+            [sys.executable, "-X", "utf8", "-c", child_code],  # NEW: -S for lean child
             env=env,
             check=False,
-            close_fds=True,  # keep parent lean
+            close_fds=True,
+            stdin=subprocess.DEVNULL,  # NEW
+            stdout=subprocess.DEVNULL,  # NEW: no pipe allocation
+            stderr=subprocess.DEVNULL,  # NEW
         )
+
+        _malloc_trim()  # NEW: return freed pages after each child
+        gc.collect()    # NEW: encourage prompt object finalization
 
     # ---------- setup ----------
 
@@ -250,8 +306,6 @@ class SafePlan:
         for k in self.evalsDetails:
             if k["name"] == "SuccessRate":
                 self.isSuccessEval = 1
-            if k["name"] == "PeakMemory":
-                self.isPeakMemoryEval = 1
             if k["name"] == "PlanningTime":
                 self.isPlanningTimeEval = 1
             if k["name"] == "PathCost":
@@ -278,7 +332,6 @@ class SafePlan:
                 self.evals.append(("DangerViolations", DangerViolations(k["args"]["pointSamples"], k["args"]["dangerRadius"])))
 
     def setUpEnvs(self):
-        # Lazy: store only specs so parent doesn't hold big grids
         for k in self.envsDetails:
             if "generateGrid" in k:
                 envList = k["generateGrid"]
@@ -308,7 +361,6 @@ class SafePlan:
         num_envs = len(self.envs)
         pair_counts = [self._get_pairs_count_via_child(ei) for ei in range(num_envs)]
 
-        # prefix sums for stable iter IDs
         prefix = [0]
         for c in pair_counts:
             prefix.append(prefix[-1] + c)
@@ -322,11 +374,12 @@ class SafePlan:
                     if not self.iterationRanCheck(iter_id, algoName):
                         self._run_job_subprocess(env_idx, pair_idx, algoName, iter_id)
                         jobs_run += 1
-                        # optional: periodically flush dirty pages (helps Vmmem growth perception)
                         if self.syncEvery and (jobs_run % self.syncEvery) == 0:
                             try:
                                 os.sync()
                             except AttributeError:
                                 pass
+                            _malloc_trim()  # NEW
+                            gc.collect()    # NEW
 
         print("Run Completed")

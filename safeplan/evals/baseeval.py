@@ -10,7 +10,7 @@ from abc import ABC
 from typing import Any, Sequence, Tuple
 
 Coord=Tuple[int,...]
-Path= list(Coord)
+Path= list[Coord]
 
 class BaseEval(ABC):
     """
