@@ -230,6 +230,5 @@ class GenerateGrid(BaseEnv):
 
         return (self.grid, self.cellSize, self.envName,self.envDes, self.startGoalPairs)
 
-gr=GenerateGrid("env2")
-gr.getmap()
+
     

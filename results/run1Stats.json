@@ -1,10 +1,10 @@
 {
-    "OptimizedAStar": {
-        "PlanningTime": 465.03776000463404,
-        "TurningAngle": 0.0,
-        "MinimumClearance": 0.6810076538844809,
+    "AStar": {
+        "PlanningTime": 418.3933400083333,
+        "TurningAngle": 100.2886001619083,
+        "MinimumClearance": 0.51,
         "SuccessRate": 1.0,
-        "PathCost": 30.709408878281057,
-        "OptiSafeIndex": 0.6522982257479014
+        "PathCost": 21.395992052357265,
+        "OptiSafeIndex": 0.37594579397374056
     }
 }

@@ -41,7 +41,7 @@ class TurningAngle(BaseEval):
         
         """
         self.value=0
-        if len(path)>3:
+        if len(path)>=3:
             for k in range(1,len(path)-1):
                 v1=np.array(path[k])-np.array(path[k-1])
                 v2=np.array(path[k+1])-np.array(path[k])

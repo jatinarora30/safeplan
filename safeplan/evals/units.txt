@@ -55,16 +55,6 @@ Interpretation:
 Unit:
     Count (integer).
 
-6. Peak Memory (KB)
--------------------
-Definition:
-    Maximum RAM used by the planner during execution.
-Computation:
-    Retrieved from OS metrics (RSS or working set peak).
-Interpretation:
-    Measures memory efficiency of the planner.
-Unit:
-    Kilobytes (KB).
 
 7. Turning Angle (°)
 --------------------

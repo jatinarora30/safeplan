@@ -1,3 +1,4 @@
+
 Traditional
 Dijkstra: https://www.semanticscholar.org/paper/A-note-on-two-problems-in-connexion-with-graphs-Dijkstra/45786063578e814444b8247028970758bbbd0488 
 A*: https://ieeexplore.ieee.org/document/4082128 
@@ -11,3 +12,4 @@ UPP: https://arxiv.org/pdf/2505.23197
 SDF A*: https://ieeexplore.ieee.org/document/10364842/ 
 Optimized A*: https://www.mdpi.com/1424-8220/24/10/3149
 CBF-RRT: https://arxiv.org/pdf/2011.06748 
+
