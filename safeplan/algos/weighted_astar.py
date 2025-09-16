@@ -1,35 +1,51 @@
 """
-@file AStar.py
-@brief A* planner for N-dimensional occupancy grids.
+@file weighted_astar.py
+@brief Weighted A* planner for N-dimensional occupancy grids.
 
 @details
-Implements A* (A-star) search over an N-D NumPy occupancy grid where 0 denotes
-free space and 1 denotes an obstacle. The planner takes a start and goal index
-(tuples of ints) and returns a collision-free path if one exists. The heuristic
-and neighborhood definition are provided by @ref heuristics() and
-@ref adjacentCoordinates() and must be chosen consistently.
+Implements Weighted A* on an N-D NumPy occupancy grid where value 0 denotes free
+space and value 1 denotes an obstacle. The planner accepts start and goal grid
+indices and returns a collision-free path if one exists. Weighted A* scales the
+heuristic by a user-specified weight to favor greedy expansions and reduce
+runtime at the cost of potential suboptimality when the weight exceeds 1.
 
-@par Inputs
-- @p start : tuple[int, ...] — start grid cell (e.g., (row, col))
+This implementation expands a full 3^N - 1 neighborhood (axis-aligned and
+diagonal moves). Axis-aligned steps use unit cost; off-axis steps use the
+Euclidean length of the step vector. A priority queue orders expansions by
+g(n) + w·h(n), where g(n) is the accumulated path cost and h(n) is the chosen
+heuristic (Manhattan in index space).
+
+Neighborhood generation is provided by @ref adjacentCoordinates().
+
+@par Constructor Arguments
+- @p weight : float — multiplier applied to the heuristic (w ≥ 0).
+              - w = 1 behaves like standard A* with this heuristic.
+              - w > 1 is greedier and usually faster but may yield a longer path.
+              - w < 1 is more conservative and may expand more nodes.
+
+@par Inputs (to @ref plan())
+- @p start : tuple[int, ...] — start grid cell (for example, (row, col))
 - @p goal  : tuple[int, ...] — goal grid cell
 - @p grid  : numpy.ndarray (N-D), values {0=free, 1=obstacle}
 
 @par Outputs
 - @p success : int — 1 if a path is found, else 0
-- @p path    : list[tuple[int, ...]] — sequence of cells from start→goal (inclusive)
-- @p info    : list[str] — diagnostics (e.g., "Invalid goal")
+- @p path    : list[tuple[int, ...]] — sequence of cells from start to goal (inclusive)
+- @p info    : list[str] — diagnostics (for example, "Invalid goal")
 
-@note Ensure the heuristic matches the move set:
-      - 4-neighbors → Manhattan distance
-      - 8-neighbors / diagonal moves → Chebyshev (or Euclidean with proper step costs)
+@note
+- Coordinates are handled in grid index space.
+- Step costs: axis steps cost 1.0; diagonal/off-axis steps use the Euclidean
+  length of the index step.
+- The neighborhood includes all immediate offsets except the zero vector.
+- Heuristic used here is Manhattan distance; adjust if you change the move set.
+- With w > 1, the solution is not guaranteed to be optimal.
 
 @see BasePlanner
 
 @references
-- A* overview: https://www.geeksforgeeks.org/python/a-search-algorithm-in-python/
-- N-D adjacent coordinates: https://www.geeksforgeeks.org/python/python-adjacent-coordinates-in-n-dimension/
-
-
+- Pohl-style Weighted A* discussion and analysis:
+  https://www.sciencedirect.com/science/article/pii/S000437020900068X
 """
 
 
@@ -42,9 +58,9 @@ class WeightedAStar(BasePlanner):
     
     def __init__(self,weight):
         """
-        @brief Construct the class for A* planner
-
-        @post Instance is initialized.
+        @brief Construct the Weighted A* planner.
+        @param weight float Heuristic multiplier (w ≥ 0).
+        @post Instance is initialized; outputs are cleared.
         """
         
         self.success=0
@@ -56,9 +72,9 @@ class WeightedAStar(BasePlanner):
         
     def isValid(self, grid_cell):
         """
-        A function to return if cell is valid or not under the max limits of size of grids and 0 
-        @param start Takes the grid cell as input
-        @return bool Returns true or false depends on if cell is valid or not
+        @brief Check whether a cell lies within grid bounds.
+        @param grid_cell tuple[int, ...] Cell index to validate.
+        @return bool True if inside grid extent; otherwise False.
         """
         for i in range(self.dimension):
             if not (0 <= grid_cell[i] < self.grid.shape[i]):
@@ -67,10 +83,11 @@ class WeightedAStar(BasePlanner):
 
     def heuristics(self,node1,node2):
         """
-        A function to return the cost of heuristics between two nodes depending on the eucledian cost 
-        @param node1 Takes input first node two get distance between distances
-        @param node2 Takes input second node two get distance between distances
-        @return cost Returns the eucledian cost between two nodes
+        @brief Heuristic distance between two nodes (Manhattan).
+        @param node1 tuple[int, ...] First node.
+        @param node2 tuple[int, ...] Second node.
+        @return float Sum of absolute coordinate differences.
+        @note Choose a heuristic consistent with the allowed moves and step costs.
         """
         cost=0
         for i in range(0,self.dimension):
@@ -80,10 +97,13 @@ class WeightedAStar(BasePlanner):
             
     def adjacentCoordinates(self,node):
         """
-        A function to return the cost of heuristics between two nodes depending on the eucledian cost ,
-        itertools.product function is used to compute the directions of adjacent coordinates.
-        @param node Takes a node in the input 
-        @return cost Returns the adjacent nodes in terms of coordinates
+        @brief Enumerate all adjacent coordinates in N-D (including diagonals).
+        @details
+        Generates all offset combinations in {-1, 0, 1} per dimension, excluding
+        the all-zero offset. Validity and obstacle checks are performed during
+        expansion in @ref plan().
+        @param node tuple[int, ...] The reference grid cell.
+        @return list<tuple[int, ...]> Neighbor coordinates (not yet filtered).
         """
         offsets=[-1,0,1]
         combinations=itertools.product(offsets,repeat=self.dimension)
@@ -98,14 +118,21 @@ class WeightedAStar(BasePlanner):
         
     def plan(self,start,goal,grid):
         """
-        A Plan function  for A*, which plans on given start,goal and grid returns Path, Sucess, info
-        @param start Takes the n-dimensional start input
-        @param goal Takes the n-dimension goal input
-        @param grid Takes the N x N dimensional grid
-        @return success Tells if the path was found( as 1 ) or not ( as 0 )
-        @return Path Returns the path from star to goal in the form of a tuple
-        @return info Returns list of statements of what may may went wrong in finding path from start to goal
-        @throws NotImplementedError If a subclass does not override this method.
+        @brief Run Weighted A* from start to goal on the provided grid.
+        @param start tuple[int, ...] Start index in the N-D grid.
+        @param goal  tuple[int, ...] Goal index in the N-D grid.
+        @param grid  numpy.ndarray Occupancy grid (0=free, 1=obstacle).
+        @return tuple
+                - @c success (int) : 1 if a path is found, else 0
+                - @c path (list[tuple[int, ...]]) : sequence from start to goal (inclusive)
+                - @c info (list[str]) : diagnostics or failure reasons
+        @par Diagnostics
+        - "Invalid start", "Invalid  goal"
+        - "Start has obstacle", "Goal has obstacle"
+        - "Start and goal are same"
+        - "Failed to reconstruct path."
+        @note Uses priority g + w·h. With weights greater than 1 the algorithm
+              is greedier and may return a suboptimal path more quickly.
         """
         self.start=tuple(start)
         self.goal=tuple(goal)
@@ -203,8 +230,3 @@ class WeightedAStar(BasePlanner):
             
         
         return self.success,self.path,self.info
-            
-                       
-        
-
-

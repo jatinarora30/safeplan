@@ -1,0 +1,18 @@
+{
+"envName": "Env7",
+"envDes": "Sparse Env",
+"gridSize": 100,
+"cellSize": 0.05,
+"dimensionOfGrid": 2,
+"randomStartGoal": true,
+"numStartGoals": 5,
+"startGoalPairs": [],
+"polygons": [
+{ "polygon": [[10,10],[10,20],[20,20],[20,10]] },
+{ "polygon": [[40,15],[48,25],[56,15]] },
+{ "polygon": [[70,10],[70,22],[88,22],[88,10]] },
+{ "polygon": [[15,45],[15,55],[30,55],[30,45]] },
+{ "polygon": [[55,45],[55,60],[70,60],[70,45]] },
+{ "polygon": [[25,80],[25,90],[40,90],[40,80]] }
+]
+}

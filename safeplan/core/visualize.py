@@ -1,158 +1,337 @@
-import json
+"""
+@file visualize.py
+@brief Render 2D/3D occupancy grids and algorithm paths from run outputs.
+
+@details
+Provides convenient plotting for benchmark runs. For 2D grids, writes a PNG
+with obstacles, start/goal markers, and optional path overlays. For 3D grids,
+writes an interactive Plotly HTML (isosurface + point cloud + paths), and can
+optionally save a Matplotlib 3D PNG snapshot when available.
+
+Expected input format per algorithm file:
+- Located at `outputs/<runDetails>/<algo>/iter_<N>.json`
+- Contains:
+  - `envInfo.grid` : N-D list/array (0=free, >0=occupied)
+  - `startGoal.start` : start index tuple/list
+  - `startGoal.goal`  : goal index tuple/list
+  - `pathInfo.path`   : list of coordinates (tuples/lists)
+
+Artifacts:
+- 2D PNG: `results/viz/grid2d_iter<N>.png`
+- 3D HTML: `results/viz/grid3d_iter<N>.html`
+- Optional 3D PNG: `results/viz/grid3d_iter<N>.png`
+
+@note
+- Plotly is preferred for 3D (opens in a browser). If Plotly is unavailable,
+  the code attempts a Matplotlib 3D fallback when possible.
+- Obstacles are rendered as black (2D) or red (3D). Paths are colored and
+  labeled by algorithm name.
+- The function auto-creates `results/viz/` if it does not exist.
+
+@see plotly.graph_objects, matplotlib.pyplot
+"""
+
 import os
+import json
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.colors as mcolors
 
+# Try Matplotlib 3D
+try:
+    from mpl_toolkits.mplot3d import Axes3D  # noqa: F401
+    HAS_MPL_3D = True
+except Exception:
+    HAS_MPL_3D = False
+
+# Plotly (preferred for 3D)
+try:
+    import plotly.graph_objects as go
+    import plotly.io as pio
+    # Force a reliable renderer that opens in a browser
+    pio.renderers.default = "browser"
+    HAS_PLOTLY = True
+except Exception:
+    HAS_PLOTLY = False
+
+
+def _ensure_outdir():
+    """
+    @brief Ensure the visualization output directory exists.
+
+    @details
+    Creates `results/viz/` if needed and returns the path.
+
+    @return str
+            Absolute/relative path of the visualization output directory.
+    """
+    out_dir = os.path.join("results", "viz")
+    os.makedirs(out_dir, exist_ok=True)
+    return out_dir
+
+
+def _plot_3d_plotly_combo(occ_bool, paths, start, goal, title, html_path,
+                          show_paths=True, max_points=120_000):
+    """
+    @brief Render a 3D scene with Plotly and write an HTML file.
+
+    @details
+    Draws occupied voxels using an isosurface plus a downsampled point cloud to
+    guarantee visibility. Overlays optional algorithm paths and start/goal markers.
+    Always writes an HTML file and prints its path.
+
+    @param occ_bool numpy.ndarray
+           Boolean occupancy mask (True = obstacle).
+    @param paths dict[str, list[tuple]]
+           Mapping from algorithm label to path (sequence of 3D points).
+    @param start tuple[int, int, int]
+           Start index in the 3D grid.
+    @param goal tuple[int, int, int]
+           Goal index in the 3D grid.
+    @param title str
+           Figure title.
+    @param html_path str
+           Output HTML file path.
+    @param show_paths bool
+           Whether to overlay paths on the plot.
+    @param max_points int
+           Maximum number of obstacle points to plot in the point-cloud overlay.
+    """
+    occ_u8 = occ_bool.astype(np.uint8)
+    fig = go.Figure()
+
+    # Isosurface of occupied voxels
+    fig.add_trace(go.Isosurface(
+        value=occ_u8,
+        isomin=0.5, isomax=1.0, surface_count=1,
+        opacity=0.55,
+        colorscale=[[0, "red"], [1, "red"]],
+        caps=dict(x_show=False, y_show=False, z_show=False),
+        showscale=False,
+        lighting=dict(ambient=0.5, diffuse=0.7, specular=0.2, roughness=0.8, fresnel=0.1),
+        lightposition=dict(x=1000, y=1000, z=1000),
+    ))
+
+    # Downsampled point cloud overlay (guaranteed visible)
+    coords = np.argwhere(occ_bool)  # (N,3) [x,y,z]
+    if len(coords) > 0:
+        step = max(1, len(coords) // max_points)
+        coords = coords[::step]
+        fig.add_trace(go.Scatter3d(
+            x=coords[:, 0], y=coords[:, 1], z=coords[:, 2],
+            mode="markers", name="Obstacles",
+            marker=dict(size=2, color="red", opacity=0.8)
+        ))
+
+    # Paths
+    if show_paths and paths:
+        for label, path in paths.items():
+            if not path:
+                continue
+            a = np.asarray(path)
+            fig.add_trace(go.Scatter3d(
+                x=a[:, 0], y=a[:, 1], z=a[:, 2],
+                mode="lines", name=label, line=dict(width=6)
+            ))
+
+    # Start / Goal
+    fig.add_trace(go.Scatter3d(
+        x=[start[0]], y=[start[1]], z=[start[2]],
+        mode="markers", name="Start",
+        marker=dict(size=7, color="yellow", line=dict(width=2, color="black"))
+    ))
+    fig.add_trace(go.Scatter3d(
+        x=[goal[0]], y=[goal[1]], z=[goal[2]],
+        mode="markers", name="Goal",
+        marker=dict(size=7, color="red", line=dict(width=2, color="black"))
+    ))
+
+    fig.update_layout(
+        title=title,
+        scene=dict(xaxis_title="X", yaxis_title="Y", zaxis_title="Z", aspectmode="data"),
+        margin=dict(l=0, r=0, b=0, t=40),
+        legend=dict(itemsizing="constant")
+    )
+
+    fig.write_html(html_path, auto_open=True)
+    print(f"[viz] Wrote 3D HTML to: {html_path}")
+
+
 class Visualize:
     """
     @class Visualize
-    @brief Utility to visualize 2D and 3D path planning results.
+    @brief Visualize 2D and 3D environments and algorithm paths.
 
-    This class loads a run configuration JSON file and corresponding
-    algorithm iteration files to plot planned paths in either
-    grid-based (2D) or voxel-based (3D) environments.
-
-    The plots display:
-      - Obstacles (black)
-      - Free space (white)
-      - Algorithm-generated paths (colored lines)
-      - Start and goal positions (highlighted markers)
+    @details
+    - 2D mode: saves a PNG with full grid, optional path overlays, and start/goal.
+    - 3D mode: writes a Plotly HTML (isosurface + point cloud + paths), optionally
+      saves a Matplotlib 3D PNG snapshot.
     """
 
-    def see(self, runConfigPath, iterNo, algos=None, graphTitle=None):
+    def see(self, runConfigPath, iterNo, algos=None, graphTitle=None,
+            show_paths=True, prefer_plotly=True, also_save_png_3d=False):
         """
-        @brief Render 2D or 3D paths for one or more algorithms.
-
-        This method reads the run configuration JSON file, retrieves
-        algorithm iteration results for a given iteration number, and
-        plots the environment grid/voxels with paths overlaid.
-
-        @param runConfigPath
-            Path to the run configuration JSON file. This file must
-            contain keys: `algoDetails`, `evalDetails`, and `runDetails`.
-        @param iterNo
-            Iteration number to load (`iter_<iterNo>.json`).
-        @param algos
-            Optional list of algorithm names to visualize. If None,
-            all algorithms listed in `algoDetails` are used.
-        @param graphTitle
-            Optional title for the generated plot. Defaults to
-            `"Path Planning Plots"`.
-
-        @return
-            None. A matplotlib window is shown with the visualization.
+        @brief Render a specific iteration across one or more algorithms.
 
         @details
-            - Searches for algorithm outputs under:
-              `outputs/<runDetails>/<algo>/iter_<iterNo>.json`
-            - Each iteration file must contain:
-                - `pathInfo.path` : list of coordinates
-                - `startGoal.start` / `startGoal.goal`
-                - `envInfo.grid` : 2D or 3D array
+        Loads run configuration, gathers the grid/start/goal from the first
+        selected algorithm’s file for the given iteration, and overlays paths
+        from all requested algorithms. Output format depends on grid dimension:
+        - 2D: writes `grid2d_iter<N>.png`
+        - 3D: writes `grid3d_iter<N>.html` (Plotly) and, if requested and supported,
+               also `grid3d_iter<N>.png`
 
-        @exception FileNotFoundError
-            If the run configuration file or any iteration file cannot
-            be found on disk.
-        @exception KeyError
-            If required keys are missing in the JSON structures.
-        @exception ValueError
-            If the environment dimensionality is greater than 3.
+        @param runConfigPath str
+               Path to the run configuration JSON.
+        @param iterNo int
+               Iteration number N (reads `iter_N.json`).
+        @param algos list[str] or None
+               Subset of algorithm names to visualize; defaults to all listed
+               in the config when None.
+        @param graphTitle str or None
+               Plot title; uses a default if not provided.
+        @param show_paths bool
+               Whether to overlay algorithm paths.
+        @param prefer_plotly bool
+               Prefer Plotly for 3D visualization (recommended).
+        @param also_save_png_3d bool
+               Additionally save a Matplotlib 3D PNG snapshot when possible.
 
-        @note
-            - 2D environments are plotted using `imshow` with obstacles
-              in black and paths as lines.
-            - 3D environments are plotted using voxel rendering and
-              3D line plots.
-            - Dimensions above 3 cannot be visualized.
-
-        @example
-            @code{.py}
-            vis = Visualize()
-            vis.see("configs/run_001.json", iterNo=5,
-                    algos=["A*", "UPP"],
-                    graphTitle="Comparison of Paths")
-            @endcode
+        @return None
+                Writes files to `results/viz/` and prints artifact locations.
         """
-        self.algos=algos
         self.outputDir = "outputs"
-        self.iterFile="iter_"+str(iterNo)+".json"
-        self.graphTitle=graphTitle
-        if self.graphTitle==None:
-            self.graphTitle="Path Planning Plots"
-            
-        
-        self.runConfigPath = runConfigPath
-        with open(self.runConfigPath) as file:
-            data = json.load(file)
-        self.algosDetails = data["algoDetails"]
-        self.evalsDetails = data["evalDetails"]
-        self.runDetails = data["runDetails"]
-        print(self.algosDetails)
-        
-        if self.algos==None:
-            self.algos=[]
-        
-            for k in self.algosDetails:
-                self.algos.append(k["name"])
-  
-        self.runPath = os.path.join(self.outputDir, self.runDetails)
-                
-        print(self.algos,self.runPath)
-        self.algoPaths={}
-        
+        self.iterFile = f"iter_{iterNo}.json"
+        self.graphTitle = graphTitle or "Path Planning Plots"
+        self.show_paths = show_paths
+
+        # Load run config
+        with open(runConfigPath) as f:
+            data = json.load(f)
+        algos_all = [k["name"] for k in data["algoDetails"]]
+        self.algos = algos or algos_all
+        runPath = os.path.join(self.outputDir, data["runDetails"])
+
+        # Load first grid/start/goal + all paths
+        self.algoPaths, self.grid, self.start, self.goal = {}, None, None, None
         for algo in self.algos:
-            path = os.path.join(self.runPath, algo,self.iterFile)
-            with open(path) as file:
-                data = json.load(file)
-                self.algoPaths[algo]=data["pathInfo"]["path"]
-                self.start=data["startGoal"]["start"]
-                self.goal=data["startGoal"]["goal"]
-                self.grid=data["envInfo"]["grid"]
-                
-            self.grid=np.array(self.grid)
-        
-        self.dimension=len(self.grid.shape)
-        
-        if self.dimension==2:
-            
-            # Plot Paths
-            plt.figure(figsize=(12, 12))
+            p = os.path.join(runPath, algo, self.iterFile)
+            with open(p) as f:
+                j = json.load(f)
+            self.algoPaths[algo] = j["pathInfo"]["path"]
+            if self.grid is None:
+                self.grid  = np.array(j["envInfo"]["grid"])
+                self.start = j["startGoal"]["start"]
+                self.goal  = j["startGoal"]["goal"]
+
+        dim = self.grid.ndim
+        occ_mask = (self.grid > 0)
+        occ_count = int(occ_mask.sum())
+        print(f"[viz] grid shape={self.grid.shape}, occupied={occ_count}/{occ_mask.size}")
+
+        out_dir = _ensure_outdir()
+
+        # 2D
+        if dim == 2:
+            fig, ax = plt.subplots(figsize=(12, 12))
             cmap = mcolors.ListedColormap(['white', 'black'])
-            bounds = [-0.5, 0.5, 1.5]
-            norm = mcolors.BoundaryNorm(bounds, cmap.N)
-            plt.imshow(self.grid, cmap=cmap, norm=norm, origin="upper")
+            norm = mcolors.BoundaryNorm([-0.5, 0.5, 1.5], cmap.N)
+            ax.imshow(self.grid, cmap=cmap, norm=norm, origin="upper")
+            if self.show_paths:
+                for label, path in self.algoPaths.items():
+                    if not path:
+                        continue
+                    px, py = zip(*path)
+                    ax.plot(py, px, linewidth=2, label=label)
 
-            for label, path in self.algoPaths.items():
-                if path:
-                    path_x, path_y = zip(*path)
-                    plt.plot(path_y, path_x, linewidth=2, label=label)
-
-            plt.scatter(self.start[1], self.start[0], color='yellow', s=100, edgecolor='black', label='Start')
-            plt.scatter(self.goal[1], self.goal[0], color='red', s=100, edgecolor='black', label='Goal')
-            plt.title(self.graphTitle)
-            plt.legend(loc="upper left")
-            plt.grid(True, color="gray", linestyle='--', linewidth=0.5)
-            plt.show()
-                    
-        elif self.dimension==3:
-            fig = plt.figure()
-            ax = fig.add_subplot(111, projection='3d')
-            ax.voxels(self.grid, facecolors='red', edgecolor='k', alpha=0.5)
-            for label, path in self.algoPaths.items():
-                if path:
-                    path_x, path_y,path_z = zip(*path)
-                    ax.plot(path_x, path_y,path_z, linewidth=2, label=label)
-            ax.scatter(self.start[0], self.start[1],self.start[2], color='yellow', s=100, edgecolor='black', label='Start')
-            ax.scatter(self.goal[0], self.goal[1],self.goal[2], color='red', s=100, edgecolor='black', label='Goal')
-
-            ax.set_xlabel('X')
-            ax.set_ylabel('Y')
-            ax.set_zlabel('Z')
+            ax.scatter(self.start[1], self.start[0], c='yellow', s=100, edgecolors='black', label='Start')
+            ax.scatter(self.goal[1],  self.goal[0],  c='red',    s=100, edgecolors='black', label='Goal')
             ax.set_title(self.graphTitle)
-            plt.legend()
-            plt.show()
+            if self.show_paths:
+                ax.legend(loc="upper left")
+            ax.set_aspect('equal')
+            plt.tight_layout()
 
-            
-        else:
-            print("Can't plot above 3 dimesions")
+            out_png = os.path.join(out_dir, f"grid2d_iter{iterNo}.png")
+            plt.savefig(out_png, dpi=160)
+            plt.close(fig)
+            print(f"[viz] Wrote 2D PNG to: {out_png}")
+            return
+
+        # 3D
+        if dim == 3:
+            if occ_count == 0:
+                print("[viz] No occupied voxels detected. Check your 3D polygons/extrusion.")
+                return
+
+            out_html = os.path.join(out_dir, f"grid3d_iter{iterNo}.html")
+
+            if prefer_plotly and HAS_PLOTLY:
+                _plot_3d_plotly_combo(
+                    occ_bool=occ_mask,
+                    paths=self.algoPaths,
+                    start=self.start,
+                    goal=self.goal,
+                    title=self.graphTitle,
+                    html_path=out_html,
+                    show_paths=self.show_paths
+                )
+
+                # Optional: also save a quick PNG via Matplotlib 3D if available
+                if also_save_png_3d and HAS_MPL_3D:
+                    try:
+                        fig = plt.figure(figsize=(9, 9))
+                        ax = fig.add_subplot(111, projection='3d')
+                        coords = np.argwhere(occ_mask)
+                        step = max(1, len(coords) // 120_000)
+                        coords = coords[::step]
+                        ax.scatter(coords[:, 0], coords[:, 1], coords[:, 2],
+                            s=2, c='red', alpha=0.1, depthshade=False)
+
+                        ax.scatter(self.start[0], self.start[1], self.start[2],
+                                   c='yellow', s=60, edgecolors='black')
+                        ax.scatter(self.goal[0],  self.goal[1],  self.goal[2],
+                                   c='red', s=60, edgecolors='black')
+                        X, Y, Z = occ_mask.shape
+                        ax.set_xlim(0, X); ax.set_ylim(0, Y); ax.set_zlim(0, Z)
+                        try: ax.set_box_aspect((X, Y, Z))
+                        except Exception: pass
+                        ax.view_init(elev=25, azim=35)
+                        ax.set_title(self.graphTitle)
+                        out_png = os.path.join(out_dir, f"grid3d_iter{iterNo}.png")
+                        plt.tight_layout(); plt.savefig(out_png, dpi=160); plt.close(fig)
+                        print(f"[viz] Also wrote 3D PNG to: {out_png}")
+                    except Exception as e:
+                        print(f"[viz] Matplotlib PNG fallback failed: {e}")
+                return
+
+            # If Plotly missing, try Matplotlib
+            if HAS_MPL_3D:
+                fig = plt.figure(figsize=(9, 9))
+                ax = fig.add_subplot(111, projection='3d')
+                # Draw a downsampled point cloud to ensure visibility
+                coords = np.argwhere(occ_mask)
+                step = max(1, len(coords) // 150_000)
+                coords = coords[::step]
+                ax.scatter(coords[:, 0], coords[:, 1], coords[:, 2],
+                           s=1, c='red', depthshade=False)
+                ax.scatter(self.start[0], self.start[1], self.start[2],
+                           c='yellow', s=60, edgecolors='black')
+                ax.scatter(self.goal[0],  self.goal[1],  self.goal[2],
+                           c='red', s=60, edgecolors='black')
+                X, Y, Z = occ_mask.shape
+                ax.set_xlim(0, X); ax.set_ylim(0, Y); ax.set_zlim(0, Z)
+                try: ax.set_box_aspect((X, Y, Z))
+                except Exception: pass
+                ax.view_init(elev=25, azim=35)
+                ax.set_title(self.graphTitle)
+                out_png = os.path.join(out_dir, f"grid3d_iter{iterNo}.png")
+                plt.tight_layout(); plt.savefig(out_png, dpi=160); plt.close(fig)
+                print(f"[viz] Wrote 3D PNG to: {out_png}")
+                return
+
+            print("[viz] Neither Plotly nor Matplotlib 3D available; cannot render 3D.")
+            return
+
+        # If we reach here, dimension > 3
+        print("Can't plot above 3 dimensions")

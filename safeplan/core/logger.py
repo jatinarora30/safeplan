@@ -1,6 +1,23 @@
 """
 @file logger.py
-@brief  Handles logging of path planning experiments including environment, evaluation, and path data
+@brief Log path-planning experiments (environment, evaluation, and path data) to JSON files.
+
+@details
+Creates a per-run directory structure and writes one JSON file per iteration and algorithm.
+Each file captures:
+- Algorithm name
+- Evaluation metrics (as provided by the caller)
+- Start/goal pair
+- Path info (sequence, diagnostics)
+- Environment info (grid, cell size, environment name and description)
+
+Directory layout:
+- <outputDir>/<runDetails>/<algo>/iter_<N>.json
+
+@note
+- Directories are created on demand with basic error handling.
+- The grid is serialized via `tolist()` for JSON compatibility.
+- The `success` flag (if present in @p pathData[0]) is not currently written (line kept commented).
 """
 
 import os
@@ -10,15 +27,26 @@ class Logger:
     """
     @class Logger
     @brief Handles logging of path planning experiments including environment, evaluation, and path data.
+
+    @details
+    Initializes a run directory and one subdirectory per algorithm, then provides
+    a method to write a structured JSON for each iteration and algorithm.
     """
 
     def __init__(self, runDetails, algos, outputDir):
         """
-        @brief Constructor for Logger class.
+        @brief Construct a Logger and prepare the output directory tree.
 
-        @param runDetails A string specifying details about the run (used to create a subdirectory).
-        @param algos A list of tuples where each tuple contains (algorithm_name: str, algorithm_object: Any).
-        @param outputDir Path to the main output directory.
+        @param runDetails str
+               Identifier for the run (used to create a subdirectory under @p outputDir).
+        @param algos list[tuple[str, Any]]
+               Sequence of (algorithm_name, algorithm_object) tuples.
+        @param outputDir str
+               Root directory where run and algorithm subfolders will be created.
+
+        @post
+        - Ensures @p outputDir exists.
+        - Creates @c <outputDir>/<runDetails>/ and one subdirectory per algorithm name.
         """
         self.algos = algos
         self.runDetails = runDetails
@@ -35,10 +63,12 @@ class Logger:
 
     def getObjAndClass(self, data):
         """
-        @brief Extracts the name and object from a tuple containing a string and an object.
+        @brief Extract the algorithm name and object from a (name, object) pair.
 
-        @param data A list/tuple where one item is a string (name) and the other is an object.
-        @return (name, obj) A tuple of the algorithm name and its corresponding object.
+        @param data tuple|list
+               Container with exactly one string (name) and one object (algorithm instance).
+        @return tuple[str, Any]
+                (name, obj) extracted from @p data.
         """
         name, obj = None, None
         for i in data:
@@ -51,9 +81,13 @@ class Logger:
 
     def createDir(self, path):
         """
-        @brief Safely creates a directory, handling common exceptions.
+        @brief Create a directory if needed, with simple exception handling.
 
-        @param path The path to the directory to create.
+        @param path str
+               Directory path to create.
+
+        @return None
+                Prints a message on success, existence, or failure.
         """
         try:
             os.mkdir(path)
@@ -67,14 +101,31 @@ class Logger:
 
     def log(self, iter, algo, pathData, evalData, pair, scenerio):
         """
-        @brief Logs path planning data into a structured JSON file.
+        @brief Write a single iteration’s results for one algorithm to JSON.
 
-        @param iter Iteration number of the current experiment run.
-        @param algo Name of the algorithm used in this iteration.
-        @param pathData A tuple/list with [success flag, path list, additional info dict].
-        @param evalData Evaluation metrics 
-        @param pair A tuple/list with start and goal coordinates.
-        @param scenerio A tuple/list with [grid array, cell size, environment name, environment description].
+        @details
+        Produces `iter_<iter>.json` in the algorithm’s subdirectory. The JSON contains:
+        - `algo`       : algorithm name (str)
+        - `evaluation` : evaluation metrics (as provided)
+        - `startGoal`  : start/goal data (as provided)
+        - `pathInfo`   : dict with `path` and `info` from @p pathData
+        - `envInfo`    : dict with `grid` (as list), `cellSize`, `envName`, `envDes`
+
+        @param iter int
+               Iteration number.
+        @param algo str
+               Algorithm name (must match a subdirectory prepared in the constructor).
+        @param pathData list|tuple
+               [success_flag, path_list, info] — only `path_list` and `info` are written.
+        @param evalData dict
+               Evaluation metrics to record.
+        @param pair list|tuple
+               Start/goal container to store under `startGoal` (e.g., {"start": ..., "goal": ...}).
+        @param scenerio list|tuple
+               [grid_array, cell_size, env_name, env_description].
+
+        @return None
+                Writes the JSON file to disk.
         """
         filename = "iter_" + str(iter) + ".json"
         path = os.path.join(self.runPath, algo, filename)

@@ -3,48 +3,58 @@
 @brief Rapidly-exploring Random Tree (RRT) planner for N-dimensional occupancy grids.
 
 @details
-Implements a basic RRT over an N-D NumPy occupancy grid where 0 denotes free
-space and 1 denotes obstacle. The planner incrementally grows a tree from the
-start toward random samples (with goal bias), adding a new node at most
-@p stepSize away from the nearest existing node if the local edge is collision-free.
-A path is returned once the tree connects to the goal via a collision-free edge.
+Implements a basic RRT over an N-D NumPy occupancy grid where value 0 denotes
+free space and value 1 denotes an obstacle. The planner incrementally grows a
+tree from the start toward random samples (with goal bias). At each step, it
+adds a new node no farther than the configured step size from the nearest
+existing node, provided the local edge is collision-free. A path is returned
+once the tree connects to the goal via a collision-free edge.
 
-Collision checking (@ref isEdgeFree()) samples @p pointSamples points along a
-candidate segment, rounds them to the nearest grid indices, and rejects the edge
-if any sampled index is out of bounds or lies on an obstacle (grid==1).
+Collision checking (see @ref isEdgeFree()) samples a fixed number of points
+along a candidate segment, rounds them to the nearest grid indices, and rejects
+the edge if any sampled index is out of bounds or lies on an obstacle cell.
 
 @par Constructor Arguments
 - @p maxIter         : int — maximum number of RRT expansion iterations
 - @p goalSampleRate  : float in [0,1] — probability of directly sampling the goal
-- @p stepSize        : float — maximum extension (in grid index units) per step
+- @p stepSize        : float — maximum extension per step in grid index units
 - @p pointSamples    : int — number of samples along an edge for collision checking
 
 @par Inputs (to @ref plan())
-- @p start : tuple[int, ...] — start grid cell (e.g., (row, col))
+- @p start : tuple[int, ...] — start grid cell (for example, (row, col))
 - @p goal  : tuple[int, ...] — goal grid cell
 - @p grid  : numpy.ndarray (N-D), values {0=free, 1=obstacle}
 
 @par Outputs
 - @p success : int — 1 if a path is found, else 0
-- @p path    : list[tuple[int, ...]] — sequence of cells from start→goal (inclusive)
-- @p info    : list[str] — diagnostics (e.g., "Invalid start", "Goal has obstacle",
+- @p path    : list[tuple[int, ...]] — sequence of cells from start to goal (inclusive)
+- @p info    : list[str] — diagnostics (for example, "Invalid start", "Goal has obstacle",
                 "Ran out of max iterations couldn't find path")
 
 @note
 - Coordinates are treated in grid index space. Steered points are rounded to
   integer indices before validation and insertion.
-- The effective step used during steering is clamped by
-  min(stepSize, ||goal - start||) to avoid overshoot on very small problems.
+- The effective step during steering is clamped by the minimum of the step size
+  and the straight-line distance between start and goal to avoid overshoot on
+  very small problems.
 - Edge feasibility depends on @p pointSamples; too few samples may miss thin
-  obstacles; too many may slow planning.
-- Nearest neighbor is a linear scan; for large trees, consider kd-tree/ball-tree.
-- RRT is probabilistically complete but not optimal; use RRT* for asymptotic optimality.
+  obstacles, while too many may slow planning.
+- Nearest neighbor is a linear scan; for large trees, consider a spatial index
+  such as a kd-tree or ball-tree.
+- RRT is probabilistically complete but not optimal; use RRT* for asymptotic
+  optimality (not implemented here).
 
 @complexity
-Per iteration: O(|V|) for nearest neighbor (linear scan) + O(pointSamples) for
-edge checking. Worst case ≈ O(maxIter·(|V| + pointSamples)).
+Per iteration: linear in the number of current tree nodes for nearest neighbor,
+plus linear in the number of edge samples for collision checking. Worst case is
+proportional to the maximum number of iterations multiplied by the sum of those
+two costs.
 
 @see BasePlanner, AStar
+
+@references
+- LaValle, S., “Rapidly-exploring Random Trees: A New Tool for Path Planning.”
+  Overview link: https://www.semanticscholar.org/paper/Rapidly-exploring-random-trees-%3A-a-new-tool-for-LaValle/d967d9550f831a8b3f5cb00f8835a4c866da60ad
 """
 
 from .baseplanner import BasePlanner
@@ -57,18 +67,19 @@ class RRT(BasePlanner):
     @brief RRT planner operating on N-D occupancy grids.
 
     @details
-    Maintains a tree of explored, collision-free grid indices. Each iteration:
-    1) Sample a random node with goal bias (@ref getRandomNode()).
-    2) Find nearest existing node in the tree (@ref getNearestNode()).
-    3) Steer from nearest toward random sample by at most @p stepSize.
-    4) If the edge is collision-free (@ref isEdgeFree()), add the new node.
-    5) If the new node is within @p stepSize of @p goal and the final edge is free,
-       terminate with success and reconstruct the path.
+    The planner maintains a tree of explored, collision-free grid indices. Each
+    iteration:
+    1) Sample a random node with goal bias (see @ref getRandomNode()).
+    2) Find the nearest existing node in the tree (see @ref getNearestNode()).
+    3) Steer from the nearest node toward the random sample by at most the step size.
+    4) If the edge is collision-free (see @ref isEdgeFree()), add the new node.
+    5) If the new node is close enough to the goal and the final edge is free,
+       declare success and reconstruct the path.
 
     @par Members
     - @p maxIter : int — maximum iterations
     - @p goalSampleRate : float — probability to sample the exact goal
-    - @p stepSize : float — max extension length per expansion
+    - @p stepSize : float — maximum extension length per expansion
     - @p pointSamples : int — samples per edge for collision tests
     - @p success : int — 1 on success, else 0
     - @p info : list[str] — diagnostic messages
@@ -80,9 +91,12 @@ class RRT(BasePlanner):
 
     def __init__(self,maxIter,goalSampleRate,stepSize,pointSamples):
         """
-        @brief Construct the class for A* planner
-
-        @post Instance is initialized.
+        @brief Construct the RRT planner.
+        @param maxIter int Maximum number of RRT iterations.
+        @param goalSampleRate float Goal sampling probability in [0,1].
+        @param stepSize float Maximum extension per step in grid index units.
+        @param pointSamples int Number of samples per edge for collision checking.
+        @post Instance is initialized; outputs are cleared.
         """
         self.maxIter=maxIter
         self.goalSampleRate = goalSampleRate
@@ -97,21 +111,13 @@ class RRT(BasePlanner):
     def isEdgeFree(self, pt1, pt2):
         """
         @brief Check if the segment between two points is collision-free.
-
         @details
-        Samples `self.pointSamples` points linearly between @p pt1 and @p pt2.
-        Each sample is rounded to the nearest grid index; if any sample is
-        out-of-bounds or falls on an obstacle cell (grid==1), the edge is
-        considered in collision.
-
-        @param pt1 sequence[float]
-               Segment start (continuous coordinates).
-        @param pt2 sequence[float]
-               Segment end (continuous coordinates).
-
-        @return bool
-                True if all sampled points lie within the grid and in free
-                cells; False otherwise.
+        Samples a fixed number of points linearly between the endpoints. Each
+        sample is rounded to the nearest grid index. The edge is rejected if
+        any sampled index is out of bounds or lies on an obstacle cell.
+        @param pt1 sequence[float] Segment start in continuous coordinates.
+        @param pt2 sequence[float] Segment end in continuous coordinates.
+        @return bool True if all sampled points lie within bounds and in free cells.
         """
         for t in np.linspace(0, 1, self.pointSamples):
             point = (1 - t) * np.array(pt1) + t * np.array(pt2)
@@ -134,14 +140,11 @@ class RRT(BasePlanner):
     def getRandomNode(self):
         """
         @brief Sample a random node in the grid with goal bias.
-
         @details
-        With probability @p goalSampleRate, returns @p self.goal directly
-        (goal bias). Otherwise, uniformly samples an integer index within the
-        grid bounds along each dimension.
-
-        @return tuple[int, ...]
-                A grid index either equal to @p goal (biased) or a random free index.
+        With probability equal to the goal sampling rate, returns the goal
+        directly. Otherwise, uniformly samples an integer index within the grid
+        bounds along each dimension.
+        @return tuple[int, ...] A grid index equal to the goal (biased) or a random index.
         """
         if random.random()<self.goalSampleRate:
             return self.goal
@@ -153,11 +156,10 @@ class RRT(BasePlanner):
         
     def dist(self, a, b):
         """
-        @brief Euclidean distance between two grid points (in continuous space).
-
-        @param a tuple[int, ...] — first point
-        @param b tuple[int, ...] — second point
-        @return float — Euclidean norm ||a - b||_2
+        @brief Euclidean distance between two grid points in continuous space.
+        @param a tuple[int, ...] First point.
+        @param b tuple[int, ...] Second point.
+        @return float Straight-line distance between the two points.
         """
         return np.linalg.norm(np.array(a) - np.array(b))
 
@@ -165,17 +167,13 @@ class RRT(BasePlanner):
     def getNearestNode(self,tree, randNode):
         """
         @brief Find the nearest node in the current tree to a query sample.
-
         @details
-        Uses a linear scan over @p tree to compute Euclidean distances
-        (@ref dist()) and returns the node with minimum distance.
-
-        @param tree list[tuple[int, ...]] — nodes currently in the RRT
-        @param randNode tuple[int, ...] — query/sample node
-
-        @return tuple[int, ...] — nearest node from @p tree to @p randNode
-
-        @complexity O(|tree|) distance computations.
+        Uses a linear scan over the tree, computes Euclidean distances with
+        @ref dist(), and returns the node with the smallest distance.
+        @param tree list[tuple[int, ...]] Nodes currently in the RRT.
+        @param randNode tuple[int, ...] Query or sample node.
+        @return tuple[int, ...] Nearest node from the tree to the query node.
+        @complexity Linear in the number of nodes in the tree.
         """
         distances=[]
         for node in tree:
@@ -186,9 +184,9 @@ class RRT(BasePlanner):
         return nearest_node
     def isValid(self, grid_cell):
         """
-        A function to return if cell is valid or not under the max limits of size of grids and 0 
-        @param start Takes the grid cell as input
-        @return bool Returns true or false depends on if cell is valid or not
+        @brief Check whether a cell lies within grid bounds.
+        @param grid_cell tuple[int, ...] Cell index to validate.
+        @return bool True if inside grid extent; otherwise False.
         """
         for i in range(self.dimension):
             if not (0 <= grid_cell[i] < self.grid.shape[i]):
@@ -196,14 +194,20 @@ class RRT(BasePlanner):
         return True
     def plan(self,start,goal,grid):
         """
-        A Plan function  for A*, which plans on given start,goal and grid returns Path, Sucess, info
-        @param start Takes the n-dimensional start input
-        @param goal Takes the n-dimension goal input
-        @param grid Takes the N x N dimensional grid
-        @return success Tells if the path was found( as 1 ) or not ( as 0 )
-        @return Path Returns the path from star to goal in the form of a tuple
-        @return info Returns list of statements of what may may went wrong in finding path from start to goal
-        @throws NotImplementedError If a subclass does not override this method.
+        @brief Plan with RRT on the provided grid from start to goal.
+        @param start tuple[int, ...] Start index in the N-D grid.
+        @param goal  tuple[int, ...] Goal index in the N-D grid.
+        @param grid  numpy.ndarray Occupancy grid (0=free, 1=obstacle).
+        @return tuple
+                - @c success (int) : 1 if a path is found, else 0
+                - @c path (list[tuple[int, ...]]) : sequence from start to goal (inclusive)
+                - @c info (list[str]) : diagnostics or failure reasons
+        @par Diagnostics
+        - "Invalid start", "Invalid  goal"
+        - "Start has obstacle", "Goal has obstacle"
+        - "Start and goal are same"
+        - "Ran out of max iterations couldn't find path"
+        @note Uses linear-scan nearest neighbor and simple steering with a step clamp.
         """
         self.start=tuple(start)
         self.goal=tuple(goal)

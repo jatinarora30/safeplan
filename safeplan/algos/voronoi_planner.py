@@ -5,32 +5,32 @@
 @details
 Builds a roadmap from the Voronoi diagram of obstacle clusters and searches it
 with A* to obtain a collision-free path between a start and a goal cell on an
-N-D NumPy occupancy grid (0=free, 1=obstacle). The planner first checks whether
-the straight line from start to goal is collision-free; if so, it returns that
-2-point path. Otherwise, it:
+N-D NumPy occupancy grid (0 = free, 1 = obstacle). The planner first checks
+whether the straight line from start to goal is collision-free; if so, it returns
+that two-point path. Otherwise, it:
   1) segments obstacles via connected-component labeling and computes each
      component's centroid as a Voronoi site,
   2) constructs the Voronoi diagram (finite edges only),
   3) builds a graph from collision-free Voronoi edges,
-  4) connects start/goal to their K nearest Voronoi vertices if collision-free,
+  4) connects start and goal to their K nearest Voronoi vertices if collision-free,
   5) runs A* on this graph to produce a piecewise-linear path.
 
 @par Inputs
-- @p start : tuple[int, ...] — start grid cell (e.g., (row, col))
+- @p start : tuple[int, ...] — start grid cell (for example, (row, col))
 - @p goal  : tuple[int, ...] — goal grid cell
 - @p grid  : numpy.ndarray (N-D), values {0=free, 1=obstacle}
 
 @par Outputs
 - @p success : int — 1 if a path is found, else 0
-- @p path    : list[tuple[int, ...]] — sequence of cells from start→goal (inclusive)
-- @p info    : list[str] or str — diagnostics (e.g., "Invalid goal") or success note
+- @p path    : list[tuple[int, ...]] — sequence of cells from start to goal (inclusive)
+- @p info    : list[str] or str — diagnostics (for example, "Invalid goal") or a success note
 
 @note
 - Requires a sufficient number of obstacle components to form a meaningful
-  Voronoi diagram (this implementation expects > 4).
+  Voronoi diagram (this implementation expects more than four).
 - Collision checks on edges sample @ref pointSamples evenly spaced points and
   round to the nearest grid indices for occupancy testing.
-- Grid convention: `1` = obstacle, `0` = free.
+- Grid convention: 1 = obstacle, 0 = free.
 
 @see BasePlanner
 
@@ -48,7 +48,7 @@ from scipy.ndimage import label
 
 
 class VoronoiPlanner(BasePlanner):
-    r"""
+    """
     @class VoronoiPlanner
     @brief Path planner using a Voronoi roadmap with A* search.
 
@@ -64,7 +64,7 @@ class VoronoiPlanner(BasePlanner):
     @var pointSamples
         (int) Number of samples per edge for collision checking.
     @var knn
-        (int) Number of nearest Voronoi vertices to connect for start/goal.
+        (int) Number of nearest Voronoi vertices to connect for start and goal.
     @var info
         (list|str) Diagnostics or status for the last plan call.
     @var path
@@ -72,7 +72,7 @@ class VoronoiPlanner(BasePlanner):
     """
 
     def __init__(self, pointSamples, knn):
-        r"""
+        """
         @brief Construct the Voronoi planner.
 
         @param pointSamples int
@@ -92,13 +92,13 @@ class VoronoiPlanner(BasePlanner):
         self.path = []
 
     def getObstacleCenters(self, grid):
-        r"""
+        """
         @brief Compute centroids of connected obstacle components.
 
         @details
         Uses `scipy.ndimage.label` to identify connected components (features)
-        of obstacle cells (grid==1). For each component, computes the mean of
-        its indices as the centroid (in continuous coordinates).
+        of obstacle cells (grid == 1). For each component, computes the mean of
+        its indices as the centroid, expressed in continuous coordinates.
 
         @param grid numpy.ndarray
                N-D occupancy grid with {0=free, 1=obstacle}.
@@ -116,13 +116,13 @@ class VoronoiPlanner(BasePlanner):
         return np.array(centers)
 
     def isEdgeFree(self, pt1, pt2):
-        r"""
+        """
         @brief Check if the segment between two points is collision-free.
 
         @details
         Samples `self.pointSamples` points linearly between @p pt1 and @p pt2.
         Each sample is rounded to the nearest grid index; if any sample is
-        out-of-bounds or falls on an obstacle cell (grid==1), the edge is
+        out of bounds or falls on an obstacle cell (grid == 1), the edge is
         considered in collision.
 
         @param pt1 sequence[float]
@@ -132,7 +132,7 @@ class VoronoiPlanner(BasePlanner):
 
         @return bool
                 True if all sampled points lie within the grid and in free
-                cells; False otherwise.
+                cells; otherwise False.
         """
         for t in np.linspace(0, 1, self.pointSamples):
             point = (1 - t) * np.array(pt1) + t * np.array(pt2)
@@ -152,14 +152,14 @@ class VoronoiPlanner(BasePlanner):
         return True
 
     def isValid(self, grid_cell):
-        r"""
+        """
         @brief Check whether a grid-cell index lies within bounds.
 
         @param grid_cell tuple[int, ...]
                N-dimensional integer grid index.
 
         @return bool
-                True iff all indices are within the grid extents; False otherwise.
+                True if all indices are within the grid extents; otherwise False.
         """
         for i in range(self.dimension):
             if not (0 <= grid_cell[i] < self.grid.shape[i]):
@@ -167,7 +167,7 @@ class VoronoiPlanner(BasePlanner):
         return True
 
     def nearestVertex(self, point):
-        r"""
+        """
         @brief Return indices of the K nearest Voronoi vertices to a query point.
 
         @details
@@ -195,22 +195,21 @@ class VoronoiPlanner(BasePlanner):
         return nearestIdxs
 
     def plan(self, start, goal, grid):
-        r"""
+        """
         @brief Plan a path from @p start to @p goal over @p grid via a Voronoi roadmap.
 
         @details
         Algorithm flow:
           1. Validate inputs and trivial cases (invalid cells, obstacles, equality).
-          2. Attempt straight-line path; if collision-free, return immediately.
-          3. If enough obstacle components exist (>4), build the Voronoi diagram
-             from obstacle-centroid sites.
-          4. Construct a graph whose nodes are Voronoi vertices (plus start/goal)
+          2. Attempt a straight-line path; if collision-free, return immediately.
+          3. If enough obstacle components exist (more than four), build the
+             Voronoi diagram from obstacle-centroid sites.
+          4. Construct a graph whose nodes are Voronoi vertices (plus start and goal)
              and whose edges are Voronoi edges that pass collision checks.
-          5. Connect start/goal to their @ref knn nearest Voronoi vertices if
+          5. Connect start and goal to their @ref knn nearest Voronoi vertices if
              those connections are collision-free.
-          6. Run A* (NetworkX) with Euclidean edge weights and heuristic to
-             obtain the shortest path on the roadmap; convert to integer grid
-             positions.
+          6. Run A* (NetworkX) with Euclidean edge weights and heuristic to obtain
+             the shortest path on the roadmap; convert to integer grid positions.
 
         @param start tuple[int, ...]
                Start grid cell.
@@ -227,8 +226,7 @@ class VoronoiPlanner(BasePlanner):
                 Diagnostics on failure or a brief status message on success.
 
         @throws None
-                Any `networkx.NetworkXNoPath` exception is caught and encoded in
-                the return values.
+                Any networkx no-path exception is caught and encoded in the return values.
         """
         self.start = tuple(start)
         self.goal = tuple(goal)
