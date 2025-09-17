@@ -142,3 +142,99 @@ SafePlan includes both **traditional planners** and **safety-aware planners**, a
 - **CBF-RRT (Control Barrier Function RRT)**  
   Enhances RRT with control barrier functions to guarantee safety constraints.  
   Reference: (https://arxiv.org/pdf/2011.06748)
+
+
+## Installation
+
+### Requirements
+- **Python**: 3.9 or newer  
+- **Core dependencies**:
+  - `numpy`
+  - `scipy`
+  - `pandas`
+  - `matplotlib`
+  - `plotly`
+  - `networkx`
+  - `psutil`
+  - `networkx`
+  - `json`, `os`, `subprocess` (standard library)
+
+All dependencies are listed in `requirements.txt`.
+
+---
+
+### Install from source
+
+Clone the repository and install in editable mode:
+
+```bash
+git clone https://github.com/<your-username>/safeplan.git
+cd safeplan
+pip install -r requirements.txt
+pip install -e .
+
+## Usage
+
+SafePlan experiments are configured via a JSON file (e.g., `run1.json`).  
+Below is an example:
+
+```json
+{
+  "runDetails": "run1",
+  "evalDetails": [
+    {"name": "PlanningTime"},
+    {"name": "MinimumClearance","args": {"pointSamples":100}},
+    {"name": "AverageMinimumClearance","args": {"pointSamples":100}},
+    {"name": "ClearanceVariability","args": {"pointSamples":100}},
+    {"name": "DangerViolations","args": {"pointSamples":100,"dangerRadius":0.2}},
+    {"name": "TurningAngle"},
+    {"name": "JerkPerMeter"},
+    {"name": "SuccessRate"},
+    {"name": "OptimalDeviation"},
+    {"name": "PathCost"},
+    {"name": "DistanceToGoal"},
+    {"name": "OptiSafeIndex","args": {"pointSamples":100,"knn":1000}},
+    {"name": "NodesInPath", "args": {"type":"RDP","epsilon":0.01}}
+  ],
+  "algoDetails": [
+    {"name": "VoronoiPlanner","args": {"pointSamples":100,"knn":1000}},
+    {"name": "UPP","args": {"alpha":0.5,"beta":2,"radius":5,"epsilon":0.01}},
+    {"name": "RRT","args": {"maxIter":10000,"goalSampleRate":0.05,"stepSize":7,"pointSamples":100}},
+    {"name": "CBFRRT","args": {"maxIter":10000,"goalSampleRate":0.05,"stepSize":7,"pointSamples":100,"gamma1":2,"gamma2":2}},
+    {"name": "AStar"},
+    {"name": "Dijkstra"},
+    {"name": "WeightedAStar","args": {"weight":1.2}},
+    {"name": "SDFAStar" , "args": {"k1":5,"k2":5}},
+    {"name": "OptimizedAStar" , "args": {"turnPenaltyCoefficients":0.5,"safetyDistGridRadius":100,"maxInflateIter":100,"pointSamples":100}}
+  ],
+  "envDetails": [
+    {
+      "generateGrid": [
+        {"name": "env12"},
+        {"name": "env2"}
+      ]
+    }
+  ]
+}
+
+
+##  Programmatic API
+
+You can run SafePlan directly from Python by importing the main API and passing a path to your run config JSON.
+
+```python
+from safeplan.main import SafePlan
+from safeplan.core.stats import Stats
+from safeplan.core.visualize import Visualize
+
+# 1) Run the benchmark
+sf = SafePlan("/home/run1.json")
+sf.benchmark()
+
+# 2) Compute aggregate statistics across all outputs
+st = Stats("/home/run1.json")
+st.compute()
+
+# 3) Visualize one iteration (2D → PNG, 3D → Plotly HTML)
+viz = Visualize()
+viz.see("/home/run1.json", iterNo=1, prefer_plotly=True)
