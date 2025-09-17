@@ -441,3 +441,132 @@ You can update eval details as in adding in json form:
     {"name": "MyMetric"}
 ]
 ```
+
+##  Adding a New Environment
+
+SafePlan lets you plug in new environment generators that return occupancy grids and start/goal pairs in a consistent format. You can either **use the built-in `GenerateGrid`** (loads polygons from JSON, rasterizes to a grid, caches a `_grid.json`) or **create your own environment** by subclassing `BaseEnv`.
+
+---
+
+### Option A — Use the built-in `GenerateGrid`
+
+`GenerateGrid` reads a scene JSON from:
+safeplan/configs/generate_grid/<YOUR_ENV>/<YOUR_ENV>.json
+and writes/loads a cache:
+safeplan/configs/generate_grid/<YOUR_ENV>/<YOUR_ENV>_grid.json
+
+
+#### What it does:
+- Loads grid size, dimension, cell size, and polygon obstacles.
+- Rasterizes polygons to an **N-D occupancy grid** (`0=free`, `1=obstacle`) via half-space checks.
+- Marks polygon vertices as occupied.
+- Optionally samples **random start/goal pairs** in free cells.
+- **Caches** the generated grid and pairs to `<name>_grid.json`.  
+  If the cache exists and is readable, it is used directly (fast path).
+
+#### Scene JSON schema (example):
+```json
+{
+  "gridSize": 100,
+  "dimensionOfGrid": 2,
+  "cellSize": 0.1,
+  "envName": "SimpleRoom",
+  "envDes": "A 2D room with convex polygon obstacles",
+  "randomStartGoal": true,
+  "numStartGoals": 50,
+  "startGoalPairs": [],
+  "polygons": [
+    { "polygon": [[20,20],[40,20],[40,40],[20,40]] },
+    { "polygon": [[60,60],[80,60],[80,80],[60,80]] }
+  ]
+}
+```
+
+Add to your run config:
+```json
+"envDetails": [
+  { "generateGrid": [ { "name": "SimpleRoom" }, { "name": "WarehouseA" } ] }
+]
+
+```
+
+Option B — Create a Custom Environment (subclass BaseEnv)
+
+1. Create a file, e.g. safeplan/envs/my_env.py, that inherits BaseEnv and implements getmap():
+
+```python
+# safeplan/envs/my_env.py
+from .baseenv import BaseEnv
+import numpy as np
+
+class MyEnv(BaseEnv):
+    def __init__(self, size=64, cell_size=0.1):
+        super().__init__()
+        self.size = int(size)
+        self.cell_size = float(cell_size)
+
+    def getmap(self):
+        # Build a simple empty 2D grid with one obstacle line
+        grid = np.zeros((self.size, self.size), dtype=np.uint8)
+        grid[self.size//2, :] = 1  # a horizontal wall
+
+        envName = "MyEnv"
+        envDes  = "Custom demo environment with a single wall"
+        startGoalPairs = [
+            {"start": (5, 5), "goal": (self.size-6, self.size-6)}
+        ]
+        return grid, self.cell_size, envName, envDes, startGoalPairs
+```
+
+2. Register it in your run config by referencing it in code.
+Two patterns are common:
+
+Config-driven (extend SafePlan.setUpEnvs() to load from JSON).
+
+Direct instantiation if you’re experimenting.
+
+Config-driven JSON example:
+
+```json
+"envDetails": [
+  { "generateGrid": [ { "name": "SimpleRoom" } ] },
+  { "customEnvs": [ { "class": "MyEnv", "args": { "size": 128, "cell_size": 0.05 } } ] }
+]
+```
+Expected Return Contract (getmap())
+
+Any environment (including GenerateGrid) must return:
+
+grid : numpy.ndarray with shape (N1, N2[, N3, ...]), values {0=free, 1=obstacle}
+
+cellSize : float (meters per cell, or chosen unit)
+
+envName : str
+
+envDes : str
+
+startGoalPairs : list of objects like:
+
+# Caching & Reloading (GenerateGrid)
+
+First run: GenerateGrid loads <name>.json, rasterizes polygons, optionally samples random pairs, and writes <name>_grid.json.
+
+Subsequent runs: If <name>_grid.json is present and readable, it skips generation and loads from cache.
+
+Tip: Delete the _grid.json cache to force regeneration after changes to the base scene JSON.
+
+# Random Start/Goal Pairs (GenerateGrid)
+
+If "randomStartGoal": true, SafePlan will sample numStartGoals distinct pairs in free cells.
+
+If "randomStartGoal": false, SafePlan uses the provided "startGoalPairs" array as-is.
+
+# Troubleshooting
+
+“File exists and is readable” but scene didn’t change: Delete the cached _grid.json to regenerate.
+
+No obstacles appear: Check your polygons are convex and have valid vertex order; ConvexHull requires non-degenerate input.
+
+Invalid pairs: Ensure start/goal lie within grid bounds and on free cells (grid[...] == 0).
+
+3D grids: Use dimensionOfGrid: 3 and provide 3D polygons (polyhedra faces) that form valid convex hulls.
