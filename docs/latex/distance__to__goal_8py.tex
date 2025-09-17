@@ -1,43 +1,7 @@
 \hypertarget{distance__to__goal_8py}{}\doxysection{safeplan/evals/distance\+\_\+to\+\_\+goal.py File Reference}
 \label{distance__to__goal_8py}\index{safeplan/evals/distance\_to\_goal.py@{safeplan/evals/distance\_to\_goal.py}}
-
-
-It tells how much distance to goal if path is incomplete or no path for planning algorithms.  
-
-
-\doxysubsection*{Classes}
-\begin{DoxyCompactItemize}
-\item 
-class \mbox{\hyperlink{classdistance__to__goal_1_1DistanceToGoal}{distance\+\_\+to\+\_\+goal.\+Distance\+To\+Goal}}
-\end{DoxyCompactItemize}
 \doxysubsection*{Namespaces}
 \begin{DoxyCompactItemize}
 \item 
  \mbox{\hyperlink{namespacedistance__to__goal}{distance\+\_\+to\+\_\+goal}}
 \end{DoxyCompactItemize}
-
-
-\doxysubsection{Detailed Description}
-It tells how much distance to goal if path is incomplete or no path for planning algorithms. 
-
-Implements distance bwtween last node of path and goal and if no path between start and goal
-
-\begin{DoxyParagraph}{Inputs}
-
-\begin{DoxyItemize}
-\item {\ttfamily start} \+: tuple\mbox{[}int, ...\mbox{]} — start grid cell (e.\+g., (row, col))
-\item {\ttfamily goal} \+: tuple\mbox{[}int, ...\mbox{]} — goal grid cell
-\item {\ttfamily grid} \+: numpy.\+ndarray (N-\/D), values \{0=free, 1=obstacle\}
-\item {\ttfamily cell\+Size} \+: Size of cell(in m) for real world computation
-\item {\ttfamily Path} \+: Path given by planner to evaluate metrices
-\end{DoxyItemize}
-\end{DoxyParagraph}
-\begin{DoxyParagraph}{Outputs}
-
-\begin{DoxyItemize}
-\item {\ttfamily val\+:} Distance to goal in terms of failure
-\end{DoxyItemize}
-\end{DoxyParagraph}
-\begin{DoxySeeAlso}{See also}
-Base\+Eval 
-\end{DoxySeeAlso}

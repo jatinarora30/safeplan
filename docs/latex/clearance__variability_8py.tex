@@ -1,43 +1,7 @@
 \hypertarget{clearance__variability_8py}{}\doxysection{safeplan/evals/clearance\+\_\+variability.py File Reference}
 \label{clearance__variability_8py}\index{safeplan/evals/clearance\_variability.py@{safeplan/evals/clearance\_variability.py}}
-
-
-Clearance Variability evaluator for planning algorithms.  
-
-
-\doxysubsection*{Classes}
-\begin{DoxyCompactItemize}
-\item 
-class \mbox{\hyperlink{classclearance__variability_1_1ClearanceVariability}{clearance\+\_\+variability.\+Clearance\+Variability}}
-\end{DoxyCompactItemize}
 \doxysubsection*{Namespaces}
 \begin{DoxyCompactItemize}
 \item 
  \mbox{\hyperlink{namespaceclearance__variability}{clearance\+\_\+variability}}
 \end{DoxyCompactItemize}
-
-
-\doxysubsection{Detailed Description}
-Clearance Variability evaluator for planning algorithms. 
-
-Implements Clearance Variability evaluation based upon the path provided on the grid. It calculates eucledian distance between nodes for N -\/ dimensional path
-
-\begin{DoxyParagraph}{Inputs}
-
-\begin{DoxyItemize}
-\item {\ttfamily start} \+: tuple\mbox{[}int, ...\mbox{]} — start grid cell (e.\+g., (row, col))
-\item {\ttfamily goal} \+: tuple\mbox{[}int, ...\mbox{]} — goal grid cell
-\item {\ttfamily grid} \+: numpy.\+ndarray (N-\/D), values \{0=free, 1=obstacle\}
-\item {\ttfamily cell\+Size} \+: Size of cell(in m) for real world computation
-\item {\ttfamily Path} \+: Path given by planner to evaluate metrices
-\end{DoxyItemize}
-\end{DoxyParagraph}
-\begin{DoxyParagraph}{Outputs}
-
-\begin{DoxyItemize}
-\item {\ttfamily val\+:} Clearance Variability computed
-\end{DoxyItemize}
-\end{DoxyParagraph}
-\begin{DoxySeeAlso}{See also}
-Base\+Eval 
-\end{DoxySeeAlso}

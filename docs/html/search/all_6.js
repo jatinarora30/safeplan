@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['finalgrid_55',['finalGrid',['../classgenerate__grid_1_1GenerateGrid.html#a4c5b97ea470e57dbba3c5e917c4e30c2',1,'generate_grid::GenerateGrid']]]
+  ['logger_24',['logger',['../namespacelogger.html',1,'']]],
+  ['logger_2epy_25',['logger.py',['../logger_8py.html',1,'']]]
 ];

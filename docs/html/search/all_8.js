@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['heuristics_70',['heuristics',['../classa__star_1_1AStar.html#ad067114e66c7d06d0a59d3a90e2a26c2',1,'a_star::AStar']]]
+  ['nodes_5fin_5fpath_30',['nodes_in_path',['../namespacenodes__in__path.html',1,'']]],
+  ['nodes_5fin_5fpath_2epy_31',['nodes_in_path.py',['../nodes__in__path_8py.html',1,'']]]
 ];

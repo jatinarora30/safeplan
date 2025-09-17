@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['jerk_5fper_5fmeter_83',['jerk_per_meter',['../namespacejerk__per__meter.html',1,'']]],
-  ['jerk_5fper_5fmeter_2epy_84',['jerk_per_meter.py',['../jerk__per__meter_8py.html',1,'']]],
-  ['jerkpermeter_85',['JerkPerMeter',['../classjerk__per__meter_1_1JerkPerMeter.html',1,'jerk_per_meter']]]
+  ['path_5fcost_38',['path_cost',['../namespacepath__cost.html',1,'']]],
+  ['path_5fcost_2epy_39',['path_cost.py',['../path__cost_8py.html',1,'']]]
 ];

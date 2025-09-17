@@ -1,43 +1,7 @@
 \hypertarget{nodes__in__path_8py}{}\doxysection{safeplan/evals/nodes\+\_\+in\+\_\+path.py File Reference}
 \label{nodes__in__path_8py}\index{safeplan/evals/nodes\_in\_path.py@{safeplan/evals/nodes\_in\_path.py}}
-
-
-Nodes in path evaluator for planning algorithms.  
-
-
-\doxysubsection*{Classes}
-\begin{DoxyCompactItemize}
-\item 
-class \mbox{\hyperlink{classnodes__in__path_1_1NodesInPath}{nodes\+\_\+in\+\_\+path.\+Nodes\+In\+Path}}
-\end{DoxyCompactItemize}
 \doxysubsection*{Namespaces}
 \begin{DoxyCompactItemize}
 \item 
  \mbox{\hyperlink{namespacenodes__in__path}{nodes\+\_\+in\+\_\+path}}
 \end{DoxyCompactItemize}
-
-
-\doxysubsection{Detailed Description}
-Nodes in path evaluator for planning algorithms. 
-
-Implements Nodes in path evaluation based upon the path provided on the grid.
-
-\begin{DoxyParagraph}{Inputs}
-
-\begin{DoxyItemize}
-\item {\ttfamily start} \+: tuple\mbox{[}int, ...\mbox{]} — start grid cell (e.\+g., (row, col))
-\item {\ttfamily goal} \+: tuple\mbox{[}int, ...\mbox{]} — goal grid cell
-\item {\ttfamily grid} \+: numpy.\+ndarray (N-\/D), values \{0=free, 1=obstacle\}
-\item {\ttfamily cell\+Size} \+: Size of cell(in m) for real world computation
-\item {\ttfamily Path} \+: Path given by planner to evaluate metrices
-\end{DoxyItemize}
-\end{DoxyParagraph}
-\begin{DoxyParagraph}{Outputs}
-
-\begin{DoxyItemize}
-\item {\ttfamily val\+:} Nodes in Path
-\end{DoxyItemize}
-\end{DoxyParagraph}
-\begin{DoxySeeAlso}{See also}
-Base\+Eval 
-\end{DoxySeeAlso}

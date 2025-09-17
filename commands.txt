@@ -1,1 +1,3 @@
 pip install -r requirements.txt
+set up doxygen: doxygen -g Doxyfile
+ doxygen Doxyfile

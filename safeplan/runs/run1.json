@@ -17,7 +17,7 @@
   ],
   "algoDetails": [
     {"name": "VoronoiPlanner","args": {"pointSamples":100,"knn":1000}},
-    {"name": "UPP","args": {"alpha":0.5,"beta":3,"radius":10,"epsilon":0.01}},
+    {"name": "UPP","args": {"alpha":0.5,"beta":2,"radius":5,"epsilon":0.01}},
     {"name": "RRT","args": {"maxIter":10000,"goalSampleRate":0.05,"stepSize":7,"pointSamples":100}},
     {"name": "CBFRRT","args": {"maxIter":10000,"goalSampleRate":0.05,"stepSize":7,"pointSamples":100,"gamma1":2,"gamma2":2}},
     {"name": "AStar"},
@@ -29,8 +29,8 @@
   "envDetails": [
     {
       "generateGrid": [
-        {"name": "env11" },{"name": "env12" },{"name": "env13" },{"name": "env14" },{"name": "env15" }
-      ]
-    }
+       
+        {"name": "env12" },{"name": "env2" }
+      ]    }
   ]
 }

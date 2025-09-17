@@ -1,0 +1,66 @@
+SafePlan README Checklist
+=========================
+
+1. Project Title & Tagline
+   - Name of the project + one-line description.
+
+2. Overview
+   - What SafePlan is.
+   - Why it matters (safety + optimality gap in existing benchmarks).
+   - Who it’s for (robotics researchers, path planning developers, safe RL folks).
+
+3. Key Features
+   - Planner-agnostic design.
+   - Safety + smoothness + optimality metrics.
+   - Batch evaluation.
+   - Extensibility.
+   - Visualization support (2D/3D).
+
+4. Evaluation Metrics
+   - List and briefly explain each metric.
+   - Group into categories:
+     - Efficiency & Success
+     - Smoothness
+     - Safety
+     - Optimality
+
+5. Supported Planners
+   - List included planners (A*, Weighted A*, Voronoi, UPP, SDF-A*, Optimized A*, RRT variants, etc.).
+   - Note: more can be added easily.
+
+6. Installation
+   - Dependencies (Python version, packages like NumPy, SciPy, pandas, matplotlib, Plotly, NetworkX).
+   - Setup instructions (e.g., `git clone` + `pip install -r requirements.txt`).
+   - Optional: Docker instructions.
+
+7. Usage
+   - Running a single experiment.
+   - Running batch experiments.
+   - Visualizing results.
+   - Example commands.
+
+8. Results & Visualization
+   - Example outputs (plots, tables, stats).
+   - Screenshots or embedded images (2D grid + 3D maps).
+   - Mention where results are saved (`outputs/`, `results/`).
+
+9. Extending SafePlan
+   - Adding a new planner (inherit BasePlanner).
+   - Adding a new metric (update metrics/).
+   - Modifying configs.
+
+10. Project Structure
+   - Tree view of repo folders (planners, metrics, utils, configs, outputs, results).
+
+11. Roadmap / Future Work
+   - Planned new planners (PRM, RRT*, kinodynamic, multi-robot).
+   - Expanding safety metrics.
+   - Benchmark dataset release.
+   - Standardized evaluation maps.
+
+12. Citation
+   - BibTeX entry (for academic papers).
+   - DOI if released on Zenodo.
+
+13. License
+   - Open-source license (MIT, Apache 2.0, etc.).

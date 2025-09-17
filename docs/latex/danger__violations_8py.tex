@@ -1,43 +1,7 @@
 \hypertarget{danger__violations_8py}{}\doxysection{safeplan/evals/danger\+\_\+violations.py File Reference}
 \label{danger__violations_8py}\index{safeplan/evals/danger\_violations.py@{safeplan/evals/danger\_violations.py}}
-
-
-Danger Violations evaluator for planning algorithms.  
-
-
-\doxysubsection*{Classes}
-\begin{DoxyCompactItemize}
-\item 
-class \mbox{\hyperlink{classdanger__violations_1_1DangerViolations}{danger\+\_\+violations.\+Danger\+Violations}}
-\end{DoxyCompactItemize}
 \doxysubsection*{Namespaces}
 \begin{DoxyCompactItemize}
 \item 
  \mbox{\hyperlink{namespacedanger__violations}{danger\+\_\+violations}}
 \end{DoxyCompactItemize}
-
-
-\doxysubsection{Detailed Description}
-Danger Violations evaluator for planning algorithms. 
-
-Implements Danger Violations evaluation based upon the path provided on the grid. It calculates eucledian distance between nodes for N -\/ dimensional path
-
-\begin{DoxyParagraph}{Inputs}
-
-\begin{DoxyItemize}
-\item {\ttfamily start} \+: tuple\mbox{[}int, ...\mbox{]} — start grid cell (e.\+g., (row, col))
-\item {\ttfamily goal} \+: tuple\mbox{[}int, ...\mbox{]} — goal grid cell
-\item {\ttfamily grid} \+: numpy.\+ndarray (N-\/D), values \{0=free, 1=obstacle\}
-\item {\ttfamily cell\+Size} \+: Size of cell(in m) for real world computation
-\item {\ttfamily Path} \+: Path given by planner to evaluate metrices
-\end{DoxyItemize}
-\end{DoxyParagraph}
-\begin{DoxyParagraph}{Outputs}
-
-\begin{DoxyItemize}
-\item {\ttfamily val\+:} Danger Violations computed
-\end{DoxyItemize}
-\end{DoxyParagraph}
-\begin{DoxySeeAlso}{See also}
-Base\+Eval 
-\end{DoxySeeAlso}

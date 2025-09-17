@@ -1,16 +1,5 @@
 var searchData=
 [
-  ['parent_113',['parent',['../classa__star_1_1AStar.html#a510c46f5344d18f1c86c0980c5738772',1,'a_star.AStar.parent()'],['../classupp_1_1UPP.html#a75af96742df76703f122ee94be5dd7b4',1,'upp.UPP.parent()']]],
-  ['path_114',['Path',['../namespacebaseeval.html#a656ac4646f9cfaf4a28b1ce294e2eea9',1,'baseeval.Path()'],['../namespacebaseplanner.html#a3253efa4d43da6ff2038a7363a342565',1,'baseplanner.Path()']]],
-  ['path_115',['path',['../classa__star_1_1AStar.html#a2d71713e6e25f0dd4aed340abe71ef15',1,'a_star.AStar.path()'],['../classupp_1_1UPP.html#a2ec3db4afe2e38522b6ed38936a8e73f',1,'upp.UPP.path()'],['../classvoronoi__planner_1_1VoronoiPlanner.html#a43f39df0da6cc7319cd932d2cea638fd',1,'voronoi_planner.VoronoiPlanner.path()'],['../classgenerate__grid_1_1GenerateGrid.html#ade2ff0acffce88145bdf40f9d269a7da',1,'generate_grid.GenerateGrid.path()']]],
-  ['path_5fcost_116',['path_cost',['../namespacepath__cost.html',1,'']]],
-  ['path_5fcost_2epy_117',['path_cost.py',['../path__cost_8py.html',1,'']]],
-  ['pathcost_118',['PathCost',['../classpath__cost_1_1PathCost.html',1,'path_cost']]],
-  ['pathcost_119',['pathCost',['../classoptimal__deviation_1_1OptimalDeviation.html#adcf78894b580c7552902979d8d2718e7',1,'optimal_deviation.OptimalDeviation.pathCost()'],['../classoptisafe__index_1_1OptiSafeIndex.html#a63561c19bc940e121437b83bb80b92f9',1,'optisafe_index.OptiSafeIndex.pathCost()'],['../classjerk__per__meter_1_1JerkPerMeter.html#af517eab4f025c4cdc194ff9a793db7ca',1,'jerk_per_meter.JerkPerMeter.pathCost()']]],
-  ['plan_120',['plan',['../classa__star_1_1AStar.html#ad59253f28ffcb7eed5c8411d37e99917',1,'a_star.AStar.plan()'],['../classbaseplanner_1_1BasePlanner.html#adb37fa200b73e980309e57631c9046ed',1,'baseplanner.BasePlanner.plan()'],['../classupp_1_1UPP.html#a594f93c00f5c628b453a0ff0ccf140f3',1,'upp.UPP.plan()'],['../classvoronoi__planner_1_1VoronoiPlanner.html#a9e147fcbad5ce18d4d69dcc5f4d45295',1,'voronoi_planner.VoronoiPlanner.plan()']]],
-  ['planner_121',['planner',['../classoptimal__deviation_1_1OptimalDeviation.html#aba334ce7bbda5ad96905eb19fd51a128',1,'optimal_deviation::OptimalDeviation']]],
-  ['pointsamples_122',['pointSamples',['../classvoronoi__planner_1_1VoronoiPlanner.html#ae0a50957e745d215ec872a83b8113156',1,'voronoi_planner.VoronoiPlanner.pointSamples()'],['../classaverage__minimum__clearance_1_1AverageMinimumClearance.html#a1b1592847b0b868bc3c02fed92d09733',1,'average_minimum_clearance.AverageMinimumClearance.pointSamples()'],['../classclearance__variability_1_1ClearanceVariability.html#a065ecadeb3fce92d6204618ff5fb172d',1,'clearance_variability.ClearanceVariability.pointSamples()'],['../classdanger__violations_1_1DangerViolations.html#a220fef4b383f34406806b6a60830dd37',1,'danger_violations.DangerViolations.pointSamples()'],['../classminimum__clearance_1_1MinimumClearance.html#a660e7f245fbfc5da08d5bb342a851a53',1,'minimum_clearance.MinimumClearance.pointSamples()']]],
-  ['polygons_5fdata_123',['polygons_data',['../classgenerate__grid_1_1GenerateGrid.html#a952a2fde3c6b3226841534e386cac33e',1,'generate_grid::GenerateGrid']]],
-  ['precomputesafety_124',['precomputeSafety',['../classupp_1_1UPP.html#a7897d08ab9fb1ec5a39ef49e6d1f809d',1,'upp::UPP']]],
-  ['presafety_125',['preSafety',['../classupp_1_1UPP.html#a568c09afe77e7c46f23ebebe7c0c7de8',1,'upp::UPP']]]
+  ['weighted_5fastar_57',['weighted_astar',['../namespaceweighted__astar.html',1,'']]],
+  ['weighted_5fastar_2epy_58',['weighted_astar.py',['../weighted__astar_8py.html',1,'']]]
 ];

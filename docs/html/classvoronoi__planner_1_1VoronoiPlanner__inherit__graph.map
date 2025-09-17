@@ -1,5 +1,0 @@
-<map id="voronoi_planner.VoronoiPlanner" name="voronoi_planner.VoronoiPlanner">
-<area shape="rect" id="node1" title="Path planner using a Voronoi roadmap with A* search." alt="" coords="5,155,233,181"/>
-<area shape="rect" id="node2" href="$classbaseplanner_1_1BasePlanner.html" title="Abstract base/registry for planning algorithms." alt="" coords="26,80,213,107"/>
-<area shape="rect" id="node3" title=" " alt="" coords="95,5,144,32"/>
-</map>
