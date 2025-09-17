@@ -570,3 +570,20 @@ No obstacles appear: Check your polygons are convex and have valid vertex order;
 Invalid pairs: Ensure start/goal lie within grid bounds and on free cells (grid[...] == 0).
 
 3D grids: Use dimensionOfGrid: 3 and provide 3D polygons (polyhedra faces) that form valid convex hulls.
+
+## Cite SafePlan
+
+If you use **SafePlan** in your research, please cite:
+
+```bibtex
+@misc{,
+  doi = {},
+  url = {},
+  author = {},
+  keywords = {},
+  title = {},
+  publisher = {},
+  year = {},
+  copyright = {}
+}
+```
