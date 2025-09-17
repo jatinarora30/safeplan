@@ -172,7 +172,7 @@ git clone https://github.com/<your-username>/safeplan.git
 cd safeplan
 pip install -r requirements.txt
 pip install -e .
-
+```
 ## Usage
 
 SafePlan experiments are configured via a JSON file (e.g., `run1.json`).  
@@ -216,7 +216,7 @@ Below is an example:
     }
   ]
 }
-'''
+```
 
 ##  Programmatic API
 
@@ -238,3 +238,4 @@ st.compute()
 # 3) Visualize one iteration (2D → PNG, 3D → Plotly HTML)
 viz = Visualize()
 viz.see("/home/run1.json", iterNo=1, prefer_plotly=True)
+```
