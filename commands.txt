@@ -1,3 +1,9 @@
 pip install -r requirements.txt
 set up doxygen: doxygen -g Doxyfile
  doxygen Doxyfile
+ BUILD LIBRARY : pip install -e
+
+for pypi
+ # from your repo root (where pyproject.toml is)
+rm -rf build dist *.egg-info
+python3 -m build

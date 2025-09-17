@@ -1,0 +1,48 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "safeplan"
+version = "0.1.0"
+description = "SafePlan: A benchmarking suite for safe and optimal path planning"
+readme = "README.md"
+requires-python = ">=3.8"
+license = { text = "MIT" }  # or use license-files below if you prefer
+authors = [
+  { name = "Your Name", email = "you@example.com" }
+]
+keywords = ["path-planning", "robotics", "benchmark", "safety"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+]
+
+dependencies = [
+  "numpy",
+  "scipy",
+  "matplotlib",
+  "pandas",
+  "networkx",
+  "plotly",
+  "psutil",
+]
+
+[project.urls]
+Homepage = "https://github.com/<username>/safeplan"
+Documentation = "https://<username>.github.io/safeplan/"
+Source = "https://github.com/<username>/safeplan"
+Issues = "https://github.com/<username>/safeplan/issues"
+
+[tool.setuptools]
+# Explicitly tell setuptools which packages to include (avoid outputs/results)
+packages = ["safeplan"]
+
+# If you prefer auto-discovery instead, comment the line above and use:
+# [tool.setuptools.packages.find]
+# include = ["safeplan*"]
+# exclude = ["results*", "outputs*", "docs*", "tests*"]
+
+# If you ship non-Python files inside safeplan/, turn this on and add MANIFEST.in
+# include-package-data = true
