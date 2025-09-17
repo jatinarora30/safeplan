@@ -1,7 +1,57 @@
 \hypertarget{voronoi__planner_8py}{}\doxysection{safeplan/algos/voronoi\+\_\+planner.py File Reference}
 \label{voronoi__planner_8py}\index{safeplan/algos/voronoi\_planner.py@{safeplan/algos/voronoi\_planner.py}}
+
+
+Voronoi-\/roadmap planner for N-\/dimensional occupancy grids.  
+
+
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classvoronoi__planner_1_1VoronoiPlanner}{voronoi\+\_\+planner.\+Voronoi\+Planner}}
+\begin{DoxyCompactList}\small\item\em Path planner using a Voronoi roadmap with A$\ast$ search. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Namespaces}
 \begin{DoxyCompactItemize}
 \item 
  \mbox{\hyperlink{namespacevoronoi__planner}{voronoi\+\_\+planner}}
 \end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Voronoi-\/roadmap planner for N-\/dimensional occupancy grids. 
+
+Builds a roadmap from the Voronoi diagram of obstacle clusters and searches it with A$\ast$ to obtain a collision-\/free path between a start and a goal cell on an N-\/D Num\+Py occupancy grid (0 = free, 1 = obstacle). The planner first checks whether the straight line from start to goal is collision-\/free; if so, it returns that two-\/point path. Otherwise, it\+: 1) segments obstacles via connected-\/component labeling and computes each component\textquotesingle{}s centroid as a Voronoi site, 2) constructs the Voronoi diagram (finite edges only), 3) builds a graph from collision-\/free Voronoi edges, 4) connects start and goal to their K nearest Voronoi vertices if collision-\/free, 5) runs A$\ast$ on this graph to produce a piecewise-\/linear path.
+
+\begin{DoxyParagraph}{Inputs}
+
+\begin{DoxyItemize}
+\item {\ttfamily start} \+: tuple\mbox{[}int, ...\mbox{]} — start grid cell (for example, (row, col))
+\item {\ttfamily goal} \+: tuple\mbox{[}int, ...\mbox{]} — goal grid cell
+\item {\ttfamily grid} \+: numpy.\+ndarray (N-\/D), values \{0=free, 1=obstacle\}
+\end{DoxyItemize}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Outputs}
+
+\begin{DoxyItemize}
+\item {\ttfamily success} \+: int — 1 if a path is found, else 0
+\item {\ttfamily path} \+: list\mbox{[}tuple\mbox{[}int, ...\mbox{]}\mbox{]} — sequence of cells from start to goal (inclusive)
+\item {\ttfamily info} \+: list\mbox{[}str\mbox{]} or str — diagnostics (for example, \char`\"{}\+Invalid goal\char`\"{}) or a success note
+\end{DoxyItemize}
+\end{DoxyParagraph}
+\begin{DoxyNote}{Note}
+
+\begin{DoxyItemize}
+\item Requires a sufficient number of obstacle components to form a meaningful Voronoi diagram (this implementation expects more than four).
+\item Collision checks on edges sample point\+Samples evenly spaced points and round to the nearest grid indices for occupancy testing.
+\item Grid convention\+: 1 = obstacle, 0 = free.
+\end{DoxyItemize}
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+Base\+Planner
+\end{DoxySeeAlso}
+@references
+\begin{DoxyItemize}
+\item Sci\+Py Voronoi\+: \href{https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.Voronoi.html}{\texttt{ https\+://docs.\+scipy.\+org/doc/scipy/reference/generated/scipy.\+spatial.\+Voronoi.\+html}}
+\item Sci\+Py ndimage.\+label\+: \href{https://docs.scipy.org/doc/scipy/reference/generated/scipy.ndimage.label.html}{\texttt{ https\+://docs.\+scipy.\+org/doc/scipy/reference/generated/scipy.\+ndimage.\+label.\+html}}
+\item NetworkX A$\ast$\+: \href{https://networkx.org/documentation/stable/reference/algorithms/generated/networkx.algorithms.shortest_paths.astar.astar_path.html}{\texttt{ https\+://networkx.\+org/documentation/stable/reference/algorithms/generated/networkx.\+algorithms.\+shortest\+\_\+paths.\+astar.\+astar\+\_\+path.\+html}} 
+\end{DoxyItemize}

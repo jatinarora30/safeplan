@@ -82,18 +82,68 @@ $(document).ready(function(){initNavTree('rrt_8py.html',''); initResizable(); })
 
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
 <a href="#namespaces">Namespaces</a>  </div>
   <div class="headertitle">
 <div class="title">rrt.py File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Rapidly-exploring Random Tree (RRT) planner for N-dimensional occupancy grids.  
+<a href="#details">More...</a></p>
+
+<p><a href="rrt_8py_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrrt_1_1RRT.html">rrt.RRT</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classrrt_1_1RRT.html" title="RRT planner operating on N-D occupancy grids.">RRT</a> planner operating on N-D occupancy grids.  <a href="classrrt_1_1RRT.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
 Namespaces</h2></td></tr>
 <tr class="memitem:namespacerrt"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacerrt.html">rrt</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-</div><!-- contents -->
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Rapidly-exploring Random Tree (RRT) planner for N-dimensional occupancy grids. </p>
+<p>Implements a basic RRT over an N-D NumPy occupancy grid where value 0 denotes free space and value 1 denotes an obstacle. The planner incrementally grows a tree from the start toward random samples (with goal bias). At each step, it adds a new node no farther than the configured step size from the nearest existing node, provided the local edge is collision-free. A path is returned once the tree connects to the goal via a collision-free edge.</p>
+<p>Collision checking (see isEdgeFree()) samples a fixed number of points along a candidate segment, rounds them to the nearest grid indices, and rejects the edge if any sampled index is out of bounds or lies on an obstacle cell.</p>
+<dl class="section user"><dt>Constructor Arguments</dt><dd><ul>
+<li><code>maxIter</code> : int — maximum number of RRT expansion iterations</li>
+<li><code>goalSampleRate</code> : float in [0,1] — probability of directly sampling the goal</li>
+<li><code>stepSize</code> : float — maximum extension per step in grid index units</li>
+<li><code>pointSamples</code> : int — number of samples along an edge for collision checking</li>
+</ul>
+</dd></dl>
+<dl class="section user"><dt>Inputs (to @ref plan())</dt><dd><ul>
+<li><code>start</code> : tuple[int, ...] — start grid cell (for example, (row, col))</li>
+<li><code>goal</code> : tuple[int, ...] — goal grid cell</li>
+<li><code>grid</code> : numpy.ndarray (N-D), values {0=free, 1=obstacle}</li>
+</ul>
+</dd></dl>
+<dl class="section user"><dt>Outputs</dt><dd><ul>
+<li><code>success</code> : int — 1 if a path is found, else 0</li>
+<li><code>path</code> : list[tuple[int, ...]] — sequence of cells from start to goal (inclusive)</li>
+<li><code>info</code> : list[str] — diagnostics (for example, "Invalid start", "Goal has obstacle", "Ran out of max iterations couldn't find path")</li>
+</ul>
+</dd></dl>
+<dl class="section note"><dt>Note</dt><dd><ul>
+<li>Coordinates are treated in grid index space. Steered points are rounded to integer indices before validation and insertion.</li>
+<li>The effective step during steering is clamped by the minimum of the step size and the straight-line distance between start and goal to avoid overshoot on very small problems.</li>
+<li>Edge feasibility depends on <code>pointSamples</code>; too few samples may miss thin obstacles, while too many may slow planning.</li>
+<li>Nearest neighbor is a linear scan; for large trees, consider a spatial index such as a kd-tree or ball-tree.</li>
+<li>RRT is probabilistically complete but not optimal; use RRT* for asymptotic optimality (not implemented here).</li>
+</ul>
+</dd></dl>
+<p>@complexity Per linear in the number of current tree nodes for nearest neighbor, plus linear in the number of edge samples for collision checking. Worst case is proportional to the maximum number of iterations multiplied by the sum of those two costs.</p>
+<dl class="section see"><dt>See also</dt><dd>BasePlanner, AStar</dd></dl>
+<p>@references</p><ul>
+<li>LaValle, S., “Rapidly-exploring Random Trees: A New Tool for Path Planning.” Overview <a href="https://www.semanticscholar.org/paper/Rapidly-exploring-random-trees-%3A-a-new-tool-for-LaValle/d967d9550f831a8b3f5cb00f8835a4c866da60ad">https://www.semanticscholar.org/paper/Rapidly-exploring-random-trees-%3A-a-new-tool-for-LaValle/d967d9550f831a8b3f5cb00f8835a4c866da60ad</a> </li>
+</ul>
+
+<p class="definition">Definition in file <a class="el" href="rrt_8py_source.html">rrt.py</a>.</p>
+</div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

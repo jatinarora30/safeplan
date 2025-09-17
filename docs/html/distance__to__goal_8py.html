@@ -82,18 +82,47 @@ $(document).ready(function(){initNavTree('distance__to__goal_8py.html',''); init
 
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
 <a href="#namespaces">Namespaces</a>  </div>
   <div class="headertitle">
 <div class="title">distance_to_goal.py File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>It tells how much distance to goal if path is incomplete or no path for planning algorithms.  
+<a href="#details">More...</a></p>
+
+<p><a href="distance__to__goal_8py_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdistance__to__goal_1_1DistanceToGoal.html">distance_to_goal.DistanceToGoal</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
 Namespaces</h2></td></tr>
 <tr class="memitem:namespacedistance__to__goal"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacedistance__to__goal.html">distance_to_goal</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-</div><!-- contents -->
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>It tells how much distance to goal if path is incomplete or no path for planning algorithms. </p>
+<p>Implements distance bwtween last node of path and goal and if no path between start and goal</p>
+<dl class="section user"><dt>Inputs</dt><dd><ul>
+<li><code>start</code> : tuple[int, ...] — start grid cell (e.g., (row, col))</li>
+<li><code>goal</code> : tuple[int, ...] — goal grid cell</li>
+<li><code>grid</code> : numpy.ndarray (N-D), values {0=free, 1=obstacle}</li>
+<li><code>cellSize</code> : Size of cell(in m) for real world computation</li>
+<li><code>Path</code> : Path given by planner to evaluate metrices</li>
+</ul>
+</dd></dl>
+<dl class="section user"><dt>Outputs</dt><dd><ul>
+<li><code>val:</code> Distance to goal in terms of failure</li>
+</ul>
+</dd></dl>
+<dl class="section see"><dt>See also</dt><dd>BaseEval </dd></dl>
+
+<p class="definition">Definition in file <a class="el" href="distance__to__goal_8py_source.html">distance_to_goal.py</a>.</p>
+</div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

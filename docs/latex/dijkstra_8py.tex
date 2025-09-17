@@ -1,7 +1,59 @@
 \hypertarget{dijkstra_8py}{}\doxysection{safeplan/algos/dijkstra.py File Reference}
 \label{dijkstra_8py}\index{safeplan/algos/dijkstra.py@{safeplan/algos/dijkstra.py}}
+
+
+Dijkstra planner for N-\/dimensional occupancy grids.  
+
+
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classdijkstra_1_1Dijkstra}{dijkstra.\+Dijkstra}}
+\end{DoxyCompactItemize}
 \doxysubsection*{Namespaces}
 \begin{DoxyCompactItemize}
 \item 
  \mbox{\hyperlink{namespacedijkstra}{dijkstra}}
 \end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Dijkstra planner for N-\/dimensional occupancy grids. 
+
+Implements Dijkstra’s shortest-\/path search on an N-\/D Num\+Py occupancy grid where value 0 denotes free space and value 1 denotes an obstacle. The planner accepts start and goal grid indices and returns a collision-\/free path with minimum accumulated cost if one exists.
+
+This implementation expands a full 3$^\wedge$N -\/ 1 neighborhood (axis-\/aligned and diagonal moves). Axis-\/aligned steps use unit cost; diagonal or off-\/axis steps use the Euclidean length of the step vector. A priority queue orders expansions by the current best distance from the start. No heuristic is used.
+
+Neighborhood generation is provided by adjacent\+Coordinates().
+
+\begin{DoxyParagraph}{Inputs}
+
+\begin{DoxyItemize}
+\item {\ttfamily start} \+: tuple\mbox{[}int, ...\mbox{]} — start grid cell (for example, (row, col))
+\item {\ttfamily goal} \+: tuple\mbox{[}int, ...\mbox{]} — goal grid cell
+\item {\ttfamily grid} \+: numpy.\+ndarray (N-\/D), values \{0=free, 1=obstacle\}
+\end{DoxyItemize}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Outputs}
+
+\begin{DoxyItemize}
+\item {\ttfamily success} \+: int — 1 if a path is found, else 0
+\item {\ttfamily path} \+: list\mbox{[}tuple\mbox{[}int, ...\mbox{]}\mbox{]} — sequence of cells from start to goal (inclusive)
+\item {\ttfamily info} \+: list\mbox{[}str\mbox{]} — diagnostics (for example, \char`\"{}\+Invalid goal\char`\"{})
+\end{DoxyItemize}
+\end{DoxyParagraph}
+\begin{DoxyNote}{Note}
+
+\begin{DoxyItemize}
+\item Coordinates are handled in grid index space.
+\item Step costs\+: axis steps cost 1.\+0; diagonal/off-\/axis steps use the Euclidean length of the step vector based on index differences.
+\item The neighborhood includes all immediate offsets except the zero vector.
+\end{DoxyItemize}
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+Base\+Planner
+\end{DoxySeeAlso}
+@references
+\begin{DoxyItemize}
+\item Dijkstra, E. W., “A note on two problems in connexion with graphs,” 1959. Overview \href{https://www.semanticscholar.org/paper/A-note-on-two-problems-in-connexion-with-graphs-Dijkstra/45786063578e814444b8247028970758bbbd0488}{\texttt{ https\+://www.\+semanticscholar.\+org/paper/\+A-\/note-\/on-\/two-\/problems-\/in-\/connexion-\/with-\/graphs-\/\+Dijkstra/45786063578e814444b8247028970758bbbd0488}} 
+\end{DoxyItemize}

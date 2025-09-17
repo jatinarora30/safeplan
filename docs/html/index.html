@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>SafePlan: Main Page</title>
+<title>SafePlan: SafePlan: A Benchmark for Safe and Optimal Path Planning</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -82,10 +82,211 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 
 <div class="PageDoc"><div class="header">
   <div class="headertitle">
-<div class="title">SafePlan Documentation</div>  </div>
+<div class="title">SafePlan: A Benchmark for Safe and Optimal Path Planning </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="md_README"></a></p>
+<div class="textblock"><p><a class="anchor" id="md_README"></a> </p>
+<h1><a class="anchor" id="autotoc_md1"></a>
+Overview</h1>
+<p><b>SafePlan</b> is a benchmarking suite for evaluating classical and modern path planning algorithms with a strong focus on <b>safety and optimality</b> in robotics. <br  />
+ It compares traditional planners with safety-aware planners, enabling fair evaluation of how algorithms balance safety and efficiency. <br  />
+</p>
+<p>SafePlan also includes the proposed <b>OptiSafe</b> metric, designed to quantify the trade-off between path optimality and safety, providing a more realistic assessment of planner performance in safety-critical robotic applications. <br  />
+</p>
+<h1><a class="anchor" id="autotoc_md2"></a>
+Key Features</h1>
+<ul>
+<li><b>Batch experiments at scale</b><ul>
+<li>Run thousands of randomized start–goal trials across multiple maps automatically.</li>
+<li>Supports repeatable benchmarking with structured JSON outputs.</li>
+</ul>
+</li>
+<li><b>Reproducibility &amp; logging</b><ul>
+<li>Standardized JSON logs for each run with environment, path, and evaluation info.</li>
+<li>Aggregated statistics in CSV/JSON and optional visualization outputs.</li>
+</ul>
+</li>
+<li><b>Visualization tools</b><ul>
+<li>2D plots of environments and paths.</li>
+<li>3D interactive visualization (via Plotly) for voxel maps and trajectories.</li>
+</ul>
+</li>
+<li><b>Efficient &amp; stable execution</b><ul>
+<li>Each run is sandboxed in subprocesses for memory isolation and reliability.</li>
+<li>Lightweight and scalable to large benchmark runs.</li>
+</ul>
+</li>
+<li><b>Extensible framework</b><ul>
+<li>Add new planners, environments, or metrics with minimal boilerplate.</li>
+<li>Designed for all kinds of classical planners, sampling based and geometry based.</li>
+</ul>
+</li>
+</ul>
+<h1><a class="anchor" id="autotoc_md3"></a>
+Evaluation Metrics</h1>
+<p>SafePlan introduces a rich set of metrics that go <b>beyond path length and runtime</b>. <br  />
+ They capture not only <b>efficiency</b>, but also <b>safety</b> and <b>smoothness</b> — key aspects for real robotic systems.</p>
+<hr  />
+<h2><a class="anchor" id="autotoc_md5"></a>
+1. Path Cost (m)</h2>
+<ul>
+<li><b>Definition:</b> Total geometric length of the path from start to goal. <br  />
+</li>
+<li><b>Computation:</b> Sum of Euclidean distances between consecutive waypoints, scaled by cell size. <br  />
+</li>
+<li><b>Unit:</b> meters (m). <br  />
+</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md6"></a>
+2. Planning Time (ms)</h2>
+<ul>
+<li><b>Definition:</b> CPU time taken by the planner to compute a path. <br  />
+</li>
+<li><b>Computation:</b> Wall-clock difference between start and end of plan. <br  />
+</li>
+<li><b>Unit:</b> milliseconds (ms). <br  />
+</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md7"></a>
+3. Success Rate (%)</h2>
+<ul>
+<li><b>Definition:</b> Fraction of planning queries where a valid path is found. <br  />
+</li>
+<li><b>Computation:</b> (#successful plans ÷ #total attempts) × 100. <br  />
+</li>
+<li><b>Unit:</b> percentage (%). <br  />
+</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md8"></a>
+4. Distance to Goal (m, failures only)</h2>
+<ul>
+<li><b>Definition:</b> Remaining distance between the last explored path node and the goal when planning fails. <br  />
+</li>
+<li><b>Computation:</b> Euclidean distance between last path node and goal. <br  />
+</li>
+<li><b>Unit:</b> meters (m). <br  />
+</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md9"></a>
+5. Number of Nodes in Path</h2>
+<ul>
+<li><b>Definition:</b> Count of waypoints in the final path. <br  />
+</li>
+<li><b>Unit:</b> count (integer). <br  />
+</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md10"></a>
+6. Turning Angle (°)</h2>
+<ul>
+<li><b>Definition:</b> Sum of angular deviations between consecutive path segments. <br  />
+</li>
+<li><b>Computation:</b> Angles via dot product between vectors, summed across path. <br  />
+</li>
+<li><b>Unit:</b> degrees (°). <br  />
+</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md11"></a>
+7. Jerk per Meter</h2>
+<ul>
+<li><b>Definition:</b> Rate of change of acceleration along the path, normalized per unit distance. <br  />
+</li>
+<li><b>Computation:</b> Third derivative of position along discretized path. <br  />
+</li>
+<li><b>Unit:</b> dimensionless (jerk/m). <br  />
+</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md12"></a>
+8. Optimal Deviation (%)</h2>
+<ul>
+<li><b>Definition:</b> Difference between path cost and known optimal path cost. <br  />
+</li>
+<li><b>Computation:</b> ((<a class="el" href="namespacepath__cost.html">path_cost</a> − optimal_cost) ÷ optimal_cost) × 100. <br  />
+</li>
+<li><b>Unit:</b> percentage (%). <br  />
+</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md13"></a>
+9. Minimum Clearance (m)</h2>
+<ul>
+<li><b>Definition:</b> Smallest distance from path to nearest obstacle. <br  />
+</li>
+<li><b>Computation:</b> Distance transform (EDT) at sampled points. <br  />
+</li>
+<li><b>Unit:</b> meters (m). <br  />
+</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md14"></a>
+10. Average Minimum Clearance (m)</h2>
+<ul>
+<li><b>Definition:</b> Mean clearance across path points. <br  />
+</li>
+<li><b>Unit:</b> meters (m). <br  />
+</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md15"></a>
+11. Clearance Variability</h2>
+<ul>
+<li><b>Definition:</b> Variance of clearance values along the path. <br  />
+</li>
+<li><b>Unit:</b> meters². <br  />
+</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md16"></a>
+12. Danger Zone Violations</h2>
+<ul>
+<li><b>Definition:</b> Number of times path enters a predefined danger radius around obstacles. <br  />
+</li>
+<li><b>Computation:</b> Count of path points with clearance &lt; danger radius. <br  />
+</li>
+<li><b>Unit:</b> count (integer). <br  />
+</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md17"></a>
+13. OptiSafe Index (Proposed)</h2>
+<ul>
+<li><b>Definition:</b> An index to measure balance between safety and optimality</li>
+<li><b>Unit:</b> float between 0 and 1. <br  />
+</li>
+</ul>
+<h1><a class="anchor" id="autotoc_md18"></a>
+Algorithms in SafePlan</h1>
+<p>SafePlan includes both <b>traditional planners</b> and <b>safety-aware planners</b>, allowing direct benchmarking on <b>safety vs. optimality</b> tradeoffs.</p>
+<h2><a class="anchor" id="autotoc_md19"></a>
+🔹 Traditional Planners</h2>
+<ul>
+<li><b>Dijkstra</b> <br  />
+ Classic graph search algorithm that guarantees shortest paths but can be computationally expensive on large grids. <br  />
+ Reference: (<a href="https://www.semanticscholar.org/paper/A-note-on-two-problems-in-connexion-with-graphs-Dijkstra/45786063578e814444b8247028970758bbbd0488">https://www.semanticscholar.org/paper/A-note-on-two-problems-in-connexion-with-graphs-Dijkstra/45786063578e814444b8247028970758bbbd0488</a>)</li>
+<li><b>A*</b> <br  />
+ Heuristic-guided search algorithm that combines optimality of Dijkstra with efficiency via heuristics. <br  />
+ Reference: (<a href="https://ieeexplore.ieee.org/document/4082128">https://ieeexplore.ieee.org/document/4082128</a>)</li>
+<li><b>Voronoi Roadmap Planner</b> <br  />
+ Builds a roadmap from obstacle centroids using Voronoi diagrams, ensuring high-clearance paths. <br  />
+ Reference: (<a href="https://dl.acm.org/doi/10.1145/116873.116880">https://dl.acm.org/doi/10.1145/116873.116880</a>)</li>
+<li><b>RRT (Rapidly-Exploring Random Trees)</b> <br  />
+ Sampling-based motion planning method efficient for high-dimensional spaces. <br  />
+ Reference: (<a href="https://www.semanticscholar.org/paper/Rapidly-exploring-random-trees-%3A-a-new-tool-for-LaValle/d967d9550f831a8b3f5cb00f8835a4c866da60ad">https://www.semanticscholar.org/paper/Rapidly-exploring-random-trees-%3A-a-new-tool-for-LaValle/d967d9550f831a8b3f5cb00f8835a4c866da60ad</a>)</li>
+<li><b>Weighted A*</b> <br  />
+ Variant of A* that scales the heuristic to bias search toward speed vs. optimality tradeoffs. <br  />
+ Reference: (<a href="https://www.sciencedirect.com/science/article/pii/S000437020900068X">https://www.sciencedirect.com/science/article/pii/S000437020900068X</a>)</li>
+</ul>
+<hr  />
+<h2><a class="anchor" id="autotoc_md21"></a>
+🔹 Safety-Aware Planners</h2>
+<ul>
+<li><b>Unified Path Planner</b> <br  />
+ A safety-aware planner integrating safety heuristics <br  />
+ Reference: (<a href="https://arxiv.org/pdf/2505.23197">https://arxiv.org/pdf/2505.23197</a>)</li>
+<li><b>SDF A*</b> <br  />
+ A* variant augmented with Signed Distance Fields for safety margin enforcement. <br  />
+ Reference: (<a href="https://ieeexplore.ieee.org/document/10364842/">https://ieeexplore.ieee.org/document/10364842/</a>)</li>
+<li><b>Optimized A*</b> <br  />
+ An improved A* with path smoothness and obstacle-clearance optimizations. <br  />
+ Reference: (<a href="https://www.mdpi.com/1424-8220/24/10/3149">https://www.mdpi.com/1424-8220/24/10/3149</a>)</li>
+<li><b>CBF-RRT (Control Barrier Function RRT)</b> <br  />
+ Enhances RRT with control barrier functions to guarantee safety constraints. <br  />
+ Reference: (<a href="https://arxiv.org/pdf/2011.06748">https://arxiv.org/pdf/2011.06748</a>) </li>
+</ul>
 </div></div><!-- PageDoc -->
 </div><!-- contents -->
 </div><!-- doc-content -->

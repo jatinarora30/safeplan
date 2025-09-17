@@ -82,18 +82,68 @@ $(document).ready(function(){initNavTree('sdf__astar_8py.html',''); initResizabl
 
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
 <a href="#namespaces">Namespaces</a>  </div>
   <div class="headertitle">
 <div class="title">sdf_astar.py File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Signed Distance Field (SDF) guided A* planner for N-dimensional occupancy grids.  
+<a href="#details">More...</a></p>
+
+<p><a href="sdf__astar_8py_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsdf__astar_1_1SDFAStar.html">sdf_astar.SDFAStar</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
 Namespaces</h2></td></tr>
 <tr class="memitem:namespacesdf__astar"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacesdf__astar.html">sdf_astar</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-</div><!-- contents -->
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Signed Distance Field (SDF) guided A* planner for N-dimensional occupancy grids. </p>
+<p>Implements an A* variant that uses a Signed Distance Field (SDF) to bias search toward safer regions. The environment is an N-D NumPy occupancy grid where value 0 denotes free space and value 1 denotes an obstacle. The planner accepts start and goal grid indices and returns a collision-free path if one exists.</p>
+<p>Key ideas:</p><ul>
+<li>A standard grid A* framework: priority queue, cumulative path cost, and a neighborhood that includes all immediate offsets.</li>
+<li>An SDF-based safety term: a distance transform and its gradient encourage exploration toward areas with better clearance (see safetyHeuristics()).</li>
+<li>A combined priority: mixes travel distance, path cost so far, and a local safety measure based on the SDF gradient along the current motion direction (see combinedHeuristics()).</li>
+</ul>
+<p>Heuristic and neighborhood generation are provided by heuristics() and adjacentCoordinates(). Ensure the heuristic is compatible with the allowed moves and step costs.</p>
+<dl class="section user"><dt>Constructor Arguments</dt><dd><ul>
+<li><code>k1</code> : float — weight on path-cost term inside the combined priority</li>
+<li><code>k2</code> : float — weight on heuristic distance term inside the combined priority</li>
+</ul>
+</dd></dl>
+<dl class="section user"><dt>Inputs (to @ref plan())</dt><dd><ul>
+<li><code>start</code> : tuple[int, ...] — start grid cell (for example, (row, col))</li>
+<li><code>goal</code> : tuple[int, ...] — goal grid cell</li>
+<li><code>grid</code> : numpy.ndarray (N-D), values {0=free, 1=obstacle}</li>
+</ul>
+</dd></dl>
+<dl class="section user"><dt>Outputs</dt><dd><ul>
+<li><code>success</code> : int — 1 if a path is found, else 0</li>
+<li><code>path</code> : list[tuple[int, ...]] — sequence of cells from start to goal (inclusive)</li>
+<li><code>info</code> : list[str] — diagnostics (for example, "Invalid goal")</li>
+</ul>
+</dd></dl>
+<dl class="section note"><dt>Note</dt><dd><ul>
+<li>Coordinates are handled in grid index space.</li>
+<li>The SDF is computed once per plan call using a distance transform on the free space mask; its gradient is reused in the safety term.</li>
+<li>The neighborhood includes all immediate offsets except the zero vector.</li>
+<li>The safety term normalizes the SDF gradient change along the current motion direction, with simple clamping to avoid division by zero.</li>
+</ul>
+</dd></dl>
+<dl class="section see"><dt>See also</dt><dd>BasePlanner</dd></dl>
+<p>@references</p><ul>
+<li>SDF-guided A* <a href="https://ieeexplore.ieee.org/document/10364842/">https://ieeexplore.ieee.org/document/10364842/</a> </li>
+</ul>
+
+<p class="definition">Definition in file <a class="el" href="sdf__astar_8py_source.html">sdf_astar.py</a>.</p>
+</div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

@@ -1,0 +1,4 @@
+<map id="optimized_astar.OptimizedAStar.directionalOptimize" name="optimized_astar.OptimizedAStar.directionalOptimize">
+<area shape="rect" id="node1" title="Shortcut a path by removing unnecessary waypoints in one direction." alt="" coords="253,5,451,47"/>
+<area shape="rect" id="node2" href="$classoptimized__astar_1_1OptimizedAStar.html#a7cd90a3d3026598224d31ce4700995b3" title="Apply directional shortcutting in both directions and choose the better result." alt="" coords="5,5,205,47"/>
+</map>

@@ -1,7 +1,75 @@
 \hypertarget{optimized__astar_8py}{}\doxysection{safeplan/algos/optimized\+\_\+astar.py File Reference}
 \label{optimized__astar_8py}\index{safeplan/algos/optimized\_astar.py@{safeplan/algos/optimized\_astar.py}}
+
+
+Optimized A$\ast$ planner for N-\/dimensional occupancy grids.  
+
+
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classoptimized__astar_1_1OptimizedAStar}{optimized\+\_\+astar.\+Optimized\+AStar}}
+\end{DoxyCompactItemize}
 \doxysubsection*{Namespaces}
 \begin{DoxyCompactItemize}
 \item 
  \mbox{\hyperlink{namespaceoptimized__astar}{optimized\+\_\+astar}}
 \end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Optimized A$\ast$ planner for N-\/dimensional occupancy grids. 
+
+Implements an A$\ast$ planner with additional path-\/quality and safety refinements on an N-\/D Num\+Py occupancy grid where value 0 denotes free space and value 1 denotes an obstacle. The planner accepts start and goal grid indices and returns a collision-\/free path if one exists.
+
+Key features beyond a standard A$\ast$\+:
+\begin{DoxyItemize}
+\item Turn-\/aware cost\+: adds a penalty based on local change in heading to discourage sharp turns (see turn\+Heuristics()).
+\item Safety inflation\+: uses a distance transform to nudge path points away from nearby obstacles (see safe\+Inflate()).
+\item Path shortcutting\+: performs forward and backward line-\/of-\/sight pruning to reduce unnecessary waypoints (see directional\+Optimize() and bidirectional\+Optimize()).
+\item Local edge collision checking\+: samples points along a segment and rejects it if any samples fall out of bounds or on obstacles within a safety radius (see is\+Edge\+Free()).
+\end{DoxyItemize}
+
+Heuristic and neighborhood generation are provided by heuristics() and adjacent\+Coordinates(). Ensure the heuristic is compatible with the allowed moves and step costs.
+
+\begin{DoxyParagraph}{Constructor Arguments}
+
+\begin{DoxyItemize}
+\item {\ttfamily turn\+Penalty\+Coefficients} \+: float — multiplier for penalizing local turning
+\item {\ttfamily safety\+Dist\+Grid\+Radius} \+: float — minimum desired clearance from obstacles in grid cells
+\item {\ttfamily max\+Inflate\+Iter} \+: int — maximum iterations for safety inflation per waypoint
+\item {\ttfamily point\+Samples} \+: int — number of samples along an edge for collision checking
+\end{DoxyItemize}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Inputs (to @ref plan())}
+
+\begin{DoxyItemize}
+\item {\ttfamily start} \+: tuple\mbox{[}int, ...\mbox{]} — start grid cell (for example, (row, col))
+\item {\ttfamily goal} \+: tuple\mbox{[}int, ...\mbox{]} — goal grid cell
+\item {\ttfamily grid} \+: numpy.\+ndarray (N-\/D), values \{0=free, 1=obstacle\}
+\end{DoxyItemize}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Outputs}
+
+\begin{DoxyItemize}
+\item {\ttfamily success} \+: int — 1 if a path is found, else 0
+\item {\ttfamily path} \+: list\mbox{[}tuple\mbox{[}int, ...\mbox{]}\mbox{]} — sequence of cells from start to goal (inclusive)
+\item {\ttfamily info} \+: list\mbox{[}str\mbox{]} — diagnostics (for example, \char`\"{}\+Invalid goal\char`\"{})
+\end{DoxyItemize}
+\end{DoxyParagraph}
+\begin{DoxyNote}{Note}
+
+\begin{DoxyItemize}
+\item Coordinates are handled in grid index space. Steered or optimized points are rounded to integer indices before validation.
+\item The distance transform is computed once per plan call and reused in collision checks and safety inflation.
+\item The neighborhood includes all immediate offsets except the zero vector.
+\item Only axis-\/aligned moves are expanded in the inner loop of plan() to keep turning penalties predictable; adjust as needed for your benchmark.
+\end{DoxyItemize}
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+Base\+Planner
+\end{DoxySeeAlso}
+@references
+\begin{DoxyItemize}
+\item Optimized A$\ast$ with safety-\/aware planning ideas\+: \href{https://www.mdpi.com/1424-8220/24/10/3149}{\texttt{ https\+://www.\+mdpi.\+com/1424-\/8220/24/10/3149}} 
+\end{DoxyItemize}

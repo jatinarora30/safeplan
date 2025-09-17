@@ -1,0 +1,294 @@
+\hypertarget{classdijkstra_1_1Dijkstra}{}\doxysection{dijkstra.\+Dijkstra Class Reference}
+\label{classdijkstra_1_1Dijkstra}\index{dijkstra.Dijkstra@{dijkstra.Dijkstra}}
+
+
+Inheritance diagram for dijkstra.\+Dijkstra\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=220pt]{classdijkstra_1_1Dijkstra__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for dijkstra.\+Dijkstra\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=220pt]{classdijkstra_1_1Dijkstra__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{classdijkstra_1_1Dijkstra_a8ed5bf4db9d82ae7984dcccdea10d898}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self)
+\begin{DoxyCompactList}\small\item\em Construct the \mbox{\hyperlink{classdijkstra_1_1Dijkstra}{Dijkstra}} planner. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classdijkstra_1_1Dijkstra_aff101244ca60cdec3cc65f1a26f1d396}{is\+Valid}} (self, grid\+\_\+cell)
+\begin{DoxyCompactList}\small\item\em Check whether a cell lies within grid bounds. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classdijkstra_1_1Dijkstra_a8c7ea87a66850149ac0ee1fa27ca4488}{adjacent\+Coordinates}} (self, \mbox{\hyperlink{classdijkstra_1_1Dijkstra_adb0be8656d65082dbcc8cc411e75188c}{node}})
+\begin{DoxyCompactList}\small\item\em Enumerate all adjacent coordinates in N-\/D (including diagonals). \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classdijkstra_1_1Dijkstra_af82f1789edd7a98103cea0a373561c9e}{plan}} (self, \mbox{\hyperlink{classdijkstra_1_1Dijkstra_a0f18b698bf3f31a810834e9045356f2b}{start}}, \mbox{\hyperlink{classdijkstra_1_1Dijkstra_a9c9dbf137c935c99dd62817d4251863e}{goal}}, \mbox{\hyperlink{classdijkstra_1_1Dijkstra_a5a18408f1a0c89368c4e281a351fbaee}{grid}})
+\begin{DoxyCompactList}\small\item\em Run \mbox{\hyperlink{classdijkstra_1_1Dijkstra}{Dijkstra}} planning from {\ttfamily start} to {\ttfamily goal} on {\ttfamily grid}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classdijkstra_1_1Dijkstra_a0b369764587de80aa247a2dc6a913615}{success}}
+\item 
+\mbox{\hyperlink{classdijkstra_1_1Dijkstra_a563f54831090ceb5320b815189e63bbc}{info}}
+\item 
+\mbox{\hyperlink{classdijkstra_1_1Dijkstra_a55aa5d6cae54b3377a58c272824766a5}{path}}
+\item 
+\mbox{\hyperlink{classdijkstra_1_1Dijkstra_a0f18b698bf3f31a810834e9045356f2b}{start}}
+\item 
+\mbox{\hyperlink{classdijkstra_1_1Dijkstra_a9c9dbf137c935c99dd62817d4251863e}{goal}}
+\item 
+\mbox{\hyperlink{classdijkstra_1_1Dijkstra_a5a18408f1a0c89368c4e281a351fbaee}{grid}}
+\item 
+\mbox{\hyperlink{classdijkstra_1_1Dijkstra_a64fb362a20351ca4d02f7a9e68e52966}{dimension}}
+\item 
+\mbox{\hyperlink{classdijkstra_1_1Dijkstra_af06ebb14be241650f527a5ea8e98916f}{sizes}}
+\item 
+\mbox{\hyperlink{classdijkstra_1_1Dijkstra_adef5d247680d7ee92559985b09ed73b8}{parent}}
+\item 
+\mbox{\hyperlink{classdijkstra_1_1Dijkstra_adb0be8656d65082dbcc8cc411e75188c}{node}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line 46 of file dijkstra.\+py.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classdijkstra_1_1Dijkstra_a8ed5bf4db9d82ae7984dcccdea10d898}\label{classdijkstra_1_1Dijkstra_a8ed5bf4db9d82ae7984dcccdea10d898}} 
+\index{dijkstra.Dijkstra@{dijkstra.Dijkstra}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!dijkstra.Dijkstra@{dijkstra.Dijkstra}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily def dijkstra.\+Dijkstra.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Construct the \mbox{\hyperlink{classdijkstra_1_1Dijkstra}{Dijkstra}} planner. 
+
+\begin{DoxyVerb}   @post Instance is initialized; outputs are cleared.
+\end{DoxyVerb}
+ 
+
+Reimplemented from \mbox{\hyperlink{classbaseplanner_1_1BasePlanner_ae93a4a31526fca583aa5626836d44ea7}{baseplanner.\+Base\+Planner}}.
+
+
+
+Definition at line 53 of file dijkstra.\+py.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classdijkstra_1_1Dijkstra_a8c7ea87a66850149ac0ee1fa27ca4488}\label{classdijkstra_1_1Dijkstra_a8c7ea87a66850149ac0ee1fa27ca4488}} 
+\index{dijkstra.Dijkstra@{dijkstra.Dijkstra}!adjacentCoordinates@{adjacentCoordinates}}
+\index{adjacentCoordinates@{adjacentCoordinates}!dijkstra.Dijkstra@{dijkstra.Dijkstra}}
+\doxysubsubsection{\texorpdfstring{adjacentCoordinates()}{adjacentCoordinates()}}
+{\footnotesize\ttfamily def dijkstra.\+Dijkstra.\+adjacent\+Coordinates (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{node }\end{DoxyParamCaption})}
+
+
+
+Enumerate all adjacent coordinates in N-\/D (including diagonals). 
+
+Generates all offset combinations in \{-\/1, 0, 1\} per dimension, excluding the all-\/zero offset. Validity and obstacle checks are performed during expansion in \mbox{\hyperlink{classdijkstra_1_1Dijkstra_af82f1789edd7a98103cea0a373561c9e}{plan()}}. 
+\begin{DoxyParams}{Parameters}
+{\em node} & tuple\mbox{[}int, ...\mbox{]} The reference grid cell. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+list$<$tuple\mbox{[}int, ...\mbox{]}$>$ Neighbor coordinates (not yet filtered). 
+\end{DoxyReturn}
+
+
+Definition at line 82 of file dijkstra.\+py.
+
+\mbox{\Hypertarget{classdijkstra_1_1Dijkstra_aff101244ca60cdec3cc65f1a26f1d396}\label{classdijkstra_1_1Dijkstra_aff101244ca60cdec3cc65f1a26f1d396}} 
+\index{dijkstra.Dijkstra@{dijkstra.Dijkstra}!isValid@{isValid}}
+\index{isValid@{isValid}!dijkstra.Dijkstra@{dijkstra.Dijkstra}}
+\doxysubsubsection{\texorpdfstring{isValid()}{isValid()}}
+{\footnotesize\ttfamily def dijkstra.\+Dijkstra.\+is\+Valid (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{grid\+\_\+cell }\end{DoxyParamCaption})}
+
+
+
+Check whether a cell lies within grid bounds. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em grid\+\_\+cell} & tuple\mbox{[}int, ...\mbox{]} Cell index to validate. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool True if inside grid extent; otherwise False. 
+\end{DoxyReturn}
+
+
+Definition at line 66 of file dijkstra.\+py.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classdijkstra_1_1Dijkstra_aff101244ca60cdec3cc65f1a26f1d396_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classdijkstra_1_1Dijkstra_af82f1789edd7a98103cea0a373561c9e}\label{classdijkstra_1_1Dijkstra_af82f1789edd7a98103cea0a373561c9e}} 
+\index{dijkstra.Dijkstra@{dijkstra.Dijkstra}!plan@{plan}}
+\index{plan@{plan}!dijkstra.Dijkstra@{dijkstra.Dijkstra}}
+\doxysubsubsection{\texorpdfstring{plan()}{plan()}}
+{\footnotesize\ttfamily def dijkstra.\+Dijkstra.\+plan (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{start,  }\item[{}]{goal,  }\item[{}]{grid }\end{DoxyParamCaption})}
+
+
+
+Run \mbox{\hyperlink{classdijkstra_1_1Dijkstra}{Dijkstra}} planning from {\ttfamily start} to {\ttfamily goal} on {\ttfamily grid}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em start} & tuple\mbox{[}int, ...\mbox{]} Start index in the N-\/D grid. \\
+\hline
+{\em goal} & tuple\mbox{[}int, ...\mbox{]} Goal index in the N-\/D grid. \\
+\hline
+{\em grid} & numpy.\+ndarray Occupancy grid (0=free, 1=obstacle). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+tuple
+\begin{DoxyItemize}
+\item {\ttfamily success} (int) \+: 1 if a path is found, else 0
+\item {\ttfamily path} (list\mbox{[}tuple\mbox{[}int, ...\mbox{]}\mbox{]}) \+: sequence from start to goal (inclusive)
+\item {\ttfamily info} (list\mbox{[}str\mbox{]}) \+: diagnostics or failure reasons 
+\end{DoxyItemize}
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Diagnostics}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{-\/ \textcolor{stringliteral}{"{}Invalid start"{}}, \textcolor{stringliteral}{"{}Invalid  goal"{}}}
+\DoxyCodeLine{-\/ \textcolor{stringliteral}{"{}Start has obstacle"{}}, \textcolor{stringliteral}{"{}Goal has obstacle"{}}}
+\DoxyCodeLine{-\/ \textcolor{stringliteral}{"{}Start and goal are same"{}}}
+\DoxyCodeLine{-\/ \textcolor{stringliteral}{"{}Failed to reconstruct path."{}}}
+
+\end{DoxyCode}
+ 
+\end{DoxyParagraph}
+\begin{DoxyNote}{Note}
+Uses a priority queue keyed by distance from the start. No heuristic is used. 
+\end{DoxyNote}
+
+
+Definition at line 112 of file dijkstra.\+py.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classdijkstra_1_1Dijkstra_a64fb362a20351ca4d02f7a9e68e52966}\label{classdijkstra_1_1Dijkstra_a64fb362a20351ca4d02f7a9e68e52966}} 
+\index{dijkstra.Dijkstra@{dijkstra.Dijkstra}!dimension@{dimension}}
+\index{dimension@{dimension}!dijkstra.Dijkstra@{dijkstra.Dijkstra}}
+\doxysubsubsection{\texorpdfstring{dimension}{dimension}}
+{\footnotesize\ttfamily dijkstra.\+Dijkstra.\+dimension}
+
+
+
+Definition at line 119 of file dijkstra.\+py.
+
+\mbox{\Hypertarget{classdijkstra_1_1Dijkstra_a9c9dbf137c935c99dd62817d4251863e}\label{classdijkstra_1_1Dijkstra_a9c9dbf137c935c99dd62817d4251863e}} 
+\index{dijkstra.Dijkstra@{dijkstra.Dijkstra}!goal@{goal}}
+\index{goal@{goal}!dijkstra.Dijkstra@{dijkstra.Dijkstra}}
+\doxysubsubsection{\texorpdfstring{goal}{goal}}
+{\footnotesize\ttfamily dijkstra.\+Dijkstra.\+goal}
+
+
+
+Definition at line 114 of file dijkstra.\+py.
+
+\mbox{\Hypertarget{classdijkstra_1_1Dijkstra_a5a18408f1a0c89368c4e281a351fbaee}\label{classdijkstra_1_1Dijkstra_a5a18408f1a0c89368c4e281a351fbaee}} 
+\index{dijkstra.Dijkstra@{dijkstra.Dijkstra}!grid@{grid}}
+\index{grid@{grid}!dijkstra.Dijkstra@{dijkstra.Dijkstra}}
+\doxysubsubsection{\texorpdfstring{grid}{grid}}
+{\footnotesize\ttfamily dijkstra.\+Dijkstra.\+grid}
+
+
+
+Definition at line 115 of file dijkstra.\+py.
+
+\mbox{\Hypertarget{classdijkstra_1_1Dijkstra_a563f54831090ceb5320b815189e63bbc}\label{classdijkstra_1_1Dijkstra_a563f54831090ceb5320b815189e63bbc}} 
+\index{dijkstra.Dijkstra@{dijkstra.Dijkstra}!info@{info}}
+\index{info@{info}!dijkstra.Dijkstra@{dijkstra.Dijkstra}}
+\doxysubsubsection{\texorpdfstring{info}{info}}
+{\footnotesize\ttfamily dijkstra.\+Dijkstra.\+info}
+
+
+
+Definition at line 56 of file dijkstra.\+py.
+
+\mbox{\Hypertarget{classdijkstra_1_1Dijkstra_adb0be8656d65082dbcc8cc411e75188c}\label{classdijkstra_1_1Dijkstra_adb0be8656d65082dbcc8cc411e75188c}} 
+\index{dijkstra.Dijkstra@{dijkstra.Dijkstra}!node@{node}}
+\index{node@{node}!dijkstra.Dijkstra@{dijkstra.Dijkstra}}
+\doxysubsubsection{\texorpdfstring{node}{node}}
+{\footnotesize\ttfamily dijkstra.\+Dijkstra.\+node}
+
+
+
+Definition at line 153 of file dijkstra.\+py.
+
+\mbox{\Hypertarget{classdijkstra_1_1Dijkstra_adef5d247680d7ee92559985b09ed73b8}\label{classdijkstra_1_1Dijkstra_adef5d247680d7ee92559985b09ed73b8}} 
+\index{dijkstra.Dijkstra@{dijkstra.Dijkstra}!parent@{parent}}
+\index{parent@{parent}!dijkstra.Dijkstra@{dijkstra.Dijkstra}}
+\doxysubsubsection{\texorpdfstring{parent}{parent}}
+{\footnotesize\ttfamily dijkstra.\+Dijkstra.\+parent}
+
+
+
+Definition at line 152 of file dijkstra.\+py.
+
+\mbox{\Hypertarget{classdijkstra_1_1Dijkstra_a55aa5d6cae54b3377a58c272824766a5}\label{classdijkstra_1_1Dijkstra_a55aa5d6cae54b3377a58c272824766a5}} 
+\index{dijkstra.Dijkstra@{dijkstra.Dijkstra}!path@{path}}
+\index{path@{path}!dijkstra.Dijkstra@{dijkstra.Dijkstra}}
+\doxysubsubsection{\texorpdfstring{path}{path}}
+{\footnotesize\ttfamily dijkstra.\+Dijkstra.\+path}
+
+
+
+Definition at line 58 of file dijkstra.\+py.
+
+\mbox{\Hypertarget{classdijkstra_1_1Dijkstra_af06ebb14be241650f527a5ea8e98916f}\label{classdijkstra_1_1Dijkstra_af06ebb14be241650f527a5ea8e98916f}} 
+\index{dijkstra.Dijkstra@{dijkstra.Dijkstra}!sizes@{sizes}}
+\index{sizes@{sizes}!dijkstra.Dijkstra@{dijkstra.Dijkstra}}
+\doxysubsubsection{\texorpdfstring{sizes}{sizes}}
+{\footnotesize\ttfamily dijkstra.\+Dijkstra.\+sizes}
+
+
+
+Definition at line 120 of file dijkstra.\+py.
+
+\mbox{\Hypertarget{classdijkstra_1_1Dijkstra_a0f18b698bf3f31a810834e9045356f2b}\label{classdijkstra_1_1Dijkstra_a0f18b698bf3f31a810834e9045356f2b}} 
+\index{dijkstra.Dijkstra@{dijkstra.Dijkstra}!start@{start}}
+\index{start@{start}!dijkstra.Dijkstra@{dijkstra.Dijkstra}}
+\doxysubsubsection{\texorpdfstring{start}{start}}
+{\footnotesize\ttfamily dijkstra.\+Dijkstra.\+start}
+
+
+
+Definition at line 113 of file dijkstra.\+py.
+
+\mbox{\Hypertarget{classdijkstra_1_1Dijkstra_a0b369764587de80aa247a2dc6a913615}\label{classdijkstra_1_1Dijkstra_a0b369764587de80aa247a2dc6a913615}} 
+\index{dijkstra.Dijkstra@{dijkstra.Dijkstra}!success@{success}}
+\index{success@{success}!dijkstra.Dijkstra@{dijkstra.Dijkstra}}
+\doxysubsubsection{\texorpdfstring{success}{success}}
+{\footnotesize\ttfamily dijkstra.\+Dijkstra.\+success}
+
+
+
+Definition at line 55 of file dijkstra.\+py.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+safeplan/algos/\mbox{\hyperlink{dijkstra_8py}{dijkstra.\+py}}\end{DoxyCompactItemize}

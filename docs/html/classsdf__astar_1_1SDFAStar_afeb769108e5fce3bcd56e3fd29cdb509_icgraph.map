@@ -1,0 +1,4 @@
+<map id="sdf_astar.SDFAStar.safetyHeuristics" name="sdf_astar.SDFAStar.safetyHeuristics">
+<area shape="rect" id="node1" title="Local SDF&#45;based safety measure at a node, relative to the motion direction." alt="" coords="264,5,452,47"/>
+<area shape="rect" id="node2" href="$classsdf__astar_1_1SDFAStar.html#a1e23d62a8095da44971978e455d278d2" title="Combined priority for A* that blends distance and SDF&#45;based safety." alt="" coords="5,5,216,47"/>
+</map>

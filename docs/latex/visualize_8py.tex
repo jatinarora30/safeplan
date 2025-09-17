@@ -1,7 +1,64 @@
 \hypertarget{visualize_8py}{}\doxysection{safeplan/core/visualize.py File Reference}
 \label{visualize_8py}\index{safeplan/core/visualize.py@{safeplan/core/visualize.py}}
+
+
+Render 2D/3D occupancy grids and algorithm paths from run outputs.  
+
+
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classvisualize_1_1Visualize}{visualize.\+Visualize}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classvisualize_1_1Visualize}{Visualize}} 2D and 3D environments and algorithm paths. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Namespaces}
 \begin{DoxyCompactItemize}
 \item 
  \mbox{\hyperlink{namespacevisualize}{visualize}}
 \end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{namespacevisualize_aadaa799b04726e0ea0fed85df04bce61}{visualize.\+HAS\+\_\+\+MPL\+\_\+3D}} = True
+\item 
+\mbox{\hyperlink{namespacevisualize_a9913d3a307591b055c3ac0bef3e1eb37}{visualize.\+default}}
+\item 
+bool \mbox{\hyperlink{namespacevisualize_ad0238509ac3c8da52423a5ef975d58d8}{visualize.\+HAS\+\_\+\+PLOTLY}} = True
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Render 2D/3D occupancy grids and algorithm paths from run outputs. 
+
+Provides convenient plotting for benchmark runs. For 2D grids, writes a PNG with obstacles, start/goal markers, and optional path overlays. For 3D grids, writes an interactive Plotly HTML (isosurface + point cloud + paths), and can optionally save a Matplotlib 3D PNG snapshot when available.
+
+Expected input format per algorithm file\+:
+\begin{DoxyItemize}
+\item Located at {\ttfamily outputs/$<$run\+Details$>$/$<$algo$>$/iter\+\_\+$<$N$>$.json}
+\item Contains\+:
+\begin{DoxyItemize}
+\item {\ttfamily env\+Info.\+grid} \+: N-\/D list/array (0=free, $>$0=occupied)
+\item {\ttfamily start\+Goal.\+start} \+: start index tuple/list
+\item {\ttfamily start\+Goal.\+goal} \+: goal index tuple/list
+\item {\ttfamily path\+Info.\+path} \+: list of coordinates (tuples/lists)
+\end{DoxyItemize}
+
+\begin{DoxyParagraph}{Artifacts}
+
+\end{DoxyParagraph}
+
+\item 2D PNG\+: {\ttfamily results/viz/grid2d\+\_\+iter$<$N$>$.png}
+\item 3D HTML\+: {\ttfamily results/viz/grid3d\+\_\+iter$<$N$>$.html}
+\item Optional 3D PNG\+: {\ttfamily results/viz/grid3d\+\_\+iter$<$N$>$.png}
+\end{DoxyItemize}
+
+\begin{DoxyNote}{Note}
+
+\begin{DoxyItemize}
+\item Plotly is preferred for 3D (opens in a browser). If Plotly is unavailable, the code attempts a Matplotlib 3D fallback when possible.
+\item Obstacles are rendered as black (2D) or red (3D). Paths are colored and labeled by algorithm name.
+\item The function auto-\/creates {\ttfamily results/viz/} if it does not exist.
+\end{DoxyItemize}
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+plotly.\+graph\+\_\+objects, matplotlib.\+pyplot 
+\end{DoxySeeAlso}

@@ -1,0 +1,4 @@
+<map id="generate_grid.GenerateGrid.getRandomFreeCell" name="generate_grid.GenerateGrid.getRandomFreeCell">
+<area shape="rect" id="node1" title="Sample a random free cell uniformly from the grid." alt="" coords="311,5,539,47"/>
+<area shape="rect" id="node2" href="$classgenerate__grid_1_1GenerateGrid.html#aa81e730d8e0c684eb75f6babec81812d" title="Build or load the occupancy grid and associated metadata." alt="" coords="5,13,263,39"/>
+</map>

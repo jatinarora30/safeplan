@@ -1,0 +1,202 @@
+\hypertarget{classlogger_1_1Logger}{}\doxysection{logger.\+Logger Class Reference}
+\label{classlogger_1_1Logger}\index{logger.Logger@{logger.Logger}}
+
+
+Handles logging of path planning experiments including environment, evaluation, and path data.  
+
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{classlogger_1_1Logger_af0399c2c7fdfe418fd9e47aa0dba43d3}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, \mbox{\hyperlink{classlogger_1_1Logger_a4c394f9714c4f93b5f81de2cdc374a64}{run\+Details}}, \mbox{\hyperlink{classlogger_1_1Logger_a9d63ced8591390043a2b35d22f84768c}{algos}}, \mbox{\hyperlink{classlogger_1_1Logger_ae7145c71ebdceb4bc932598d30656e9a}{output\+Dir}})
+\begin{DoxyCompactList}\small\item\em Construct a \mbox{\hyperlink{classlogger_1_1Logger}{Logger}} and prepare the output directory tree. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classlogger_1_1Logger_ac13c9d12b169c13901b7e904ccc38253}{get\+Obj\+And\+Class}} (self, data)
+\begin{DoxyCompactList}\small\item\em Extract the algorithm name and object from a (name, object) pair. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classlogger_1_1Logger_a7bb059b851402112833ccbd8f1449df7}{create\+Dir}} (self, path)
+\begin{DoxyCompactList}\small\item\em Create a directory if needed, with simple exception handling. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classlogger_1_1Logger_af2a8971a0b72fd863702c2c867ea3072}{log}} (self, iter, algo, path\+Data, eval\+Data, pair, scenerio)
+\begin{DoxyCompactList}\small\item\em Write a single iteration’s results for one algorithm to JSON. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classlogger_1_1Logger_a9d63ced8591390043a2b35d22f84768c}{algos}}
+\item 
+\mbox{\hyperlink{classlogger_1_1Logger_a4c394f9714c4f93b5f81de2cdc374a64}{run\+Details}}
+\item 
+\mbox{\hyperlink{classlogger_1_1Logger_ae7145c71ebdceb4bc932598d30656e9a}{output\+Dir}}
+\item 
+\mbox{\hyperlink{classlogger_1_1Logger_a961a0f0b62e647f9072ef6d0f726ac78}{run\+Path}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Handles logging of path planning experiments including environment, evaluation, and path data. 
+
+Initializes a run directory and one subdirectory per algorithm, then provides a method to write a structured JSON for each iteration and algorithm. 
+
+Definition at line 34 of file logger.\+py.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classlogger_1_1Logger_af0399c2c7fdfe418fd9e47aa0dba43d3}\label{classlogger_1_1Logger_af0399c2c7fdfe418fd9e47aa0dba43d3}} 
+\index{logger.Logger@{logger.Logger}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!logger.Logger@{logger.Logger}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily def logger.\+Logger.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{run\+Details,  }\item[{}]{algos,  }\item[{}]{output\+Dir }\end{DoxyParamCaption})}
+
+
+
+Construct a \mbox{\hyperlink{classlogger_1_1Logger}{Logger}} and prepare the output directory tree. 
+
+\begin{DoxyVerb}   @param runDetails str
+          Identifier for the run (used to create a subdirectory under @p outputDir).
+   @param algos list[tuple[str, Any]]
+          Sequence of (algorithm_name, algorithm_object) tuples.
+   @param outputDir str
+          Root directory where run and algorithm subfolders will be created.
+
+   @post
+   - Ensures @p outputDir exists.
+   - Creates @c <outputDir>/<runDetails>/ and one subdirectory per algorithm name.
+\end{DoxyVerb}
+ 
+
+Definition at line 50 of file logger.\+py.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classlogger_1_1Logger_a7bb059b851402112833ccbd8f1449df7}\label{classlogger_1_1Logger_a7bb059b851402112833ccbd8f1449df7}} 
+\index{logger.Logger@{logger.Logger}!createDir@{createDir}}
+\index{createDir@{createDir}!logger.Logger@{logger.Logger}}
+\doxysubsubsection{\texorpdfstring{createDir()}{createDir()}}
+{\footnotesize\ttfamily def logger.\+Logger.\+create\+Dir (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{path }\end{DoxyParamCaption})}
+
+
+
+Create a directory if needed, with simple exception handling. 
+
+\begin{DoxyVerb}   @param path str
+          Directory path to create.
+
+   @return None
+           Prints a message on success, existence, or failure.
+\end{DoxyVerb}
+ 
+
+Definition at line 91 of file logger.\+py.
+
+\mbox{\Hypertarget{classlogger_1_1Logger_ac13c9d12b169c13901b7e904ccc38253}\label{classlogger_1_1Logger_ac13c9d12b169c13901b7e904ccc38253}} 
+\index{logger.Logger@{logger.Logger}!getObjAndClass@{getObjAndClass}}
+\index{getObjAndClass@{getObjAndClass}!logger.Logger@{logger.Logger}}
+\doxysubsubsection{\texorpdfstring{getObjAndClass()}{getObjAndClass()}}
+{\footnotesize\ttfamily def logger.\+Logger.\+get\+Obj\+And\+Class (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{data }\end{DoxyParamCaption})}
+
+
+
+Extract the algorithm name and object from a (name, object) pair. 
+
+\begin{DoxyVerb}   @param data tuple|list
+          Container with exactly one string (name) and one object (algorithm instance).
+   @return tuple[str, Any]
+           (name, obj) extracted from @p data.
+\end{DoxyVerb}
+ 
+
+Definition at line 72 of file logger.\+py.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classlogger_1_1Logger_ac13c9d12b169c13901b7e904ccc38253_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classlogger_1_1Logger_af2a8971a0b72fd863702c2c867ea3072}\label{classlogger_1_1Logger_af2a8971a0b72fd863702c2c867ea3072}} 
+\index{logger.Logger@{logger.Logger}!log@{log}}
+\index{log@{log}!logger.Logger@{logger.Logger}}
+\doxysubsubsection{\texorpdfstring{log()}{log()}}
+{\footnotesize\ttfamily def logger.\+Logger.\+log (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{iter,  }\item[{}]{algo,  }\item[{}]{path\+Data,  }\item[{}]{eval\+Data,  }\item[{}]{pair,  }\item[{}]{scenerio }\end{DoxyParamCaption})}
+
+
+
+Write a single iteration’s results for one algorithm to JSON. 
+
+\begin{DoxyVerb}   @details
+   Produces `iter_<iter>.json` in the algorithm’s subdirectory. The JSON contains:
+   - `algo`       : algorithm name (str)
+   - `evaluation` : evaluation metrics (as provided)
+   - `startGoal`  : start/goal data (as provided)
+   - `pathInfo`   : dict with `path` and `info` from @p pathData
+   - `envInfo`    : dict with `grid` (as list), `cellSize`, `envName`, `envDes`
+
+   @param iter int
+          Iteration number.
+   @param algo str
+          Algorithm name (must match a subdirectory prepared in the constructor).
+   @param pathData list|tuple
+          [success_flag, path_list, info] — only `path_list` and `info` are written.
+   @param evalData dict
+          Evaluation metrics to record.
+   @param pair list|tuple
+          Start/goal container to store under `startGoal` (e.g., {"start": ..., "goal": ...}).
+   @param scenerio list|tuple
+          [grid_array, cell_size, env_name, env_description].
+
+   @return None
+           Writes the JSON file to disk.
+\end{DoxyVerb}
+ 
+
+Definition at line 129 of file logger.\+py.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classlogger_1_1Logger_a9d63ced8591390043a2b35d22f84768c}\label{classlogger_1_1Logger_a9d63ced8591390043a2b35d22f84768c}} 
+\index{logger.Logger@{logger.Logger}!algos@{algos}}
+\index{algos@{algos}!logger.Logger@{logger.Logger}}
+\doxysubsubsection{\texorpdfstring{algos}{algos}}
+{\footnotesize\ttfamily logger.\+Logger.\+algos}
+
+
+
+Definition at line 51 of file logger.\+py.
+
+\mbox{\Hypertarget{classlogger_1_1Logger_ae7145c71ebdceb4bc932598d30656e9a}\label{classlogger_1_1Logger_ae7145c71ebdceb4bc932598d30656e9a}} 
+\index{logger.Logger@{logger.Logger}!outputDir@{outputDir}}
+\index{outputDir@{outputDir}!logger.Logger@{logger.Logger}}
+\doxysubsubsection{\texorpdfstring{outputDir}{outputDir}}
+{\footnotesize\ttfamily logger.\+Logger.\+output\+Dir}
+
+
+
+Definition at line 53 of file logger.\+py.
+
+\mbox{\Hypertarget{classlogger_1_1Logger_a4c394f9714c4f93b5f81de2cdc374a64}\label{classlogger_1_1Logger_a4c394f9714c4f93b5f81de2cdc374a64}} 
+\index{logger.Logger@{logger.Logger}!runDetails@{runDetails}}
+\index{runDetails@{runDetails}!logger.Logger@{logger.Logger}}
+\doxysubsubsection{\texorpdfstring{runDetails}{runDetails}}
+{\footnotesize\ttfamily logger.\+Logger.\+run\+Details}
+
+
+
+Definition at line 52 of file logger.\+py.
+
+\mbox{\Hypertarget{classlogger_1_1Logger_a961a0f0b62e647f9072ef6d0f726ac78}\label{classlogger_1_1Logger_a961a0f0b62e647f9072ef6d0f726ac78}} 
+\index{logger.Logger@{logger.Logger}!runPath@{runPath}}
+\index{runPath@{runPath}!logger.Logger@{logger.Logger}}
+\doxysubsubsection{\texorpdfstring{runPath}{runPath}}
+{\footnotesize\ttfamily logger.\+Logger.\+run\+Path}
+
+
+
+Definition at line 56 of file logger.\+py.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+safeplan/core/\mbox{\hyperlink{logger_8py}{logger.\+py}}\end{DoxyCompactItemize}

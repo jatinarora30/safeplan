@@ -1,0 +1,598 @@
+\hypertarget{classoptimized__astar_1_1OptimizedAStar}{}\doxysection{optimized\+\_\+astar.\+Optimized\+AStar Class Reference}
+\label{classoptimized__astar_1_1OptimizedAStar}\index{optimized\_astar.OptimizedAStar@{optimized\_astar.OptimizedAStar}}
+
+
+Inheritance diagram for optimized\+\_\+astar.\+Optimized\+AStar\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=228pt]{classoptimized__astar_1_1OptimizedAStar__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for optimized\+\_\+astar.\+Optimized\+AStar\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=228pt]{classoptimized__astar_1_1OptimizedAStar__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{classoptimized__astar_1_1OptimizedAStar_a09d995f3f058e9c94ca579a1049b8915}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, \mbox{\hyperlink{classoptimized__astar_1_1OptimizedAStar_aefd6bf7d11145767a3343465310e4a6d}{turn\+Penalty\+Coefficients}}, \mbox{\hyperlink{classoptimized__astar_1_1OptimizedAStar_ad510b16e99177d76a3aeb5fa39821308}{safety\+Dist\+Grid\+Radius}}, \mbox{\hyperlink{classoptimized__astar_1_1OptimizedAStar_a6bc5c337f9ddb397055e6019e919cad6}{max\+Inflate\+Iter}}, \mbox{\hyperlink{classoptimized__astar_1_1OptimizedAStar_aa5891e4bdc5074b4dd95fb5e1a0f375e}{point\+Samples}})
+\begin{DoxyCompactList}\small\item\em Construct the Optimized A$\ast$ planner. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classoptimized__astar_1_1OptimizedAStar_a753c4860a21c8819eaccc8e95f197373}{is\+Valid}} (self, grid\+\_\+cell)
+\begin{DoxyCompactList}\small\item\em Check whether a cell lies within grid bounds. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classoptimized__astar_1_1OptimizedAStar_a4e8606325ac980c1f6f0e3b4500c7856}{turn\+Heuristics}} (self, node1, node2, node3)
+\begin{DoxyCompactList}\small\item\em Estimate the local turn angle between two consecutive segments. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classoptimized__astar_1_1OptimizedAStar_a459963ca43f7006d271c1c0aa50ab2c3}{heuristics}} (self, node1, node2)
+\begin{DoxyCompactList}\small\item\em Heuristic distance between two nodes (Manhattan). \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classoptimized__astar_1_1OptimizedAStar_a0f88bb9024181746e64c44d12ac4bde1}{adjacent\+Coordinates}} (self, \mbox{\hyperlink{classoptimized__astar_1_1OptimizedAStar_a4f4ff591b522b1e146d2223d4fe8bdc4}{node}})
+\begin{DoxyCompactList}\small\item\em Enumerate all adjacent coordinates in N-\/D (including diagonals). \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classoptimized__astar_1_1OptimizedAStar_a6c1c0cb1b12e54ba40477b20fd522126}{calculate\+Raster\+Coeffiecient}} (self)
+\begin{DoxyCompactList}\small\item\em Compute a raster coefficient over the axis-\/aligned box between start and goal. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classoptimized__astar_1_1OptimizedAStar_a5fde849fd199efb2ee7965acd3d5f509}{safe\+Inflate}} (self)
+\begin{DoxyCompactList}\small\item\em Push intermediate waypoints away from obstacles using a distance transform. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classoptimized__astar_1_1OptimizedAStar_aba36b053b8514d9048881d0132b80ba6}{is\+Edge\+Free}} (self, pt1, pt2)
+\begin{DoxyCompactList}\small\item\em Check if the segment between two points is collision-\/free with clearance. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classoptimized__astar_1_1OptimizedAStar_a4f21260374482974a30986f653d9d942}{directional\+Optimize}} (self, \mbox{\hyperlink{classoptimized__astar_1_1OptimizedAStar_a5257c19db02c979ee5ff93eb9d1c50cf}{path}})
+\begin{DoxyCompactList}\small\item\em Shortcut a path by removing unnecessary waypoints in one direction. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classoptimized__astar_1_1OptimizedAStar_a7cd90a3d3026598224d31ce4700995b3}{bidirectional\+Optimize}} (self)
+\begin{DoxyCompactList}\small\item\em Apply directional shortcutting in both directions and choose the better result. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classoptimized__astar_1_1OptimizedAStar_a0bae49b8091447b35c1e7f70f9ebbf32}{plan}} (self, \mbox{\hyperlink{classoptimized__astar_1_1OptimizedAStar_aa219d3f5dbc18efde22c977c251780ec}{start}}, \mbox{\hyperlink{classoptimized__astar_1_1OptimizedAStar_a4513a117ea5ee34df5ae309b2c1afe76}{goal}}, \mbox{\hyperlink{classoptimized__astar_1_1OptimizedAStar_a7eeece99cee34ea01890b64a4531ac73}{grid}})
+\begin{DoxyCompactList}\small\item\em Run Optimized A$\ast$ from start to goal on the provided grid. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classoptimized__astar_1_1OptimizedAStar_a78d079de662bb3383147790f8c7a7871}{success}}
+\item 
+\mbox{\hyperlink{classoptimized__astar_1_1OptimizedAStar_aefd6bf7d11145767a3343465310e4a6d}{turn\+Penalty\+Coefficients}}
+\item 
+\mbox{\hyperlink{classoptimized__astar_1_1OptimizedAStar_ad510b16e99177d76a3aeb5fa39821308}{safety\+Dist\+Grid\+Radius}}
+\item 
+\mbox{\hyperlink{classoptimized__astar_1_1OptimizedAStar_a6bc5c337f9ddb397055e6019e919cad6}{max\+Inflate\+Iter}}
+\item 
+\mbox{\hyperlink{classoptimized__astar_1_1OptimizedAStar_aa5891e4bdc5074b4dd95fb5e1a0f375e}{point\+Samples}}
+\item 
+\mbox{\hyperlink{classoptimized__astar_1_1OptimizedAStar_a78400c15aa59c67b576dd653082fb089}{info}}
+\item 
+\mbox{\hyperlink{classoptimized__astar_1_1OptimizedAStar_a5257c19db02c979ee5ff93eb9d1c50cf}{path}}
+\item 
+\mbox{\hyperlink{classoptimized__astar_1_1OptimizedAStar_a9d7d0b448817392e809c6d72c8ddf7e5}{distance\+Transform}}
+\item 
+\mbox{\hyperlink{classoptimized__astar_1_1OptimizedAStar_acc057103f26b3848e56a0ffc2f0717e9}{updated\+Path}}
+\item 
+\mbox{\hyperlink{classoptimized__astar_1_1OptimizedAStar_aa219d3f5dbc18efde22c977c251780ec}{start}}
+\item 
+\mbox{\hyperlink{classoptimized__astar_1_1OptimizedAStar_a4513a117ea5ee34df5ae309b2c1afe76}{goal}}
+\item 
+\mbox{\hyperlink{classoptimized__astar_1_1OptimizedAStar_a7eeece99cee34ea01890b64a4531ac73}{grid}}
+\item 
+\mbox{\hyperlink{classoptimized__astar_1_1OptimizedAStar_ab4fcc4d45e31db0b47ea40e7228793bb}{dimension}}
+\item 
+\mbox{\hyperlink{classoptimized__astar_1_1OptimizedAStar_ac32fd8f41c491c24c36c763acbd9bf53}{sizes}}
+\item 
+\mbox{\hyperlink{classoptimized__astar_1_1OptimizedAStar_a088cde5bf5a263d5b7c93ca58379a52f}{lnP}}
+\item 
+\mbox{\hyperlink{classoptimized__astar_1_1OptimizedAStar_ade81912857e3a9ab4fda5a5927a19a37}{parent}}
+\item 
+\mbox{\hyperlink{classoptimized__astar_1_1OptimizedAStar_a4f4ff591b522b1e146d2223d4fe8bdc4}{node}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line 65 of file optimized\+\_\+astar.\+py.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classoptimized__astar_1_1OptimizedAStar_a09d995f3f058e9c94ca579a1049b8915}\label{classoptimized__astar_1_1OptimizedAStar_a09d995f3f058e9c94ca579a1049b8915}} 
+\index{optimized\_astar.OptimizedAStar@{optimized\_astar.OptimizedAStar}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!optimized\_astar.OptimizedAStar@{optimized\_astar.OptimizedAStar}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily def optimized\+\_\+astar.\+Optimized\+AStar.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{turn\+Penalty\+Coefficients,  }\item[{}]{safety\+Dist\+Grid\+Radius,  }\item[{}]{max\+Inflate\+Iter,  }\item[{}]{point\+Samples }\end{DoxyParamCaption})}
+
+
+
+Construct the Optimized A$\ast$ planner. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em turn\+Penalty\+Coefficients} & float Multiplier for local turn penalty. \\
+\hline
+{\em safety\+Dist\+Grid\+Radius} & float Minimum clearance target in grid cells. \\
+\hline
+{\em max\+Inflate\+Iter} & int Maximum iterations for safety inflation per waypoint. \\
+\hline
+{\em point\+Samples} & int Samples per edge for collision checking. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPostcond}{Postcondition}
+Instance is initialized; outputs are cleared. 
+\end{DoxyPostcond}
+
+
+Definition at line 75 of file optimized\+\_\+astar.\+py.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classoptimized__astar_1_1OptimizedAStar_a0f88bb9024181746e64c44d12ac4bde1}\label{classoptimized__astar_1_1OptimizedAStar_a0f88bb9024181746e64c44d12ac4bde1}} 
+\index{optimized\_astar.OptimizedAStar@{optimized\_astar.OptimizedAStar}!adjacentCoordinates@{adjacentCoordinates}}
+\index{adjacentCoordinates@{adjacentCoordinates}!optimized\_astar.OptimizedAStar@{optimized\_astar.OptimizedAStar}}
+\doxysubsubsection{\texorpdfstring{adjacentCoordinates()}{adjacentCoordinates()}}
+{\footnotesize\ttfamily def optimized\+\_\+astar.\+Optimized\+AStar.\+adjacent\+Coordinates (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{node }\end{DoxyParamCaption})}
+
+
+
+Enumerate all adjacent coordinates in N-\/D (including diagonals). 
+
+Generates all offset combinations in \{-\/1, 0, 1\} per dimension, excluding the all-\/zero offset. Validity and obstacle checks are performed during expansion in \mbox{\hyperlink{classoptimized__astar_1_1OptimizedAStar_a0bae49b8091447b35c1e7f70f9ebbf32}{plan()}}. 
+\begin{DoxyParams}{Parameters}
+{\em node} & tuple\mbox{[}int, ...\mbox{]} The reference grid cell. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+list$<$tuple\mbox{[}int, ...\mbox{]}$>$ Neighbor coordinates (not yet filtered). 
+\end{DoxyReturn}
+
+
+Definition at line 144 of file optimized\+\_\+astar.\+py.
+
+\mbox{\Hypertarget{classoptimized__astar_1_1OptimizedAStar_a7cd90a3d3026598224d31ce4700995b3}\label{classoptimized__astar_1_1OptimizedAStar_a7cd90a3d3026598224d31ce4700995b3}} 
+\index{optimized\_astar.OptimizedAStar@{optimized\_astar.OptimizedAStar}!bidirectionalOptimize@{bidirectionalOptimize}}
+\index{bidirectionalOptimize@{bidirectionalOptimize}!optimized\_astar.OptimizedAStar@{optimized\_astar.OptimizedAStar}}
+\doxysubsubsection{\texorpdfstring{bidirectionalOptimize()}{bidirectionalOptimize()}}
+{\footnotesize\ttfamily def optimized\+\_\+astar.\+Optimized\+AStar.\+bidirectional\+Optimize (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Apply directional shortcutting in both directions and choose the better result. 
+
+Runs \mbox{\hyperlink{classoptimized__astar_1_1OptimizedAStar_a4f21260374482974a30986f653d9d942}{directional\+Optimize()}} forward and backward, then returns the shorter of the two results. \begin{DoxyReturn}{Returns}
+list\mbox{[}tuple\mbox{[}int, ...\mbox{]}\mbox{]} Path after bidirectional shortcutting. 
+\end{DoxyReturn}
+
+
+Definition at line 280 of file optimized\+\_\+astar.\+py.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classoptimized__astar_1_1OptimizedAStar_a7cd90a3d3026598224d31ce4700995b3_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classoptimized__astar_1_1OptimizedAStar_a6c1c0cb1b12e54ba40477b20fd522126}\label{classoptimized__astar_1_1OptimizedAStar_a6c1c0cb1b12e54ba40477b20fd522126}} 
+\index{optimized\_astar.OptimizedAStar@{optimized\_astar.OptimizedAStar}!calculateRasterCoeffiecient@{calculateRasterCoeffiecient}}
+\index{calculateRasterCoeffiecient@{calculateRasterCoeffiecient}!optimized\_astar.OptimizedAStar@{optimized\_astar.OptimizedAStar}}
+\doxysubsubsection{\texorpdfstring{calculateRasterCoeffiecient()}{calculateRasterCoeffiecient()}}
+{\footnotesize\ttfamily def optimized\+\_\+astar.\+Optimized\+AStar.\+calculate\+Raster\+Coeffiecient (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Compute a raster coefficient over the axis-\/aligned box between start and goal. 
+
+Extracts the hyper-\/rectangle spanning start and goal, counts obstacle cells, and returns the natural logarithm of the obstacle ratio. The value is clamped away from zero and one for numerical stability. \begin{DoxyReturn}{Returns}
+float Natural log of the clamped obstacle ratio in the rectangle. 
+\end{DoxyReturn}
+
+
+Definition at line 163 of file optimized\+\_\+astar.\+py.
+
+\mbox{\Hypertarget{classoptimized__astar_1_1OptimizedAStar_a4f21260374482974a30986f653d9d942}\label{classoptimized__astar_1_1OptimizedAStar_a4f21260374482974a30986f653d9d942}} 
+\index{optimized\_astar.OptimizedAStar@{optimized\_astar.OptimizedAStar}!directionalOptimize@{directionalOptimize}}
+\index{directionalOptimize@{directionalOptimize}!optimized\_astar.OptimizedAStar@{optimized\_astar.OptimizedAStar}}
+\doxysubsubsection{\texorpdfstring{directionalOptimize()}{directionalOptimize()}}
+{\footnotesize\ttfamily def optimized\+\_\+astar.\+Optimized\+AStar.\+directional\+Optimize (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{path }\end{DoxyParamCaption})}
+
+
+
+Shortcut a path by removing unnecessary waypoints in one direction. 
+
+Starting at the first point, repeatedly select the farthest point that is directly reachable with a collision-\/free edge, then continue from there. 
+\begin{DoxyParams}{Parameters}
+{\em path} & list\mbox{[}tuple\mbox{[}int, ...\mbox{]}\mbox{]} Path to optimize. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+list\mbox{[}tuple\mbox{[}int, ...\mbox{]}\mbox{]} Optimized path with fewer waypoints. 
+\end{DoxyReturn}
+
+
+Definition at line 254 of file optimized\+\_\+astar.\+py.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classoptimized__astar_1_1OptimizedAStar_a4f21260374482974a30986f653d9d942_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classoptimized__astar_1_1OptimizedAStar_a4f21260374482974a30986f653d9d942_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classoptimized__astar_1_1OptimizedAStar_a459963ca43f7006d271c1c0aa50ab2c3}\label{classoptimized__astar_1_1OptimizedAStar_a459963ca43f7006d271c1c0aa50ab2c3}} 
+\index{optimized\_astar.OptimizedAStar@{optimized\_astar.OptimizedAStar}!heuristics@{heuristics}}
+\index{heuristics@{heuristics}!optimized\_astar.OptimizedAStar@{optimized\_astar.OptimizedAStar}}
+\doxysubsubsection{\texorpdfstring{heuristics()}{heuristics()}}
+{\footnotesize\ttfamily def optimized\+\_\+astar.\+Optimized\+AStar.\+heuristics (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{node1,  }\item[{}]{node2 }\end{DoxyParamCaption})}
+
+
+
+Heuristic distance between two nodes (Manhattan). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em node1} & tuple\mbox{[}int, ...\mbox{]} First node. \\
+\hline
+{\em node2} & tuple\mbox{[}int, ...\mbox{]} Second node. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+float Sum of absolute coordinate differences. 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Choose a heuristic that matches the allowed moves and step costs. 
+\end{DoxyNote}
+
+
+Definition at line 128 of file optimized\+\_\+astar.\+py.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classoptimized__astar_1_1OptimizedAStar_a459963ca43f7006d271c1c0aa50ab2c3_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classoptimized__astar_1_1OptimizedAStar_aba36b053b8514d9048881d0132b80ba6}\label{classoptimized__astar_1_1OptimizedAStar_aba36b053b8514d9048881d0132b80ba6}} 
+\index{optimized\_astar.OptimizedAStar@{optimized\_astar.OptimizedAStar}!isEdgeFree@{isEdgeFree}}
+\index{isEdgeFree@{isEdgeFree}!optimized\_astar.OptimizedAStar@{optimized\_astar.OptimizedAStar}}
+\doxysubsubsection{\texorpdfstring{isEdgeFree()}{isEdgeFree()}}
+{\footnotesize\ttfamily def optimized\+\_\+astar.\+Optimized\+AStar.\+is\+Edge\+Free (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{pt1,  }\item[{}]{pt2 }\end{DoxyParamCaption})}
+
+
+
+Check if the segment between two points is collision-\/free with clearance. 
+
+Samples a fixed number of points linearly between the endpoints. Each sample is rounded to the nearest grid index. The edge is rejected if any sampled index is out of bounds, lies on an obstacle, or has distance-\/to-\/obstacle below the configured safety radius. 
+\begin{DoxyParams}{Parameters}
+{\em pt1} & sequence\mbox{[}float\mbox{]} Segment start in continuous coordinates. \\
+\hline
+{\em pt2} & sequence\mbox{[}float\mbox{]} Segment end in continuous coordinates. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool True if all sampled points are valid, free, and safely clear. 
+\end{DoxyReturn}
+
+
+Definition at line 228 of file optimized\+\_\+astar.\+py.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classoptimized__astar_1_1OptimizedAStar_aba36b053b8514d9048881d0132b80ba6_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classoptimized__astar_1_1OptimizedAStar_aba36b053b8514d9048881d0132b80ba6_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classoptimized__astar_1_1OptimizedAStar_a753c4860a21c8819eaccc8e95f197373}\label{classoptimized__astar_1_1OptimizedAStar_a753c4860a21c8819eaccc8e95f197373}} 
+\index{optimized\_astar.OptimizedAStar@{optimized\_astar.OptimizedAStar}!isValid@{isValid}}
+\index{isValid@{isValid}!optimized\_astar.OptimizedAStar@{optimized\_astar.OptimizedAStar}}
+\doxysubsubsection{\texorpdfstring{isValid()}{isValid()}}
+{\footnotesize\ttfamily def optimized\+\_\+astar.\+Optimized\+AStar.\+is\+Valid (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{grid\+\_\+cell }\end{DoxyParamCaption})}
+
+
+
+Check whether a cell lies within grid bounds. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em grid\+\_\+cell} & tuple\mbox{[}int, ...\mbox{]} Cell index to validate. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool True if inside grid extent; otherwise False. 
+\end{DoxyReturn}
+
+
+Definition at line 92 of file optimized\+\_\+astar.\+py.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classoptimized__astar_1_1OptimizedAStar_a753c4860a21c8819eaccc8e95f197373_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classoptimized__astar_1_1OptimizedAStar_a0bae49b8091447b35c1e7f70f9ebbf32}\label{classoptimized__astar_1_1OptimizedAStar_a0bae49b8091447b35c1e7f70f9ebbf32}} 
+\index{optimized\_astar.OptimizedAStar@{optimized\_astar.OptimizedAStar}!plan@{plan}}
+\index{plan@{plan}!optimized\_astar.OptimizedAStar@{optimized\_astar.OptimizedAStar}}
+\doxysubsubsection{\texorpdfstring{plan()}{plan()}}
+{\footnotesize\ttfamily def optimized\+\_\+astar.\+Optimized\+AStar.\+plan (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{start,  }\item[{}]{goal,  }\item[{}]{grid }\end{DoxyParamCaption})}
+
+
+
+Run Optimized A$\ast$ from start to goal on the provided grid. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em start} & tuple\mbox{[}int, ...\mbox{]} Start index in the N-\/D grid. \\
+\hline
+{\em goal} & tuple\mbox{[}int, ...\mbox{]} Goal index in the N-\/D grid. \\
+\hline
+{\em grid} & numpy.\+ndarray Occupancy grid (0=free, 1=obstacle). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+tuple
+\begin{DoxyItemize}
+\item {\ttfamily success} (int) \+: 1 if a path is found, else 0
+\item {\ttfamily path} (list\mbox{[}tuple\mbox{[}int, ...\mbox{]}\mbox{]}) \+: sequence from start to goal (inclusive)
+\item {\ttfamily info} (list\mbox{[}str\mbox{]}) \+: diagnostics or failure reasons 
+\end{DoxyItemize}
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Diagnostics}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{-\/ \textcolor{stringliteral}{"{}Invalid start"{}}, \textcolor{stringliteral}{"{}Invalid  goal"{}}}
+\DoxyCodeLine{-\/ \textcolor{stringliteral}{"{}Start has obstacle"{}}, \textcolor{stringliteral}{"{}Goal has obstacle"{}}}
+\DoxyCodeLine{-\/ \textcolor{stringliteral}{"{}Start and goal are same"{}}}
+\DoxyCodeLine{-\/ \textcolor{stringliteral}{"{}Failed to reconstruct path."{}}}
+
+\end{DoxyCode}
+ 
+\end{DoxyParagraph}
+\begin{DoxyNote}{Note}
+The method computes a raster coefficient for environmental clutter, uses an A$\ast$ loop with turn-\/aware total cost, inflates the path for safety, and finally applies bidirectional shortcutting. 
+\end{DoxyNote}
+
+
+Definition at line 310 of file optimized\+\_\+astar.\+py.
+
+\mbox{\Hypertarget{classoptimized__astar_1_1OptimizedAStar_a5fde849fd199efb2ee7965acd3d5f509}\label{classoptimized__astar_1_1OptimizedAStar_a5fde849fd199efb2ee7965acd3d5f509}} 
+\index{optimized\_astar.OptimizedAStar@{optimized\_astar.OptimizedAStar}!safeInflate@{safeInflate}}
+\index{safeInflate@{safeInflate}!optimized\_astar.OptimizedAStar@{optimized\_astar.OptimizedAStar}}
+\doxysubsubsection{\texorpdfstring{safeInflate()}{safeInflate()}}
+{\footnotesize\ttfamily def optimized\+\_\+astar.\+Optimized\+AStar.\+safe\+Inflate (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Push intermediate waypoints away from obstacles using a distance transform. 
+
+Computes a distance transform on the free-\/space mask and attempts to replace intermediate path points with nearby points that have larger clearance, up to a configured target radius. The start and goal are preserved. \begin{DoxyReturn}{Returns}
+list\mbox{[}tuple\mbox{[}int, ...\mbox{]}\mbox{]} Updated path after safety inflation. 
+\end{DoxyReturn}
+
+
+Definition at line 190 of file optimized\+\_\+astar.\+py.
+
+\mbox{\Hypertarget{classoptimized__astar_1_1OptimizedAStar_a4e8606325ac980c1f6f0e3b4500c7856}\label{classoptimized__astar_1_1OptimizedAStar_a4e8606325ac980c1f6f0e3b4500c7856}} 
+\index{optimized\_astar.OptimizedAStar@{optimized\_astar.OptimizedAStar}!turnHeuristics@{turnHeuristics}}
+\index{turnHeuristics@{turnHeuristics}!optimized\_astar.OptimizedAStar@{optimized\_astar.OptimizedAStar}}
+\doxysubsubsection{\texorpdfstring{turnHeuristics()}{turnHeuristics()}}
+{\footnotesize\ttfamily def optimized\+\_\+astar.\+Optimized\+AStar.\+turn\+Heuristics (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{node1,  }\item[{}]{node2,  }\item[{}]{node3 }\end{DoxyParamCaption})}
+
+
+
+Estimate the local turn angle between two consecutive segments. 
+
+Computes the angle between the direction from {\ttfamily node1} to {\ttfamily node2} and the direction from {\ttfamily node2} to {\ttfamily node3}. Returns the angle in degrees. If any of the inputs are missing, returns zero. 
+\begin{DoxyParams}{Parameters}
+{\em node1} & tuple\mbox{[}int, ...\mbox{]} Previous waypoint. \\
+\hline
+{\em node2} & tuple\mbox{[}int, ...\mbox{]} Current waypoint. \\
+\hline
+{\em node3} & tuple\mbox{[}int, ...\mbox{]} Next waypoint. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+float Estimated heading change in degrees. 
+\end{DoxyReturn}
+
+
+Definition at line 109 of file optimized\+\_\+astar.\+py.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classoptimized__astar_1_1OptimizedAStar_ab4fcc4d45e31db0b47ea40e7228793bb}\label{classoptimized__astar_1_1OptimizedAStar_ab4fcc4d45e31db0b47ea40e7228793bb}} 
+\index{optimized\_astar.OptimizedAStar@{optimized\_astar.OptimizedAStar}!dimension@{dimension}}
+\index{dimension@{dimension}!optimized\_astar.OptimizedAStar@{optimized\_astar.OptimizedAStar}}
+\doxysubsubsection{\texorpdfstring{dimension}{dimension}}
+{\footnotesize\ttfamily optimized\+\_\+astar.\+Optimized\+AStar.\+dimension}
+
+
+
+Definition at line 317 of file optimized\+\_\+astar.\+py.
+
+\mbox{\Hypertarget{classoptimized__astar_1_1OptimizedAStar_a9d7d0b448817392e809c6d72c8ddf7e5}\label{classoptimized__astar_1_1OptimizedAStar_a9d7d0b448817392e809c6d72c8ddf7e5}} 
+\index{optimized\_astar.OptimizedAStar@{optimized\_astar.OptimizedAStar}!distanceTransform@{distanceTransform}}
+\index{distanceTransform@{distanceTransform}!optimized\_astar.OptimizedAStar@{optimized\_astar.OptimizedAStar}}
+\doxysubsubsection{\texorpdfstring{distanceTransform}{distanceTransform}}
+{\footnotesize\ttfamily optimized\+\_\+astar.\+Optimized\+AStar.\+distance\+Transform}
+
+
+
+Definition at line 191 of file optimized\+\_\+astar.\+py.
+
+\mbox{\Hypertarget{classoptimized__astar_1_1OptimizedAStar_a4513a117ea5ee34df5ae309b2c1afe76}\label{classoptimized__astar_1_1OptimizedAStar_a4513a117ea5ee34df5ae309b2c1afe76}} 
+\index{optimized\_astar.OptimizedAStar@{optimized\_astar.OptimizedAStar}!goal@{goal}}
+\index{goal@{goal}!optimized\_astar.OptimizedAStar@{optimized\_astar.OptimizedAStar}}
+\doxysubsubsection{\texorpdfstring{goal}{goal}}
+{\footnotesize\ttfamily optimized\+\_\+astar.\+Optimized\+AStar.\+goal}
+
+
+
+Definition at line 312 of file optimized\+\_\+astar.\+py.
+
+\mbox{\Hypertarget{classoptimized__astar_1_1OptimizedAStar_a7eeece99cee34ea01890b64a4531ac73}\label{classoptimized__astar_1_1OptimizedAStar_a7eeece99cee34ea01890b64a4531ac73}} 
+\index{optimized\_astar.OptimizedAStar@{optimized\_astar.OptimizedAStar}!grid@{grid}}
+\index{grid@{grid}!optimized\_astar.OptimizedAStar@{optimized\_astar.OptimizedAStar}}
+\doxysubsubsection{\texorpdfstring{grid}{grid}}
+{\footnotesize\ttfamily optimized\+\_\+astar.\+Optimized\+AStar.\+grid}
+
+
+
+Definition at line 313 of file optimized\+\_\+astar.\+py.
+
+\mbox{\Hypertarget{classoptimized__astar_1_1OptimizedAStar_a78400c15aa59c67b576dd653082fb089}\label{classoptimized__astar_1_1OptimizedAStar_a78400c15aa59c67b576dd653082fb089}} 
+\index{optimized\_astar.OptimizedAStar@{optimized\_astar.OptimizedAStar}!info@{info}}
+\index{info@{info}!optimized\_astar.OptimizedAStar@{optimized\_astar.OptimizedAStar}}
+\doxysubsubsection{\texorpdfstring{info}{info}}
+{\footnotesize\ttfamily optimized\+\_\+astar.\+Optimized\+AStar.\+info}
+
+
+
+Definition at line 82 of file optimized\+\_\+astar.\+py.
+
+\mbox{\Hypertarget{classoptimized__astar_1_1OptimizedAStar_a088cde5bf5a263d5b7c93ca58379a52f}\label{classoptimized__astar_1_1OptimizedAStar_a088cde5bf5a263d5b7c93ca58379a52f}} 
+\index{optimized\_astar.OptimizedAStar@{optimized\_astar.OptimizedAStar}!lnP@{lnP}}
+\index{lnP@{lnP}!optimized\_astar.OptimizedAStar@{optimized\_astar.OptimizedAStar}}
+\doxysubsubsection{\texorpdfstring{lnP}{lnP}}
+{\footnotesize\ttfamily optimized\+\_\+astar.\+Optimized\+AStar.\+lnP}
+
+
+
+Definition at line 343 of file optimized\+\_\+astar.\+py.
+
+\mbox{\Hypertarget{classoptimized__astar_1_1OptimizedAStar_a6bc5c337f9ddb397055e6019e919cad6}\label{classoptimized__astar_1_1OptimizedAStar_a6bc5c337f9ddb397055e6019e919cad6}} 
+\index{optimized\_astar.OptimizedAStar@{optimized\_astar.OptimizedAStar}!maxInflateIter@{maxInflateIter}}
+\index{maxInflateIter@{maxInflateIter}!optimized\_astar.OptimizedAStar@{optimized\_astar.OptimizedAStar}}
+\doxysubsubsection{\texorpdfstring{maxInflateIter}{maxInflateIter}}
+{\footnotesize\ttfamily optimized\+\_\+astar.\+Optimized\+AStar.\+max\+Inflate\+Iter}
+
+
+
+Definition at line 80 of file optimized\+\_\+astar.\+py.
+
+\mbox{\Hypertarget{classoptimized__astar_1_1OptimizedAStar_a4f4ff591b522b1e146d2223d4fe8bdc4}\label{classoptimized__astar_1_1OptimizedAStar_a4f4ff591b522b1e146d2223d4fe8bdc4}} 
+\index{optimized\_astar.OptimizedAStar@{optimized\_astar.OptimizedAStar}!node@{node}}
+\index{node@{node}!optimized\_astar.OptimizedAStar@{optimized\_astar.OptimizedAStar}}
+\doxysubsubsection{\texorpdfstring{node}{node}}
+{\footnotesize\ttfamily optimized\+\_\+astar.\+Optimized\+AStar.\+node}
+
+
+
+Definition at line 352 of file optimized\+\_\+astar.\+py.
+
+\mbox{\Hypertarget{classoptimized__astar_1_1OptimizedAStar_ade81912857e3a9ab4fda5a5927a19a37}\label{classoptimized__astar_1_1OptimizedAStar_ade81912857e3a9ab4fda5a5927a19a37}} 
+\index{optimized\_astar.OptimizedAStar@{optimized\_astar.OptimizedAStar}!parent@{parent}}
+\index{parent@{parent}!optimized\_astar.OptimizedAStar@{optimized\_astar.OptimizedAStar}}
+\doxysubsubsection{\texorpdfstring{parent}{parent}}
+{\footnotesize\ttfamily optimized\+\_\+astar.\+Optimized\+AStar.\+parent}
+
+
+
+Definition at line 351 of file optimized\+\_\+astar.\+py.
+
+\mbox{\Hypertarget{classoptimized__astar_1_1OptimizedAStar_a5257c19db02c979ee5ff93eb9d1c50cf}\label{classoptimized__astar_1_1OptimizedAStar_a5257c19db02c979ee5ff93eb9d1c50cf}} 
+\index{optimized\_astar.OptimizedAStar@{optimized\_astar.OptimizedAStar}!path@{path}}
+\index{path@{path}!optimized\_astar.OptimizedAStar@{optimized\_astar.OptimizedAStar}}
+\doxysubsubsection{\texorpdfstring{path}{path}}
+{\footnotesize\ttfamily optimized\+\_\+astar.\+Optimized\+AStar.\+path}
+
+
+
+Definition at line 84 of file optimized\+\_\+astar.\+py.
+
+\mbox{\Hypertarget{classoptimized__astar_1_1OptimizedAStar_aa5891e4bdc5074b4dd95fb5e1a0f375e}\label{classoptimized__astar_1_1OptimizedAStar_aa5891e4bdc5074b4dd95fb5e1a0f375e}} 
+\index{optimized\_astar.OptimizedAStar@{optimized\_astar.OptimizedAStar}!pointSamples@{pointSamples}}
+\index{pointSamples@{pointSamples}!optimized\_astar.OptimizedAStar@{optimized\_astar.OptimizedAStar}}
+\doxysubsubsection{\texorpdfstring{pointSamples}{pointSamples}}
+{\footnotesize\ttfamily optimized\+\_\+astar.\+Optimized\+AStar.\+point\+Samples}
+
+
+
+Definition at line 81 of file optimized\+\_\+astar.\+py.
+
+\mbox{\Hypertarget{classoptimized__astar_1_1OptimizedAStar_ad510b16e99177d76a3aeb5fa39821308}\label{classoptimized__astar_1_1OptimizedAStar_ad510b16e99177d76a3aeb5fa39821308}} 
+\index{optimized\_astar.OptimizedAStar@{optimized\_astar.OptimizedAStar}!safetyDistGridRadius@{safetyDistGridRadius}}
+\index{safetyDistGridRadius@{safetyDistGridRadius}!optimized\_astar.OptimizedAStar@{optimized\_astar.OptimizedAStar}}
+\doxysubsubsection{\texorpdfstring{safetyDistGridRadius}{safetyDistGridRadius}}
+{\footnotesize\ttfamily optimized\+\_\+astar.\+Optimized\+AStar.\+safety\+Dist\+Grid\+Radius}
+
+
+
+Definition at line 79 of file optimized\+\_\+astar.\+py.
+
+\mbox{\Hypertarget{classoptimized__astar_1_1OptimizedAStar_ac32fd8f41c491c24c36c763acbd9bf53}\label{classoptimized__astar_1_1OptimizedAStar_ac32fd8f41c491c24c36c763acbd9bf53}} 
+\index{optimized\_astar.OptimizedAStar@{optimized\_astar.OptimizedAStar}!sizes@{sizes}}
+\index{sizes@{sizes}!optimized\_astar.OptimizedAStar@{optimized\_astar.OptimizedAStar}}
+\doxysubsubsection{\texorpdfstring{sizes}{sizes}}
+{\footnotesize\ttfamily optimized\+\_\+astar.\+Optimized\+AStar.\+sizes}
+
+
+
+Definition at line 318 of file optimized\+\_\+astar.\+py.
+
+\mbox{\Hypertarget{classoptimized__astar_1_1OptimizedAStar_aa219d3f5dbc18efde22c977c251780ec}\label{classoptimized__astar_1_1OptimizedAStar_aa219d3f5dbc18efde22c977c251780ec}} 
+\index{optimized\_astar.OptimizedAStar@{optimized\_astar.OptimizedAStar}!start@{start}}
+\index{start@{start}!optimized\_astar.OptimizedAStar@{optimized\_astar.OptimizedAStar}}
+\doxysubsubsection{\texorpdfstring{start}{start}}
+{\footnotesize\ttfamily optimized\+\_\+astar.\+Optimized\+AStar.\+start}
+
+
+
+Definition at line 311 of file optimized\+\_\+astar.\+py.
+
+\mbox{\Hypertarget{classoptimized__astar_1_1OptimizedAStar_a78d079de662bb3383147790f8c7a7871}\label{classoptimized__astar_1_1OptimizedAStar_a78d079de662bb3383147790f8c7a7871}} 
+\index{optimized\_astar.OptimizedAStar@{optimized\_astar.OptimizedAStar}!success@{success}}
+\index{success@{success}!optimized\_astar.OptimizedAStar@{optimized\_astar.OptimizedAStar}}
+\doxysubsubsection{\texorpdfstring{success}{success}}
+{\footnotesize\ttfamily optimized\+\_\+astar.\+Optimized\+AStar.\+success}
+
+
+
+Definition at line 77 of file optimized\+\_\+astar.\+py.
+
+\mbox{\Hypertarget{classoptimized__astar_1_1OptimizedAStar_aefd6bf7d11145767a3343465310e4a6d}\label{classoptimized__astar_1_1OptimizedAStar_aefd6bf7d11145767a3343465310e4a6d}} 
+\index{optimized\_astar.OptimizedAStar@{optimized\_astar.OptimizedAStar}!turnPenaltyCoefficients@{turnPenaltyCoefficients}}
+\index{turnPenaltyCoefficients@{turnPenaltyCoefficients}!optimized\_astar.OptimizedAStar@{optimized\_astar.OptimizedAStar}}
+\doxysubsubsection{\texorpdfstring{turnPenaltyCoefficients}{turnPenaltyCoefficients}}
+{\footnotesize\ttfamily optimized\+\_\+astar.\+Optimized\+AStar.\+turn\+Penalty\+Coefficients}
+
+
+
+Definition at line 78 of file optimized\+\_\+astar.\+py.
+
+\mbox{\Hypertarget{classoptimized__astar_1_1OptimizedAStar_acc057103f26b3848e56a0ffc2f0717e9}\label{classoptimized__astar_1_1OptimizedAStar_acc057103f26b3848e56a0ffc2f0717e9}} 
+\index{optimized\_astar.OptimizedAStar@{optimized\_astar.OptimizedAStar}!updatedPath@{updatedPath}}
+\index{updatedPath@{updatedPath}!optimized\_astar.OptimizedAStar@{optimized\_astar.OptimizedAStar}}
+\doxysubsubsection{\texorpdfstring{updatedPath}{updatedPath}}
+{\footnotesize\ttfamily optimized\+\_\+astar.\+Optimized\+AStar.\+updated\+Path}
+
+
+
+Definition at line 195 of file optimized\+\_\+astar.\+py.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+safeplan/algos/\mbox{\hyperlink{optimized__astar_8py}{optimized\+\_\+astar.\+py}}\end{DoxyCompactItemize}

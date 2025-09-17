@@ -1,0 +1,4 @@
+<map id="generate_grid.GenerateGrid.computeHalfspace" name="generate_grid.GenerateGrid.computeHalfspace">
+<area shape="rect" id="node1" title="Compute half&#45;space representations (A, b) for all polygons." alt="" coords="311,5,575,47"/>
+<area shape="rect" id="node2" href="$classgenerate__grid_1_1GenerateGrid.html#aa81e730d8e0c684eb75f6babec81812d" title="Build or load the occupancy grid and associated metadata." alt="" coords="5,13,263,39"/>
+</map>

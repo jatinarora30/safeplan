@@ -1,7 +1,43 @@
 \hypertarget{turning__angle_8py}{}\doxysection{safeplan/evals/turning\+\_\+angle.py File Reference}
 \label{turning__angle_8py}\index{safeplan/evals/turning\_angle.py@{safeplan/evals/turning\_angle.py}}
+
+
+Turning Angle evaluator for planning algorithms.  
+
+
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classturning__angle_1_1TurningAngle}{turning\+\_\+angle.\+Turning\+Angle}}
+\end{DoxyCompactItemize}
 \doxysubsection*{Namespaces}
 \begin{DoxyCompactItemize}
 \item 
  \mbox{\hyperlink{namespaceturning__angle}{turning\+\_\+angle}}
 \end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Turning Angle evaluator for planning algorithms. 
+
+Implements Turning Angle evaluation based upon the path provided on the grid. It uses the third derivate of position with step size of 1
+
+\begin{DoxyParagraph}{Inputs}
+
+\begin{DoxyItemize}
+\item {\ttfamily start} \+: tuple\mbox{[}int, ...\mbox{]} — start grid cell (e.\+g., (row, col))
+\item {\ttfamily goal} \+: tuple\mbox{[}int, ...\mbox{]} — goal grid cell
+\item {\ttfamily grid} \+: numpy.\+ndarray (N-\/D), values \{0=free, 1=obstacle\}
+\item {\ttfamily cell\+Size} \+: Size of cell(in m) for real world computation
+\item {\ttfamily Path} \+: Path given by planner to evaluate metrices
+\end{DoxyItemize}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Outputs}
+
+\begin{DoxyItemize}
+\item {\ttfamily val\+:} Turning Angle evaluated
+\end{DoxyItemize}
+\end{DoxyParagraph}
+\begin{DoxySeeAlso}{See also}
+Base\+Eval 
+\end{DoxySeeAlso}

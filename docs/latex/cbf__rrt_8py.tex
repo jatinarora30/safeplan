@@ -1,7 +1,75 @@
 \hypertarget{cbf__rrt_8py}{}\doxysection{safeplan/algos/cbf\+\_\+rrt.py File Reference}
 \label{cbf__rrt_8py}\index{safeplan/algos/cbf\_rrt.py@{safeplan/algos/cbf\_rrt.py}}
+
+
+Rapidly-\/exploring Random Tree with Control Barrier Functions (CBF-\/\+RRT) for N-\/D occupancy grids.  
+
+
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classcbf__rrt_1_1CBFRRT}{cbf\+\_\+rrt.\+CBFRRT}}
+\begin{DoxyCompactList}\small\item\em RRT planner with Control Barrier Function (CBF) safety checks. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Namespaces}
 \begin{DoxyCompactItemize}
 \item 
  \mbox{\hyperlink{namespacecbf__rrt}{cbf\+\_\+rrt}}
 \end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Rapidly-\/exploring Random Tree with Control Barrier Functions (CBF-\/\+RRT) for N-\/D occupancy grids. 
+
+Implements a CBF-\/augmented Rapidly-\/exploring Random Tree (RRT) over an N-\/D Num\+Py occupancy grid where value 0 denotes free space and value 1 denotes an obstacle. The planner grows a tree from the start toward random samples (with an adjustable goal bias). At each step, it proposes a new node no farther than the configured step size from the nearest existing node. The new node is accepted only if the local edge is collision-\/free and a CBF-\/based safety check passes. A path is returned once the tree connects to the goal with a collision-\/free edge.
+
+Collision checking (see is\+Edge\+Free()) samples a fixed number of points along a candidate segment, rounds them to the nearest grid indices, and rejects the edge if any sampled index is out of bounds or lies on an obstacle.
+
+The method get\+Obstacle\+Centers\+Radii() computes approximate obstacle centers and radii from connected components. These are used by a grid-\/based CBF safety test in is\+Safe().
+
+\begin{DoxyParagraph}{Constructor Arguments}
+
+\begin{DoxyItemize}
+\item {\ttfamily max\+Iter} \+: int — maximum number of RRT expansion iterations
+\item {\ttfamily goal\+Sample\+Rate} \+: float in \mbox{[}0,1\mbox{]} — probability of directly sampling the goal
+\item {\ttfamily step\+Size} \+: float — maximum extension per step in grid index units
+\item {\ttfamily point\+Samples} \+: int — number of samples along an edge for collision checking
+\item {\ttfamily gamma1} \+: float — CBF parameter (first-\/order coefficient)
+\item {\ttfamily gamma2} \+: float — CBF parameter (second-\/order coefficient)
+\end{DoxyItemize}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Inputs (to @ref plan())}
+
+\begin{DoxyItemize}
+\item {\ttfamily start} \+: tuple\mbox{[}int, ...\mbox{]} — start grid cell (for example, (row, col))
+\item {\ttfamily goal} \+: tuple\mbox{[}int, ...\mbox{]} — goal grid cell
+\item {\ttfamily grid} \+: numpy.\+ndarray (N-\/D), values \{0=free, 1=obstacle\}
+\end{DoxyItemize}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Outputs}
+
+\begin{DoxyItemize}
+\item {\ttfamily success} \+: int — 1 if a path is found, else 0
+\item {\ttfamily path} \+: list\mbox{[}tuple\mbox{[}int, ...\mbox{]}\mbox{]} — sequence of cells from start to goal (inclusive)
+\item {\ttfamily info} \+: list\mbox{[}str\mbox{]} — diagnostics (for example, \char`\"{}\+Invalid start\char`\"{}, \char`\"{}\+Goal has obstacle\char`\"{}, \char`\"{}\+Ran out of max iterations couldn\textquotesingle{}t find path\char`\"{})
+\end{DoxyItemize}
+\end{DoxyParagraph}
+\begin{DoxyNote}{Note}
+
+\begin{DoxyItemize}
+\item Coordinates are in grid index space. Steered points are rounded to integer indices before validation and insertion.
+\item The step used during steering is limited by the configured step size and by the straight-\/line distance between start and goal to avoid overshoot on very small problems.
+\item Edge feasibility depends on {\ttfamily point\+Samples}; too few may miss thin obstacles, too many may slow planning.
+\item Nearest neighbor is implemented as a linear scan; for large trees, consider a spatial index such as a kd-\/tree or ball-\/tree.
+\item RRT is probabilistically complete but not optimal. Use RRT$\ast$ variants for asymptotic optimality (not implemented here).
+\item The CBF safety check is an approximation derived from obstacle components.
+\end{DoxyItemize}
+\end{DoxyNote}
+@complexity Per linear in the number of existing tree nodes for nearest neighbor, plus linear in the number of edge samples for collision checking. Worst case is proportional to the maximum number of iterations multiplied by the sum of those two costs.
+
+\begin{DoxySeeAlso}{See also}
+Base\+Planner, AStar
+\end{DoxySeeAlso}
+@references
+\begin{DoxyItemize}
+\item {\bfseries [CBF\+\_\+\+RRT\+\_\+\+Hsu2020]} Hsu et al., \char`\"{}\+Safe Path Planning Using Control Barrier Functions,\char`\"{} ar\+Xiv\+:2011.\+06748. \href{https://arxiv.org/pdf/2011.06748}{\texttt{ https\+://arxiv.\+org/pdf/2011.\+06748}} 
+\end{DoxyItemize}

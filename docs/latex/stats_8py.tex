@@ -1,7 +1,64 @@
 \hypertarget{stats_8py}{}\doxysection{safeplan/core/stats.py File Reference}
 \label{stats_8py}\index{safeplan/core/stats.py@{safeplan/core/stats.py}}
+
+
+Aggregate, compare, and visualize benchmark statistics from JSON outputs.  
+
+
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classstats_1_1Stats}{stats.\+Stats}}
+\begin{DoxyCompactList}\small\item\em Compute, compare, and visualize evaluation statistics across algorithms. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Namespaces}
 \begin{DoxyCompactItemize}
 \item 
  \mbox{\hyperlink{namespacestats}{stats}}
 \end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Aggregate, compare, and visualize benchmark statistics from JSON outputs. 
+
+Loads a run configuration (algorithms, evaluations, and run metadata), scans per-\/algorithm JSON outputs produced under a run directory, computes averaged metrics, and optionally renders a table figure. Results are saved as a JSON summary (and PNG if requested).
+
+Directory conventions\+:
+\begin{DoxyItemize}
+\item Outputs are expected under {\ttfamily outputs/$<$run\+Details$>$/$<$algo$>$/$\ast$.json}.
+\item Aggregated stats are written to {\ttfamily results/$<$run\+Details$>$Stats.\+json}.
+\item Optional figure is saved to {\ttfamily results/$<$run\+Details$>$.png}.
+\end{DoxyItemize}
+
+Evaluation handling\+:
+\begin{DoxyItemize}
+\item The code builds a consistent evaluation key list ({\ttfamily self.\+evals}) from the config file and averages each metric across all JSON files found for a given algorithm.
+\item Keys matching a generic “success rate” pattern (e.\+g., {\ttfamily Success\+Rate}, {\ttfamily success\+\_\+rate}, {\ttfamily success}) are normalized by the {\bfseries{global}} maximum iteration count across algorithms; all other metrics are averaged over the number of files found for that algorithm.
+\end{DoxyItemize}
+
+\begin{DoxyParagraph}{Expected Config Schema (JSON at {\ttfamily run\+Config\+Path})}
+
+\begin{DoxyItemize}
+\item {\ttfamily algo\+Details} \+: list of objects with at least a {\ttfamily name} field for each algorithm.
+\item {\ttfamily eval\+Details} \+: list of objects with at least a {\ttfamily name} field for each metric.
+\item {\ttfamily run\+Details} \+: string run identifier (used as subdirectory under {\ttfamily outputs/}).
+\end{DoxyItemize}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Outputs}
+
+\begin{DoxyItemize}
+\item Printed pandas Data\+Frame of averaged metrics (row = algorithm, col = metric).
+\item JSON summary written to {\ttfamily results/} $<$run\+Details$>$Stats.\+json.
+\item Optional PNG table at {\ttfamily results/} $<$run\+Details$>$.png when {\ttfamily save\+Stats\+Image} is True.
+\end{DoxyItemize}
+\end{DoxyParagraph}
+\begin{DoxyNote}{Note}
+
+\begin{DoxyItemize}
+\item Missing or malformed result files are skipped with a console message.
+\item If an algorithm has no result files, its metrics are set to NaN in the output.
+\item The module creates a {\ttfamily results/} directory if it does not already exist.
+\end{DoxyItemize}
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+pandas.\+Data\+Frame, matplotlib, pandas.\+plotting.\+table 
+\end{DoxySeeAlso}

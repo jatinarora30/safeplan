@@ -82,18 +82,72 @@ $(document).ready(function(){initNavTree('cbf__rrt_8py.html',''); initResizable(
 
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
 <a href="#namespaces">Namespaces</a>  </div>
   <div class="headertitle">
 <div class="title">cbf_rrt.py File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Rapidly-exploring Random Tree with Control Barrier Functions (CBF-RRT) for N-D occupancy grids.  
+<a href="#details">More...</a></p>
+
+<p><a href="cbf__rrt_8py_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcbf__rrt_1_1CBFRRT.html">cbf_rrt.CBFRRT</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">RRT planner with Control Barrier Function (CBF) safety checks.  <a href="classcbf__rrt_1_1CBFRRT.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
 Namespaces</h2></td></tr>
 <tr class="memitem:namespacecbf__rrt"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacecbf__rrt.html">cbf_rrt</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-</div><!-- contents -->
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Rapidly-exploring Random Tree with Control Barrier Functions (CBF-RRT) for N-D occupancy grids. </p>
+<p>Implements a CBF-augmented Rapidly-exploring Random Tree (RRT) over an N-D NumPy occupancy grid where value 0 denotes free space and value 1 denotes an obstacle. The planner grows a tree from the start toward random samples (with an adjustable goal bias). At each step, it proposes a new node no farther than the configured step size from the nearest existing node. The new node is accepted only if the local edge is collision-free and a CBF-based safety check passes. A path is returned once the tree connects to the goal with a collision-free edge.</p>
+<p>Collision checking (see isEdgeFree()) samples a fixed number of points along a candidate segment, rounds them to the nearest grid indices, and rejects the edge if any sampled index is out of bounds or lies on an obstacle.</p>
+<p>The method getObstacleCentersRadii() computes approximate obstacle centers and radii from connected components. These are used by a grid-based CBF safety test in isSafe().</p>
+<dl class="section user"><dt>Constructor Arguments</dt><dd><ul>
+<li><code>maxIter</code> : int — maximum number of RRT expansion iterations</li>
+<li><code>goalSampleRate</code> : float in [0,1] — probability of directly sampling the goal</li>
+<li><code>stepSize</code> : float — maximum extension per step in grid index units</li>
+<li><code>pointSamples</code> : int — number of samples along an edge for collision checking</li>
+<li><code>gamma1</code> : float — CBF parameter (first-order coefficient)</li>
+<li><code>gamma2</code> : float — CBF parameter (second-order coefficient)</li>
+</ul>
+</dd></dl>
+<dl class="section user"><dt>Inputs (to @ref plan())</dt><dd><ul>
+<li><code>start</code> : tuple[int, ...] — start grid cell (for example, (row, col))</li>
+<li><code>goal</code> : tuple[int, ...] — goal grid cell</li>
+<li><code>grid</code> : numpy.ndarray (N-D), values {0=free, 1=obstacle}</li>
+</ul>
+</dd></dl>
+<dl class="section user"><dt>Outputs</dt><dd><ul>
+<li><code>success</code> : int — 1 if a path is found, else 0</li>
+<li><code>path</code> : list[tuple[int, ...]] — sequence of cells from start to goal (inclusive)</li>
+<li><code>info</code> : list[str] — diagnostics (for example, "Invalid start", "Goal has obstacle", "Ran out of max iterations couldn't find path")</li>
+</ul>
+</dd></dl>
+<dl class="section note"><dt>Note</dt><dd><ul>
+<li>Coordinates are in grid index space. Steered points are rounded to integer indices before validation and insertion.</li>
+<li>The step used during steering is limited by the configured step size and by the straight-line distance between start and goal to avoid overshoot on very small problems.</li>
+<li>Edge feasibility depends on <code>pointSamples</code>; too few may miss thin obstacles, too many may slow planning.</li>
+<li>Nearest neighbor is implemented as a linear scan; for large trees, consider a spatial index such as a kd-tree or ball-tree.</li>
+<li>RRT is probabilistically complete but not optimal. Use RRT* variants for asymptotic optimality (not implemented here).</li>
+<li>The CBF safety check is an approximation derived from obstacle components.</li>
+</ul>
+</dd></dl>
+<p>@complexity Per linear in the number of existing tree nodes for nearest neighbor, plus linear in the number of edge samples for collision checking. Worst case is proportional to the maximum number of iterations multiplied by the sum of those two costs.</p>
+<dl class="section see"><dt>See also</dt><dd>BasePlanner, AStar</dd></dl>
+<p>@references</p><ul>
+<li><b>[CBF_RRT_Hsu2020]</b> Hsu et al., "Safe Path Planning Using Control Barrier Functions," arXiv:2011.06748. <a href="https://arxiv.org/pdf/2011.06748">https://arxiv.org/pdf/2011.06748</a> </li>
+</ul>
+
+<p class="definition">Definition in file <a class="el" href="cbf__rrt_8py_source.html">cbf_rrt.py</a>.</p>
+</div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

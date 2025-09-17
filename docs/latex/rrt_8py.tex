@@ -1,7 +1,70 @@
 \hypertarget{rrt_8py}{}\doxysection{safeplan/algos/rrt.py File Reference}
 \label{rrt_8py}\index{safeplan/algos/rrt.py@{safeplan/algos/rrt.py}}
+
+
+Rapidly-\/exploring Random Tree (RRT) planner for N-\/dimensional occupancy grids.  
+
+
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classrrt_1_1RRT}{rrt.\+RRT}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classrrt_1_1RRT}{RRT}} planner operating on N-\/D occupancy grids. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Namespaces}
 \begin{DoxyCompactItemize}
 \item 
  \mbox{\hyperlink{namespacerrt}{rrt}}
 \end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Rapidly-\/exploring Random Tree (RRT) planner for N-\/dimensional occupancy grids. 
+
+Implements a basic RRT over an N-\/D Num\+Py occupancy grid where value 0 denotes free space and value 1 denotes an obstacle. The planner incrementally grows a tree from the start toward random samples (with goal bias). At each step, it adds a new node no farther than the configured step size from the nearest existing node, provided the local edge is collision-\/free. A path is returned once the tree connects to the goal via a collision-\/free edge.
+
+Collision checking (see is\+Edge\+Free()) samples a fixed number of points along a candidate segment, rounds them to the nearest grid indices, and rejects the edge if any sampled index is out of bounds or lies on an obstacle cell.
+
+\begin{DoxyParagraph}{Constructor Arguments}
+
+\begin{DoxyItemize}
+\item {\ttfamily max\+Iter} \+: int — maximum number of RRT expansion iterations
+\item {\ttfamily goal\+Sample\+Rate} \+: float in \mbox{[}0,1\mbox{]} — probability of directly sampling the goal
+\item {\ttfamily step\+Size} \+: float — maximum extension per step in grid index units
+\item {\ttfamily point\+Samples} \+: int — number of samples along an edge for collision checking
+\end{DoxyItemize}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Inputs (to @ref plan())}
+
+\begin{DoxyItemize}
+\item {\ttfamily start} \+: tuple\mbox{[}int, ...\mbox{]} — start grid cell (for example, (row, col))
+\item {\ttfamily goal} \+: tuple\mbox{[}int, ...\mbox{]} — goal grid cell
+\item {\ttfamily grid} \+: numpy.\+ndarray (N-\/D), values \{0=free, 1=obstacle\}
+\end{DoxyItemize}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Outputs}
+
+\begin{DoxyItemize}
+\item {\ttfamily success} \+: int — 1 if a path is found, else 0
+\item {\ttfamily path} \+: list\mbox{[}tuple\mbox{[}int, ...\mbox{]}\mbox{]} — sequence of cells from start to goal (inclusive)
+\item {\ttfamily info} \+: list\mbox{[}str\mbox{]} — diagnostics (for example, \char`\"{}\+Invalid start\char`\"{}, \char`\"{}\+Goal has obstacle\char`\"{}, \char`\"{}\+Ran out of max iterations couldn\textquotesingle{}t find path\char`\"{})
+\end{DoxyItemize}
+\end{DoxyParagraph}
+\begin{DoxyNote}{Note}
+
+\begin{DoxyItemize}
+\item Coordinates are treated in grid index space. Steered points are rounded to integer indices before validation and insertion.
+\item The effective step during steering is clamped by the minimum of the step size and the straight-\/line distance between start and goal to avoid overshoot on very small problems.
+\item Edge feasibility depends on {\ttfamily point\+Samples}; too few samples may miss thin obstacles, while too many may slow planning.
+\item Nearest neighbor is a linear scan; for large trees, consider a spatial index such as a kd-\/tree or ball-\/tree.
+\item RRT is probabilistically complete but not optimal; use RRT$\ast$ for asymptotic optimality (not implemented here).
+\end{DoxyItemize}
+\end{DoxyNote}
+@complexity Per linear in the number of current tree nodes for nearest neighbor, plus linear in the number of edge samples for collision checking. Worst case is proportional to the maximum number of iterations multiplied by the sum of those two costs.
+
+\begin{DoxySeeAlso}{See also}
+Base\+Planner, AStar
+\end{DoxySeeAlso}
+@references
+\begin{DoxyItemize}
+\item La\+Valle, S., “\+Rapidly-\/exploring Random Trees\+: A New Tool for Path Planning.\+” Overview \href{https://www.semanticscholar.org/paper/Rapidly-exploring-random-trees-\%3A-a-new-tool-for-LaValle/d967d9550f831a8b3f5cb00f8835a4c866da60ad}{\texttt{ https\+://www.\+semanticscholar.\+org/paper/\+Rapidly-\/exploring-\/random-\/trees-\/\%3\+A-\/a-\/new-\/tool-\/for-\/\+La\+Valle/d967d9550f831a8b3f5cb00f8835a4c866da60ad}} 
+\end{DoxyItemize}

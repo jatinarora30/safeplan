@@ -1,7 +1,44 @@
 \hypertarget{logger_8py}{}\doxysection{safeplan/core/logger.py File Reference}
 \label{logger_8py}\index{safeplan/core/logger.py@{safeplan/core/logger.py}}
+
+
+Log path-\/planning experiments (environment, evaluation, and path data) to JSON files.  
+
+
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classlogger_1_1Logger}{logger.\+Logger}}
+\begin{DoxyCompactList}\small\item\em Handles logging of path planning experiments including environment, evaluation, and path data. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Namespaces}
 \begin{DoxyCompactItemize}
 \item 
  \mbox{\hyperlink{namespacelogger}{logger}}
 \end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Log path-\/planning experiments (environment, evaluation, and path data) to JSON files. 
+
+Creates a per-\/run directory structure and writes one JSON file per iteration and algorithm. Each file captures\+:
+\begin{DoxyItemize}
+\item Algorithm name
+\item Evaluation metrics (as provided by the caller)
+\item Start/goal pair
+\item Path info (sequence, diagnostics)
+\item Environment info (grid, cell size, environment name and description)
+\end{DoxyItemize}
+
+Directory layout\+:
+\begin{DoxyItemize}
+\item $<$output\+Dir$>$/$<$run\+Details$>$/$<$algo$>$/iter\+\_\+$<$\+N$>$.json
+\end{DoxyItemize}
+
+\begin{DoxyNote}{Note}
+
+\begin{DoxyItemize}
+\item Directories are created on demand with basic error handling.
+\item The grid is serialized via {\ttfamily tolist()} for JSON compatibility.
+\item The {\ttfamily success} flag (if present in {\ttfamily path\+Data}\mbox{[}0\mbox{]}) is not currently written (line kept commented). 
+\end{DoxyItemize}
+\end{DoxyNote}

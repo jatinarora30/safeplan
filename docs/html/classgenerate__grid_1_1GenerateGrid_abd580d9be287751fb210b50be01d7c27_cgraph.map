@@ -1,0 +1,4 @@
+<map id="generate_grid.GenerateGrid.computeHalfspace" name="generate_grid.GenerateGrid.computeHalfspace">
+<area shape="rect" id="node1" title="Compute half&#45;space representations (A, b) for all polygons." alt="" coords="5,5,269,47"/>
+<area shape="rect" id="node2" href="$classgenerate__grid_1_1GenerateGrid.html#a30b352ce2bebbb3b1d63606331859be2" title="Convert a set of polygon vertices to half&#45;space form." alt="" coords="317,5,560,47"/>
+</map>

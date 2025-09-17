@@ -82,18 +82,66 @@ $(document).ready(function(){initNavTree('visualize_8py.html',''); initResizable
 
 <div class="header">
   <div class="summary">
-<a href="#namespaces">Namespaces</a>  </div>
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#namespaces">Namespaces</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
 <div class="title">visualize.py File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Render 2D/3D occupancy grids and algorithm paths from run outputs.  
+<a href="#details">More...</a></p>
+
+<p><a href="visualize_8py_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvisualize_1_1Visualize.html">visualize.Visualize</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classvisualize_1_1Visualize.html" title="Visualize 2D and 3D environments and algorithm paths.">Visualize</a> 2D and 3D environments and algorithm paths.  <a href="classvisualize_1_1Visualize.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
 Namespaces</h2></td></tr>
 <tr class="memitem:namespacevisualize"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevisualize.html">visualize</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:aadaa799b04726e0ea0fed85df04bce61"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevisualize.html#aadaa799b04726e0ea0fed85df04bce61">visualize.HAS_MPL_3D</a> = True</td></tr>
+<tr class="separator:aadaa799b04726e0ea0fed85df04bce61"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9913d3a307591b055c3ac0bef3e1eb37"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevisualize.html#a9913d3a307591b055c3ac0bef3e1eb37">visualize.default</a></td></tr>
+<tr class="separator:a9913d3a307591b055c3ac0bef3e1eb37"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad0238509ac3c8da52423a5ef975d58d8"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevisualize.html#ad0238509ac3c8da52423a5ef975d58d8">visualize.HAS_PLOTLY</a> = True</td></tr>
+<tr class="separator:ad0238509ac3c8da52423a5ef975d58d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-</div><!-- contents -->
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Render 2D/3D occupancy grids and algorithm paths from run outputs. </p>
+<p>Provides convenient plotting for benchmark runs. For 2D grids, writes a PNG with obstacles, start/goal markers, and optional path overlays. For 3D grids, writes an interactive Plotly HTML (isosurface + point cloud + paths), and can optionally save a Matplotlib 3D PNG snapshot when available.</p>
+<p>Expected input format per algorithm file:</p><ul>
+<li>Located at <code>outputs/&lt;runDetails&gt;/&lt;algo&gt;/iter_&lt;N&gt;.json</code></li>
+<li><p class="startli">Contains:</p><ul>
+<li><code>envInfo.grid</code> : N-D list/array (0=free, &gt;0=occupied)</li>
+<li><code>startGoal.start</code> : start index tuple/list</li>
+<li><code>startGoal.goal</code> : goal index tuple/list</li>
+<li><code>pathInfo.path</code> : list of coordinates (tuples/lists)</li>
+</ul>
+<dl class="section user"><dt>Artifacts</dt><dd></dd></dl>
+</li>
+<li>2D PNG: <code>results/viz/grid2d_iter&lt;N&gt;.png</code></li>
+<li>3D HTML: <code>results/viz/grid3d_iter&lt;N&gt;.html</code></li>
+<li>Optional 3D PNG: <code>results/viz/grid3d_iter&lt;N&gt;.png</code></li>
+</ul>
+<dl class="section note"><dt>Note</dt><dd><ul>
+<li>Plotly is preferred for 3D (opens in a browser). If Plotly is unavailable, the code attempts a Matplotlib 3D fallback when possible.</li>
+<li>Obstacles are rendered as black (2D) or red (3D). Paths are colored and labeled by algorithm name.</li>
+<li>The function auto-creates <code>results/viz/</code> if it does not exist.</li>
+</ul>
+</dd></dl>
+<dl class="section see"><dt>See also</dt><dd>plotly.graph_objects, matplotlib.pyplot </dd></dl>
+
+<p class="definition">Definition in file <a class="el" href="visualize_8py_source.html">visualize.py</a>.</p>
+</div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

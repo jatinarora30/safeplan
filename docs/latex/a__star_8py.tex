@@ -1,7 +1,64 @@
 \hypertarget{a__star_8py}{}\doxysection{safeplan/algos/a\+\_\+star.py File Reference}
 \label{a__star_8py}\index{safeplan/algos/a\_star.py@{safeplan/algos/a\_star.py}}
+
+
+N-\/dimensional A$\ast$ (A-\/star) planner over Num\+Py occupancy grids.  
+
+
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classa__star_1_1AStar}{a\+\_\+star.\+AStar}}
+\begin{DoxyCompactList}\small\item\em A$\ast$ planner operating on N-\/D occupancy grids. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Namespaces}
 \begin{DoxyCompactItemize}
 \item 
  \mbox{\hyperlink{namespacea__star}{a\+\_\+star}}
 \end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+N-\/dimensional A$\ast$ (A-\/star) planner over Num\+Py occupancy grids. 
+
+This module implements A$\ast$ search on an N-\/D occupancy grid where {\ttfamily 0} denotes free space and {\ttfamily 1} denotes an obstacle. The planner accepts start and goal grid indices (tuples of ints) and returns a collision-\/free path if one exists.
+
+
+\begin{DoxyItemize}
+\item Heuristic\+: By default, this implementation uses the {\bfseries{Manhattan (L1)}} distance.
+\item Neighborhood\+: All 3$^\wedge$N -\/ 1 offsets are considered (axis-\/aligned and diagonal moves).
+\item Costs\+: Axis-\/aligned steps cost 1.\+0; diagonal/off-\/axis steps use the L2 magnitude of the step vector.
+\end{DoxyItemize}
+
+\begin{DoxyAttention}{Attention}
+Heuristic admissibility depends on the move set. If diagonal moves are allowed (as in this implementation), Manhattan distance is {\bfseries{not}} strictly admissible unless you adjust step costs accordingly. Prefer {\bfseries{Chebyshev}} (L∞) or Euclidean (L2 with consistent step costs) for diagonal-\/enabled neighborhoods.
+\end{DoxyAttention}
+\begin{DoxyParagraph}{Inputs}
+
+\begin{DoxyItemize}
+\item {\ttfamily start} \+: tuple\mbox{[}int, ...\mbox{]} — start grid cell (e.\+g., (row, col, ...))
+\item {\ttfamily goal} \+: tuple\mbox{[}int, ...\mbox{]} — goal grid cell
+\item {\ttfamily grid} \+: numpy.\+ndarray (N-\/D), values \{0=free, 1=obstacle\}
+\end{DoxyItemize}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Outputs}
+
+\begin{DoxyItemize}
+\item {\ttfamily success} \+: int — 1 if a path is found, else 0
+\item {\ttfamily path} \+: list\mbox{[}tuple\mbox{[}int, ...\mbox{]}\mbox{]} — cells from start→goal (inclusive) or empty if none
+\item {\ttfamily info} \+: list\mbox{[}str\mbox{]} — diagnostics (e.\+g., \char`\"{}\+Invalid goal\char`\"{})
+\end{DoxyItemize}
+\end{DoxyParagraph}
+\begin{DoxyNote}{Note}
+Ensure the heuristic matches the move set\+:
+\begin{DoxyItemize}
+\item 4-\/neighbors (axis-\/only) → Manhattan (L1)
+\item 8-\/neighbors / diagonal moves → Chebyshev (L∞) or Euclidean (L2 with proper step costs)
+\end{DoxyItemize}
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+Base\+Planner
+\end{DoxySeeAlso}
+@references
+\begin{DoxyItemize}
+\item {\bfseries [Hart\+Nils\+Nilsson1968]} N. J. Nilsson, P. E. Hart, B. Raphael, \char`\"{}\+A Formal Basis for the   Heuristic Determination of Minimum Cost Paths\char`\"{}, 1968. DOI/\+Record\+: \href{https://ieeexplore.ieee.org/document/4082128}{\texttt{ https\+://ieeexplore.\+ieee.\+org/document/4082128}} 
+\end{DoxyItemize}

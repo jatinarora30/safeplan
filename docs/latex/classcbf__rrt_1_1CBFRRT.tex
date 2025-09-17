@@ -1,0 +1,589 @@
+\hypertarget{classcbf__rrt_1_1CBFRRT}{}\doxysection{cbf\+\_\+rrt.\+CBFRRT Class Reference}
+\label{classcbf__rrt_1_1CBFRRT}\index{cbf\_rrt.CBFRRT@{cbf\_rrt.CBFRRT}}
+
+
+RRT planner with Control Barrier Function (CBF) safety checks.  
+
+
+
+
+Inheritance diagram for cbf\+\_\+rrt.\+CBFRRT\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=220pt]{classcbf__rrt_1_1CBFRRT__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for cbf\+\_\+rrt.\+CBFRRT\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=220pt]{classcbf__rrt_1_1CBFRRT__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{classcbf__rrt_1_1CBFRRT_a6136d051deac046d7bb30bd3f5f167e2}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, \mbox{\hyperlink{classcbf__rrt_1_1CBFRRT_a3dded1eb6040b3d3b21a545df5fce08b}{max\+Iter}}, \mbox{\hyperlink{classcbf__rrt_1_1CBFRRT_abaf42ab23222ad7df55c14ec3e970709}{goal\+Sample\+Rate}}, \mbox{\hyperlink{classcbf__rrt_1_1CBFRRT_af704374935e3bf5d086be8c505ec341a}{step\+Size}}, \mbox{\hyperlink{classcbf__rrt_1_1CBFRRT_a6314e93b0a3674feac2b837b93ece5e6}{point\+Samples}}, \mbox{\hyperlink{classcbf__rrt_1_1CBFRRT_ab1df4f7092b7bcd97b224dca96733cc6}{gamma1}}, \mbox{\hyperlink{classcbf__rrt_1_1CBFRRT_a72bd710f093964005f10316aa7b67672}{gamma2}})
+\begin{DoxyCompactList}\small\item\em Construct the CBF-\/\+RRT planner. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classcbf__rrt_1_1CBFRRT_a82a820b0528e668d2b59b34abd5f5f55}{is\+Edge\+Free}} (self, pt1, pt2)
+\begin{DoxyCompactList}\small\item\em Check if the segment between two points is collision-\/free. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classcbf__rrt_1_1CBFRRT_a5d2458573aa87accb33f7ce7b8d62d03}{get\+Random\+Node}} (self)
+\begin{DoxyCompactList}\small\item\em Sample a random node in the grid with goal bias. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classcbf__rrt_1_1CBFRRT_a7740704ea94a6f94b18664a4beb990c1}{dist}} (self, a, b)
+\begin{DoxyCompactList}\small\item\em Euclidean distance between two grid points in continuous space. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classcbf__rrt_1_1CBFRRT_a48ad9953f08caf143cb9152c4f61d6c7}{get\+Nearest\+Node}} (self, tree, rand\+Node)
+\begin{DoxyCompactList}\small\item\em Find the nearest node in the current tree to a query sample. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classcbf__rrt_1_1CBFRRT_a18bef5b5fca7a319e31e1bc837675a30}{is\+Valid}} (self, grid\+\_\+cell)
+\begin{DoxyCompactList}\small\item\em Check whether a cell lies within grid bounds. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classcbf__rrt_1_1CBFRRT_ac2e5f441757ee30ec2017a3c3cbd756b}{get\+Obstacle\+Centers\+Radii}} (self)
+\begin{DoxyCompactList}\small\item\em Find centers and radii of connected obstacle components. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classcbf__rrt_1_1CBFRRT_a35ff8d0a68b82a5919947bd521e621f1}{heuristics}} (self, node1, node2)
+\begin{DoxyCompactList}\small\item\em Squared Euclidean proxy between two nodes. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classcbf__rrt_1_1CBFRRT_ad96fac860558f065fa1ab868dd89a0e7}{is\+Safe}} (self, cell, vel)
+\begin{DoxyCompactList}\small\item\em Control Barrier Function (CBF) safety check for a candidate cell and velocity. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classcbf__rrt_1_1CBFRRT_a04296ae39f4ab4d45b6beaa69ca56970}{plan}} (self, \mbox{\hyperlink{classcbf__rrt_1_1CBFRRT_aae380c310378c33eda7476b92d801f73}{start}}, \mbox{\hyperlink{classcbf__rrt_1_1CBFRRT_a56a07a23bf693fed036a4d52824d047c}{goal}}, \mbox{\hyperlink{classcbf__rrt_1_1CBFRRT_a62faee33611a73e358125d88e50ebeef}{grid}})
+\begin{DoxyCompactList}\small\item\em Plan with CBF-\/\+RRT on the provided grid from start to goal. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcbf__rrt_1_1CBFRRT_a3dded1eb6040b3d3b21a545df5fce08b}{max\+Iter}}
+\item 
+\mbox{\hyperlink{classcbf__rrt_1_1CBFRRT_abaf42ab23222ad7df55c14ec3e970709}{goal\+Sample\+Rate}}
+\item 
+\mbox{\hyperlink{classcbf__rrt_1_1CBFRRT_af704374935e3bf5d086be8c505ec341a}{step\+Size}}
+\item 
+\mbox{\hyperlink{classcbf__rrt_1_1CBFRRT_a6314e93b0a3674feac2b837b93ece5e6}{point\+Samples}}
+\item 
+\mbox{\hyperlink{classcbf__rrt_1_1CBFRRT_ab1df4f7092b7bcd97b224dca96733cc6}{gamma1}}
+\item 
+\mbox{\hyperlink{classcbf__rrt_1_1CBFRRT_a72bd710f093964005f10316aa7b67672}{gamma2}}
+\item 
+\mbox{\hyperlink{classcbf__rrt_1_1CBFRRT_a0f86c0d8a6676ac197b54b85273a16c9}{success}}
+\item 
+\mbox{\hyperlink{classcbf__rrt_1_1CBFRRT_a3465d1c6cb480c275648495713f39cf8}{info}}
+\item 
+\mbox{\hyperlink{classcbf__rrt_1_1CBFRRT_aa05edbea84ecc07623213b349581e350}{path}}
+\item 
+\mbox{\hyperlink{classcbf__rrt_1_1CBFRRT_aae380c310378c33eda7476b92d801f73}{start}}
+\item 
+\mbox{\hyperlink{classcbf__rrt_1_1CBFRRT_a56a07a23bf693fed036a4d52824d047c}{goal}}
+\item 
+\mbox{\hyperlink{classcbf__rrt_1_1CBFRRT_a62faee33611a73e358125d88e50ebeef}{grid}}
+\item 
+\mbox{\hyperlink{classcbf__rrt_1_1CBFRRT_a00ddc43b90482e3929c6a638a338b70b}{dimension}}
+\item 
+\mbox{\hyperlink{classcbf__rrt_1_1CBFRRT_aac906dabd72cdfe598ba956ec9963433}{sizes}}
+\item 
+\mbox{\hyperlink{classcbf__rrt_1_1CBFRRT_ac6bc03f2094e3eedb7cf6b4359a3cc70}{radius}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+RRT planner with Control Barrier Function (CBF) safety checks. 
+
+The planner maintains a tree of collision-\/free grid indices. Each iteration\+: 1) Sample a random node with goal bias (see \mbox{\hyperlink{classcbf__rrt_1_1CBFRRT_a5d2458573aa87accb33f7ce7b8d62d03}{get\+Random\+Node()}}). 2) Find the nearest existing node in the tree (see \mbox{\hyperlink{classcbf__rrt_1_1CBFRRT_a48ad9953f08caf143cb9152c4f61d6c7}{get\+Nearest\+Node()}}). 3) Steer from the nearest node toward the random sample by at most the step size. 4) Accept the new node only if both the edge is collision-\/free (see \mbox{\hyperlink{classcbf__rrt_1_1CBFRRT_a82a820b0528e668d2b59b34abd5f5f55}{is\+Edge\+Free()}}) and the CBF safety condition passes (see \mbox{\hyperlink{classcbf__rrt_1_1CBFRRT_ad96fac860558f065fa1ab868dd89a0e7}{is\+Safe()}}). 5) If the new node is close enough to the goal and the final edge is free, declare success and reconstruct the path.
+
+\begin{DoxyParagraph}{Members}
+
+\begin{DoxyItemize}
+\item {\ttfamily max\+Iter} \+: int — maximum iterations
+\item {\ttfamily goal\+Sample\+Rate} \+: float — probability to sample the exact goal
+\item {\ttfamily step\+Size} \+: float — maximum extension length per expansion
+\item {\ttfamily point\+Samples} \+: int — samples per edge for collision tests
+\item {\ttfamily gamma1}, {\ttfamily gamma2} \+: float — CBF coefficients
+\item {\ttfamily success} \+: int — 1 on success, else 0
+\item {\ttfamily info} \+: list\mbox{[}str\mbox{]} — diagnostic messages
+\item {\ttfamily path} \+: list\mbox{[}tuple\mbox{[}int, ...\mbox{]}\mbox{]} — planned path when found
+\item {\ttfamily dimension} \+: int — grid dimensionality (set in \mbox{\hyperlink{classcbf__rrt_1_1CBFRRT_a04296ae39f4ab4d45b6beaa69ca56970}{plan()}})
+\item {\ttfamily sizes} \+: list\mbox{[}int\mbox{]} — grid extents per dimension (set in \mbox{\hyperlink{classcbf__rrt_1_1CBFRRT_a04296ae39f4ab4d45b6beaa69ca56970}{plan()}})
+\item {\ttfamily start}, {\ttfamily goal}, {\ttfamily grid} — problem definition set in \mbox{\hyperlink{classcbf__rrt_1_1CBFRRT_a04296ae39f4ab4d45b6beaa69ca56970}{plan()}} 
+\end{DoxyItemize}
+\end{DoxyParagraph}
+
+
+Definition at line 100 of file cbf\+\_\+rrt.\+py.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classcbf__rrt_1_1CBFRRT_a6136d051deac046d7bb30bd3f5f167e2}\label{classcbf__rrt_1_1CBFRRT_a6136d051deac046d7bb30bd3f5f167e2}} 
+\index{cbf\_rrt.CBFRRT@{cbf\_rrt.CBFRRT}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!cbf\_rrt.CBFRRT@{cbf\_rrt.CBFRRT}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily def cbf\+\_\+rrt.\+CBFRRT.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{max\+Iter,  }\item[{}]{goal\+Sample\+Rate,  }\item[{}]{step\+Size,  }\item[{}]{point\+Samples,  }\item[{}]{gamma1,  }\item[{}]{gamma2 }\end{DoxyParamCaption})}
+
+
+
+Construct the CBF-\/\+RRT planner. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em max\+Iter} & int Maximum number of RRT iterations. \\
+\hline
+{\em goal\+Sample\+Rate} & float Goal sampling probability in \mbox{[}0,1\mbox{]}. \\
+\hline
+{\em step\+Size} & float Maximum extension per step in grid index units. \\
+\hline
+{\em point\+Samples} & int Number of samples per edge for collision checking. \\
+\hline
+{\em gamma1} & float CBF parameter (first-\/order coefficient). \\
+\hline
+{\em gamma2} & float CBF parameter (second-\/order coefficient). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPostcond}{Postcondition}
+Instance is initialized; outputs are cleared. 
+\end{DoxyPostcond}
+
+
+Definition at line 112 of file cbf\+\_\+rrt.\+py.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classcbf__rrt_1_1CBFRRT_a7740704ea94a6f94b18664a4beb990c1}\label{classcbf__rrt_1_1CBFRRT_a7740704ea94a6f94b18664a4beb990c1}} 
+\index{cbf\_rrt.CBFRRT@{cbf\_rrt.CBFRRT}!dist@{dist}}
+\index{dist@{dist}!cbf\_rrt.CBFRRT@{cbf\_rrt.CBFRRT}}
+\doxysubsubsection{\texorpdfstring{dist()}{dist()}}
+{\footnotesize\ttfamily def cbf\+\_\+rrt.\+CBFRRT.\+dist (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{a,  }\item[{}]{b }\end{DoxyParamCaption})}
+
+
+
+Euclidean distance between two grid points in continuous space. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & tuple\mbox{[}int, ...\mbox{]} First point. \\
+\hline
+{\em b} & tuple\mbox{[}int, ...\mbox{]} Second point. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+float Euclidean distance between the two points. 
+\end{DoxyReturn}
+
+
+Definition at line 177 of file cbf\+\_\+rrt.\+py.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcbf__rrt_1_1CBFRRT_a7740704ea94a6f94b18664a4beb990c1_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classcbf__rrt_1_1CBFRRT_a48ad9953f08caf143cb9152c4f61d6c7}\label{classcbf__rrt_1_1CBFRRT_a48ad9953f08caf143cb9152c4f61d6c7}} 
+\index{cbf\_rrt.CBFRRT@{cbf\_rrt.CBFRRT}!getNearestNode@{getNearestNode}}
+\index{getNearestNode@{getNearestNode}!cbf\_rrt.CBFRRT@{cbf\_rrt.CBFRRT}}
+\doxysubsubsection{\texorpdfstring{getNearestNode()}{getNearestNode()}}
+{\footnotesize\ttfamily def cbf\+\_\+rrt.\+CBFRRT.\+get\+Nearest\+Node (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{tree,  }\item[{}]{rand\+Node }\end{DoxyParamCaption})}
+
+
+
+Find the nearest node in the current tree to a query sample. 
+
+Performs a linear scan over the tree to compute distances and returns the node with the minimum distance to the query sample. 
+\begin{DoxyParams}{Parameters}
+{\em tree} & list\mbox{[}tuple\mbox{[}int, ...\mbox{]}\mbox{]} Nodes currently in the RRT. \\
+\hline
+{\em rand\+Node} & tuple\mbox{[}int, ...\mbox{]} Query or sample node. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+tuple\mbox{[}int, ...\mbox{]} Nearest node from the tree to the query node. 
+\end{DoxyReturn}
+
+
+Definition at line 190 of file cbf\+\_\+rrt.\+py.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcbf__rrt_1_1CBFRRT_a48ad9953f08caf143cb9152c4f61d6c7_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classcbf__rrt_1_1CBFRRT_ac2e5f441757ee30ec2017a3c3cbd756b}\label{classcbf__rrt_1_1CBFRRT_ac2e5f441757ee30ec2017a3c3cbd756b}} 
+\index{cbf\_rrt.CBFRRT@{cbf\_rrt.CBFRRT}!getObstacleCentersRadii@{getObstacleCentersRadii}}
+\index{getObstacleCentersRadii@{getObstacleCentersRadii}!cbf\_rrt.CBFRRT@{cbf\_rrt.CBFRRT}}
+\doxysubsubsection{\texorpdfstring{getObstacleCentersRadii()}{getObstacleCentersRadii()}}
+{\footnotesize\ttfamily def cbf\+\_\+rrt.\+CBFRRT.\+get\+Obstacle\+Centers\+Radii (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Find centers and radii of connected obstacle components. 
+
+Labels connected components of obstacle cells. For each component\+: the center is the mean of its cell indices (centroid), and the radius is the largest Euclidean distance from this centroid to any cell in the component. These values provide a coarse approximation of obstacle geometry for use in the CBF check. \begin{DoxyReturn}{Returns}
+(numpy.\+ndarray, numpy.\+ndarray) An array of centers with shape (num\+\_\+components, dimension) and an array of radii with shape (num\+\_\+components,). 
+\end{DoxyReturn}
+
+
+Definition at line 221 of file cbf\+\_\+rrt.\+py.
+
+\mbox{\Hypertarget{classcbf__rrt_1_1CBFRRT_a5d2458573aa87accb33f7ce7b8d62d03}\label{classcbf__rrt_1_1CBFRRT_a5d2458573aa87accb33f7ce7b8d62d03}} 
+\index{cbf\_rrt.CBFRRT@{cbf\_rrt.CBFRRT}!getRandomNode@{getRandomNode}}
+\index{getRandomNode@{getRandomNode}!cbf\_rrt.CBFRRT@{cbf\_rrt.CBFRRT}}
+\doxysubsubsection{\texorpdfstring{getRandomNode()}{getRandomNode()}}
+{\footnotesize\ttfamily def cbf\+\_\+rrt.\+CBFRRT.\+get\+Random\+Node (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Sample a random node in the grid with goal bias. 
+
+With probability equal to the goal sampling rate, returns the goal directly. Otherwise, samples a random integer index within the grid bounds along each dimension. \begin{DoxyReturn}{Returns}
+tuple\mbox{[}int, ...\mbox{]} A grid index equal to the goal (biased) or a random index. 
+\end{DoxyReturn}
+
+
+Definition at line 162 of file cbf\+\_\+rrt.\+py.
+
+\mbox{\Hypertarget{classcbf__rrt_1_1CBFRRT_a35ff8d0a68b82a5919947bd521e621f1}\label{classcbf__rrt_1_1CBFRRT_a35ff8d0a68b82a5919947bd521e621f1}} 
+\index{cbf\_rrt.CBFRRT@{cbf\_rrt.CBFRRT}!heuristics@{heuristics}}
+\index{heuristics@{heuristics}!cbf\_rrt.CBFRRT@{cbf\_rrt.CBFRRT}}
+\doxysubsubsection{\texorpdfstring{heuristics()}{heuristics()}}
+{\footnotesize\ttfamily def cbf\+\_\+rrt.\+CBFRRT.\+heuristics (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{node1,  }\item[{}]{node2 }\end{DoxyParamCaption})}
+
+
+
+Squared Euclidean proxy between two nodes. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em node1} & tuple\mbox{[}int, ...\mbox{]} First node. \\
+\hline
+{\em node2} & tuple\mbox{[}int, ...\mbox{]} Second node. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+float Sum of squared differences across all coordinates. 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Used internally by the safety check. 
+\end{DoxyNote}
+
+
+Definition at line 245 of file cbf\+\_\+rrt.\+py.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcbf__rrt_1_1CBFRRT_a35ff8d0a68b82a5919947bd521e621f1_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classcbf__rrt_1_1CBFRRT_a82a820b0528e668d2b59b34abd5f5f55}\label{classcbf__rrt_1_1CBFRRT_a82a820b0528e668d2b59b34abd5f5f55}} 
+\index{cbf\_rrt.CBFRRT@{cbf\_rrt.CBFRRT}!isEdgeFree@{isEdgeFree}}
+\index{isEdgeFree@{isEdgeFree}!cbf\_rrt.CBFRRT@{cbf\_rrt.CBFRRT}}
+\doxysubsubsection{\texorpdfstring{isEdgeFree()}{isEdgeFree()}}
+{\footnotesize\ttfamily def cbf\+\_\+rrt.\+CBFRRT.\+is\+Edge\+Free (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{pt1,  }\item[{}]{pt2 }\end{DoxyParamCaption})}
+
+
+
+Check if the segment between two points is collision-\/free. 
+
+Samples a fixed number of points linearly between the endpoints. Each sample is rounded to the nearest grid index. The edge is rejected if any sampled index is out of bounds or lies on an obstacle cell. 
+\begin{DoxyParams}{Parameters}
+{\em pt1} & sequence\mbox{[}float\mbox{]} Segment start in continuous coordinates. \\
+\hline
+{\em pt2} & sequence\mbox{[}float\mbox{]} Segment end in continuous coordinates. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool True if all sampled points are valid and free; otherwise False. 
+\end{DoxyReturn}
+
+
+Definition at line 135 of file cbf\+\_\+rrt.\+py.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcbf__rrt_1_1CBFRRT_a82a820b0528e668d2b59b34abd5f5f55_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcbf__rrt_1_1CBFRRT_a82a820b0528e668d2b59b34abd5f5f55_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classcbf__rrt_1_1CBFRRT_ad96fac860558f065fa1ab868dd89a0e7}\label{classcbf__rrt_1_1CBFRRT_ad96fac860558f065fa1ab868dd89a0e7}} 
+\index{cbf\_rrt.CBFRRT@{cbf\_rrt.CBFRRT}!isSafe@{isSafe}}
+\index{isSafe@{isSafe}!cbf\_rrt.CBFRRT@{cbf\_rrt.CBFRRT}}
+\doxysubsubsection{\texorpdfstring{isSafe()}{isSafe()}}
+{\footnotesize\ttfamily def cbf\+\_\+rrt.\+CBFRRT.\+is\+Safe (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{cell,  }\item[{}]{vel }\end{DoxyParamCaption})}
+
+
+
+Control Barrier Function (CBF) safety check for a candidate cell and velocity. 
+
+Uses the obstacle component centers and radii computed by \mbox{\hyperlink{classcbf__rrt_1_1CBFRRT_ac2e5f441757ee30ec2017a3c3cbd756b}{get\+Obstacle\+Centers\+Radii()}}. For each obstacle, a barrier value is formed from the squared distance to the obstacle center minus the squared radius. A change rate is computed using the steer vector. Two user-\/supplied parameters (gamma1 and gamma2) combine these quantities into a safety measure. If the measure indicates increasing safety or adequate safety margin for any obstacle component, the candidate state is considered safe for insertion into the tree. 
+\begin{DoxyParams}{Parameters}
+{\em cell} & tuple\mbox{[}int, ...\mbox{]} Candidate grid cell. \\
+\hline
+{\em vel} & sequence\mbox{[}float\mbox{]} Steer vector used to reach the candidate cell. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool True if the CBF condition passes; otherwise False. 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+This is an approximate, grid-\/based CBF that uses component centroids and radii. 
+\end{DoxyNote}
+
+
+Definition at line 266 of file cbf\+\_\+rrt.\+py.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcbf__rrt_1_1CBFRRT_ad96fac860558f065fa1ab868dd89a0e7_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classcbf__rrt_1_1CBFRRT_a18bef5b5fca7a319e31e1bc837675a30}\label{classcbf__rrt_1_1CBFRRT_a18bef5b5fca7a319e31e1bc837675a30}} 
+\index{cbf\_rrt.CBFRRT@{cbf\_rrt.CBFRRT}!isValid@{isValid}}
+\index{isValid@{isValid}!cbf\_rrt.CBFRRT@{cbf\_rrt.CBFRRT}}
+\doxysubsubsection{\texorpdfstring{isValid()}{isValid()}}
+{\footnotesize\ttfamily def cbf\+\_\+rrt.\+CBFRRT.\+is\+Valid (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{grid\+\_\+cell }\end{DoxyParamCaption})}
+
+
+
+Check whether a cell lies within grid bounds. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em grid\+\_\+cell} & tuple\mbox{[}int, ...\mbox{]} Cell index to validate. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool True if inside grid extent; otherwise False. 
+\end{DoxyReturn}
+
+
+Definition at line 203 of file cbf\+\_\+rrt.\+py.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcbf__rrt_1_1CBFRRT_a18bef5b5fca7a319e31e1bc837675a30_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classcbf__rrt_1_1CBFRRT_a04296ae39f4ab4d45b6beaa69ca56970}\label{classcbf__rrt_1_1CBFRRT_a04296ae39f4ab4d45b6beaa69ca56970}} 
+\index{cbf\_rrt.CBFRRT@{cbf\_rrt.CBFRRT}!plan@{plan}}
+\index{plan@{plan}!cbf\_rrt.CBFRRT@{cbf\_rrt.CBFRRT}}
+\doxysubsubsection{\texorpdfstring{plan()}{plan()}}
+{\footnotesize\ttfamily def cbf\+\_\+rrt.\+CBFRRT.\+plan (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{start,  }\item[{}]{goal,  }\item[{}]{grid }\end{DoxyParamCaption})}
+
+
+
+Plan with CBF-\/\+RRT on the provided grid from start to goal. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em start} & tuple\mbox{[}int, ...\mbox{]} Start index in the N-\/D grid. \\
+\hline
+{\em goal} & tuple\mbox{[}int, ...\mbox{]} Goal index in the N-\/D grid. \\
+\hline
+{\em grid} & numpy.\+ndarray Occupancy grid (0=free, 1=obstacle). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+tuple
+\begin{DoxyItemize}
+\item {\ttfamily success} (int) \+: 1 if a path is found, else 0
+\item {\ttfamily path} (list\mbox{[}tuple\mbox{[}int, ...\mbox{]}\mbox{]}) \+: sequence from start to goal (inclusive)
+\item {\ttfamily info} (list\mbox{[}str\mbox{]}) \+: diagnostics or failure reasons 
+\end{DoxyItemize}
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Diagnostics}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{-\/ \textcolor{stringliteral}{"{}Invalid start"{}}, \textcolor{stringliteral}{"{}Invalid  goal"{}}}
+\DoxyCodeLine{-\/ \textcolor{stringliteral}{"{}Start has obstacle"{}}, \textcolor{stringliteral}{"{}Goal has obstacle"{}}}
+\DoxyCodeLine{-\/ \textcolor{stringliteral}{"{}Start and goal are same"{}}}
+\DoxyCodeLine{-\/ \textcolor{stringliteral}{"{}Ran out of max iterations couldn't find path"{}}}
+
+\end{DoxyCode}
+ 
+\end{DoxyParagraph}
+\begin{DoxyNote}{Note}
+Uses linear-\/scan nearest neighbor and simple steering with a step clamp. 
+\end{DoxyNote}
+
+
+Definition at line 294 of file cbf\+\_\+rrt.\+py.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classcbf__rrt_1_1CBFRRT_a00ddc43b90482e3929c6a638a338b70b}\label{classcbf__rrt_1_1CBFRRT_a00ddc43b90482e3929c6a638a338b70b}} 
+\index{cbf\_rrt.CBFRRT@{cbf\_rrt.CBFRRT}!dimension@{dimension}}
+\index{dimension@{dimension}!cbf\_rrt.CBFRRT@{cbf\_rrt.CBFRRT}}
+\doxysubsubsection{\texorpdfstring{dimension}{dimension}}
+{\footnotesize\ttfamily cbf\+\_\+rrt.\+CBFRRT.\+dimension}
+
+
+
+Definition at line 301 of file cbf\+\_\+rrt.\+py.
+
+\mbox{\Hypertarget{classcbf__rrt_1_1CBFRRT_ab1df4f7092b7bcd97b224dca96733cc6}\label{classcbf__rrt_1_1CBFRRT_ab1df4f7092b7bcd97b224dca96733cc6}} 
+\index{cbf\_rrt.CBFRRT@{cbf\_rrt.CBFRRT}!gamma1@{gamma1}}
+\index{gamma1@{gamma1}!cbf\_rrt.CBFRRT@{cbf\_rrt.CBFRRT}}
+\doxysubsubsection{\texorpdfstring{gamma1}{gamma1}}
+{\footnotesize\ttfamily cbf\+\_\+rrt.\+CBFRRT.\+gamma1}
+
+
+
+Definition at line 117 of file cbf\+\_\+rrt.\+py.
+
+\mbox{\Hypertarget{classcbf__rrt_1_1CBFRRT_a72bd710f093964005f10316aa7b67672}\label{classcbf__rrt_1_1CBFRRT_a72bd710f093964005f10316aa7b67672}} 
+\index{cbf\_rrt.CBFRRT@{cbf\_rrt.CBFRRT}!gamma2@{gamma2}}
+\index{gamma2@{gamma2}!cbf\_rrt.CBFRRT@{cbf\_rrt.CBFRRT}}
+\doxysubsubsection{\texorpdfstring{gamma2}{gamma2}}
+{\footnotesize\ttfamily cbf\+\_\+rrt.\+CBFRRT.\+gamma2}
+
+
+
+Definition at line 118 of file cbf\+\_\+rrt.\+py.
+
+\mbox{\Hypertarget{classcbf__rrt_1_1CBFRRT_a56a07a23bf693fed036a4d52824d047c}\label{classcbf__rrt_1_1CBFRRT_a56a07a23bf693fed036a4d52824d047c}} 
+\index{cbf\_rrt.CBFRRT@{cbf\_rrt.CBFRRT}!goal@{goal}}
+\index{goal@{goal}!cbf\_rrt.CBFRRT@{cbf\_rrt.CBFRRT}}
+\doxysubsubsection{\texorpdfstring{goal}{goal}}
+{\footnotesize\ttfamily cbf\+\_\+rrt.\+CBFRRT.\+goal}
+
+
+
+Definition at line 296 of file cbf\+\_\+rrt.\+py.
+
+\mbox{\Hypertarget{classcbf__rrt_1_1CBFRRT_abaf42ab23222ad7df55c14ec3e970709}\label{classcbf__rrt_1_1CBFRRT_abaf42ab23222ad7df55c14ec3e970709}} 
+\index{cbf\_rrt.CBFRRT@{cbf\_rrt.CBFRRT}!goalSampleRate@{goalSampleRate}}
+\index{goalSampleRate@{goalSampleRate}!cbf\_rrt.CBFRRT@{cbf\_rrt.CBFRRT}}
+\doxysubsubsection{\texorpdfstring{goalSampleRate}{goalSampleRate}}
+{\footnotesize\ttfamily cbf\+\_\+rrt.\+CBFRRT.\+goal\+Sample\+Rate}
+
+
+
+Definition at line 114 of file cbf\+\_\+rrt.\+py.
+
+\mbox{\Hypertarget{classcbf__rrt_1_1CBFRRT_a62faee33611a73e358125d88e50ebeef}\label{classcbf__rrt_1_1CBFRRT_a62faee33611a73e358125d88e50ebeef}} 
+\index{cbf\_rrt.CBFRRT@{cbf\_rrt.CBFRRT}!grid@{grid}}
+\index{grid@{grid}!cbf\_rrt.CBFRRT@{cbf\_rrt.CBFRRT}}
+\doxysubsubsection{\texorpdfstring{grid}{grid}}
+{\footnotesize\ttfamily cbf\+\_\+rrt.\+CBFRRT.\+grid}
+
+
+
+Definition at line 297 of file cbf\+\_\+rrt.\+py.
+
+\mbox{\Hypertarget{classcbf__rrt_1_1CBFRRT_a3465d1c6cb480c275648495713f39cf8}\label{classcbf__rrt_1_1CBFRRT_a3465d1c6cb480c275648495713f39cf8}} 
+\index{cbf\_rrt.CBFRRT@{cbf\_rrt.CBFRRT}!info@{info}}
+\index{info@{info}!cbf\_rrt.CBFRRT@{cbf\_rrt.CBFRRT}}
+\doxysubsubsection{\texorpdfstring{info}{info}}
+{\footnotesize\ttfamily cbf\+\_\+rrt.\+CBFRRT.\+info}
+
+
+
+Definition at line 121 of file cbf\+\_\+rrt.\+py.
+
+\mbox{\Hypertarget{classcbf__rrt_1_1CBFRRT_a3dded1eb6040b3d3b21a545df5fce08b}\label{classcbf__rrt_1_1CBFRRT_a3dded1eb6040b3d3b21a545df5fce08b}} 
+\index{cbf\_rrt.CBFRRT@{cbf\_rrt.CBFRRT}!maxIter@{maxIter}}
+\index{maxIter@{maxIter}!cbf\_rrt.CBFRRT@{cbf\_rrt.CBFRRT}}
+\doxysubsubsection{\texorpdfstring{maxIter}{maxIter}}
+{\footnotesize\ttfamily cbf\+\_\+rrt.\+CBFRRT.\+max\+Iter}
+
+
+
+Definition at line 113 of file cbf\+\_\+rrt.\+py.
+
+\mbox{\Hypertarget{classcbf__rrt_1_1CBFRRT_aa05edbea84ecc07623213b349581e350}\label{classcbf__rrt_1_1CBFRRT_aa05edbea84ecc07623213b349581e350}} 
+\index{cbf\_rrt.CBFRRT@{cbf\_rrt.CBFRRT}!path@{path}}
+\index{path@{path}!cbf\_rrt.CBFRRT@{cbf\_rrt.CBFRRT}}
+\doxysubsubsection{\texorpdfstring{path}{path}}
+{\footnotesize\ttfamily cbf\+\_\+rrt.\+CBFRRT.\+path}
+
+
+
+Definition at line 123 of file cbf\+\_\+rrt.\+py.
+
+\mbox{\Hypertarget{classcbf__rrt_1_1CBFRRT_a6314e93b0a3674feac2b837b93ece5e6}\label{classcbf__rrt_1_1CBFRRT_a6314e93b0a3674feac2b837b93ece5e6}} 
+\index{cbf\_rrt.CBFRRT@{cbf\_rrt.CBFRRT}!pointSamples@{pointSamples}}
+\index{pointSamples@{pointSamples}!cbf\_rrt.CBFRRT@{cbf\_rrt.CBFRRT}}
+\doxysubsubsection{\texorpdfstring{pointSamples}{pointSamples}}
+{\footnotesize\ttfamily cbf\+\_\+rrt.\+CBFRRT.\+point\+Samples}
+
+
+
+Definition at line 116 of file cbf\+\_\+rrt.\+py.
+
+\mbox{\Hypertarget{classcbf__rrt_1_1CBFRRT_ac6bc03f2094e3eedb7cf6b4359a3cc70}\label{classcbf__rrt_1_1CBFRRT_ac6bc03f2094e3eedb7cf6b4359a3cc70}} 
+\index{cbf\_rrt.CBFRRT@{cbf\_rrt.CBFRRT}!radius@{radius}}
+\index{radius@{radius}!cbf\_rrt.CBFRRT@{cbf\_rrt.CBFRRT}}
+\doxysubsubsection{\texorpdfstring{radius}{radius}}
+{\footnotesize\ttfamily cbf\+\_\+rrt.\+CBFRRT.\+radius}
+
+
+
+Definition at line 327 of file cbf\+\_\+rrt.\+py.
+
+\mbox{\Hypertarget{classcbf__rrt_1_1CBFRRT_aac906dabd72cdfe598ba956ec9963433}\label{classcbf__rrt_1_1CBFRRT_aac906dabd72cdfe598ba956ec9963433}} 
+\index{cbf\_rrt.CBFRRT@{cbf\_rrt.CBFRRT}!sizes@{sizes}}
+\index{sizes@{sizes}!cbf\_rrt.CBFRRT@{cbf\_rrt.CBFRRT}}
+\doxysubsubsection{\texorpdfstring{sizes}{sizes}}
+{\footnotesize\ttfamily cbf\+\_\+rrt.\+CBFRRT.\+sizes}
+
+
+
+Definition at line 302 of file cbf\+\_\+rrt.\+py.
+
+\mbox{\Hypertarget{classcbf__rrt_1_1CBFRRT_aae380c310378c33eda7476b92d801f73}\label{classcbf__rrt_1_1CBFRRT_aae380c310378c33eda7476b92d801f73}} 
+\index{cbf\_rrt.CBFRRT@{cbf\_rrt.CBFRRT}!start@{start}}
+\index{start@{start}!cbf\_rrt.CBFRRT@{cbf\_rrt.CBFRRT}}
+\doxysubsubsection{\texorpdfstring{start}{start}}
+{\footnotesize\ttfamily cbf\+\_\+rrt.\+CBFRRT.\+start}
+
+
+
+Definition at line 295 of file cbf\+\_\+rrt.\+py.
+
+\mbox{\Hypertarget{classcbf__rrt_1_1CBFRRT_af704374935e3bf5d086be8c505ec341a}\label{classcbf__rrt_1_1CBFRRT_af704374935e3bf5d086be8c505ec341a}} 
+\index{cbf\_rrt.CBFRRT@{cbf\_rrt.CBFRRT}!stepSize@{stepSize}}
+\index{stepSize@{stepSize}!cbf\_rrt.CBFRRT@{cbf\_rrt.CBFRRT}}
+\doxysubsubsection{\texorpdfstring{stepSize}{stepSize}}
+{\footnotesize\ttfamily cbf\+\_\+rrt.\+CBFRRT.\+step\+Size}
+
+
+
+Definition at line 115 of file cbf\+\_\+rrt.\+py.
+
+\mbox{\Hypertarget{classcbf__rrt_1_1CBFRRT_a0f86c0d8a6676ac197b54b85273a16c9}\label{classcbf__rrt_1_1CBFRRT_a0f86c0d8a6676ac197b54b85273a16c9}} 
+\index{cbf\_rrt.CBFRRT@{cbf\_rrt.CBFRRT}!success@{success}}
+\index{success@{success}!cbf\_rrt.CBFRRT@{cbf\_rrt.CBFRRT}}
+\doxysubsubsection{\texorpdfstring{success}{success}}
+{\footnotesize\ttfamily cbf\+\_\+rrt.\+CBFRRT.\+success}
+
+
+
+Definition at line 120 of file cbf\+\_\+rrt.\+py.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+safeplan/algos/\mbox{\hyperlink{cbf__rrt_8py}{cbf\+\_\+rrt.\+py}}\end{DoxyCompactItemize}

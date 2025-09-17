@@ -1,7 +1,71 @@
 \hypertarget{upp_8py}{}\doxysection{safeplan/algos/upp.py File Reference}
 \label{upp_8py}\index{safeplan/algos/upp.py@{safeplan/algos/upp.py}}
+
+
+Universal Path Planner (UPP) for N-\/dimensional occupancy grids.  
+
+
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classupp_1_1UPP}{upp.\+UPP}}
+\begin{DoxyCompactList}\small\item\em Universal Path Planner blending distance and safety costs. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Namespaces}
 \begin{DoxyCompactItemize}
 \item 
  \mbox{\hyperlink{namespaceupp}{upp}}
 \end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Universal Path Planner (UPP) for N-\/dimensional occupancy grids. 
+
+Implements a heuristic-\/guided grid planner that blends two distance measures and a precomputed safety potential. The environment is an N-\/D Num\+Py occupancy grid where value 0 denotes free space and value 1 denotes an obstacle.
+
+Key ideas\+:
+\begin{DoxyItemize}
+\item Combined distance heuristic\+: mix of Manhattan and Chebyshev distances.
+\item Safety potential\+: fast convolution-\/based map that increases cost near obstacles.
+\item Standard open-\/set search using a priority queue with cumulative path cost.
+\end{DoxyItemize}
+
+\begin{DoxyParagraph}{Constructor Arguments}
+
+\begin{DoxyItemize}
+\item {\ttfamily alpha} \+: float — blend coefficient between Manhattan and Chebyshev distances
+\item {\ttfamily beta} \+: float — weight on the safety potential
+\item {\ttfamily radius} \+: int — Chebyshev radius for safety kernel support
+\item {\ttfamily epsilon} \+: float — small constant to avoid division by zero in the kernel
+\end{DoxyItemize}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Inputs (to @ref plan())}
+
+\begin{DoxyItemize}
+\item {\ttfamily start} \+: tuple\mbox{[}int, ...\mbox{]} — start grid cell (for example, (row, col))
+\item {\ttfamily goal} \+: tuple\mbox{[}int, ...\mbox{]} — goal grid cell
+\item {\ttfamily grid} \+: numpy.\+ndarray (N-\/D), values \{0=free, 1=obstacle\}
+\end{DoxyItemize}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Outputs}
+
+\begin{DoxyItemize}
+\item {\ttfamily success} \+: int — 1 if a path is found, else 0
+\item {\ttfamily path} \+: list\mbox{[}tuple\mbox{[}int, ...\mbox{]}\mbox{]} — sequence of cells from start to goal (inclusive)
+\item {\ttfamily info} \+: list\mbox{[}str\mbox{]} — diagnostics (for example, \char`\"{}\+Invalid goal\char`\"{})
+\end{DoxyItemize}
+\end{DoxyParagraph}
+\begin{DoxyNote}{Note}
+
+\begin{DoxyItemize}
+\item Coordinates are handled in grid index space.
+\item The safety potential is precomputed once per planning call.
+\item Neighborhood generation includes all immediate offsets except the zero vector.
+\end{DoxyItemize}
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+Base\+Planner
+\end{DoxySeeAlso}
+@references
+\begin{DoxyItemize}
+\item UPP concept overview (preprint)\+: \href{https://arxiv.org/pdf/2505.23197}{\texttt{ https\+://arxiv.\+org/pdf/2505.\+23197}} 
+\end{DoxyItemize}

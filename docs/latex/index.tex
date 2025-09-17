@@ -1,2 +1,187 @@
 \label{index_md_README}%
 \Hypertarget{index_md_README}%
+ \hypertarget{index_autotoc_md1}{}\doxysection{Overview}\label{index_autotoc_md1}
+{\bfseries{Safe\+Plan}} is a benchmarking suite for evaluating classical and modern path planning algorithms with a strong focus on {\bfseries{safety and optimality}} in robotics. ~\newline
+ It compares traditional planners with safety-\/aware planners, enabling fair evaluation of how algorithms balance safety and efficiency. ~\newline
+
+
+Safe\+Plan also includes the proposed {\bfseries{Opti\+Safe}} metric, designed to quantify the trade-\/off between path optimality and safety, providing a more realistic assessment of planner performance in safety-\/critical robotic applications. ~\newline
+\hypertarget{index_autotoc_md2}{}\doxysection{Key Features}\label{index_autotoc_md2}
+
+\begin{DoxyItemize}
+\item {\bfseries{Batch experiments at scale}}
+\begin{DoxyItemize}
+\item Run thousands of randomized start–goal trials across multiple maps automatically.
+\item Supports repeatable benchmarking with structured JSON outputs.
+\end{DoxyItemize}
+\item {\bfseries{Reproducibility \& logging}}
+\begin{DoxyItemize}
+\item Standardized JSON logs for each run with environment, path, and evaluation info.
+\item Aggregated statistics in CSV/\+JSON and optional visualization outputs.
+\end{DoxyItemize}
+\item {\bfseries{Visualization tools}}
+\begin{DoxyItemize}
+\item 2D plots of environments and paths.
+\item 3D interactive visualization (via Plotly) for voxel maps and trajectories.
+\end{DoxyItemize}
+\item {\bfseries{Efficient \& stable execution}}
+\begin{DoxyItemize}
+\item Each run is sandboxed in subprocesses for memory isolation and reliability.
+\item Lightweight and scalable to large benchmark runs.
+\end{DoxyItemize}
+\item {\bfseries{Extensible framework}}
+\begin{DoxyItemize}
+\item Add new planners, environments, or metrics with minimal boilerplate.
+\item Designed for all kinds of classical planners, sampling based and geometry based.
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{index_autotoc_md3}{}\doxysection{Evaluation Metrics}\label{index_autotoc_md3}
+Safe\+Plan introduces a rich set of metrics that go {\bfseries{beyond path length and runtime}}. ~\newline
+ They capture not only {\bfseries{efficiency}}, but also {\bfseries{safety}} and {\bfseries{smoothness}} — key aspects for real robotic systems.
+
+\DoxyHorRuler{0}
+\hypertarget{index_autotoc_md5}{}\doxysubsection{1. Path Cost (m)}\label{index_autotoc_md5}
+
+\begin{DoxyItemize}
+\item {\bfseries{Definition\+:}} Total geometric length of the path from start to goal. ~\newline
+
+\item {\bfseries{Computation\+:}} Sum of Euclidean distances between consecutive waypoints, scaled by cell size. ~\newline
+
+\item {\bfseries{Unit\+:}} meters (m). ~\newline
+
+\end{DoxyItemize}\hypertarget{index_autotoc_md6}{}\doxysubsection{2. Planning Time (ms)}\label{index_autotoc_md6}
+
+\begin{DoxyItemize}
+\item {\bfseries{Definition\+:}} CPU time taken by the planner to compute a path. ~\newline
+
+\item {\bfseries{Computation\+:}} Wall-\/clock difference between start and end of plan. ~\newline
+
+\item {\bfseries{Unit\+:}} milliseconds (ms). ~\newline
+
+\end{DoxyItemize}\hypertarget{index_autotoc_md7}{}\doxysubsection{3. Success Rate (\%)}\label{index_autotoc_md7}
+
+\begin{DoxyItemize}
+\item {\bfseries{Definition\+:}} Fraction of planning queries where a valid path is found. ~\newline
+
+\item {\bfseries{Computation\+:}} (\#successful plans ÷ \#total attempts) × 100. ~\newline
+
+\item {\bfseries{Unit\+:}} percentage (\%). ~\newline
+
+\end{DoxyItemize}\hypertarget{index_autotoc_md8}{}\doxysubsection{4. Distance to Goal (m, failures only)}\label{index_autotoc_md8}
+
+\begin{DoxyItemize}
+\item {\bfseries{Definition\+:}} Remaining distance between the last explored path node and the goal when planning fails. ~\newline
+
+\item {\bfseries{Computation\+:}} Euclidean distance between last path node and goal. ~\newline
+
+\item {\bfseries{Unit\+:}} meters (m). ~\newline
+
+\end{DoxyItemize}\hypertarget{index_autotoc_md9}{}\doxysubsection{5. Number of Nodes in Path}\label{index_autotoc_md9}
+
+\begin{DoxyItemize}
+\item {\bfseries{Definition\+:}} Count of waypoints in the final path. ~\newline
+
+\item {\bfseries{Unit\+:}} count (integer). ~\newline
+
+\end{DoxyItemize}\hypertarget{index_autotoc_md10}{}\doxysubsection{6. Turning Angle (°)}\label{index_autotoc_md10}
+
+\begin{DoxyItemize}
+\item {\bfseries{Definition\+:}} Sum of angular deviations between consecutive path segments. ~\newline
+
+\item {\bfseries{Computation\+:}} Angles via dot product between vectors, summed across path. ~\newline
+
+\item {\bfseries{Unit\+:}} degrees (°). ~\newline
+
+\end{DoxyItemize}\hypertarget{index_autotoc_md11}{}\doxysubsection{7. Jerk per Meter}\label{index_autotoc_md11}
+
+\begin{DoxyItemize}
+\item {\bfseries{Definition\+:}} Rate of change of acceleration along the path, normalized per unit distance. ~\newline
+
+\item {\bfseries{Computation\+:}} Third derivative of position along discretized path. ~\newline
+
+\item {\bfseries{Unit\+:}} dimensionless (jerk/m). ~\newline
+
+\end{DoxyItemize}\hypertarget{index_autotoc_md12}{}\doxysubsection{8. Optimal Deviation (\%)}\label{index_autotoc_md12}
+
+\begin{DoxyItemize}
+\item {\bfseries{Definition\+:}} Difference between path cost and known optimal path cost. ~\newline
+
+\item {\bfseries{Computation\+:}} ((\mbox{\hyperlink{namespacepath__cost}{path\+\_\+cost}} − optimal\+\_\+cost) ÷ optimal\+\_\+cost) × 100. ~\newline
+
+\item {\bfseries{Unit\+:}} percentage (\%). ~\newline
+
+\end{DoxyItemize}\hypertarget{index_autotoc_md13}{}\doxysubsection{9. Minimum Clearance (m)}\label{index_autotoc_md13}
+
+\begin{DoxyItemize}
+\item {\bfseries{Definition\+:}} Smallest distance from path to nearest obstacle. ~\newline
+
+\item {\bfseries{Computation\+:}} Distance transform (EDT) at sampled points. ~\newline
+
+\item {\bfseries{Unit\+:}} meters (m). ~\newline
+
+\end{DoxyItemize}\hypertarget{index_autotoc_md14}{}\doxysubsection{10. Average Minimum Clearance (m)}\label{index_autotoc_md14}
+
+\begin{DoxyItemize}
+\item {\bfseries{Definition\+:}} Mean clearance across path points. ~\newline
+
+\item {\bfseries{Unit\+:}} meters (m). ~\newline
+
+\end{DoxyItemize}\hypertarget{index_autotoc_md15}{}\doxysubsection{11. Clearance Variability}\label{index_autotoc_md15}
+
+\begin{DoxyItemize}
+\item {\bfseries{Definition\+:}} Variance of clearance values along the path. ~\newline
+
+\item {\bfseries{Unit\+:}} meters². ~\newline
+
+\end{DoxyItemize}\hypertarget{index_autotoc_md16}{}\doxysubsection{12. Danger Zone Violations}\label{index_autotoc_md16}
+
+\begin{DoxyItemize}
+\item {\bfseries{Definition\+:}} Number of times path enters a predefined danger radius around obstacles. ~\newline
+
+\item {\bfseries{Computation\+:}} Count of path points with clearance $<$ danger radius. ~\newline
+
+\item {\bfseries{Unit\+:}} count (integer). ~\newline
+
+\end{DoxyItemize}\hypertarget{index_autotoc_md17}{}\doxysubsection{13. Opti\+Safe Index (\+Proposed)}\label{index_autotoc_md17}
+
+\begin{DoxyItemize}
+\item {\bfseries{Definition\+:}} An index to measure balance between safety and optimality
+\item {\bfseries{Unit\+:}} float between 0 and 1. ~\newline
+
+\end{DoxyItemize}\hypertarget{index_autotoc_md18}{}\doxysection{Algorithms in Safe\+Plan}\label{index_autotoc_md18}
+Safe\+Plan includes both {\bfseries{traditional planners}} and {\bfseries{safety-\/aware planners}}, allowing direct benchmarking on {\bfseries{safety vs. optimality}} tradeoffs.\hypertarget{index_autotoc_md19}{}\doxysubsection{🔹 Traditional Planners}\label{index_autotoc_md19}
+
+\begin{DoxyItemize}
+\item {\bfseries{Dijkstra}} ~\newline
+ Classic graph search algorithm that guarantees shortest paths but can be computationally expensive on large grids. ~\newline
+ Reference\+: (\href{https://www.semanticscholar.org/paper/A-note-on-two-problems-in-connexion-with-graphs-Dijkstra/45786063578e814444b8247028970758bbbd0488}{\texttt{ https\+://www.\+semanticscholar.\+org/paper/\+A-\/note-\/on-\/two-\/problems-\/in-\/connexion-\/with-\/graphs-\/\+Dijkstra/45786063578e814444b8247028970758bbbd0488}})
+\item {\bfseries{A$\ast$}} ~\newline
+ Heuristic-\/guided search algorithm that combines optimality of Dijkstra with efficiency via heuristics. ~\newline
+ Reference\+: (\href{https://ieeexplore.ieee.org/document/4082128}{\texttt{ https\+://ieeexplore.\+ieee.\+org/document/4082128}})
+\item {\bfseries{Voronoi Roadmap Planner}} ~\newline
+ Builds a roadmap from obstacle centroids using Voronoi diagrams, ensuring high-\/clearance paths. ~\newline
+ Reference\+: (\href{https://dl.acm.org/doi/10.1145/116873.116880}{\texttt{ https\+://dl.\+acm.\+org/doi/10.\+1145/116873.\+116880}})
+\item {\bfseries{RRT (Rapidly-\/\+Exploring Random Trees)}} ~\newline
+ Sampling-\/based motion planning method efficient for high-\/dimensional spaces. ~\newline
+ Reference\+: (\href{https://www.semanticscholar.org/paper/Rapidly-exploring-random-trees-\%3A-a-new-tool-for-LaValle/d967d9550f831a8b3f5cb00f8835a4c866da60ad}{\texttt{ https\+://www.\+semanticscholar.\+org/paper/\+Rapidly-\/exploring-\/random-\/trees-\/\%3\+A-\/a-\/new-\/tool-\/for-\/\+La\+Valle/d967d9550f831a8b3f5cb00f8835a4c866da60ad}})
+\item {\bfseries{Weighted A$\ast$}} ~\newline
+ Variant of A$\ast$ that scales the heuristic to bias search toward speed vs. optimality tradeoffs. ~\newline
+ Reference\+: (\href{https://www.sciencedirect.com/science/article/pii/S000437020900068X}{\texttt{ https\+://www.\+sciencedirect.\+com/science/article/pii/\+S000437020900068X}})
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{index_autotoc_md21}{}\doxysubsection{🔹 Safety-\/\+Aware Planners}\label{index_autotoc_md21}
+
+\begin{DoxyItemize}
+\item {\bfseries{Unified Path Planner}} ~\newline
+ A safety-\/aware planner integrating safety heuristics ~\newline
+ Reference\+: (\href{https://arxiv.org/pdf/2505.23197}{\texttt{ https\+://arxiv.\+org/pdf/2505.\+23197}})
+\item {\bfseries{SDF A$\ast$}} ~\newline
+ A$\ast$ variant augmented with Signed Distance Fields for safety margin enforcement. ~\newline
+ Reference\+: (\href{https://ieeexplore.ieee.org/document/10364842/}{\texttt{ https\+://ieeexplore.\+ieee.\+org/document/10364842/}})
+\item {\bfseries{Optimized A$\ast$}} ~\newline
+ An improved A$\ast$ with path smoothness and obstacle-\/clearance optimizations. ~\newline
+ Reference\+: (\href{https://www.mdpi.com/1424-8220/24/10/3149}{\texttt{ https\+://www.\+mdpi.\+com/1424-\/8220/24/10/3149}})
+\item {\bfseries{CBF-\/\+RRT (Control Barrier Function RRT)}} ~\newline
+ Enhances RRT with control barrier functions to guarantee safety constraints. ~\newline
+ Reference\+: (\href{https://arxiv.org/pdf/2011.06748}{\texttt{ https\+://arxiv.\+org/pdf/2011.\+06748}}) 
+\end{DoxyItemize}

@@ -1,0 +1,4 @@
+<map id="generate_grid.GenerateGrid.loadJson" name="generate_grid.GenerateGrid.loadJson">
+<area shape="rect" id="node1" title="Load the base environment configuration." alt="" coords="311,5,573,32"/>
+<area shape="rect" id="node2" href="$classgenerate__grid_1_1GenerateGrid.html#aa81e730d8e0c684eb75f6babec81812d" title="Build or load the occupancy grid and associated metadata." alt="" coords="5,5,263,32"/>
+</map>

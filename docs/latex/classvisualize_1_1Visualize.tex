@@ -1,0 +1,176 @@
+\hypertarget{classvisualize_1_1Visualize}{}\doxysection{visualize.\+Visualize Class Reference}
+\label{classvisualize_1_1Visualize}\index{visualize.Visualize@{visualize.Visualize}}
+
+
+\mbox{\hyperlink{classvisualize_1_1Visualize}{Visualize}} 2D and 3D environments and algorithm paths.  
+
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{classvisualize_1_1Visualize_ab9f5cafbfeae36f0e35d7c3d8b7e39cb}{see}} (self, run\+Config\+Path, iter\+No, \mbox{\hyperlink{classvisualize_1_1Visualize_ac3197f6d907436089c6076879a8805dd}{algos}}=None, \mbox{\hyperlink{classvisualize_1_1Visualize_adaeff11b929d1579eec259db74469451}{graph\+Title}}=None, \mbox{\hyperlink{classvisualize_1_1Visualize_aee30852e6aebd701a618b74e419afb74}{show\+\_\+paths}}=True, prefer\+\_\+plotly=True, also\+\_\+save\+\_\+png\+\_\+3d=False)
+\begin{DoxyCompactList}\small\item\em Render a specific iteration across one or more algorithms. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classvisualize_1_1Visualize_a100dac3347db5c29ce237a915a59233d}{output\+Dir}}
+\item 
+\mbox{\hyperlink{classvisualize_1_1Visualize_aa45424bf4111b1feac68b71cda56d20b}{iter\+File}}
+\item 
+\mbox{\hyperlink{classvisualize_1_1Visualize_adaeff11b929d1579eec259db74469451}{graph\+Title}}
+\item 
+\mbox{\hyperlink{classvisualize_1_1Visualize_aee30852e6aebd701a618b74e419afb74}{show\+\_\+paths}}
+\item 
+\mbox{\hyperlink{classvisualize_1_1Visualize_ac3197f6d907436089c6076879a8805dd}{algos}}
+\item 
+\mbox{\hyperlink{classvisualize_1_1Visualize_af12134cc6e1603fbe8245bc99fd0e2d8}{goal}}
+\item 
+\mbox{\hyperlink{classvisualize_1_1Visualize_a4b684f7970e2d80b0a882a81c1e3ba15}{grid}}
+\item 
+\mbox{\hyperlink{classvisualize_1_1Visualize_afec26a07351dbf6f963f18ba4e4fd0c0}{start}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{classvisualize_1_1Visualize}{Visualize}} 2D and 3D environments and algorithm paths. 
+
+
+\begin{DoxyItemize}
+\item 2D mode\+: saves a PNG with full grid, optional path overlays, and start/goal.
+\item 3D mode\+: writes a Plotly HTML (isosurface + point cloud + paths), optionally saves a Matplotlib 3D PNG snapshot. 
+\end{DoxyItemize}
+
+Definition at line 173 of file visualize.\+py.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classvisualize_1_1Visualize_ab9f5cafbfeae36f0e35d7c3d8b7e39cb}\label{classvisualize_1_1Visualize_ab9f5cafbfeae36f0e35d7c3d8b7e39cb}} 
+\index{visualize.Visualize@{visualize.Visualize}!see@{see}}
+\index{see@{see}!visualize.Visualize@{visualize.Visualize}}
+\doxysubsubsection{\texorpdfstring{see()}{see()}}
+{\footnotesize\ttfamily def visualize.\+Visualize.\+see (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{run\+Config\+Path,  }\item[{}]{iter\+No,  }\item[{}]{algos = {\ttfamily None},  }\item[{}]{graph\+Title = {\ttfamily None},  }\item[{}]{show\+\_\+paths = {\ttfamily True},  }\item[{}]{prefer\+\_\+plotly = {\ttfamily True},  }\item[{}]{also\+\_\+save\+\_\+png\+\_\+3d = {\ttfamily False} }\end{DoxyParamCaption})}
+
+
+
+Render a specific iteration across one or more algorithms. 
+
+\begin{DoxyVerb}   @details
+   Loads run configuration, gathers the grid/start/goal from the first
+   selected algorithm’s file for the given iteration, and overlays paths
+   from all requested algorithms. Output format depends on grid dimension:
+   - 2D: writes `grid2d_iter<N>.png`
+   - 3D: writes `grid3d_iter<N>.html` (Plotly) and, if requested and supported,
+          also `grid3d_iter<N>.png`
+
+   @param runConfigPath str
+          Path to the run configuration JSON.
+   @param iterNo int
+          Iteration number N (reads `iter_N.json`).
+   @param algos list[str] or None
+          Subset of algorithm names to visualize; defaults to all listed
+          in the config when None.
+   @param graphTitle str or None
+          Plot title; uses a default if not provided.
+   @param show_paths bool
+          Whether to overlay algorithm paths.
+   @param prefer_plotly bool
+          Prefer Plotly for 3D visualization (recommended).
+   @param also_save_png_3d bool
+          Additionally save a Matplotlib 3D PNG snapshot when possible.
+
+   @return None
+           Writes files to `results/viz/` and prints artifact locations.
+\end{DoxyVerb}
+ 
+
+Definition at line 205 of file visualize.\+py.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classvisualize_1_1Visualize_ac3197f6d907436089c6076879a8805dd}\label{classvisualize_1_1Visualize_ac3197f6d907436089c6076879a8805dd}} 
+\index{visualize.Visualize@{visualize.Visualize}!algos@{algos}}
+\index{algos@{algos}!visualize.Visualize@{visualize.Visualize}}
+\doxysubsubsection{\texorpdfstring{algos}{algos}}
+{\footnotesize\ttfamily visualize.\+Visualize.\+algos}
+
+
+
+Definition at line 216 of file visualize.\+py.
+
+\mbox{\Hypertarget{classvisualize_1_1Visualize_af12134cc6e1603fbe8245bc99fd0e2d8}\label{classvisualize_1_1Visualize_af12134cc6e1603fbe8245bc99fd0e2d8}} 
+\index{visualize.Visualize@{visualize.Visualize}!goal@{goal}}
+\index{goal@{goal}!visualize.Visualize@{visualize.Visualize}}
+\doxysubsubsection{\texorpdfstring{goal}{goal}}
+{\footnotesize\ttfamily visualize.\+Visualize.\+goal}
+
+
+
+Definition at line 220 of file visualize.\+py.
+
+\mbox{\Hypertarget{classvisualize_1_1Visualize_adaeff11b929d1579eec259db74469451}\label{classvisualize_1_1Visualize_adaeff11b929d1579eec259db74469451}} 
+\index{visualize.Visualize@{visualize.Visualize}!graphTitle@{graphTitle}}
+\index{graphTitle@{graphTitle}!visualize.Visualize@{visualize.Visualize}}
+\doxysubsubsection{\texorpdfstring{graphTitle}{graphTitle}}
+{\footnotesize\ttfamily visualize.\+Visualize.\+graph\+Title}
+
+
+
+Definition at line 209 of file visualize.\+py.
+
+\mbox{\Hypertarget{classvisualize_1_1Visualize_a4b684f7970e2d80b0a882a81c1e3ba15}\label{classvisualize_1_1Visualize_a4b684f7970e2d80b0a882a81c1e3ba15}} 
+\index{visualize.Visualize@{visualize.Visualize}!grid@{grid}}
+\index{grid@{grid}!visualize.Visualize@{visualize.Visualize}}
+\doxysubsubsection{\texorpdfstring{grid}{grid}}
+{\footnotesize\ttfamily visualize.\+Visualize.\+grid}
+
+
+
+Definition at line 227 of file visualize.\+py.
+
+\mbox{\Hypertarget{classvisualize_1_1Visualize_aa45424bf4111b1feac68b71cda56d20b}\label{classvisualize_1_1Visualize_aa45424bf4111b1feac68b71cda56d20b}} 
+\index{visualize.Visualize@{visualize.Visualize}!iterFile@{iterFile}}
+\index{iterFile@{iterFile}!visualize.Visualize@{visualize.Visualize}}
+\doxysubsubsection{\texorpdfstring{iterFile}{iterFile}}
+{\footnotesize\ttfamily visualize.\+Visualize.\+iter\+File}
+
+
+
+Definition at line 208 of file visualize.\+py.
+
+\mbox{\Hypertarget{classvisualize_1_1Visualize_a100dac3347db5c29ce237a915a59233d}\label{classvisualize_1_1Visualize_a100dac3347db5c29ce237a915a59233d}} 
+\index{visualize.Visualize@{visualize.Visualize}!outputDir@{outputDir}}
+\index{outputDir@{outputDir}!visualize.Visualize@{visualize.Visualize}}
+\doxysubsubsection{\texorpdfstring{outputDir}{outputDir}}
+{\footnotesize\ttfamily visualize.\+Visualize.\+output\+Dir}
+
+
+
+Definition at line 207 of file visualize.\+py.
+
+\mbox{\Hypertarget{classvisualize_1_1Visualize_aee30852e6aebd701a618b74e419afb74}\label{classvisualize_1_1Visualize_aee30852e6aebd701a618b74e419afb74}} 
+\index{visualize.Visualize@{visualize.Visualize}!show\_paths@{show\_paths}}
+\index{show\_paths@{show\_paths}!visualize.Visualize@{visualize.Visualize}}
+\doxysubsubsection{\texorpdfstring{show\_paths}{show\_paths}}
+{\footnotesize\ttfamily visualize.\+Visualize.\+show\+\_\+paths}
+
+
+
+Definition at line 210 of file visualize.\+py.
+
+\mbox{\Hypertarget{classvisualize_1_1Visualize_afec26a07351dbf6f963f18ba4e4fd0c0}\label{classvisualize_1_1Visualize_afec26a07351dbf6f963f18ba4e4fd0c0}} 
+\index{visualize.Visualize@{visualize.Visualize}!start@{start}}
+\index{start@{start}!visualize.Visualize@{visualize.Visualize}}
+\doxysubsubsection{\texorpdfstring{start}{start}}
+{\footnotesize\ttfamily visualize.\+Visualize.\+start}
+
+
+
+Definition at line 228 of file visualize.\+py.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+safeplan/core/\mbox{\hyperlink{visualize_8py}{visualize.\+py}}\end{DoxyCompactItemize}

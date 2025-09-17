@@ -1,0 +1,141 @@
+\hypertarget{classaverage__minimum__clearance_1_1AverageMinimumClearance}{}\doxysection{average\+\_\+minimum\+\_\+clearance.\+Average\+Minimum\+Clearance Class Reference}
+\label{classaverage__minimum__clearance_1_1AverageMinimumClearance}\index{average\_minimum\_clearance.AverageMinimumClearance@{average\_minimum\_clearance.AverageMinimumClearance}}
+
+
+Inheritance diagram for average\+\_\+minimum\+\_\+clearance.\+Average\+Minimum\+Clearance\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=244pt]{classaverage__minimum__clearance_1_1AverageMinimumClearance__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for average\+\_\+minimum\+\_\+clearance.\+Average\+Minimum\+Clearance\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=244pt]{classaverage__minimum__clearance_1_1AverageMinimumClearance__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{classaverage__minimum__clearance_1_1AverageMinimumClearance_a5747bb8ca657de5c560b79a7c3bac74c}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, \mbox{\hyperlink{classaverage__minimum__clearance_1_1AverageMinimumClearance_a1b1592847b0b868bc3c02fed92d09733}{point\+Samples}})
+\begin{DoxyCompactList}\small\item\em Construct the class for Average Minimum Clearance evaluator. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classaverage__minimum__clearance_1_1AverageMinimumClearance_adc593a5729b9698033d6d7a48c4e16bc}{eval}} (self, start, goal, grid, cell\+Size, path)
+\begin{DoxyCompactList}\small\item\em A eval function for Average Minimum Clearance evaluation, which evaluates on given start, goal, grid, cell\+Size, and Path returns Average Minimum Clearance value. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classaverage__minimum__clearance_1_1AverageMinimumClearance_a36990d9a9bf2c15dde54e573464f548a}{value}}
+\item 
+\mbox{\hyperlink{classaverage__minimum__clearance_1_1AverageMinimumClearance_a1b1592847b0b868bc3c02fed92d09733}{point\+Samples}}
+\item 
+\mbox{\hyperlink{classaverage__minimum__clearance_1_1AverageMinimumClearance_a778dc85f6c4b0d8922deeb0f7e90f641}{dimension}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line 25 of file average\+\_\+minimum\+\_\+clearance.\+py.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classaverage__minimum__clearance_1_1AverageMinimumClearance_a5747bb8ca657de5c560b79a7c3bac74c}\label{classaverage__minimum__clearance_1_1AverageMinimumClearance_a5747bb8ca657de5c560b79a7c3bac74c}} 
+\index{average\_minimum\_clearance.AverageMinimumClearance@{average\_minimum\_clearance.AverageMinimumClearance}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!average\_minimum\_clearance.AverageMinimumClearance@{average\_minimum\_clearance.AverageMinimumClearance}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily def average\+\_\+minimum\+\_\+clearance.\+Average\+Minimum\+Clearance.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{point\+Samples }\end{DoxyParamCaption})}
+
+
+
+Construct the class for Average Minimum Clearance evaluator. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em point\+Samples} & Takes input number of point samples between 2 points to calculate distance \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPostcond}{Postcondition}
+Instance is initialized. 
+\end{DoxyPostcond}
+
+
+Definition at line 31 of file average\+\_\+minimum\+\_\+clearance.\+py.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classaverage__minimum__clearance_1_1AverageMinimumClearance_adc593a5729b9698033d6d7a48c4e16bc}\label{classaverage__minimum__clearance_1_1AverageMinimumClearance_adc593a5729b9698033d6d7a48c4e16bc}} 
+\index{average\_minimum\_clearance.AverageMinimumClearance@{average\_minimum\_clearance.AverageMinimumClearance}!eval@{eval}}
+\index{eval@{eval}!average\_minimum\_clearance.AverageMinimumClearance@{average\_minimum\_clearance.AverageMinimumClearance}}
+\doxysubsubsection{\texorpdfstring{eval()}{eval()}}
+{\footnotesize\ttfamily def average\+\_\+minimum\+\_\+clearance.\+Average\+Minimum\+Clearance.\+eval (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{start,  }\item[{}]{goal,  }\item[{}]{grid,  }\item[{}]{cell\+Size,  }\item[{}]{path }\end{DoxyParamCaption})}
+
+
+
+A eval function for Average Minimum Clearance evaluation, which evaluates on given start, goal, grid, cell\+Size, and Path returns Average Minimum Clearance value. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em start} & Takes the n-\/dimensional start input \\
+\hline
+{\em goal} & Takes the n-\/dimension goal input \\
+\hline
+{\em grid} & Takes the N x N dimensional grid \\
+\hline
+{\em cell\+Size} & Takes input as cell size for computation \\
+\hline
+{\em Path} & Takes the path from star to goal in the form of a tuple \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+value Returns the Average Minimum Clearance 
+\end{DoxyReturn}
+
+
+Definition at line 46 of file average\+\_\+minimum\+\_\+clearance.\+py.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classaverage__minimum__clearance_1_1AverageMinimumClearance_a778dc85f6c4b0d8922deeb0f7e90f641}\label{classaverage__minimum__clearance_1_1AverageMinimumClearance_a778dc85f6c4b0d8922deeb0f7e90f641}} 
+\index{average\_minimum\_clearance.AverageMinimumClearance@{average\_minimum\_clearance.AverageMinimumClearance}!dimension@{dimension}}
+\index{dimension@{dimension}!average\_minimum\_clearance.AverageMinimumClearance@{average\_minimum\_clearance.AverageMinimumClearance}}
+\doxysubsubsection{\texorpdfstring{dimension}{dimension}}
+{\footnotesize\ttfamily average\+\_\+minimum\+\_\+clearance.\+Average\+Minimum\+Clearance.\+dimension}
+
+
+
+Definition at line 50 of file average\+\_\+minimum\+\_\+clearance.\+py.
+
+\mbox{\Hypertarget{classaverage__minimum__clearance_1_1AverageMinimumClearance_a1b1592847b0b868bc3c02fed92d09733}\label{classaverage__minimum__clearance_1_1AverageMinimumClearance_a1b1592847b0b868bc3c02fed92d09733}} 
+\index{average\_minimum\_clearance.AverageMinimumClearance@{average\_minimum\_clearance.AverageMinimumClearance}!pointSamples@{pointSamples}}
+\index{pointSamples@{pointSamples}!average\_minimum\_clearance.AverageMinimumClearance@{average\_minimum\_clearance.AverageMinimumClearance}}
+\doxysubsubsection{\texorpdfstring{pointSamples}{pointSamples}}
+{\footnotesize\ttfamily average\+\_\+minimum\+\_\+clearance.\+Average\+Minimum\+Clearance.\+point\+Samples}
+
+
+
+Definition at line 33 of file average\+\_\+minimum\+\_\+clearance.\+py.
+
+\mbox{\Hypertarget{classaverage__minimum__clearance_1_1AverageMinimumClearance_a36990d9a9bf2c15dde54e573464f548a}\label{classaverage__minimum__clearance_1_1AverageMinimumClearance_a36990d9a9bf2c15dde54e573464f548a}} 
+\index{average\_minimum\_clearance.AverageMinimumClearance@{average\_minimum\_clearance.AverageMinimumClearance}!value@{value}}
+\index{value@{value}!average\_minimum\_clearance.AverageMinimumClearance@{average\_minimum\_clearance.AverageMinimumClearance}}
+\doxysubsubsection{\texorpdfstring{value}{value}}
+{\footnotesize\ttfamily average\+\_\+minimum\+\_\+clearance.\+Average\+Minimum\+Clearance.\+value}
+
+
+
+Definition at line 32 of file average\+\_\+minimum\+\_\+clearance.\+py.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+safeplan/evals/\mbox{\hyperlink{average__minimum__clearance_8py}{average\+\_\+minimum\+\_\+clearance.\+py}}\end{DoxyCompactItemize}

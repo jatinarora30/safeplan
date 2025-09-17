@@ -1,0 +1,127 @@
+\hypertarget{classjerk__per__meter_1_1JerkPerMeter}{}\doxysection{jerk\+\_\+per\+\_\+meter.\+Jerk\+Per\+Meter Class Reference}
+\label{classjerk__per__meter_1_1JerkPerMeter}\index{jerk\_per\_meter.JerkPerMeter@{jerk\_per\_meter.JerkPerMeter}}
+
+
+Inheritance diagram for jerk\+\_\+per\+\_\+meter.\+Jerk\+Per\+Meter\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=236pt]{classjerk__per__meter_1_1JerkPerMeter__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for jerk\+\_\+per\+\_\+meter.\+Jerk\+Per\+Meter\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=236pt]{classjerk__per__meter_1_1JerkPerMeter__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{classjerk__per__meter_1_1JerkPerMeter_ac760c6f0f7e0082f3430ef2d352f5af7}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self)
+\begin{DoxyCompactList}\small\item\em Construct the class for Jerk per meter evaluator. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classjerk__per__meter_1_1JerkPerMeter_a5e8da9d94af9b152102d9e8736bce551}{eval}} (self, start, goal, grid, cell\+Size, path)
+\begin{DoxyCompactList}\small\item\em A eval function for jerk per meter evaluation, which evaluates on given start, goal, grid, cell\+Size, and Path returns path cost value. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classjerk__per__meter_1_1JerkPerMeter_acb918a3244682a42050114ce12dcd1fd}{value}}
+\item 
+\mbox{\hyperlink{classjerk__per__meter_1_1JerkPerMeter_af517eab4f025c4cdc194ff9a793db7ca}{path\+Cost}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line 24 of file jerk\+\_\+per\+\_\+meter.\+py.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classjerk__per__meter_1_1JerkPerMeter_ac760c6f0f7e0082f3430ef2d352f5af7}\label{classjerk__per__meter_1_1JerkPerMeter_ac760c6f0f7e0082f3430ef2d352f5af7}} 
+\index{jerk\_per\_meter.JerkPerMeter@{jerk\_per\_meter.JerkPerMeter}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!jerk\_per\_meter.JerkPerMeter@{jerk\_per\_meter.JerkPerMeter}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily def jerk\+\_\+per\+\_\+meter.\+Jerk\+Per\+Meter.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Construct the class for Jerk per meter evaluator. 
+
+\begin{DoxyVerb}   @post Instance is initialized.
+\end{DoxyVerb}
+ 
+
+Reimplemented from \mbox{\hyperlink{classbaseeval_1_1BaseEval_aa79544b675e4c50fb3ec65e7029409f2}{baseeval.\+Base\+Eval}}.
+
+
+
+Definition at line 30 of file jerk\+\_\+per\+\_\+meter.\+py.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classjerk__per__meter_1_1JerkPerMeter_a5e8da9d94af9b152102d9e8736bce551}\label{classjerk__per__meter_1_1JerkPerMeter_a5e8da9d94af9b152102d9e8736bce551}} 
+\index{jerk\_per\_meter.JerkPerMeter@{jerk\_per\_meter.JerkPerMeter}!eval@{eval}}
+\index{eval@{eval}!jerk\_per\_meter.JerkPerMeter@{jerk\_per\_meter.JerkPerMeter}}
+\doxysubsubsection{\texorpdfstring{eval()}{eval()}}
+{\footnotesize\ttfamily def jerk\+\_\+per\+\_\+meter.\+Jerk\+Per\+Meter.\+eval (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{start,  }\item[{}]{goal,  }\item[{}]{grid,  }\item[{}]{cell\+Size,  }\item[{}]{path }\end{DoxyParamCaption})}
+
+
+
+A eval function for jerk per meter evaluation, which evaluates on given start, goal, grid, cell\+Size, and Path returns path cost value. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em start} & Takes the n-\/dimensional start input \\
+\hline
+{\em goal} & Takes the n-\/dimension goal input \\
+\hline
+{\em grid} & Takes the N x N dimensional grid \\
+\hline
+{\em cell\+Size} & Takes input as cell size for computation \\
+\hline
+{\em Path} & Takes the path from star to goal in the form of a tuple \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+value Returns the jerk per meter 
+\end{DoxyReturn}
+
+
+Definition at line 44 of file jerk\+\_\+per\+\_\+meter.\+py.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classjerk__per__meter_1_1JerkPerMeter_af517eab4f025c4cdc194ff9a793db7ca}\label{classjerk__per__meter_1_1JerkPerMeter_af517eab4f025c4cdc194ff9a793db7ca}} 
+\index{jerk\_per\_meter.JerkPerMeter@{jerk\_per\_meter.JerkPerMeter}!pathCost@{pathCost}}
+\index{pathCost@{pathCost}!jerk\_per\_meter.JerkPerMeter@{jerk\_per\_meter.JerkPerMeter}}
+\doxysubsubsection{\texorpdfstring{pathCost}{pathCost}}
+{\footnotesize\ttfamily jerk\+\_\+per\+\_\+meter.\+Jerk\+Per\+Meter.\+path\+Cost}
+
+
+
+Definition at line 32 of file jerk\+\_\+per\+\_\+meter.\+py.
+
+\mbox{\Hypertarget{classjerk__per__meter_1_1JerkPerMeter_acb918a3244682a42050114ce12dcd1fd}\label{classjerk__per__meter_1_1JerkPerMeter_acb918a3244682a42050114ce12dcd1fd}} 
+\index{jerk\_per\_meter.JerkPerMeter@{jerk\_per\_meter.JerkPerMeter}!value@{value}}
+\index{value@{value}!jerk\_per\_meter.JerkPerMeter@{jerk\_per\_meter.JerkPerMeter}}
+\doxysubsubsection{\texorpdfstring{value}{value}}
+{\footnotesize\ttfamily jerk\+\_\+per\+\_\+meter.\+Jerk\+Per\+Meter.\+value}
+
+
+
+Definition at line 31 of file jerk\+\_\+per\+\_\+meter.\+py.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+safeplan/evals/\mbox{\hyperlink{jerk__per__meter_8py}{jerk\+\_\+per\+\_\+meter.\+py}}\end{DoxyCompactItemize}

@@ -82,18 +82,50 @@ $(document).ready(function(){initNavTree('logger_8py.html',''); initResizable();
 
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
 <a href="#namespaces">Namespaces</a>  </div>
   <div class="headertitle">
 <div class="title">logger.py File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Log path-planning experiments (environment, evaluation, and path data) to JSON files.  
+<a href="#details">More...</a></p>
+
+<p><a href="logger_8py_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogger_1_1Logger.html">logger.Logger</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handles logging of path planning experiments including environment, evaluation, and path data.  <a href="classlogger_1_1Logger.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
 Namespaces</h2></td></tr>
 <tr class="memitem:namespacelogger"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacelogger.html">logger</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-</div><!-- contents -->
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Log path-planning experiments (environment, evaluation, and path data) to JSON files. </p>
+<p>Creates a per-run directory structure and writes one JSON file per iteration and algorithm. Each file captures:</p><ul>
+<li>Algorithm name</li>
+<li>Evaluation metrics (as provided by the caller)</li>
+<li>Start/goal pair</li>
+<li>Path info (sequence, diagnostics)</li>
+<li>Environment info (grid, cell size, environment name and description)</li>
+</ul>
+<p>Directory layout:</p><ul>
+<li>&lt;outputDir&gt;/&lt;runDetails&gt;/&lt;algo&gt;/iter_&lt;N&gt;.json</li>
+</ul>
+<dl class="section note"><dt>Note</dt><dd><ul>
+<li>Directories are created on demand with basic error handling.</li>
+<li>The grid is serialized via <code>tolist()</code> for JSON compatibility.</li>
+<li>The <code>success</code> flag (if present in <code>pathData</code>[0]) is not currently written (line kept commented). </li>
+</ul>
+</dd></dl>
+
+<p class="definition">Definition in file <a class="el" href="logger_8py_source.html">logger.py</a>.</p>
+</div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

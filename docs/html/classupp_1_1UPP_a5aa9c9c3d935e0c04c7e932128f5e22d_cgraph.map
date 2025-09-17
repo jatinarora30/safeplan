@@ -1,0 +1,5 @@
+<map id="upp.UPP.combinedHeuristics" name="upp.UPP.combinedHeuristics">
+<area shape="rect" id="node1" title="Combined cost: blended distance plus safety potential." alt="" coords="5,31,212,57"/>
+<area shape="rect" id="node2" href="$classupp_1_1UPP.html#a9b3bb205a60fe5029daf84b2f4c5d17b" title="Chebyshev distance heuristic." alt="" coords="261,5,474,32"/>
+<area shape="rect" id="node3" href="$classupp_1_1UPP.html#a56c48da1156f363d463bd50e4fd51b75" title="Manhattan (L1) distance heuristic." alt="" coords="260,56,475,83"/>
+</map>

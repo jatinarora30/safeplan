@@ -1,0 +1,4 @@
+<map id="upp.UPP.manhattanHeuristics" name="upp.UPP.manhattanHeuristics">
+<area shape="rect" id="node1" title="Manhattan (L1) distance heuristic." alt="" coords="260,5,475,32"/>
+<area shape="rect" id="node2" href="$classupp_1_1UPP.html#a5aa9c9c3d935e0c04c7e932128f5e22d" title="Combined cost: blended distance plus safety potential." alt="" coords="5,5,212,32"/>
+</map>

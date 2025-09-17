@@ -82,18 +82,47 @@ $(document).ready(function(){initNavTree('jerk__per__meter_8py.html',''); initRe
 
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
 <a href="#namespaces">Namespaces</a>  </div>
   <div class="headertitle">
 <div class="title">jerk_per_meter.py File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Deviation Jerk Per Meter evaluator for planning algorithms.  
+<a href="#details">More...</a></p>
+
+<p><a href="jerk__per__meter_8py_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjerk__per__meter_1_1JerkPerMeter.html">jerk_per_meter.JerkPerMeter</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
 Namespaces</h2></td></tr>
 <tr class="memitem:namespacejerk__per__meter"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacejerk__per__meter.html">jerk_per_meter</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-</div><!-- contents -->
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Deviation Jerk Per Meter evaluator for planning algorithms. </p>
+<p>Implements Jerk Per Meter evaluation based upon the path provided on the grid. It uses the third derivate of position with step size of 1</p>
+<dl class="section user"><dt>Inputs</dt><dd><ul>
+<li><code>start</code> : tuple[int, ...] — start grid cell (e.g., (row, col))</li>
+<li><code>goal</code> : tuple[int, ...] — goal grid cell</li>
+<li><code>grid</code> : numpy.ndarray (N-D), values {0=free, 1=obstacle}</li>
+<li><code>cellSize</code> : Size of cell(in m) for real world computation</li>
+<li><code>Path</code> : Path given by planner to evaluate metrices</li>
+</ul>
+</dd></dl>
+<dl class="section user"><dt>Outputs</dt><dd><ul>
+<li><code>val:</code> Jerk per meter evaluated</li>
+</ul>
+</dd></dl>
+<dl class="section see"><dt>See also</dt><dd>BaseEval </dd></dl>
+
+<p class="definition">Definition in file <a class="el" href="jerk__per__meter_8py_source.html">jerk_per_meter.py</a>.</p>
+</div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

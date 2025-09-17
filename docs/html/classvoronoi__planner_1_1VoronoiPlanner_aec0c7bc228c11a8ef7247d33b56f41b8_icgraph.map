@@ -1,0 +1,5 @@
+<map id="voronoi_planner.VoronoiPlanner.isEdgeFree" name="voronoi_planner.VoronoiPlanner.isEdgeFree">
+<area shape="rect" id="node1" title="Check if the segment between two points is collision&#45;free." alt="" coords="499,5,741,47"/>
+<area shape="rect" id="node2" href="$classoptimized__astar_1_1OptimizedAStar.html#a4f21260374482974a30986f653d9d942" title="Shortcut a path by removing unnecessary waypoints in one direction." alt="" coords="253,5,451,47"/>
+<area shape="rect" id="node3" href="$classoptimized__astar_1_1OptimizedAStar.html#a7cd90a3d3026598224d31ce4700995b3" title="Apply directional shortcutting in both directions and choose the better result." alt="" coords="5,5,205,47"/>
+</map>

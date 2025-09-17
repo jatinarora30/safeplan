@@ -1,0 +1,459 @@
+\hypertarget{classsdf__astar_1_1SDFAStar}{}\doxysection{sdf\+\_\+astar.\+SDFAStar Class Reference}
+\label{classsdf__astar_1_1SDFAStar}\index{sdf\_astar.SDFAStar@{sdf\_astar.SDFAStar}}
+
+
+Inheritance diagram for sdf\+\_\+astar.\+SDFAStar\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=220pt]{classsdf__astar_1_1SDFAStar__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for sdf\+\_\+astar.\+SDFAStar\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=220pt]{classsdf__astar_1_1SDFAStar__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{classsdf__astar_1_1SDFAStar_af700733a7659ed514820f1b7bbba647e}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, \mbox{\hyperlink{classsdf__astar_1_1SDFAStar_a1bb3c58b9d7a3406c2e7988d97539b2f}{k1}}, \mbox{\hyperlink{classsdf__astar_1_1SDFAStar_ab824c297388badf1745444a2621ec7a7}{k2}})
+\begin{DoxyCompactList}\small\item\em Construct the SDF-\/guided A$\ast$ planner. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classsdf__astar_1_1SDFAStar_a60d5448604317e368b1cf5a537ddc371}{is\+Valid}} (self, grid\+\_\+cell)
+\begin{DoxyCompactList}\small\item\em Check whether a cell lies within grid bounds. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classsdf__astar_1_1SDFAStar_a9b0debabdcc2e356e1a1d9ff01e67326}{heuristics}} (self, node1, node2)
+\begin{DoxyCompactList}\small\item\em Heuristic distance between two nodes (Manhattan). \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classsdf__astar_1_1SDFAStar_afeb769108e5fce3bcd56e3fd29cdb509}{safety\+Heuristics}} (self, \mbox{\hyperlink{classsdf__astar_1_1SDFAStar_af83b0ea748233caf84b3ce46fa1134ff}{node}}, \mbox{\hyperlink{classsdf__astar_1_1SDFAStar_ad2aab6bc0fdac2cf33c243adf26e4ec0}{parent}})
+\begin{DoxyCompactList}\small\item\em Local SDF-\/based safety measure at a node, relative to the motion direction. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classsdf__astar_1_1SDFAStar_a1e23d62a8095da44971978e455d278d2}{combined\+Heuristics}} (self, \mbox{\hyperlink{classsdf__astar_1_1SDFAStar_af83b0ea748233caf84b3ce46fa1134ff}{node}}, \mbox{\hyperlink{classsdf__astar_1_1SDFAStar_ad2aab6bc0fdac2cf33c243adf26e4ec0}{parent}}, path\+Cost, \mbox{\hyperlink{classsdf__astar_1_1SDFAStar_a2753d6686214ae1af62c59acde308713}{goal}})
+\begin{DoxyCompactList}\small\item\em Combined priority for A$\ast$ that blends distance and SDF-\/based safety. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classsdf__astar_1_1SDFAStar_af6fedbe013a41dbc27e7369c158176f3}{adjacent\+Coordinates}} (self, \mbox{\hyperlink{classsdf__astar_1_1SDFAStar_af83b0ea748233caf84b3ce46fa1134ff}{node}})
+\begin{DoxyCompactList}\small\item\em Enumerate all adjacent coordinates in N-\/D (including diagonals). \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classsdf__astar_1_1SDFAStar_ae4c2d30dfe00d90a7cfd210ea20e674d}{plan}} (self, \mbox{\hyperlink{classsdf__astar_1_1SDFAStar_af0eca91eeb905d21d9df3dde922a41ac}{start}}, \mbox{\hyperlink{classsdf__astar_1_1SDFAStar_a2753d6686214ae1af62c59acde308713}{goal}}, \mbox{\hyperlink{classsdf__astar_1_1SDFAStar_a99e6118463ea55c13cd737c64fa1fdfb}{grid}})
+\begin{DoxyCompactList}\small\item\em Run SDF-\/guided A$\ast$ from start to goal on the provided grid. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classsdf__astar_1_1SDFAStar_aef1d7e2cb8d98692efb931216fdd7d10}{success}}
+\item 
+\mbox{\hyperlink{classsdf__astar_1_1SDFAStar_a1bb3c58b9d7a3406c2e7988d97539b2f}{k1}}
+\item 
+\mbox{\hyperlink{classsdf__astar_1_1SDFAStar_ab824c297388badf1745444a2621ec7a7}{k2}}
+\item 
+\mbox{\hyperlink{classsdf__astar_1_1SDFAStar_a52d5f883b602b2ef42869c367e340485}{info}}
+\item 
+\mbox{\hyperlink{classsdf__astar_1_1SDFAStar_a55d07abfd8d88fcf78b0c204a478b4ae}{path}}
+\item 
+\mbox{\hyperlink{classsdf__astar_1_1SDFAStar_af0eca91eeb905d21d9df3dde922a41ac}{start}}
+\item 
+\mbox{\hyperlink{classsdf__astar_1_1SDFAStar_a2753d6686214ae1af62c59acde308713}{goal}}
+\item 
+\mbox{\hyperlink{classsdf__astar_1_1SDFAStar_a99e6118463ea55c13cd737c64fa1fdfb}{grid}}
+\item 
+\mbox{\hyperlink{classsdf__astar_1_1SDFAStar_a525ce199703e823c95b0ece9f3cb5023}{dimension}}
+\item 
+\mbox{\hyperlink{classsdf__astar_1_1SDFAStar_a844a125fca5aade60071e8e4be946ce2}{sizes}}
+\item 
+\mbox{\hyperlink{classsdf__astar_1_1SDFAStar_a742fbd2ed67f5054750f3a950499a098}{distance\+Transform}}
+\item 
+\mbox{\hyperlink{classsdf__astar_1_1SDFAStar_a4fdbc4b93704aec5a97ec93ba4e177a4}{grad}}
+\item 
+\mbox{\hyperlink{classsdf__astar_1_1SDFAStar_ad2aab6bc0fdac2cf33c243adf26e4ec0}{parent}}
+\item 
+\mbox{\hyperlink{classsdf__astar_1_1SDFAStar_af83b0ea748233caf84b3ce46fa1134ff}{node}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line 60 of file sdf\+\_\+astar.\+py.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classsdf__astar_1_1SDFAStar_af700733a7659ed514820f1b7bbba647e}\label{classsdf__astar_1_1SDFAStar_af700733a7659ed514820f1b7bbba647e}} 
+\index{sdf\_astar.SDFAStar@{sdf\_astar.SDFAStar}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!sdf\_astar.SDFAStar@{sdf\_astar.SDFAStar}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily def sdf\+\_\+astar.\+SDFAStar.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{k1,  }\item[{}]{k2 }\end{DoxyParamCaption})}
+
+
+
+Construct the SDF-\/guided A$\ast$ planner. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em k1} & float Weight on the path-\/cost term in the combined priority. \\
+\hline
+{\em k2} & float Weight on the distance-\/to-\/goal term in the combined priority. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPostcond}{Postcondition}
+Instance is initialized; outputs are cleared. 
+\end{DoxyPostcond}
+
+
+Definition at line 68 of file sdf\+\_\+astar.\+py.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classsdf__astar_1_1SDFAStar_af6fedbe013a41dbc27e7369c158176f3}\label{classsdf__astar_1_1SDFAStar_af6fedbe013a41dbc27e7369c158176f3}} 
+\index{sdf\_astar.SDFAStar@{sdf\_astar.SDFAStar}!adjacentCoordinates@{adjacentCoordinates}}
+\index{adjacentCoordinates@{adjacentCoordinates}!sdf\_astar.SDFAStar@{sdf\_astar.SDFAStar}}
+\doxysubsubsection{\texorpdfstring{adjacentCoordinates()}{adjacentCoordinates()}}
+{\footnotesize\ttfamily def sdf\+\_\+astar.\+SDFAStar.\+adjacent\+Coordinates (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{node }\end{DoxyParamCaption})}
+
+
+
+Enumerate all adjacent coordinates in N-\/D (including diagonals). 
+
+Generates all offset combinations in \{-\/1, 0, 1\} per dimension, excluding the all-\/zero offset. Validity and obstacle checks are performed during expansion in \mbox{\hyperlink{classsdf__astar_1_1SDFAStar_ae4c2d30dfe00d90a7cfd210ea20e674d}{plan()}}. 
+\begin{DoxyParams}{Parameters}
+{\em node} & tuple\mbox{[}int, ...\mbox{]} The reference grid cell. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+list$<$tuple\mbox{[}int, ...\mbox{]}$>$ Neighbor coordinates (not yet filtered). 
+\end{DoxyReturn}
+
+
+Definition at line 169 of file sdf\+\_\+astar.\+py.
+
+\mbox{\Hypertarget{classsdf__astar_1_1SDFAStar_a1e23d62a8095da44971978e455d278d2}\label{classsdf__astar_1_1SDFAStar_a1e23d62a8095da44971978e455d278d2}} 
+\index{sdf\_astar.SDFAStar@{sdf\_astar.SDFAStar}!combinedHeuristics@{combinedHeuristics}}
+\index{combinedHeuristics@{combinedHeuristics}!sdf\_astar.SDFAStar@{sdf\_astar.SDFAStar}}
+\doxysubsubsection{\texorpdfstring{combinedHeuristics()}{combinedHeuristics()}}
+{\footnotesize\ttfamily def sdf\+\_\+astar.\+SDFAStar.\+combined\+Heuristics (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{node,  }\item[{}]{parent,  }\item[{}]{path\+Cost,  }\item[{}]{goal }\end{DoxyParamCaption})}
+
+
+
+Combined priority for A$\ast$ that blends distance and SDF-\/based safety. 
+
+The combined value increases with path cost so far, with distance to goal, and with the local safety measure from \mbox{\hyperlink{classsdf__astar_1_1SDFAStar_afeb769108e5fce3bcd56e3fd29cdb509}{safety\+Heuristics()}}. The weights {\ttfamily k1} and {\ttfamily k2} scale the influence of path cost and distance. 
+\begin{DoxyParams}{Parameters}
+{\em node} & tuple\mbox{[}int, ...\mbox{]} Current node. \\
+\hline
+{\em parent} & tuple\mbox{[}int, ...\mbox{]} Parent of the current node (for motion direction). \\
+\hline
+{\em path\+Cost} & float Cumulative path cost {\ttfamily g} so far. \\
+\hline
+{\em goal} & tuple\mbox{[}int, ...\mbox{]} Goal index. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+float Combined priority value used in the open set. 
+\end{DoxyReturn}
+
+
+Definition at line 153 of file sdf\+\_\+astar.\+py.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classsdf__astar_1_1SDFAStar_a1e23d62a8095da44971978e455d278d2_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classsdf__astar_1_1SDFAStar_a9b0debabdcc2e356e1a1d9ff01e67326}\label{classsdf__astar_1_1SDFAStar_a9b0debabdcc2e356e1a1d9ff01e67326}} 
+\index{sdf\_astar.SDFAStar@{sdf\_astar.SDFAStar}!heuristics@{heuristics}}
+\index{heuristics@{heuristics}!sdf\_astar.SDFAStar@{sdf\_astar.SDFAStar}}
+\doxysubsubsection{\texorpdfstring{heuristics()}{heuristics()}}
+{\footnotesize\ttfamily def sdf\+\_\+astar.\+SDFAStar.\+heuristics (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{node1,  }\item[{}]{node2 }\end{DoxyParamCaption})}
+
+
+
+Heuristic distance between two nodes (Manhattan). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em node1} & tuple\mbox{[}int, ...\mbox{]} First node. \\
+\hline
+{\em node2} & tuple\mbox{[}int, ...\mbox{]} Second node. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+float Sum of absolute coordinate differences. 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Choose a heuristic that matches the allowed moves and step costs. 
+\end{DoxyNote}
+
+
+Definition at line 96 of file sdf\+\_\+astar.\+py.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classsdf__astar_1_1SDFAStar_a9b0debabdcc2e356e1a1d9ff01e67326_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classsdf__astar_1_1SDFAStar_a60d5448604317e368b1cf5a537ddc371}\label{classsdf__astar_1_1SDFAStar_a60d5448604317e368b1cf5a537ddc371}} 
+\index{sdf\_astar.SDFAStar@{sdf\_astar.SDFAStar}!isValid@{isValid}}
+\index{isValid@{isValid}!sdf\_astar.SDFAStar@{sdf\_astar.SDFAStar}}
+\doxysubsubsection{\texorpdfstring{isValid()}{isValid()}}
+{\footnotesize\ttfamily def sdf\+\_\+astar.\+SDFAStar.\+is\+Valid (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{grid\+\_\+cell }\end{DoxyParamCaption})}
+
+
+
+Check whether a cell lies within grid bounds. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em grid\+\_\+cell} & tuple\mbox{[}int, ...\mbox{]} Cell index to validate. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool True if inside grid extent; otherwise False. 
+\end{DoxyReturn}
+
+
+Definition at line 83 of file sdf\+\_\+astar.\+py.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classsdf__astar_1_1SDFAStar_a60d5448604317e368b1cf5a537ddc371_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classsdf__astar_1_1SDFAStar_ae4c2d30dfe00d90a7cfd210ea20e674d}\label{classsdf__astar_1_1SDFAStar_ae4c2d30dfe00d90a7cfd210ea20e674d}} 
+\index{sdf\_astar.SDFAStar@{sdf\_astar.SDFAStar}!plan@{plan}}
+\index{plan@{plan}!sdf\_astar.SDFAStar@{sdf\_astar.SDFAStar}}
+\doxysubsubsection{\texorpdfstring{plan()}{plan()}}
+{\footnotesize\ttfamily def sdf\+\_\+astar.\+SDFAStar.\+plan (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{start,  }\item[{}]{goal,  }\item[{}]{grid }\end{DoxyParamCaption})}
+
+
+
+Run SDF-\/guided A$\ast$ from start to goal on the provided grid. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em start} & tuple\mbox{[}int, ...\mbox{]} Start index in the N-\/D grid. \\
+\hline
+{\em goal} & tuple\mbox{[}int, ...\mbox{]} Goal index in the N-\/D grid. \\
+\hline
+{\em grid} & numpy.\+ndarray Occupancy grid (0=free, 1=obstacle). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+tuple
+\begin{DoxyItemize}
+\item {\ttfamily success} (int) \+: 1 if a path is found, else 0
+\item {\ttfamily path} (list\mbox{[}tuple\mbox{[}int, ...\mbox{]}\mbox{]}) \+: sequence from start to goal (inclusive)
+\item {\ttfamily info} (list\mbox{[}str\mbox{]}) \+: diagnostics or failure reasons 
+\end{DoxyItemize}
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Diagnostics}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{-\/ \textcolor{stringliteral}{"{}Invalid start"{}}, \textcolor{stringliteral}{"{}Invalid  goal"{}}}
+\DoxyCodeLine{-\/ \textcolor{stringliteral}{"{}Start has obstacle"{}}, \textcolor{stringliteral}{"{}Goal has obstacle"{}}}
+\DoxyCodeLine{-\/ \textcolor{stringliteral}{"{}Start and goal are same"{}}}
+\DoxyCodeLine{-\/ \textcolor{stringliteral}{"{}Failed to reconstruct path."{}}}
+
+\end{DoxyCode}
+ 
+\end{DoxyParagraph}
+\begin{DoxyNote}{Note}
+Computes an SDF via distance transform and its gradient, then runs an A$\ast$ loop with a combined distance-\/and-\/safety priority. 
+\end{DoxyNote}
+
+
+Definition at line 200 of file sdf\+\_\+astar.\+py.
+
+\mbox{\Hypertarget{classsdf__astar_1_1SDFAStar_afeb769108e5fce3bcd56e3fd29cdb509}\label{classsdf__astar_1_1SDFAStar_afeb769108e5fce3bcd56e3fd29cdb509}} 
+\index{sdf\_astar.SDFAStar@{sdf\_astar.SDFAStar}!safetyHeuristics@{safetyHeuristics}}
+\index{safetyHeuristics@{safetyHeuristics}!sdf\_astar.SDFAStar@{sdf\_astar.SDFAStar}}
+\doxysubsubsection{\texorpdfstring{safetyHeuristics()}{safetyHeuristics()}}
+{\footnotesize\ttfamily def sdf\+\_\+astar.\+SDFAStar.\+safety\+Heuristics (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{node,  }\item[{}]{parent }\end{DoxyParamCaption})}
+
+
+
+Local SDF-\/based safety measure at a node, relative to the motion direction. 
+
+Uses the precomputed SDF ({\ttfamily self.\+distance\+Transform}) and its gradient ({\ttfamily self.\+grad}). If the SDF at the node is negative, the location is inside an obstacle and the safety measure is set to an infinite penalty.
+
+Otherwise, the method estimates how the SDF changes in the direction of travel from the parent to the node. This directional change is normalized by the largest absolute gradient component at that location to keep the value in a comparable range.
+
+
+\begin{DoxyParams}{Parameters}
+{\em node} & tuple\mbox{[}int, ...\mbox{]} Node at which to measure safety. \\
+\hline
+{\em parent} & tuple\mbox{[}int, ...\mbox{]} Parent node used to determine motion direction. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+float A nonnegative safety value; larger values indicate lower safety. 
+\end{DoxyReturn}
+
+
+Definition at line 118 of file sdf\+\_\+astar.\+py.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classsdf__astar_1_1SDFAStar_afeb769108e5fce3bcd56e3fd29cdb509_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classsdf__astar_1_1SDFAStar_a525ce199703e823c95b0ece9f3cb5023}\label{classsdf__astar_1_1SDFAStar_a525ce199703e823c95b0ece9f3cb5023}} 
+\index{sdf\_astar.SDFAStar@{sdf\_astar.SDFAStar}!dimension@{dimension}}
+\index{dimension@{dimension}!sdf\_astar.SDFAStar@{sdf\_astar.SDFAStar}}
+\doxysubsubsection{\texorpdfstring{dimension}{dimension}}
+{\footnotesize\ttfamily sdf\+\_\+astar.\+SDFAStar.\+dimension}
+
+
+
+Definition at line 207 of file sdf\+\_\+astar.\+py.
+
+\mbox{\Hypertarget{classsdf__astar_1_1SDFAStar_a742fbd2ed67f5054750f3a950499a098}\label{classsdf__astar_1_1SDFAStar_a742fbd2ed67f5054750f3a950499a098}} 
+\index{sdf\_astar.SDFAStar@{sdf\_astar.SDFAStar}!distanceTransform@{distanceTransform}}
+\index{distanceTransform@{distanceTransform}!sdf\_astar.SDFAStar@{sdf\_astar.SDFAStar}}
+\doxysubsubsection{\texorpdfstring{distanceTransform}{distanceTransform}}
+{\footnotesize\ttfamily sdf\+\_\+astar.\+SDFAStar.\+distance\+Transform}
+
+
+
+Definition at line 234 of file sdf\+\_\+astar.\+py.
+
+\mbox{\Hypertarget{classsdf__astar_1_1SDFAStar_a2753d6686214ae1af62c59acde308713}\label{classsdf__astar_1_1SDFAStar_a2753d6686214ae1af62c59acde308713}} 
+\index{sdf\_astar.SDFAStar@{sdf\_astar.SDFAStar}!goal@{goal}}
+\index{goal@{goal}!sdf\_astar.SDFAStar@{sdf\_astar.SDFAStar}}
+\doxysubsubsection{\texorpdfstring{goal}{goal}}
+{\footnotesize\ttfamily sdf\+\_\+astar.\+SDFAStar.\+goal}
+
+
+
+Definition at line 202 of file sdf\+\_\+astar.\+py.
+
+\mbox{\Hypertarget{classsdf__astar_1_1SDFAStar_a4fdbc4b93704aec5a97ec93ba4e177a4}\label{classsdf__astar_1_1SDFAStar_a4fdbc4b93704aec5a97ec93ba4e177a4}} 
+\index{sdf\_astar.SDFAStar@{sdf\_astar.SDFAStar}!grad@{grad}}
+\index{grad@{grad}!sdf\_astar.SDFAStar@{sdf\_astar.SDFAStar}}
+\doxysubsubsection{\texorpdfstring{grad}{grad}}
+{\footnotesize\ttfamily sdf\+\_\+astar.\+SDFAStar.\+grad}
+
+
+
+Definition at line 235 of file sdf\+\_\+astar.\+py.
+
+\mbox{\Hypertarget{classsdf__astar_1_1SDFAStar_a99e6118463ea55c13cd737c64fa1fdfb}\label{classsdf__astar_1_1SDFAStar_a99e6118463ea55c13cd737c64fa1fdfb}} 
+\index{sdf\_astar.SDFAStar@{sdf\_astar.SDFAStar}!grid@{grid}}
+\index{grid@{grid}!sdf\_astar.SDFAStar@{sdf\_astar.SDFAStar}}
+\doxysubsubsection{\texorpdfstring{grid}{grid}}
+{\footnotesize\ttfamily sdf\+\_\+astar.\+SDFAStar.\+grid}
+
+
+
+Definition at line 203 of file sdf\+\_\+astar.\+py.
+
+\mbox{\Hypertarget{classsdf__astar_1_1SDFAStar_a52d5f883b602b2ef42869c367e340485}\label{classsdf__astar_1_1SDFAStar_a52d5f883b602b2ef42869c367e340485}} 
+\index{sdf\_astar.SDFAStar@{sdf\_astar.SDFAStar}!info@{info}}
+\index{info@{info}!sdf\_astar.SDFAStar@{sdf\_astar.SDFAStar}}
+\doxysubsubsection{\texorpdfstring{info}{info}}
+{\footnotesize\ttfamily sdf\+\_\+astar.\+SDFAStar.\+info}
+
+
+
+Definition at line 73 of file sdf\+\_\+astar.\+py.
+
+\mbox{\Hypertarget{classsdf__astar_1_1SDFAStar_a1bb3c58b9d7a3406c2e7988d97539b2f}\label{classsdf__astar_1_1SDFAStar_a1bb3c58b9d7a3406c2e7988d97539b2f}} 
+\index{sdf\_astar.SDFAStar@{sdf\_astar.SDFAStar}!k1@{k1}}
+\index{k1@{k1}!sdf\_astar.SDFAStar@{sdf\_astar.SDFAStar}}
+\doxysubsubsection{\texorpdfstring{k1}{k1}}
+{\footnotesize\ttfamily sdf\+\_\+astar.\+SDFAStar.\+k1}
+
+
+
+Definition at line 71 of file sdf\+\_\+astar.\+py.
+
+\mbox{\Hypertarget{classsdf__astar_1_1SDFAStar_ab824c297388badf1745444a2621ec7a7}\label{classsdf__astar_1_1SDFAStar_ab824c297388badf1745444a2621ec7a7}} 
+\index{sdf\_astar.SDFAStar@{sdf\_astar.SDFAStar}!k2@{k2}}
+\index{k2@{k2}!sdf\_astar.SDFAStar@{sdf\_astar.SDFAStar}}
+\doxysubsubsection{\texorpdfstring{k2}{k2}}
+{\footnotesize\ttfamily sdf\+\_\+astar.\+SDFAStar.\+k2}
+
+
+
+Definition at line 72 of file sdf\+\_\+astar.\+py.
+
+\mbox{\Hypertarget{classsdf__astar_1_1SDFAStar_af83b0ea748233caf84b3ce46fa1134ff}\label{classsdf__astar_1_1SDFAStar_af83b0ea748233caf84b3ce46fa1134ff}} 
+\index{sdf\_astar.SDFAStar@{sdf\_astar.SDFAStar}!node@{node}}
+\index{node@{node}!sdf\_astar.SDFAStar@{sdf\_astar.SDFAStar}}
+\doxysubsubsection{\texorpdfstring{node}{node}}
+{\footnotesize\ttfamily sdf\+\_\+astar.\+SDFAStar.\+node}
+
+
+
+Definition at line 245 of file sdf\+\_\+astar.\+py.
+
+\mbox{\Hypertarget{classsdf__astar_1_1SDFAStar_ad2aab6bc0fdac2cf33c243adf26e4ec0}\label{classsdf__astar_1_1SDFAStar_ad2aab6bc0fdac2cf33c243adf26e4ec0}} 
+\index{sdf\_astar.SDFAStar@{sdf\_astar.SDFAStar}!parent@{parent}}
+\index{parent@{parent}!sdf\_astar.SDFAStar@{sdf\_astar.SDFAStar}}
+\doxysubsubsection{\texorpdfstring{parent}{parent}}
+{\footnotesize\ttfamily sdf\+\_\+astar.\+SDFAStar.\+parent}
+
+
+
+Definition at line 244 of file sdf\+\_\+astar.\+py.
+
+\mbox{\Hypertarget{classsdf__astar_1_1SDFAStar_a55d07abfd8d88fcf78b0c204a478b4ae}\label{classsdf__astar_1_1SDFAStar_a55d07abfd8d88fcf78b0c204a478b4ae}} 
+\index{sdf\_astar.SDFAStar@{sdf\_astar.SDFAStar}!path@{path}}
+\index{path@{path}!sdf\_astar.SDFAStar@{sdf\_astar.SDFAStar}}
+\doxysubsubsection{\texorpdfstring{path}{path}}
+{\footnotesize\ttfamily sdf\+\_\+astar.\+SDFAStar.\+path}
+
+
+
+Definition at line 75 of file sdf\+\_\+astar.\+py.
+
+\mbox{\Hypertarget{classsdf__astar_1_1SDFAStar_a844a125fca5aade60071e8e4be946ce2}\label{classsdf__astar_1_1SDFAStar_a844a125fca5aade60071e8e4be946ce2}} 
+\index{sdf\_astar.SDFAStar@{sdf\_astar.SDFAStar}!sizes@{sizes}}
+\index{sizes@{sizes}!sdf\_astar.SDFAStar@{sdf\_astar.SDFAStar}}
+\doxysubsubsection{\texorpdfstring{sizes}{sizes}}
+{\footnotesize\ttfamily sdf\+\_\+astar.\+SDFAStar.\+sizes}
+
+
+
+Definition at line 208 of file sdf\+\_\+astar.\+py.
+
+\mbox{\Hypertarget{classsdf__astar_1_1SDFAStar_af0eca91eeb905d21d9df3dde922a41ac}\label{classsdf__astar_1_1SDFAStar_af0eca91eeb905d21d9df3dde922a41ac}} 
+\index{sdf\_astar.SDFAStar@{sdf\_astar.SDFAStar}!start@{start}}
+\index{start@{start}!sdf\_astar.SDFAStar@{sdf\_astar.SDFAStar}}
+\doxysubsubsection{\texorpdfstring{start}{start}}
+{\footnotesize\ttfamily sdf\+\_\+astar.\+SDFAStar.\+start}
+
+
+
+Definition at line 201 of file sdf\+\_\+astar.\+py.
+
+\mbox{\Hypertarget{classsdf__astar_1_1SDFAStar_aef1d7e2cb8d98692efb931216fdd7d10}\label{classsdf__astar_1_1SDFAStar_aef1d7e2cb8d98692efb931216fdd7d10}} 
+\index{sdf\_astar.SDFAStar@{sdf\_astar.SDFAStar}!success@{success}}
+\index{success@{success}!sdf\_astar.SDFAStar@{sdf\_astar.SDFAStar}}
+\doxysubsubsection{\texorpdfstring{success}{success}}
+{\footnotesize\ttfamily sdf\+\_\+astar.\+SDFAStar.\+success}
+
+
+
+Definition at line 70 of file sdf\+\_\+astar.\+py.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+safeplan/algos/\mbox{\hyperlink{sdf__astar_8py}{sdf\+\_\+astar.\+py}}\end{DoxyCompactItemize}

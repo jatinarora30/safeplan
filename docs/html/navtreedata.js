@@ -25,8 +25,45 @@
 var NAVTREE =
 [
   [ "SafePlan", "index.html", [
-    [ "Packages", "namespaces.html", [
-      [ "Packages", "namespaces.html", "namespaces_dup" ]
+    [ "SafePlan: A Benchmark for Safe and Optimal Path Planning", "index.html", [
+      [ "Overview", "index.html#autotoc_md1", null ],
+      [ "Key Features", "index.html#autotoc_md2", null ],
+      [ "Evaluation Metrics", "index.html#autotoc_md3", [
+        [ "1. Path Cost (m)", "index.html#autotoc_md5", null ],
+        [ "2. Planning Time (ms)", "index.html#autotoc_md6", null ],
+        [ "3. Success Rate (%)", "index.html#autotoc_md7", null ],
+        [ "4. Distance to Goal (m, failures only)", "index.html#autotoc_md8", null ],
+        [ "5. Number of Nodes in Path", "index.html#autotoc_md9", null ],
+        [ "6. Turning Angle (°)", "index.html#autotoc_md10", null ],
+        [ "7. Jerk per Meter", "index.html#autotoc_md11", null ],
+        [ "8. Optimal Deviation (%)", "index.html#autotoc_md12", null ],
+        [ "9. Minimum Clearance (m)", "index.html#autotoc_md13", null ],
+        [ "10. Average Minimum Clearance (m)", "index.html#autotoc_md14", null ],
+        [ "11. Clearance Variability", "index.html#autotoc_md15", null ],
+        [ "12. Danger Zone Violations", "index.html#autotoc_md16", null ],
+        [ "13. OptiSafe Index (Proposed)", "index.html#autotoc_md17", null ]
+      ] ],
+      [ "Algorithms in SafePlan", "index.html#autotoc_md18", [
+        [ "🔹 Traditional Planners", "index.html#autotoc_md19", null ],
+        [ "🔹 Safety-Aware Planners", "index.html#autotoc_md21", null ]
+      ] ]
+    ] ],
+    [ "Namespaces", "namespaces.html", [
+      [ "Namespace List", "namespaces.html", "namespaces_dup" ],
+      [ "Namespace Members", "namespacemembers.html", [
+        [ "All", "namespacemembers.html", null ],
+        [ "Variables", "namespacemembers_vars.html", null ]
+      ] ]
+    ] ],
+    [ "Classes", "annotated.html", [
+      [ "Class List", "annotated.html", "annotated_dup" ],
+      [ "Class Index", "classes.html", null ],
+      [ "Class Hierarchy", "hierarchy.html", "hierarchy" ],
+      [ "Class Members", "functions.html", [
+        [ "All", "functions.html", "functions_dup" ],
+        [ "Functions", "functions_func.html", null ],
+        [ "Variables", "functions_vars.html", "functions_vars" ]
+      ] ]
     ] ],
     [ "Files", "files.html", [
       [ "File List", "files.html", "files_dup" ]
@@ -36,7 +73,9 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"a__star_8py.html"
+"a__star_8py.html",
+"classsdf__astar_1_1SDFAStar.html",
+"namespaceturning__angle.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

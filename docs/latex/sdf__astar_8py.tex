@@ -1,7 +1,72 @@
 \hypertarget{sdf__astar_8py}{}\doxysection{safeplan/algos/sdf\+\_\+astar.py File Reference}
 \label{sdf__astar_8py}\index{safeplan/algos/sdf\_astar.py@{safeplan/algos/sdf\_astar.py}}
+
+
+Signed Distance Field (SDF) guided A$\ast$ planner for N-\/dimensional occupancy grids.  
+
+
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classsdf__astar_1_1SDFAStar}{sdf\+\_\+astar.\+SDFAStar}}
+\end{DoxyCompactItemize}
 \doxysubsection*{Namespaces}
 \begin{DoxyCompactItemize}
 \item 
  \mbox{\hyperlink{namespacesdf__astar}{sdf\+\_\+astar}}
 \end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Signed Distance Field (SDF) guided A$\ast$ planner for N-\/dimensional occupancy grids. 
+
+Implements an A$\ast$ variant that uses a Signed Distance Field (SDF) to bias search toward safer regions. The environment is an N-\/D Num\+Py occupancy grid where value 0 denotes free space and value 1 denotes an obstacle. The planner accepts start and goal grid indices and returns a collision-\/free path if one exists.
+
+Key ideas\+:
+\begin{DoxyItemize}
+\item A standard grid A$\ast$ framework\+: priority queue, cumulative path cost, and a neighborhood that includes all immediate offsets.
+\item An SDF-\/based safety term\+: a distance transform and its gradient encourage exploration toward areas with better clearance (see safety\+Heuristics()).
+\item A combined priority\+: mixes travel distance, path cost so far, and a local safety measure based on the SDF gradient along the current motion direction (see combined\+Heuristics()).
+\end{DoxyItemize}
+
+Heuristic and neighborhood generation are provided by heuristics() and adjacent\+Coordinates(). Ensure the heuristic is compatible with the allowed moves and step costs.
+
+\begin{DoxyParagraph}{Constructor Arguments}
+
+\begin{DoxyItemize}
+\item {\ttfamily k1} \+: float — weight on path-\/cost term inside the combined priority
+\item {\ttfamily k2} \+: float — weight on heuristic distance term inside the combined priority
+\end{DoxyItemize}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Inputs (to @ref plan())}
+
+\begin{DoxyItemize}
+\item {\ttfamily start} \+: tuple\mbox{[}int, ...\mbox{]} — start grid cell (for example, (row, col))
+\item {\ttfamily goal} \+: tuple\mbox{[}int, ...\mbox{]} — goal grid cell
+\item {\ttfamily grid} \+: numpy.\+ndarray (N-\/D), values \{0=free, 1=obstacle\}
+\end{DoxyItemize}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Outputs}
+
+\begin{DoxyItemize}
+\item {\ttfamily success} \+: int — 1 if a path is found, else 0
+\item {\ttfamily path} \+: list\mbox{[}tuple\mbox{[}int, ...\mbox{]}\mbox{]} — sequence of cells from start to goal (inclusive)
+\item {\ttfamily info} \+: list\mbox{[}str\mbox{]} — diagnostics (for example, \char`\"{}\+Invalid goal\char`\"{})
+\end{DoxyItemize}
+\end{DoxyParagraph}
+\begin{DoxyNote}{Note}
+
+\begin{DoxyItemize}
+\item Coordinates are handled in grid index space.
+\item The SDF is computed once per plan call using a distance transform on the free space mask; its gradient is reused in the safety term.
+\item The neighborhood includes all immediate offsets except the zero vector.
+\item The safety term normalizes the SDF gradient change along the current motion direction, with simple clamping to avoid division by zero.
+\end{DoxyItemize}
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+Base\+Planner
+\end{DoxySeeAlso}
+@references
+\begin{DoxyItemize}
+\item SDF-\/guided A$\ast$ \href{https://ieeexplore.ieee.org/document/10364842/}{\texttt{ https\+://ieeexplore.\+ieee.\+org/document/10364842/}} 
+\end{DoxyItemize}

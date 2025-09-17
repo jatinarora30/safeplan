@@ -82,18 +82,63 @@ $(document).ready(function(){initNavTree('a__star_8py.html',''); initResizable()
 
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
 <a href="#namespaces">Namespaces</a>  </div>
   <div class="headertitle">
 <div class="title">a_star.py File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>N-dimensional A* (A-star) planner over NumPy occupancy grids.  
+<a href="#details">More...</a></p>
+
+<p><a href="a__star_8py_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classa__star_1_1AStar.html">a_star.AStar</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A* planner operating on N-D occupancy grids.  <a href="classa__star_1_1AStar.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
 Namespaces</h2></td></tr>
 <tr class="memitem:namespacea__star"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacea__star.html">a_star</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-</div><!-- contents -->
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>N-dimensional A* (A-star) planner over NumPy occupancy grids. </p>
+<p>This module implements A* search on an N-D occupancy grid where <code>0</code> denotes free space and <code>1</code> denotes an obstacle. The planner accepts start and goal grid indices (tuples of ints) and returns a collision-free path if one exists.</p>
+<ul>
+<li>Heuristic: By default, this implementation uses the <b>Manhattan (L1)</b> distance.</li>
+<li>Neighborhood: All 3^N - 1 offsets are considered (axis-aligned and diagonal moves).</li>
+<li>Costs: Axis-aligned steps cost 1.0; diagonal/off-axis steps use the L2 magnitude of the step vector.</li>
+</ul>
+<dl class="section attention"><dt>Attention</dt><dd>Heuristic admissibility depends on the move set. If diagonal moves are allowed (as in this implementation), Manhattan distance is <b>not</b> strictly admissible unless you adjust step costs accordingly. Prefer <b>Chebyshev</b> (L∞) or Euclidean (L2 with consistent step costs) for diagonal-enabled neighborhoods.</dd></dl>
+<dl class="section user"><dt>Inputs</dt><dd><ul>
+<li><code>start</code> : tuple[int, ...] — start grid cell (e.g., (row, col, ...))</li>
+<li><code>goal</code> : tuple[int, ...] — goal grid cell</li>
+<li><code>grid</code> : numpy.ndarray (N-D), values {0=free, 1=obstacle}</li>
+</ul>
+</dd></dl>
+<dl class="section user"><dt>Outputs</dt><dd><ul>
+<li><code>success</code> : int — 1 if a path is found, else 0</li>
+<li><code>path</code> : list[tuple[int, ...]] — cells from start→goal (inclusive) or empty if none</li>
+<li><code>info</code> : list[str] — diagnostics (e.g., "Invalid goal")</li>
+</ul>
+</dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Ensure the heuristic matches the move set:<ul>
+<li>4-neighbors (axis-only) → Manhattan (L1)</li>
+<li>8-neighbors / diagonal moves → Chebyshev (L∞) or Euclidean (L2 with proper step costs)</li>
+</ul>
+</dd></dl>
+<dl class="section see"><dt>See also</dt><dd>BasePlanner</dd></dl>
+<p>@references</p><ul>
+<li><b>[HartNilsNilsson1968]</b> N. J. Nilsson, P. E. Hart, B. Raphael, "A Formal Basis for the
+  Heuristic Determination of Minimum Cost Paths", 1968. DOI/Record: <a href="https://ieeexplore.ieee.org/document/4082128">https://ieeexplore.ieee.org/document/4082128</a> </li>
+</ul>
+
+<p class="definition">Definition in file <a class="el" href="a__star_8py_source.html">a_star.py</a>.</p>
+</div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

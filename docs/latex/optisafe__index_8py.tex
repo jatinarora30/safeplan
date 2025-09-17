@@ -1,7 +1,43 @@
 \hypertarget{optisafe__index_8py}{}\doxysection{safeplan/evals/optisafe\+\_\+index.py File Reference}
 \label{optisafe__index_8py}\index{safeplan/evals/optisafe\_index.py@{safeplan/evals/optisafe\_index.py}}
+
+
+Optisafe Index evaluator for planning algorithms.  
+
+
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classoptisafe__index_1_1OptiSafeIndex}{optisafe\+\_\+index.\+Opti\+Safe\+Index}}
+\end{DoxyCompactItemize}
 \doxysubsection*{Namespaces}
 \begin{DoxyCompactItemize}
 \item 
  \mbox{\hyperlink{namespaceoptisafe__index}{optisafe\+\_\+index}}
 \end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Optisafe Index evaluator for planning algorithms. 
+
+Implements Opti\+Safe Index evaluation based upon the path provided on the grid.
+
+\begin{DoxyParagraph}{Inputs}
+
+\begin{DoxyItemize}
+\item {\ttfamily start} \+: tuple\mbox{[}int, ...\mbox{]} — start grid cell (e.\+g., (row, col))
+\item {\ttfamily goal} \+: tuple\mbox{[}int, ...\mbox{]} — goal grid cell
+\item {\ttfamily grid} \+: numpy.\+ndarray (N-\/D), values \{0=free, 1=obstacle\}
+\item {\ttfamily cell\+Size} \+: Size of cell(in m) for real world computation
+\item {\ttfamily Path} \+: Path given by planner to evaluate metrices
+\end{DoxyItemize}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Outputs}
+
+\begin{DoxyItemize}
+\item {\ttfamily val\+:} Opti\+Safe Index
+\end{DoxyItemize}
+\end{DoxyParagraph}
+\begin{DoxySeeAlso}{See also}
+Base\+Eval 
+\end{DoxySeeAlso}

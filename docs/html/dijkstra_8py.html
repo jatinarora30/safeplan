@@ -82,18 +82,58 @@ $(document).ready(function(){initNavTree('dijkstra_8py.html',''); initResizable(
 
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
 <a href="#namespaces">Namespaces</a>  </div>
   <div class="headertitle">
 <div class="title">dijkstra.py File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Dijkstra planner for N-dimensional occupancy grids.  
+<a href="#details">More...</a></p>
+
+<p><a href="dijkstra_8py_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdijkstra_1_1Dijkstra.html">dijkstra.Dijkstra</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
 Namespaces</h2></td></tr>
 <tr class="memitem:namespacedijkstra"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacedijkstra.html">dijkstra</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-</div><!-- contents -->
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Dijkstra planner for N-dimensional occupancy grids. </p>
+<p>Implements Dijkstra’s shortest-path search on an N-D NumPy occupancy grid where value 0 denotes free space and value 1 denotes an obstacle. The planner accepts start and goal grid indices and returns a collision-free path with minimum accumulated cost if one exists.</p>
+<p>This implementation expands a full 3^N - 1 neighborhood (axis-aligned and diagonal moves). Axis-aligned steps use unit cost; diagonal or off-axis steps use the Euclidean length of the step vector. A priority queue orders expansions by the current best distance from the start. No heuristic is used.</p>
+<p>Neighborhood generation is provided by adjacentCoordinates().</p>
+<dl class="section user"><dt>Inputs</dt><dd><ul>
+<li><code>start</code> : tuple[int, ...] — start grid cell (for example, (row, col))</li>
+<li><code>goal</code> : tuple[int, ...] — goal grid cell</li>
+<li><code>grid</code> : numpy.ndarray (N-D), values {0=free, 1=obstacle}</li>
+</ul>
+</dd></dl>
+<dl class="section user"><dt>Outputs</dt><dd><ul>
+<li><code>success</code> : int — 1 if a path is found, else 0</li>
+<li><code>path</code> : list[tuple[int, ...]] — sequence of cells from start to goal (inclusive)</li>
+<li><code>info</code> : list[str] — diagnostics (for example, "Invalid goal")</li>
+</ul>
+</dd></dl>
+<dl class="section note"><dt>Note</dt><dd><ul>
+<li>Coordinates are handled in grid index space.</li>
+<li>Step costs: axis steps cost 1.0; diagonal/off-axis steps use the Euclidean length of the step vector based on index differences.</li>
+<li>The neighborhood includes all immediate offsets except the zero vector.</li>
+</ul>
+</dd></dl>
+<dl class="section see"><dt>See also</dt><dd>BasePlanner</dd></dl>
+<p>@references</p><ul>
+<li>Dijkstra, E. W., “A note on two problems in connexion with graphs,” 1959. Overview <a href="https://www.semanticscholar.org/paper/A-note-on-two-problems-in-connexion-with-graphs-Dijkstra/45786063578e814444b8247028970758bbbd0488">https://www.semanticscholar.org/paper/A-note-on-two-problems-in-connexion-with-graphs-Dijkstra/45786063578e814444b8247028970758bbbd0488</a> </li>
+</ul>
+
+<p class="definition">Definition in file <a class="el" href="dijkstra_8py_source.html">dijkstra.py</a>.</p>
+</div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

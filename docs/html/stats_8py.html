@@ -82,18 +82,63 @@ $(document).ready(function(){initNavTree('stats_8py.html',''); initResizable(); 
 
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
 <a href="#namespaces">Namespaces</a>  </div>
   <div class="headertitle">
 <div class="title">stats.py File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Aggregate, compare, and visualize benchmark statistics from JSON outputs.  
+<a href="#details">More...</a></p>
+
+<p><a href="stats_8py_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstats_1_1Stats.html">stats.Stats</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute, compare, and visualize evaluation statistics across algorithms.  <a href="classstats_1_1Stats.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
 Namespaces</h2></td></tr>
 <tr class="memitem:namespacestats"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacestats.html">stats</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-</div><!-- contents -->
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Aggregate, compare, and visualize benchmark statistics from JSON outputs. </p>
+<p>Loads a run configuration (algorithms, evaluations, and run metadata), scans per-algorithm JSON outputs produced under a run directory, computes averaged metrics, and optionally renders a table figure. Results are saved as a JSON summary (and PNG if requested).</p>
+<p>Directory conventions:</p><ul>
+<li>Outputs are expected under <code>outputs/&lt;runDetails&gt;/&lt;algo&gt;/*.json</code>.</li>
+<li>Aggregated stats are written to <code>results/&lt;runDetails&gt;Stats.json</code>.</li>
+<li>Optional figure is saved to <code>results/&lt;runDetails&gt;.png</code>.</li>
+</ul>
+<p>Evaluation handling:</p><ul>
+<li>The code builds a consistent evaluation key list (<code>self.evals</code>) from the config file and averages each metric across all JSON files found for a given algorithm.</li>
+<li>Keys matching a generic “success rate” pattern (e.g., <code>SuccessRate</code>, <code>success_rate</code>, <code>success</code>) are normalized by the <b>global</b> maximum iteration count across algorithms; all other metrics are averaged over the number of files found for that algorithm.</li>
+</ul>
+<dl class="section user"><dt>Expected Config Schema (JSON at <code>runConfigPath</code>)</dt><dd><ul>
+<li><code>algoDetails</code> : list of objects with at least a <code>name</code> field for each algorithm.</li>
+<li><code>evalDetails</code> : list of objects with at least a <code>name</code> field for each metric.</li>
+<li><code>runDetails</code> : string run identifier (used as subdirectory under <code>outputs/</code>).</li>
+</ul>
+</dd></dl>
+<dl class="section user"><dt>Outputs</dt><dd><ul>
+<li>Printed pandas DataFrame of averaged metrics (row = algorithm, col = metric).</li>
+<li>JSON summary written to <code>results/</code> &lt;runDetails&gt;Stats.json.</li>
+<li>Optional PNG table at <code>results/</code> &lt;runDetails&gt;.png when <code>saveStatsImage</code> is True.</li>
+</ul>
+</dd></dl>
+<dl class="section note"><dt>Note</dt><dd><ul>
+<li>Missing or malformed result files are skipped with a console message.</li>
+<li>If an algorithm has no result files, its metrics are set to NaN in the output.</li>
+<li>The module creates a <code>results/</code> directory if it does not already exist.</li>
+</ul>
+</dd></dl>
+<dl class="section see"><dt>See also</dt><dd>pandas.DataFrame, matplotlib, pandas.plotting.table </dd></dl>
+
+<p class="definition">Definition in file <a class="el" href="stats_8py_source.html">stats.py</a>.</p>
+</div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
