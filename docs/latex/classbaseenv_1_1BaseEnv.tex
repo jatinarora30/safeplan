@@ -2,13 +2,12 @@
 \label{classbaseenv_1_1BaseEnv}\index{baseenv.BaseEnv@{baseenv.BaseEnv}}
 
 
-Abstract base/registry for environment making for planning algorithms.  
+Abstract base for environment generation.  
 
 
 
 
-Inheritance diagram for baseenv.\+Base\+Env\+:
-\nopagebreak
+Inheritance diagram for baseenv.\+Base\+Env\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -17,8 +16,7 @@ Inheritance diagram for baseenv.\+Base\+Env\+:
 \end{figure}
 
 
-Collaboration diagram for baseenv.\+Base\+Env\+:
-\nopagebreak
+Collaboration diagram for baseenv.\+Base\+Env\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -29,27 +27,27 @@ Collaboration diagram for baseenv.\+Base\+Env\+:
 \begin{DoxyCompactItemize}
 \item 
 None \mbox{\hyperlink{classbaseenv_1_1BaseEnv_a1d64ff6d5d8fb57beea5ac2fbbd7a27d}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self)
-\begin{DoxyCompactList}\small\item\em Construct the base map generation. \end{DoxyCompactList}\item 
-Any \mbox{\hyperlink{classbaseenv_1_1BaseEnv_a581e2383cd7419ee9ceb7de9df088871}{getmap}} (self)
-\begin{DoxyCompactList}\small\item\em A common getmap function needs to be incorporated by every map generating class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Construct the base environment generator. \end{DoxyCompactList}\item 
+Tuple\mbox{[}Any, float, str, str, List\mbox{[}Dict\mbox{[}str, Tuple\mbox{[}int,...\mbox{]}\mbox{]}\mbox{]}\mbox{]} \mbox{\hyperlink{classbaseenv_1_1BaseEnv_aa0fd7a6f1f651d370c15da6fd34c49ff}{getmap}} (self)
+\begin{DoxyCompactList}\small\item\em Build or load an occupancy grid and related metadata. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
-Abstract base/registry for environment making for planning algorithms. 
+Abstract base for environment generation. 
 
 \begin{DoxyParagraph}{Responsibilities}
 
 \begin{DoxyItemize}
-\item Defines the {\ttfamily \mbox{\hyperlink{classbaseenv_1_1BaseEnv_a581e2383cd7419ee9ceb7de9df088871}{getmap()}}} interface used by all map generating classes
-\item Establishes the common return contract {\ttfamily grid} for that classes
+\item Defines the \mbox{\hyperlink{classbaseenv_1_1BaseEnv_aa0fd7a6f1f651d370c15da6fd34c49ff}{getmap()}} interface used by all map-\/generating classes.
+\item Establishes a common return contract for grids and metadata.
 \end{DoxyItemize}
 \end{DoxyParagraph}
 \begin{DoxyNote}{Note}
-Subclasses must implement \mbox{\hyperlink{classbaseenv_1_1BaseEnv_a581e2383cd7419ee9ceb7de9df088871}{getmap()}}. 
+Subclasses must implement \mbox{\hyperlink{classbaseenv_1_1BaseEnv_aa0fd7a6f1f651d370c15da6fd34c49ff}{getmap()}}. 
 \end{DoxyNote}
 
 
-Definition at line 25 of file baseenv.\+py.
+Definition at line 30 of file baseenv.\+py.
 
 
 
@@ -62,31 +60,44 @@ Definition at line 25 of file baseenv.\+py.
 
 
 
-Construct the base map generation. 
+Construct the base environment generator. 
 
 \begin{DoxyVerb}   @post Instance is initialized; subclass constructors may call super().
 \end{DoxyVerb}
  
 
-Definition at line 32 of file baseenv.\+py.
+Definition at line 37 of file baseenv.\+py.
 
 
 
 \doxysubsection{Member Function Documentation}
-\mbox{\Hypertarget{classbaseenv_1_1BaseEnv_a581e2383cd7419ee9ceb7de9df088871}\label{classbaseenv_1_1BaseEnv_a581e2383cd7419ee9ceb7de9df088871}} 
+\mbox{\Hypertarget{classbaseenv_1_1BaseEnv_aa0fd7a6f1f651d370c15da6fd34c49ff}\label{classbaseenv_1_1BaseEnv_aa0fd7a6f1f651d370c15da6fd34c49ff}} 
 \index{baseenv.BaseEnv@{baseenv.BaseEnv}!getmap@{getmap}}
 \index{getmap@{getmap}!baseenv.BaseEnv@{baseenv.BaseEnv}}
 \doxysubsubsection{\texorpdfstring{getmap()}{getmap()}}
-{\footnotesize\ttfamily  Any baseenv.\+Base\+Env.\+getmap (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily  Tuple\mbox{[}Any, float, str, str, List\mbox{[}Dict\mbox{[}str, Tuple\mbox{[}int, ...\mbox{]}\mbox{]}\mbox{]}\mbox{]} baseenv.\+Base\+Env.\+getmap (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
 
 
 
-A common getmap function needs to be incorporated by every map generating class. 
+Build or load an occupancy grid and related metadata. 
 
-\begin{DoxyReturn}{Returns}
-Grid An n-\/dimensional grid 
-\end{DoxyReturn}
+\begin{DoxyVerb}   @details
+   Implementations should return:
+   - grid : numpy.ndarray (N-D), with values {0=free, 1=obstacle}
+   - cellSize : float — physical size of a grid cell (meters or chosen unit)
+   - envName : str — short environment name
+   - envDes  : str — brief environment description
+   - startGoalPairs : list of dicts, each like:
+         {"start": (i, j[, k, ...]), "goal": (i, j[, k, ...])}
 
+   @return tuple
+\end{DoxyVerb}
+ 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(grid, cellSize, envName, envDes, startGoalPairs)}
+
+\end{DoxyCode}
+ 
 \begin{DoxyExceptions}{Exceptions}
 {\em Not\+Implemented\+Error} & If a subclass does not override this method. \\
 \hline
@@ -97,7 +108,7 @@ Reimplemented in \mbox{\hyperlink{classgenerate__grid_1_1GenerateGrid_aa81e730d8
 
 
 
-Definition at line 42 of file baseenv.\+py.
+Definition at line 62 of file baseenv.\+py.
 
 
 

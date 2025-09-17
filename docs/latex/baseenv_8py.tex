@@ -2,14 +2,14 @@
 \label{baseenv_8py}\index{safeplan/envs/baseenv.py@{safeplan/envs/baseenv.py}}
 
 
-Base class for Environment making of planning algorithms.  
+Base class for environment generation used by planning algorithms.  
 
 
 \doxysubsection*{Classes}
 \begin{DoxyCompactItemize}
 \item 
 class \mbox{\hyperlink{classbaseenv_1_1BaseEnv}{baseenv.\+Base\+Env}}
-\begin{DoxyCompactList}\small\item\em Abstract base/registry for environment making for planning algorithms. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Abstract base for environment generation. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Namespaces}
 \begin{DoxyCompactItemize}
 \item 
@@ -18,6 +18,6 @@ class \mbox{\hyperlink{classbaseenv_1_1BaseEnv}{baseenv.\+Base\+Env}}
 
 
 \doxysubsection{Detailed Description}
-Base class for Environment making of planning algorithms. 
+Base class for environment generation used by planning algorithms. 
 
-Provides a common interface for environment making 
+Provides a common interface for environment builders that produce N-\/dimensional occupancy grids and associated metadata. Subclasses implement getmap() to return a grid and start/goal pairs in a consistent format consumed by Safe\+Plan. 

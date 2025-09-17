@@ -1,7 +1,7 @@
 var hierarchy =
 [
     [ "logger.Logger", "classlogger_1_1Logger.html", null ],
-    [ "main.SafePlan", "classmain_1_1SafePlan.html", null ],
+    [ "safeplan.main.SafePlan", "classsafeplan_1_1main_1_1SafePlan.html", null ],
     [ "stats.Stats", "classstats_1_1Stats.html", null ],
     [ "visualize.Visualize", "classvisualize_1_1Visualize.html", null ],
     [ "ABC", null, [

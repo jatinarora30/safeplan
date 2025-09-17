@@ -46,6 +46,27 @@ var NAVTREE =
       [ "Algorithms in SafePlan", "index.html#autotoc_md18", [
         [ "🔹 Traditional Planners", "index.html#autotoc_md19", null ],
         [ "🔹 Safety-Aware Planners", "index.html#autotoc_md21", null ]
+      ] ],
+      [ "Installation", "index.html#autotoc_md22", [
+        [ "Requirements", "index.html#autotoc_md23", null ],
+        [ "Install from source", "index.html#autotoc_md25", null ]
+      ] ],
+      [ "Usage", "index.html#autotoc_md26", null ],
+      [ "Programmatic API", "index.html#autotoc_md27", null ],
+      [ "Extending SafePlan", "index.html#autotoc_md28", [
+        [ "Adding a New Planner", "index.html#autotoc_md29", null ],
+        [ "Adding a New Metric", "index.html#autotoc_md30", null ]
+      ] ],
+      [ "Adding a New Environment", "index.html#autotoc_md31", [
+        [ "Option A — Use the built-in <tt>GenerateGrid</tt>", "index.html#autotoc_md33", [
+          [ "What it does:", "index.html#autotoc_md34", null ],
+          [ "Scene JSON schema (example):", "index.html#autotoc_md35", null ]
+        ] ]
+      ] ],
+      [ "Caching & Reloading (GenerateGrid)", "index.html#autotoc_md36", null ],
+      [ "Random Start/Goal Pairs (GenerateGrid)", "index.html#autotoc_md37", null ],
+      [ "Troubleshooting", "index.html#autotoc_md38", [
+        [ "Cite SafePlan", "index.html#autotoc_md39", null ]
       ] ]
     ] ],
     [ "Namespaces", "namespaces.html", [
@@ -73,9 +94,9 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"a__star_8py.html",
-"classsdf__astar_1_1SDFAStar.html",
-"namespaceturning__angle.html"
+"____init_____8py.html",
+"classsafeplan_1_1main_1_1SafePlan.html#ae7cfc679ebe124c8a8d8df104822a846",
+"namespaceminimum__clearance.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

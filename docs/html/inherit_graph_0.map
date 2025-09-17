@@ -1,6 +1,6 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
 <area shape="rect" id="node1" title=" " alt="" coords="5,377,55,404"/>
-<area shape="rect" id="node2" href="$classbaseenv_1_1BaseEnv.html" title="Abstract base/registry for environment making for planning algorithms." alt="" coords="128,167,264,193"/>
+<area shape="rect" id="node2" href="$classbaseenv_1_1BaseEnv.html" title="Abstract base for environment generation." alt="" coords="128,167,264,193"/>
 <area shape="rect" id="node4" href="$classbaseeval_1_1BaseEval.html" title="Abstract base/registry for evaluating planning algorithms." alt="" coords="123,377,269,404"/>
 <area shape="rect" id="node16" href="$classbaseplanner_1_1BasePlanner.html" title="Abstract base/registry for planning algorithms." alt="" coords="103,895,289,921"/>
 <area shape="rect" id="node3" href="$classgenerate__grid_1_1GenerateGrid.html" title="Generates and caches a discrete occupancy grid with polygonal obstacles." alt="" coords="350,5,553,32"/>

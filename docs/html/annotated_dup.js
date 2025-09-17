@@ -39,9 +39,6 @@ var annotated_dup =
     [ "logger", "namespacelogger.html", [
       [ "Logger", "classlogger_1_1Logger.html", "classlogger_1_1Logger" ]
     ] ],
-    [ "main", "namespacemain.html", [
-      [ "SafePlan", "classmain_1_1SafePlan.html", "classmain_1_1SafePlan" ]
-    ] ],
     [ "minimum_clearance", "namespaceminimum__clearance.html", [
       [ "MinimumClearance", "classminimum__clearance_1_1MinimumClearance.html", "classminimum__clearance_1_1MinimumClearance" ]
     ] ],
@@ -62,6 +59,11 @@ var annotated_dup =
     ] ],
     [ "rrt", "namespacerrt.html", [
       [ "RRT", "classrrt_1_1RRT.html", "classrrt_1_1RRT" ]
+    ] ],
+    [ "safeplan", "namespacesafeplan.html", [
+      [ "main", "namespacesafeplan_1_1main.html", [
+        [ "SafePlan", "classsafeplan_1_1main_1_1SafePlan.html", "classsafeplan_1_1main_1_1SafePlan" ]
+      ] ]
     ] ],
     [ "sdf_astar", "namespacesdf__astar.html", [
       [ "SDFAStar", "classsdf__astar_1_1SDFAStar.html", "classsdf__astar_1_1SDFAStar" ]

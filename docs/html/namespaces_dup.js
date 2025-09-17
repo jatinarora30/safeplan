@@ -13,7 +13,6 @@ var namespaces_dup =
     [ "generate_grid", "namespacegenerate__grid.html", "namespacegenerate__grid" ],
     [ "jerk_per_meter", "namespacejerk__per__meter.html", "namespacejerk__per__meter" ],
     [ "logger", "namespacelogger.html", "namespacelogger" ],
-    [ "main", "namespacemain.html", "namespacemain" ],
     [ "minimum_clearance", "namespaceminimum__clearance.html", "namespaceminimum__clearance" ],
     [ "nodes_in_path", "namespacenodes__in__path.html", "namespacenodes__in__path" ],
     [ "optimal_deviation", "namespaceoptimal__deviation.html", "namespaceoptimal__deviation" ],
@@ -21,6 +20,7 @@ var namespaces_dup =
     [ "optisafe_index", "namespaceoptisafe__index.html", "namespaceoptisafe__index" ],
     [ "path_cost", "namespacepath__cost.html", "namespacepath__cost" ],
     [ "rrt", "namespacerrt.html", "namespacerrt" ],
+    [ "safeplan", "namespacesafeplan.html", "namespacesafeplan" ],
     [ "sdf_astar", "namespacesdf__astar.html", "namespacesdf__astar" ],
     [ "stats", "namespacestats.html", "namespacestats" ],
     [ "test", "namespacetest.html", [

@@ -285,9 +285,383 @@ Algorithms in SafePlan</h1>
  Reference: (<a href="https://www.mdpi.com/1424-8220/24/10/3149">https://www.mdpi.com/1424-8220/24/10/3149</a>)</li>
 <li><b>CBF-RRT (Control Barrier Function RRT)</b> <br  />
  Enhances RRT with control barrier functions to guarantee safety constraints. <br  />
- Reference: (<a href="https://arxiv.org/pdf/2011.06748">https://arxiv.org/pdf/2011.06748</a>) </li>
+ Reference: (<a href="https://arxiv.org/pdf/2011.06748">https://arxiv.org/pdf/2011.06748</a>)</li>
 </ul>
-</div></div><!-- PageDoc -->
+<h1><a class="anchor" id="autotoc_md22"></a>
+Installation</h1>
+<h2><a class="anchor" id="autotoc_md23"></a>
+Requirements</h2>
+<ul>
+<li><b>Python</b>: 3.9 or newer <br  />
+</li>
+<li><b>Core dependencies</b>:<ul>
+<li><code>numpy</code></li>
+<li><code>scipy</code></li>
+<li><code>pandas</code></li>
+<li><code>matplotlib</code></li>
+<li><code>plotly</code></li>
+<li><code>networkx</code></li>
+<li><code>psutil</code></li>
+<li><code>networkx</code></li>
+<li><code>json</code>, <code>os</code>, <code>subprocess</code> (standard library)</li>
+</ul>
+</li>
+</ul>
+<p>All dependencies are listed in <code>requirements.txt</code>.</p>
+<hr  />
+<h2><a class="anchor" id="autotoc_md25"></a>
+Install from source</h2>
+<p>Clone the repository and install in editable mode:</p>
+<div class="fragment"><div class="line">git clone https://github.com/&lt;your-username&gt;/safeplan.git</div>
+<div class="line">cd safeplan</div>
+<div class="line">pip install -r requirements.txt</div>
+<div class="line">pip install -e .</div>
+</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md26"></a>
+Usage</h1>
+<p>SafePlan experiments are configured via a JSON file (e.g., <code>run1.json</code>). <br  />
+ Below is an example:</p>
+<div class="fragment"><div class="line">{</div>
+<div class="line">  &quot;runDetails&quot;: &quot;run1&quot;,</div>
+<div class="line">  &quot;evalDetails&quot;: [</div>
+<div class="line">    {&quot;name&quot;: &quot;PlanningTime&quot;},</div>
+<div class="line">    {&quot;name&quot;: &quot;MinimumClearance&quot;,&quot;args&quot;: {&quot;pointSamples&quot;:100}},</div>
+<div class="line">    {&quot;name&quot;: &quot;AverageMinimumClearance&quot;,&quot;args&quot;: {&quot;pointSamples&quot;:100}},</div>
+<div class="line">    {&quot;name&quot;: &quot;ClearanceVariability&quot;,&quot;args&quot;: {&quot;pointSamples&quot;:100}},</div>
+<div class="line">    {&quot;name&quot;: &quot;DangerViolations&quot;,&quot;args&quot;: {&quot;pointSamples&quot;:100,&quot;dangerRadius&quot;:0.2}},</div>
+<div class="line">    {&quot;name&quot;: &quot;TurningAngle&quot;},</div>
+<div class="line">    {&quot;name&quot;: &quot;JerkPerMeter&quot;},</div>
+<div class="line">    {&quot;name&quot;: &quot;SuccessRate&quot;},</div>
+<div class="line">    {&quot;name&quot;: &quot;OptimalDeviation&quot;},</div>
+<div class="line">    {&quot;name&quot;: &quot;PathCost&quot;},</div>
+<div class="line">    {&quot;name&quot;: &quot;DistanceToGoal&quot;},</div>
+<div class="line">    {&quot;name&quot;: &quot;OptiSafeIndex&quot;,&quot;args&quot;: {&quot;pointSamples&quot;:100,&quot;knn&quot;:1000}},</div>
+<div class="line">    {&quot;name&quot;: &quot;NodesInPath&quot;, &quot;args&quot;: {&quot;type&quot;:&quot;RDP&quot;,&quot;epsilon&quot;:0.01}}</div>
+<div class="line">  ],</div>
+<div class="line">  &quot;algoDetails&quot;: [</div>
+<div class="line">    {&quot;name&quot;: &quot;VoronoiPlanner&quot;,&quot;args&quot;: {&quot;pointSamples&quot;:100,&quot;knn&quot;:1000}},</div>
+<div class="line">    {&quot;name&quot;: &quot;UPP&quot;,&quot;args&quot;: {&quot;alpha&quot;:0.5,&quot;beta&quot;:2,&quot;radius&quot;:5,&quot;epsilon&quot;:0.01}},</div>
+<div class="line">    {&quot;name&quot;: &quot;RRT&quot;,&quot;args&quot;: {&quot;maxIter&quot;:10000,&quot;goalSampleRate&quot;:0.05,&quot;stepSize&quot;:7,&quot;pointSamples&quot;:100}},</div>
+<div class="line">    {&quot;name&quot;: &quot;CBFRRT&quot;,&quot;args&quot;: {&quot;maxIter&quot;:10000,&quot;goalSampleRate&quot;:0.05,&quot;stepSize&quot;:7,&quot;pointSamples&quot;:100,&quot;gamma1&quot;:2,&quot;gamma2&quot;:2}},</div>
+<div class="line">    {&quot;name&quot;: &quot;AStar&quot;},</div>
+<div class="line">    {&quot;name&quot;: &quot;Dijkstra&quot;},</div>
+<div class="line">    {&quot;name&quot;: &quot;WeightedAStar&quot;,&quot;args&quot;: {&quot;weight&quot;:1.2}},</div>
+<div class="line">    {&quot;name&quot;: &quot;SDFAStar&quot; , &quot;args&quot;: {&quot;k1&quot;:5,&quot;k2&quot;:5}},</div>
+<div class="line">    {&quot;name&quot;: &quot;OptimizedAStar&quot; , &quot;args&quot;: {&quot;turnPenaltyCoefficients&quot;:0.5,&quot;safetyDistGridRadius&quot;:100,&quot;maxInflateIter&quot;:100,&quot;pointSamples&quot;:100}}</div>
+<div class="line">  ],</div>
+<div class="line">  &quot;envDetails&quot;: [</div>
+<div class="line">    {</div>
+<div class="line">      &quot;generateGrid&quot;: [</div>
+<div class="line">        {&quot;name&quot;: &quot;env12&quot;},</div>
+<div class="line">        {&quot;name&quot;: &quot;env2&quot;}</div>
+<div class="line">      ]</div>
+<div class="line">    }</div>
+<div class="line">  ]</div>
+<div class="line">}</div>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md27"></a>
+Programmatic API</h1>
+<p>You can run SafePlan directly from Python by importing the main API and passing a path to your run config JSON.</p>
+<div class="fragment"><div class="line">from safeplan.main import SafePlan</div>
+<div class="line">from safeplan.core.stats import Stats</div>
+<div class="line">from safeplan.core.visualize import Visualize</div>
+<div class="line"> </div>
+<div class="line"># 1) Run the benchmark</div>
+<div class="line">sf = SafePlan(&quot;/home/run1.json&quot;)</div>
+<div class="line">sf.benchmark()</div>
+<div class="line"> </div>
+<div class="line"># 2) Compute aggregate statistics across all outputs</div>
+<div class="line">st = Stats(&quot;/home/run1.json&quot;)</div>
+<div class="line">st.compute()</div>
+<div class="line"> </div>
+<div class="line"># 3) Visualize one iteration (2D → PNG, 3D → Plotly HTML)</div>
+<div class="line">viz = Visualize()</div>
+<div class="line">viz.see(&quot;/home/run1.json&quot;, iterNo=1, prefer_plotly=True)</div>
+</div><!-- fragment --><p>SafePlan experimental results in results folder on calling stats for planners for various metrices are shown in json form as follows: </p><div class="fragment"><div class="line">{</div>
+<div class="line">    &quot;VoronoiPlanner&quot;: {</div>
+<div class="line">        &quot;PlanningTime&quot;: 34.41541785260046,</div>
+<div class="line">        &quot;MinimumClearance&quot;: 1.1250388913720941,</div>
+<div class="line">        &quot;AverageMinimumClearance&quot;: 2.352815958430445,</div>
+<div class="line">        &quot;ClearanceVariability&quot;: 28.298456912893112,</div>
+<div class="line">        &quot;DangerViolations&quot;: 25.48421052631579,</div>
+<div class="line">        &quot;TurningAngle&quot;: 50.832074296827976,</div>
+<div class="line">        &quot;JerkPerMeter&quot;: 0.1293378835798869,</div>
+<div class="line">        &quot;SuccessRate&quot;: 0.78,</div>
+<div class="line">        &quot;OptimalDeviation&quot;: -0.04541845530415791,</div>
+<div class="line">        &quot;PathCost&quot;: 14.881445458621005,</div>
+<div class="line">        &quot;DistanceToGoal&quot;: 3.3916573898608524,</div>
+<div class="line">        &quot;OptiSafeIndex&quot;: 0.7065313469330626,</div>
+<div class="line">        &quot;NodesInPath&quot;: 2.294736842105263</div>
+<div class="line">    },</div>
+<div class="line">    &quot;UPP&quot;: {</div>
+<div class="line">        &quot;PlanningTime&quot;: 596.5560107800275,</div>
+<div class="line">        &quot;MinimumClearance&quot;: 1.1739753421354147,</div>
+<div class="line">        &quot;AverageMinimumClearance&quot;: 2.3505294974739472,</div>
+<div class="line">        &quot;ClearanceVariability&quot;: 32.347431493838286,</div>
+<div class="line">        &quot;DangerViolations&quot;: 1258.0,</div>
+<div class="line">        &quot;TurningAngle&quot;: 391.1796618233935,</div>
+<div class="line">        &quot;JerkPerMeter&quot;: 0.11140010671457004,</div>
+<div class="line">        &quot;SuccessRate&quot;: 1.0,</div>
+<div class="line">        &quot;OptimalDeviation&quot;: 0.04545741951548409,</div>
+<div class="line">        &quot;PathCost&quot;: 17.57754551728892,</div>
+<div class="line">        &quot;DistanceToGoal&quot;: 0.0,</div>
+<div class="line">        &quot;OptiSafeIndex&quot;: 0.7248084252595861,</div>
+<div class="line">        &quot;NodesInPath&quot;: 10.58</div>
+<div class="line">    },</div>
+<div class="line">    &quot;RRT&quot;: {</div>
+<div class="line">        &quot;PlanningTime&quot;: 3710.6396523877615,</div>
+<div class="line">        &quot;MinimumClearance&quot;: 0.7774365236197455,</div>
+<div class="line">        &quot;AverageMinimumClearance&quot;: 2.1454706756834785,</div>
+<div class="line">        &quot;ClearanceVariability&quot;: 32.811645103595026,</div>
+<div class="line">        &quot;DangerViolations&quot;: 1158.6530612244899,</div>
+<div class="line">        &quot;TurningAngle&quot;: 1854.150451654323,</div>
+<div class="line">        &quot;JerkPerMeter&quot;: 0.8274345209351016,</div>
+<div class="line">        &quot;SuccessRate&quot;: 0.94,</div>
+<div class="line">        &quot;OptimalDeviation&quot;: 0.3328127469478287,</div>
+<div class="line">        &quot;PathCost&quot;: 21.397049521927464,</div>
+<div class="line">        &quot;DistanceToGoal&quot;: 0.8620635171868056,</div>
+<div class="line">        &quot;OptiSafeIndex&quot;: 0.405458422344748,</div>
+<div class="line">        &quot;NodesInPath&quot;: 53.19387755102041</div>
+<div class="line">    },</div>
+<div class="line">    &quot;CBFRRT&quot;: {</div>
+<div class="line">        &quot;PlanningTime&quot;: 2878.820585159561,</div>
+<div class="line">        &quot;MinimumClearance&quot;: 0.7667586101167566,</div>
+<div class="line">        &quot;AverageMinimumClearance&quot;: 2.2535040753205755,</div>
+<div class="line">        &quot;ClearanceVariability&quot;: 33.721935597252006,</div>
+<div class="line">        &quot;DangerViolations&quot;: 879.6595744680851,</div>
+<div class="line">        &quot;TurningAngle&quot;: 1909.2118279618126,</div>
+<div class="line">        &quot;JerkPerMeter&quot;: 0.8389019157175471,</div>
+<div class="line">        &quot;SuccessRate&quot;: 0.91,</div>
+<div class="line">        &quot;OptimalDeviation&quot;: 0.3399416476233767,</div>
+<div class="line">        &quot;PathCost&quot;: 22.32407924888354,</div>
+<div class="line">        &quot;DistanceToGoal&quot;: 0.7363309040081364,</div>
+<div class="line">        &quot;OptiSafeIndex&quot;: 0.39376363852758384,</div>
+<div class="line">        &quot;NodesInPath&quot;: 55.48936170212766</div>
+<div class="line">    },</div>
+<div class="line">    &quot;AStar&quot;: {</div>
+<div class="line">        &quot;PlanningTime&quot;: 174.72529752001265,</div>
+<div class="line">        &quot;MinimumClearance&quot;: 1.0151776710837503,</div>
+<div class="line">        &quot;AverageMinimumClearance&quot;: 2.2424191120707406,</div>
+<div class="line">        &quot;ClearanceVariability&quot;: 34.30131815730188,</div>
+<div class="line">        &quot;DangerViolations&quot;: 15076.0,</div>
+<div class="line">        &quot;TurningAngle&quot;: 197.23881127868557,</div>
+<div class="line">        &quot;JerkPerMeter&quot;: 0.056250231194724935,</div>
+<div class="line">        &quot;SuccessRate&quot;: 1.0,</div>
+<div class="line">        &quot;OptimalDeviation&quot;: 0.0,</div>
+<div class="line">        &quot;PathCost&quot;: 17.440011462679397,</div>
+<div class="line">        &quot;DistanceToGoal&quot;: 0.0,</div>
+<div class="line">        &quot;OptiSafeIndex&quot;: 0.5991712447987082,</div>
+<div class="line">        &quot;NodesInPath&quot;: 6.35</div>
+<div class="line">    },</div>
+<div class="line">    &quot;Dijkstra&quot;: {</div>
+<div class="line">        &quot;PlanningTime&quot;: 6141.7088189300275,</div>
+<div class="line">        &quot;MinimumClearance&quot;: 1.0288958202911573,</div>
+<div class="line">        &quot;AverageMinimumClearance&quot;: 2.2705344720789187,</div>
+<div class="line">        &quot;ClearanceVariability&quot;: 34.22195930119145,</div>
+<div class="line">        &quot;DangerViolations&quot;: 13818.0,</div>
+<div class="line">        &quot;TurningAngle&quot;: 243.10344947451517,</div>
+<div class="line">        &quot;JerkPerMeter&quot;: 0.06028571145884985,</div>
+<div class="line">        &quot;SuccessRate&quot;: 1.0,</div>
+<div class="line">        &quot;OptimalDeviation&quot;: -0.0052263642391577984,</div>
+<div class="line">        &quot;PathCost&quot;: 17.214877082475255,</div>
+<div class="line">        &quot;DistanceToGoal&quot;: 0.0,</div>
+<div class="line">        &quot;OptiSafeIndex&quot;: 0.5965422912166155,</div>
+<div class="line">        &quot;NodesInPath&quot;: 7.36</div>
+<div class="line">    },</div>
+<div class="line">    &quot;WeightedAStar&quot;: {</div>
+<div class="line">        &quot;PlanningTime&quot;: 153.34242371997675,</div>
+<div class="line">        &quot;MinimumClearance&quot;: 1.0151776710837503,</div>
+<div class="line">        &quot;AverageMinimumClearance&quot;: 2.241324597144535,</div>
+<div class="line">        &quot;ClearanceVariability&quot;: 34.311112829724934,</div>
+<div class="line">        &quot;DangerViolations&quot;: 15098.0,</div>
+<div class="line">        &quot;TurningAngle&quot;: 392.97292911634526,</div>
+<div class="line">        &quot;JerkPerMeter&quot;: 0.08123820680601991,</div>
+<div class="line">        &quot;SuccessRate&quot;: 1.0,</div>
+<div class="line">        &quot;OptimalDeviation&quot;: 0.004609068328356913,</div>
+<div class="line">        &quot;PathCost&quot;: 17.514478020814526,</div>
+<div class="line">        &quot;DistanceToGoal&quot;: 0.0,</div>
+<div class="line">        &quot;OptiSafeIndex&quot;: 0.5999460252793478,</div>
+<div class="line">        &quot;NodesInPath&quot;: 10.66</div>
+<div class="line">    },</div>
+<div class="line">    &quot;SDFAStar&quot;: {</div>
+<div class="line">        &quot;PlanningTime&quot;: 2218.002218519984,</div>
+<div class="line">        &quot;MinimumClearance&quot;: 1.68614096294055,</div>
+<div class="line">        &quot;AverageMinimumClearance&quot;: 2.6620601013107192,</div>
+<div class="line">        &quot;ClearanceVariability&quot;: 19.980510612103856,</div>
+<div class="line">        &quot;DangerViolations&quot;: 2476.0,</div>
+<div class="line">        &quot;TurningAngle&quot;: 1252.5719528909428,</div>
+<div class="line">        &quot;JerkPerMeter&quot;: 0.21314981311808062,</div>
+<div class="line">        &quot;SuccessRate&quot;: 1.0,</div>
+<div class="line">        &quot;OptimalDeviation&quot;: 0.09742635893468785,</div>
+<div class="line">        &quot;PathCost&quot;: 19.207122069010566,</div>
+<div class="line">        &quot;DistanceToGoal&quot;: 0.0,</div>
+<div class="line">        &quot;OptiSafeIndex&quot;: 0.722120828235946,</div>
+<div class="line">        &quot;NodesInPath&quot;: 22.31</div>
+<div class="line">    },</div>
+<div class="line">    &quot;OptimizedAStar&quot;: {</div>
+<div class="line">        &quot;PlanningTime&quot;: 483.78120382995337,</div>
+<div class="line">        &quot;MinimumClearance&quot;: 1.0693436713052826,</div>
+<div class="line">        &quot;AverageMinimumClearance&quot;: 2.6235459319424956,</div>
+<div class="line">        &quot;ClearanceVariability&quot;: 32.59846635393538,</div>
+<div class="line">        &quot;DangerViolations&quot;: 56.84,</div>
+<div class="line">        &quot;TurningAngle&quot;: 89.06605471889655,</div>
+<div class="line">        &quot;JerkPerMeter&quot;: 0.2828841739505983,</div>
+<div class="line">        &quot;SuccessRate&quot;: 1.0,</div>
+<div class="line">        &quot;OptimalDeviation&quot;: 0.10790189307066612,</div>
+<div class="line">        &quot;PathCost&quot;: 19.070090151242606,</div>
+<div class="line">        &quot;DistanceToGoal&quot;: 0.0,</div>
+<div class="line">        &quot;OptiSafeIndex&quot;: 0.6469495215941641,</div>
+<div class="line">        &quot;NodesInPath&quot;: 3.09</div>
+<div class="line">    }</div>
+<div class="line">}</div>
+</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md28"></a>
+Extending SafePlan</h1>
+<p>SafePlan is designed to be <b>modular and extensible</b>, so you can easily add your own planners, evaluation metrics, or environments. <br  />
+ This makes it straightforward for researchers and developers to benchmark <b>new ideas</b> while reusing the existing infrastructure.</p>
+<h2><a class="anchor" id="autotoc_md29"></a>
+Adding a New Planner</h2>
+<p>To add a new planner:</p><ol type="1">
+<li>Create a new file inside <code>safeplan/algos/</code> (e.g., <code>my_planner.py</code>).</li>
+<li>Inherit from <code>BasePlanner</code> and implement the <code>plan(start, goal, grid)</code> method.</li>
+<li>Register it in your JSON config under <code>"algoDetails"</code>.</li>
+</ol>
+<p><b>Example:</b></p>
+<p><code>safeplan/algos/my_planner.py</code> </p><div class="fragment"><div class="line">from .baseplanner import BasePlanner</div>
+<div class="line"> </div>
+<div class="line">class MyPlanner(BasePlanner):</div>
+<div class="line">    def plan(self, start, goal, grid):</div>
+<div class="line">        # Dummy straight-line planner</div>
+<div class="line">        path = [start, goal]</div>
+<div class="line">        success = 1</div>
+<div class="line">        info = [&quot;Trivial straight path&quot;]</div>
+<div class="line">        return success, path, info</div>
+</div><!-- fragment --><p> You can update planner details as in adding in json form: </p><div class="fragment"><div class="line">&quot;algoDetails&quot;: [</div>
+<div class="line">    {&quot;name&quot;: &quot;MyPlanner&quot;}</div>
+<div class="line">]</div>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md30"></a>
+Adding a New Metric</h2>
+<p>To add a new metric:</p><ol type="1">
+<li>Create a new file inside <code>safeplan/evals/</code> (e.g., <code>my_metric.py</code>).</li>
+<li>Inherit from <code>BaseEval</code> and implement the <code>eval(start,goal,grid,cellSize,path)</code> method.</li>
+<li>Register it in your JSON config under <code>"evalDetails"</code>.</li>
+</ol>
+<p><b>Example:</b></p>
+<p><code>safeplan/evals/my_metric.py</code> </p><div class="fragment"><div class="line">from .baseeval import BaseEval</div>
+<div class="line"> </div>
+<div class="line">class MyMetric(BaseEval):</div>
+<div class="line">    def eval(self, start, goal, grid, cellSize, path):</div>
+<div class="line">        # Example: count path length in steps</div>
+<div class="line">        if not path:</div>
+<div class="line">            return float(&quot;inf&quot;)</div>
+<div class="line">        return len(path)</div>
+</div><!-- fragment --><p> You can update eval details as in adding in json form: </p><div class="fragment"><div class="line">&quot;evalDetails&quot;: [</div>
+<div class="line">    {&quot;name&quot;: &quot;MyMetric&quot;}</div>
+<div class="line">]</div>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md31"></a>
+Adding a New Environment</h1>
+<p>SafePlan lets you plug in new environment generators that return occupancy grids and start/goal pairs in a consistent format. You can either <b>use the built-in <code>GenerateGrid</code></b> (loads polygons from JSON, rasterizes to a grid, caches a <code>_grid.json</code>) or <b>create your own environment</b> by subclassing <code>BaseEnv</code>.</p>
+<hr  />
+<h2><a class="anchor" id="autotoc_md33"></a>
+Option A — Use the built-in &lt;tt&gt;GenerateGrid&lt;/tt&gt;</h2>
+<p><code>GenerateGrid</code> reads a scene JSON from: safeplan/configs/generate_grid/&lt;YOUR_ENV&gt;/&lt;YOUR_ENV&gt;.json and writes/loads a cache: safeplan/configs/generate_grid/&lt;YOUR_ENV&gt;/&lt;YOUR_ENV&gt;_grid.json</p>
+<h3><a class="anchor" id="autotoc_md34"></a>
+What it does:</h3>
+<ul>
+<li>Loads grid size, dimension, cell size, and polygon obstacles.</li>
+<li>Rasterizes polygons to an <b>N-D occupancy grid</b> (<code>0=free</code>, <code>1=obstacle</code>) via half-space checks.</li>
+<li>Marks polygon vertices as occupied.</li>
+<li>Optionally samples <b>random start/goal pairs</b> in free cells.</li>
+<li><b>Caches</b> the generated grid and pairs to <code>&lt;name&gt;_grid.json</code>. <br  />
+ If the cache exists and is readable, it is used directly (fast path).</li>
+</ul>
+<h3><a class="anchor" id="autotoc_md35"></a>
+Scene JSON schema (example):</h3>
+<div class="fragment"><div class="line">{</div>
+<div class="line">  &quot;gridSize&quot;: 100,</div>
+<div class="line">  &quot;dimensionOfGrid&quot;: 2,</div>
+<div class="line">  &quot;cellSize&quot;: 0.1,</div>
+<div class="line">  &quot;envName&quot;: &quot;SimpleRoom&quot;,</div>
+<div class="line">  &quot;envDes&quot;: &quot;A 2D room with convex polygon obstacles&quot;,</div>
+<div class="line">  &quot;randomStartGoal&quot;: true,</div>
+<div class="line">  &quot;numStartGoals&quot;: 50,</div>
+<div class="line">  &quot;startGoalPairs&quot;: [],</div>
+<div class="line">  &quot;polygons&quot;: [</div>
+<div class="line">    { &quot;polygon&quot;: [[20,20],[40,20],[40,40],[20,40]] },</div>
+<div class="line">    { &quot;polygon&quot;: [[60,60],[80,60],[80,80],[60,80]] }</div>
+<div class="line">  ]</div>
+<div class="line">}</div>
+</div><!-- fragment --><p>Add to your run config: </p><div class="fragment"><div class="line">&quot;envDetails&quot;: [</div>
+<div class="line">  { &quot;generateGrid&quot;: [ { &quot;name&quot;: &quot;SimpleRoom&quot; }, { &quot;name&quot;: &quot;WarehouseA&quot; } ] }</div>
+<div class="line">]</div>
+</div><!-- fragment --><p>Option B — Create a Custom Environment (subclass BaseEnv)</p>
+<ol type="1">
+<li>Create a file, e.g. safeplan/envs/my_env.py, that inherits BaseEnv and implements getmap():</li>
+</ol>
+<div class="fragment"><div class="line"># safeplan/envs/my_env.py</div>
+<div class="line">from .baseenv import BaseEnv</div>
+<div class="line">import numpy as np</div>
+<div class="line"> </div>
+<div class="line">class MyEnv(BaseEnv):</div>
+<div class="line">    def __init__(self, size=64, cell_size=0.1):</div>
+<div class="line">        super().__init__()</div>
+<div class="line">        self.size = int(size)</div>
+<div class="line">        self.cell_size = float(cell_size)</div>
+<div class="line"> </div>
+<div class="line">    def getmap(self):</div>
+<div class="line">        # Build a simple empty 2D grid with one obstacle line</div>
+<div class="line">        grid = np.zeros((self.size, self.size), dtype=np.uint8)</div>
+<div class="line">        grid[self.size//2, :] = 1  # a horizontal wall</div>
+<div class="line"> </div>
+<div class="line">        envName = &quot;MyEnv&quot;</div>
+<div class="line">        envDes  = &quot;Custom demo environment with a single wall&quot;</div>
+<div class="line">        startGoalPairs = [</div>
+<div class="line">            {&quot;start&quot;: (5, 5), &quot;goal&quot;: (self.size-6, self.size-6)}</div>
+<div class="line">        ]</div>
+<div class="line">        return grid, self.cell_size, envName, envDes, startGoalPairs</div>
+</div><!-- fragment --><ol type="1">
+<li>Register it in your run config by referencing it in code. Two patterns are common:</li>
+</ol>
+<p>Config-driven (extend SafePlan.setUpEnvs() to load from JSON).</p>
+<p>Direct instantiation if you’re experimenting.</p>
+<p>Config-driven JSON example:</p>
+<div class="fragment"><div class="line">&quot;envDetails&quot;: [</div>
+<div class="line">  { &quot;generateGrid&quot;: [ { &quot;name&quot;: &quot;SimpleRoom&quot; } ] },</div>
+<div class="line">  { &quot;customEnvs&quot;: [ { &quot;class&quot;: &quot;MyEnv&quot;, &quot;args&quot;: { &quot;size&quot;: 128, &quot;cell_size&quot;: 0.05 } } ] }</div>
+<div class="line">]</div>
+</div><!-- fragment --><p> Expected Return Contract (getmap())</p>
+<p>Any environment (including GenerateGrid) must return:</p>
+<p>grid : numpy.ndarray with shape (N1, N2[, N3, ...]), values {0=free, 1=obstacle}</p>
+<p>cellSize : float (meters per cell, or chosen unit)</p>
+<p>envName : str</p>
+<p>envDes : str</p>
+<p>startGoalPairs : list of objects like:</p>
+<h1><a class="anchor" id="autotoc_md36"></a>
+Caching &amp; Reloading (GenerateGrid)</h1>
+<p>First run: GenerateGrid loads &lt;name&gt;.json, rasterizes polygons, optionally samples random pairs, and writes &lt;name&gt;_grid.json.</p>
+<p>Subsequent runs: If &lt;name&gt;_grid.json is present and readable, it skips generation and loads from cache.</p>
+<p>Tip: Delete the _grid.json cache to force regeneration after changes to the base scene JSON.</p>
+<h1><a class="anchor" id="autotoc_md37"></a>
+Random Start/Goal Pairs (GenerateGrid)</h1>
+<p>If "randomStartGoal": true, SafePlan will sample numStartGoals distinct pairs in free cells.</p>
+<p>If "randomStartGoal": false, SafePlan uses the provided "startGoalPairs" array as-is.</p>
+<h1><a class="anchor" id="autotoc_md38"></a>
+Troubleshooting</h1>
+<p>“File exists and is readable” but scene didn’t change: Delete the cached _grid.json to regenerate.</p>
+<p>No obstacles appear: Check your polygons are convex and have valid vertex order; ConvexHull requires non-degenerate input.</p>
+<p>Invalid pairs: Ensure start/goal lie within grid bounds and on free cells (grid[...] == 0).</p>
+<p>3D grids: Use dimensionOfGrid: 3 and provide 3D polygons (polyhedra faces) that form valid convex hulls.</p>
+<h2><a class="anchor" id="autotoc_md39"></a>
+Cite SafePlan</h2>
+<p>If you use <b>SafePlan</b> in your research, please cite:</p>
+<div class="fragment"><div class="line">@misc{,</div>
+<div class="line">  doi = {},</div>
+<div class="line">  url = {},</div>
+<div class="line">  author = {},</div>
+<div class="line">  keywords = {},</div>
+<div class="line">  title = {},</div>
+<div class="line">  publisher = {},</div>
+<div class="line">  year = {},</div>
+<div class="line">  copyright = {}</div>
+<div class="line">}</div>
+</div><!-- fragment --> </div></div><!-- PageDoc -->
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

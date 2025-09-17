@@ -85,58 +85,70 @@ $(document).ready(function(){initNavTree('baseenv_8py_source.html',''); initResi
 <div class="title">baseenv.py</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="baseenv_8py.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno"><a class="line" href="namespacebaseenv.html">    1</a></span>&#160; </div>
+<a href="baseenv_8py.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno"><a class="line" href="namespacebaseenv.html">    1</a></span>&#160;<span class="comment"># baseenv.py</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="stringliteral">&quot;&quot;&quot;</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="stringliteral">@file baseenv.py</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="stringliteral">@brief Base class for Environment making of planning algorithms.</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="stringliteral">@brief Base class for environment generation used by planning algorithms.</span></div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="stringliteral"></span> </div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="stringliteral">@details</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="stringliteral">Provides a common interface for environment making </span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="stringliteral">&quot;&quot;&quot;</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keyword">from</span> abc <span class="keyword">import</span> ABC</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="keyword">from</span> typing <span class="keyword">import</span> Any, List, Sequence, Tuple</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="stringliteral">Provides a common interface for environment builders that produce N-dimensional</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="stringliteral">occupancy grids and associated metadata. Subclasses implement @ref getmap() to</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="stringliteral">return a grid and start/goal pairs in a consistent format consumed by SafePlan.</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="stringliteral">&quot;&quot;&quot;</span></div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keyword">from</span> __future__ <span class="keyword">import</span> annotations</div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keyword">class </span><a class="code" href="classbaseenv_1_1BaseEnv.html">BaseEnv</a>(ABC):</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <span class="stringliteral">&quot;&quot;&quot;</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="stringliteral">    @class BaseEnv</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="stringliteral">    @brief Abstract base/registry for environment making for planning algorithms</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="stringliteral"></span> </div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="stringliteral">    @details</span></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="stringliteral">    Responsibilities:</span></div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="stringliteral">    - Defines the `getmap()` interface used by all map generating classes</span></div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="stringliteral">    - Establishes the common return contract `grid ` for that classes</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keyword">from</span> abc <span class="keyword">import</span> ABC, abstractmethod</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">from</span> typing <span class="keyword">import</span> Any, Dict, List, Sequence, Tuple</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keyword">import</span> sys</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keyword">class </span><a class="code" href="classbaseenv_1_1BaseEnv.html">BaseEnv</a>(ABC):</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="stringliteral">    @class BaseEnv</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="stringliteral">    @brief Abstract base for environment generation.</span></div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="stringliteral"></span> </div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="stringliteral">    @note Subclasses must implement @ref getmap().</span></div>
-<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="classbaseenv_1_1BaseEnv.html">   25</a></span>&#160;<span class="stringliteral">    &quot;&quot;&quot;</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    </div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keyword">def </span><a class="code" href="classbaseenv_1_1BaseEnv.html#a1d64ff6d5d8fb57beea5ac2fbbd7a27d">__init__</a>(self) -&gt; None:</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        </div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        <span class="stringliteral">&quot;&quot;&quot;</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="stringliteral">        @brief Construct the base map generation.</span></div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="stringliteral"></span> </div>
-<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="classbaseenv_1_1BaseEnv.html#a1d64ff6d5d8fb57beea5ac2fbbd7a27d">   32</a></span>&#160;<span class="stringliteral">        @post Instance is initialized; subclass constructors may call super().</span></div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="stringliteral">        &quot;&quot;&quot;</span></div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        </div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        print(<span class="stringliteral">&quot;Intializing Base Map Generation ....&quot;</span>)</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        </div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keyword">def </span><a class="code" href="classbaseenv_1_1BaseEnv.html#a581e2383cd7419ee9ceb7de9df088871">getmap</a>(self) -&gt; Any:</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        <span class="stringliteral">&quot;&quot;&quot;</span></div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="stringliteral">        A common getmap function needs to be incorporated by every map generating class</span></div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="stringliteral">        @return Grid An n-dimensional grid </span></div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="stringliteral">        @throws NotImplementedError If a subclass does not override this method.</span></div>
-<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="classbaseenv_1_1BaseEnv.html#a581e2383cd7419ee9ceb7de9df088871">   42</a></span>&#160;<span class="stringliteral">        &quot;&quot;&quot;</span></div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        </div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        <span class="keywordflow">raise</span> NotImplementedError(<span class="stringliteral">&quot;Subclasses must implement getmap()&quot;</span>)</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        </div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        </div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        </div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    </div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        </div>
-<div class="ttc" id="aclassbaseenv_1_1BaseEnv_html"><div class="ttname"><a href="classbaseenv_1_1BaseEnv.html">baseenv.BaseEnv</a></div><div class="ttdoc">Abstract base/registry for environment making for planning algorithms.</div><div class="ttdef"><b>Definition:</b> <a href="baseenv_8py_source.html#l00025">baseenv.py:25</a></div></div>
-<div class="ttc" id="aclassbaseenv_1_1BaseEnv_html_a1d64ff6d5d8fb57beea5ac2fbbd7a27d"><div class="ttname"><a href="classbaseenv_1_1BaseEnv.html#a1d64ff6d5d8fb57beea5ac2fbbd7a27d">baseenv.BaseEnv.__init__</a></div><div class="ttdeci">None __init__(self)</div><div class="ttdoc">Construct the base map generation.</div><div class="ttdef"><b>Definition:</b> <a href="baseenv_8py_source.html#l00032">baseenv.py:32</a></div></div>
-<div class="ttc" id="aclassbaseenv_1_1BaseEnv_html_a581e2383cd7419ee9ceb7de9df088871"><div class="ttname"><a href="classbaseenv_1_1BaseEnv.html#a581e2383cd7419ee9ceb7de9df088871">baseenv.BaseEnv.getmap</a></div><div class="ttdeci">Any getmap(self)</div><div class="ttdoc">A common getmap function needs to be incorporated by every map generating class.</div><div class="ttdef"><b>Definition:</b> <a href="baseenv_8py_source.html#l00042">baseenv.py:42</a></div></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="stringliteral">    @details</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="stringliteral">    Responsibilities:</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="stringliteral">    - Defines the @ref getmap() interface used by all map-generating classes.</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="stringliteral">    - Establishes a common return contract for grids and metadata.</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="stringliteral"></span> </div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="stringliteral">    @note Subclasses must implement @ref getmap().</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="classbaseenv_1_1BaseEnv.html">   30</a></span>&#160;<span class="stringliteral">    &quot;&quot;&quot;</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keyword">def </span><a class="code" href="classbaseenv_1_1BaseEnv.html#a1d64ff6d5d8fb57beea5ac2fbbd7a27d">__init__</a>(self) -&gt; None:</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="stringliteral">        @brief Construct the base environment generator.</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="stringliteral"></span> </div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="stringliteral">        @post Instance is initialized; subclass constructors may call super().</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="classbaseenv_1_1BaseEnv.html#a1d64ff6d5d8fb57beea5ac2fbbd7a27d">   37</a></span>&#160;<span class="stringliteral">        &quot;&quot;&quot;</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        <span class="comment"># Keep lightweight; real work happens in subclass and getmap()</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        <span class="keywordflow">pass</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="preprocessor">@abstractmethod</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keyword">def </span><a class="code" href="classbaseenv_1_1BaseEnv.html#aa0fd7a6f1f651d370c15da6fd34c49ff">getmap</a>(self) -&gt; Tuple[Any, float, str, str, List[Dict[str, Tuple[int, ...]]]]:</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="stringliteral">        @brief Build or load an occupancy grid and related metadata.</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="stringliteral"></span> </div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="stringliteral">        @details</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="stringliteral">        Implementations should return:</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="stringliteral">        - grid : numpy.ndarray (N-D), with values {0=free, 1=obstacle}</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="stringliteral">        - cellSize : float — physical size of a grid cell (meters or chosen unit)</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="stringliteral">        - envName : str — short environment name</span></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="stringliteral">        - envDes  : str — brief environment description</span></div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="stringliteral">        - startGoalPairs : list of dicts, each like:</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="stringliteral">              {&quot;start&quot;: (i, j[, k, ...]), &quot;goal&quot;: (i, j[, k, ...])}</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="stringliteral"></span> </div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="stringliteral">        @return tuple</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="stringliteral">                (grid, cellSize, envName, envDes, startGoalPairs)</span></div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="stringliteral"></span> </div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="stringliteral">        @throws NotImplementedError</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="stringliteral">                If a subclass does not override this method.</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="stringliteral">        &quot;&quot;&quot;</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        <span class="keywordflow">raise</span> NotImplementedError(<span class="stringliteral">&quot;Subclasses must implement getmap()&quot;</span>)</div>
+<div class="ttc" id="aclassbaseenv_1_1BaseEnv_html"><div class="ttname"><a href="classbaseenv_1_1BaseEnv.html">baseenv.BaseEnv</a></div><div class="ttdoc">Abstract base for environment generation.</div><div class="ttdef"><b>Definition:</b> <a href="baseenv_8py_source.html#l00030">baseenv.py:30</a></div></div>
+<div class="ttc" id="aclassbaseenv_1_1BaseEnv_html_a1d64ff6d5d8fb57beea5ac2fbbd7a27d"><div class="ttname"><a href="classbaseenv_1_1BaseEnv.html#a1d64ff6d5d8fb57beea5ac2fbbd7a27d">baseenv.BaseEnv.__init__</a></div><div class="ttdeci">None __init__(self)</div><div class="ttdoc">Construct the base environment generator.</div><div class="ttdef"><b>Definition:</b> <a href="baseenv_8py_source.html#l00037">baseenv.py:37</a></div></div>
+<div class="ttc" id="aclassbaseenv_1_1BaseEnv_html_aa0fd7a6f1f651d370c15da6fd34c49ff"><div class="ttname"><a href="classbaseenv_1_1BaseEnv.html#aa0fd7a6f1f651d370c15da6fd34c49ff">baseenv.BaseEnv.getmap</a></div><div class="ttdeci">Tuple[Any, float, str, str, List[Dict[str, Tuple[int,...]]]] getmap(self)</div><div class="ttdoc">Build or load an occupancy grid and related metadata.</div><div class="ttdef"><b>Definition:</b> <a href="baseenv_8py_source.html#l00062">baseenv.py:62</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

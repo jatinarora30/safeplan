@@ -183,5 +183,451 @@ Safe\+Plan includes both {\bfseries{traditional planners}} and {\bfseries{safety
  Reference\+: (\href{https://www.mdpi.com/1424-8220/24/10/3149}{\texttt{ https\+://www.\+mdpi.\+com/1424-\/8220/24/10/3149}})
 \item {\bfseries{CBF-\/\+RRT (Control Barrier Function RRT)}} ~\newline
  Enhances RRT with control barrier functions to guarantee safety constraints. ~\newline
- Reference\+: (\href{https://arxiv.org/pdf/2011.06748}{\texttt{ https\+://arxiv.\+org/pdf/2011.\+06748}}) 
+ Reference\+: (\href{https://arxiv.org/pdf/2011.06748}{\texttt{ https\+://arxiv.\+org/pdf/2011.\+06748}})
+\end{DoxyItemize}\hypertarget{index_autotoc_md22}{}\doxysection{Installation}\label{index_autotoc_md22}
+\hypertarget{index_autotoc_md23}{}\doxysubsection{Requirements}\label{index_autotoc_md23}
+
+\begin{DoxyItemize}
+\item {\bfseries{Python}}\+: 3.\+9 or newer ~\newline
+
+\item {\bfseries{Core dependencies}}\+:
+\begin{DoxyItemize}
+\item {\ttfamily numpy}
+\item {\ttfamily scipy}
+\item {\ttfamily pandas}
+\item {\ttfamily matplotlib}
+\item {\ttfamily plotly}
+\item {\ttfamily networkx}
+\item {\ttfamily psutil}
+\item {\ttfamily networkx}
+\item {\ttfamily json}, {\ttfamily os}, {\ttfamily subprocess} (standard library)
 \end{DoxyItemize}
+\end{DoxyItemize}
+
+All dependencies are listed in {\ttfamily requirements.\+txt}.
+
+\DoxyHorRuler{0}
+\hypertarget{index_autotoc_md25}{}\doxysubsection{Install from source}\label{index_autotoc_md25}
+Clone the repository and install in editable mode\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{git clone https://github.com/<your-\/username>/safeplan.git}
+\DoxyCodeLine{cd safeplan}
+\DoxyCodeLine{pip install -\/r requirements.txt}
+\DoxyCodeLine{pip install -\/e .}
+
+\end{DoxyCode}
+ \hypertarget{index_autotoc_md26}{}\doxysection{Usage}\label{index_autotoc_md26}
+Safe\+Plan experiments are configured via a JSON file (e.\+g., {\ttfamily run1.\+json}). ~\newline
+ Below is an example\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{  "{}runDetails"{}: "{}run1"{},}
+\DoxyCodeLine{  "{}evalDetails"{}: [}
+\DoxyCodeLine{    \{"{}name"{}: "{}PlanningTime"{}\},}
+\DoxyCodeLine{    \{"{}name"{}: "{}MinimumClearance"{},"{}args"{}: \{"{}pointSamples"{}:100\}\},}
+\DoxyCodeLine{    \{"{}name"{}: "{}AverageMinimumClearance"{},"{}args"{}: \{"{}pointSamples"{}:100\}\},}
+\DoxyCodeLine{    \{"{}name"{}: "{}ClearanceVariability"{},"{}args"{}: \{"{}pointSamples"{}:100\}\},}
+\DoxyCodeLine{    \{"{}name"{}: "{}DangerViolations"{},"{}args"{}: \{"{}pointSamples"{}:100,"{}dangerRadius"{}:0.2\}\},}
+\DoxyCodeLine{    \{"{}name"{}: "{}TurningAngle"{}\},}
+\DoxyCodeLine{    \{"{}name"{}: "{}JerkPerMeter"{}\},}
+\DoxyCodeLine{    \{"{}name"{}: "{}SuccessRate"{}\},}
+\DoxyCodeLine{    \{"{}name"{}: "{}OptimalDeviation"{}\},}
+\DoxyCodeLine{    \{"{}name"{}: "{}PathCost"{}\},}
+\DoxyCodeLine{    \{"{}name"{}: "{}DistanceToGoal"{}\},}
+\DoxyCodeLine{    \{"{}name"{}: "{}OptiSafeIndex"{},"{}args"{}: \{"{}pointSamples"{}:100,"{}knn"{}:1000\}\},}
+\DoxyCodeLine{    \{"{}name"{}: "{}NodesInPath"{}, "{}args"{}: \{"{}type"{}:"{}RDP"{},"{}epsilon"{}:0.01\}\}}
+\DoxyCodeLine{  ],}
+\DoxyCodeLine{  "{}algoDetails"{}: [}
+\DoxyCodeLine{    \{"{}name"{}: "{}VoronoiPlanner"{},"{}args"{}: \{"{}pointSamples"{}:100,"{}knn"{}:1000\}\},}
+\DoxyCodeLine{    \{"{}name"{}: "{}UPP"{},"{}args"{}: \{"{}alpha"{}:0.5,"{}beta"{}:2,"{}radius"{}:5,"{}epsilon"{}:0.01\}\},}
+\DoxyCodeLine{    \{"{}name"{}: "{}RRT"{},"{}args"{}: \{"{}maxIter"{}:10000,"{}goalSampleRate"{}:0.05,"{}stepSize"{}:7,"{}pointSamples"{}:100\}\},}
+\DoxyCodeLine{    \{"{}name"{}: "{}CBFRRT"{},"{}args"{}: \{"{}maxIter"{}:10000,"{}goalSampleRate"{}:0.05,"{}stepSize"{}:7,"{}pointSamples"{}:100,"{}gamma1"{}:2,"{}gamma2"{}:2\}\},}
+\DoxyCodeLine{    \{"{}name"{}: "{}AStar"{}\},}
+\DoxyCodeLine{    \{"{}name"{}: "{}Dijkstra"{}\},}
+\DoxyCodeLine{    \{"{}name"{}: "{}WeightedAStar"{},"{}args"{}: \{"{}weight"{}:1.2\}\},}
+\DoxyCodeLine{    \{"{}name"{}: "{}SDFAStar"{} , "{}args"{}: \{"{}k1"{}:5,"{}k2"{}:5\}\},}
+\DoxyCodeLine{    \{"{}name"{}: "{}OptimizedAStar"{} , "{}args"{}: \{"{}turnPenaltyCoefficients"{}:0.5,"{}safetyDistGridRadius"{}:100,"{}maxInflateIter"{}:100,"{}pointSamples"{}:100\}\}}
+\DoxyCodeLine{  ],}
+\DoxyCodeLine{  "{}envDetails"{}: [}
+\DoxyCodeLine{    \{}
+\DoxyCodeLine{      "{}generateGrid"{}: [}
+\DoxyCodeLine{        \{"{}name"{}: "{}env12"{}\},}
+\DoxyCodeLine{        \{"{}name"{}: "{}env2"{}\}}
+\DoxyCodeLine{      ]}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{  ]}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{index_autotoc_md27}{}\doxysection{Programmatic API}\label{index_autotoc_md27}
+You can run Safe\+Plan directly from Python by importing the main API and passing a path to your run config JSON.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{from safeplan.main import SafePlan}
+\DoxyCodeLine{from safeplan.core.stats import Stats}
+\DoxyCodeLine{from safeplan.core.visualize import Visualize}
+\DoxyCodeLine{}
+\DoxyCodeLine{\# 1) Run the benchmark}
+\DoxyCodeLine{sf = SafePlan("{}/home/run1.json"{})}
+\DoxyCodeLine{sf.benchmark()}
+\DoxyCodeLine{}
+\DoxyCodeLine{\# 2) Compute aggregate statistics across all outputs}
+\DoxyCodeLine{st = Stats("{}/home/run1.json"{})}
+\DoxyCodeLine{st.compute()}
+\DoxyCodeLine{}
+\DoxyCodeLine{\# 3) Visualize one iteration (2D → PNG, 3D → Plotly HTML)}
+\DoxyCodeLine{viz = Visualize()}
+\DoxyCodeLine{viz.see("{}/home/run1.json"{}, iterNo=1, prefer\_plotly=True)}
+
+\end{DoxyCode}
+
+
+Safe\+Plan experimental results in results folder on calling stats for planners for various metrices are shown in json form as follows\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    "{}VoronoiPlanner"{}: \{}
+\DoxyCodeLine{        "{}PlanningTime"{}: 34.41541785260046,}
+\DoxyCodeLine{        "{}MinimumClearance"{}: 1.1250388913720941,}
+\DoxyCodeLine{        "{}AverageMinimumClearance"{}: 2.352815958430445,}
+\DoxyCodeLine{        "{}ClearanceVariability"{}: 28.298456912893112,}
+\DoxyCodeLine{        "{}DangerViolations"{}: 25.48421052631579,}
+\DoxyCodeLine{        "{}TurningAngle"{}: 50.832074296827976,}
+\DoxyCodeLine{        "{}JerkPerMeter"{}: 0.1293378835798869,}
+\DoxyCodeLine{        "{}SuccessRate"{}: 0.78,}
+\DoxyCodeLine{        "{}OptimalDeviation"{}: -\/0.04541845530415791,}
+\DoxyCodeLine{        "{}PathCost"{}: 14.881445458621005,}
+\DoxyCodeLine{        "{}DistanceToGoal"{}: 3.3916573898608524,}
+\DoxyCodeLine{        "{}OptiSafeIndex"{}: 0.7065313469330626,}
+\DoxyCodeLine{        "{}NodesInPath"{}: 2.294736842105263}
+\DoxyCodeLine{    \},}
+\DoxyCodeLine{    "{}UPP"{}: \{}
+\DoxyCodeLine{        "{}PlanningTime"{}: 596.5560107800275,}
+\DoxyCodeLine{        "{}MinimumClearance"{}: 1.1739753421354147,}
+\DoxyCodeLine{        "{}AverageMinimumClearance"{}: 2.3505294974739472,}
+\DoxyCodeLine{        "{}ClearanceVariability"{}: 32.347431493838286,}
+\DoxyCodeLine{        "{}DangerViolations"{}: 1258.0,}
+\DoxyCodeLine{        "{}TurningAngle"{}: 391.1796618233935,}
+\DoxyCodeLine{        "{}JerkPerMeter"{}: 0.11140010671457004,}
+\DoxyCodeLine{        "{}SuccessRate"{}: 1.0,}
+\DoxyCodeLine{        "{}OptimalDeviation"{}: 0.04545741951548409,}
+\DoxyCodeLine{        "{}PathCost"{}: 17.57754551728892,}
+\DoxyCodeLine{        "{}DistanceToGoal"{}: 0.0,}
+\DoxyCodeLine{        "{}OptiSafeIndex"{}: 0.7248084252595861,}
+\DoxyCodeLine{        "{}NodesInPath"{}: 10.58}
+\DoxyCodeLine{    \},}
+\DoxyCodeLine{    "{}RRT"{}: \{}
+\DoxyCodeLine{        "{}PlanningTime"{}: 3710.6396523877615,}
+\DoxyCodeLine{        "{}MinimumClearance"{}: 0.7774365236197455,}
+\DoxyCodeLine{        "{}AverageMinimumClearance"{}: 2.1454706756834785,}
+\DoxyCodeLine{        "{}ClearanceVariability"{}: 32.811645103595026,}
+\DoxyCodeLine{        "{}DangerViolations"{}: 1158.6530612244899,}
+\DoxyCodeLine{        "{}TurningAngle"{}: 1854.150451654323,}
+\DoxyCodeLine{        "{}JerkPerMeter"{}: 0.8274345209351016,}
+\DoxyCodeLine{        "{}SuccessRate"{}: 0.94,}
+\DoxyCodeLine{        "{}OptimalDeviation"{}: 0.3328127469478287,}
+\DoxyCodeLine{        "{}PathCost"{}: 21.397049521927464,}
+\DoxyCodeLine{        "{}DistanceToGoal"{}: 0.8620635171868056,}
+\DoxyCodeLine{        "{}OptiSafeIndex"{}: 0.405458422344748,}
+\DoxyCodeLine{        "{}NodesInPath"{}: 53.19387755102041}
+\DoxyCodeLine{    \},}
+\DoxyCodeLine{    "{}CBFRRT"{}: \{}
+\DoxyCodeLine{        "{}PlanningTime"{}: 2878.820585159561,}
+\DoxyCodeLine{        "{}MinimumClearance"{}: 0.7667586101167566,}
+\DoxyCodeLine{        "{}AverageMinimumClearance"{}: 2.2535040753205755,}
+\DoxyCodeLine{        "{}ClearanceVariability"{}: 33.721935597252006,}
+\DoxyCodeLine{        "{}DangerViolations"{}: 879.6595744680851,}
+\DoxyCodeLine{        "{}TurningAngle"{}: 1909.2118279618126,}
+\DoxyCodeLine{        "{}JerkPerMeter"{}: 0.8389019157175471,}
+\DoxyCodeLine{        "{}SuccessRate"{}: 0.91,}
+\DoxyCodeLine{        "{}OptimalDeviation"{}: 0.3399416476233767,}
+\DoxyCodeLine{        "{}PathCost"{}: 22.32407924888354,}
+\DoxyCodeLine{        "{}DistanceToGoal"{}: 0.7363309040081364,}
+\DoxyCodeLine{        "{}OptiSafeIndex"{}: 0.39376363852758384,}
+\DoxyCodeLine{        "{}NodesInPath"{}: 55.48936170212766}
+\DoxyCodeLine{    \},}
+\DoxyCodeLine{    "{}AStar"{}: \{}
+\DoxyCodeLine{        "{}PlanningTime"{}: 174.72529752001265,}
+\DoxyCodeLine{        "{}MinimumClearance"{}: 1.0151776710837503,}
+\DoxyCodeLine{        "{}AverageMinimumClearance"{}: 2.2424191120707406,}
+\DoxyCodeLine{        "{}ClearanceVariability"{}: 34.30131815730188,}
+\DoxyCodeLine{        "{}DangerViolations"{}: 15076.0,}
+\DoxyCodeLine{        "{}TurningAngle"{}: 197.23881127868557,}
+\DoxyCodeLine{        "{}JerkPerMeter"{}: 0.056250231194724935,}
+\DoxyCodeLine{        "{}SuccessRate"{}: 1.0,}
+\DoxyCodeLine{        "{}OptimalDeviation"{}: 0.0,}
+\DoxyCodeLine{        "{}PathCost"{}: 17.440011462679397,}
+\DoxyCodeLine{        "{}DistanceToGoal"{}: 0.0,}
+\DoxyCodeLine{        "{}OptiSafeIndex"{}: 0.5991712447987082,}
+\DoxyCodeLine{        "{}NodesInPath"{}: 6.35}
+\DoxyCodeLine{    \},}
+\DoxyCodeLine{    "{}Dijkstra"{}: \{}
+\DoxyCodeLine{        "{}PlanningTime"{}: 6141.7088189300275,}
+\DoxyCodeLine{        "{}MinimumClearance"{}: 1.0288958202911573,}
+\DoxyCodeLine{        "{}AverageMinimumClearance"{}: 2.2705344720789187,}
+\DoxyCodeLine{        "{}ClearanceVariability"{}: 34.22195930119145,}
+\DoxyCodeLine{        "{}DangerViolations"{}: 13818.0,}
+\DoxyCodeLine{        "{}TurningAngle"{}: 243.10344947451517,}
+\DoxyCodeLine{        "{}JerkPerMeter"{}: 0.06028571145884985,}
+\DoxyCodeLine{        "{}SuccessRate"{}: 1.0,}
+\DoxyCodeLine{        "{}OptimalDeviation"{}: -\/0.0052263642391577984,}
+\DoxyCodeLine{        "{}PathCost"{}: 17.214877082475255,}
+\DoxyCodeLine{        "{}DistanceToGoal"{}: 0.0,}
+\DoxyCodeLine{        "{}OptiSafeIndex"{}: 0.5965422912166155,}
+\DoxyCodeLine{        "{}NodesInPath"{}: 7.36}
+\DoxyCodeLine{    \},}
+\DoxyCodeLine{    "{}WeightedAStar"{}: \{}
+\DoxyCodeLine{        "{}PlanningTime"{}: 153.34242371997675,}
+\DoxyCodeLine{        "{}MinimumClearance"{}: 1.0151776710837503,}
+\DoxyCodeLine{        "{}AverageMinimumClearance"{}: 2.241324597144535,}
+\DoxyCodeLine{        "{}ClearanceVariability"{}: 34.311112829724934,}
+\DoxyCodeLine{        "{}DangerViolations"{}: 15098.0,}
+\DoxyCodeLine{        "{}TurningAngle"{}: 392.97292911634526,}
+\DoxyCodeLine{        "{}JerkPerMeter"{}: 0.08123820680601991,}
+\DoxyCodeLine{        "{}SuccessRate"{}: 1.0,}
+\DoxyCodeLine{        "{}OptimalDeviation"{}: 0.004609068328356913,}
+\DoxyCodeLine{        "{}PathCost"{}: 17.514478020814526,}
+\DoxyCodeLine{        "{}DistanceToGoal"{}: 0.0,}
+\DoxyCodeLine{        "{}OptiSafeIndex"{}: 0.5999460252793478,}
+\DoxyCodeLine{        "{}NodesInPath"{}: 10.66}
+\DoxyCodeLine{    \},}
+\DoxyCodeLine{    "{}SDFAStar"{}: \{}
+\DoxyCodeLine{        "{}PlanningTime"{}: 2218.002218519984,}
+\DoxyCodeLine{        "{}MinimumClearance"{}: 1.68614096294055,}
+\DoxyCodeLine{        "{}AverageMinimumClearance"{}: 2.6620601013107192,}
+\DoxyCodeLine{        "{}ClearanceVariability"{}: 19.980510612103856,}
+\DoxyCodeLine{        "{}DangerViolations"{}: 2476.0,}
+\DoxyCodeLine{        "{}TurningAngle"{}: 1252.5719528909428,}
+\DoxyCodeLine{        "{}JerkPerMeter"{}: 0.21314981311808062,}
+\DoxyCodeLine{        "{}SuccessRate"{}: 1.0,}
+\DoxyCodeLine{        "{}OptimalDeviation"{}: 0.09742635893468785,}
+\DoxyCodeLine{        "{}PathCost"{}: 19.207122069010566,}
+\DoxyCodeLine{        "{}DistanceToGoal"{}: 0.0,}
+\DoxyCodeLine{        "{}OptiSafeIndex"{}: 0.722120828235946,}
+\DoxyCodeLine{        "{}NodesInPath"{}: 22.31}
+\DoxyCodeLine{    \},}
+\DoxyCodeLine{    "{}OptimizedAStar"{}: \{}
+\DoxyCodeLine{        "{}PlanningTime"{}: 483.78120382995337,}
+\DoxyCodeLine{        "{}MinimumClearance"{}: 1.0693436713052826,}
+\DoxyCodeLine{        "{}AverageMinimumClearance"{}: 2.6235459319424956,}
+\DoxyCodeLine{        "{}ClearanceVariability"{}: 32.59846635393538,}
+\DoxyCodeLine{        "{}DangerViolations"{}: 56.84,}
+\DoxyCodeLine{        "{}TurningAngle"{}: 89.06605471889655,}
+\DoxyCodeLine{        "{}JerkPerMeter"{}: 0.2828841739505983,}
+\DoxyCodeLine{        "{}SuccessRate"{}: 1.0,}
+\DoxyCodeLine{        "{}OptimalDeviation"{}: 0.10790189307066612,}
+\DoxyCodeLine{        "{}PathCost"{}: 19.070090151242606,}
+\DoxyCodeLine{        "{}DistanceToGoal"{}: 0.0,}
+\DoxyCodeLine{        "{}OptiSafeIndex"{}: 0.6469495215941641,}
+\DoxyCodeLine{        "{}NodesInPath"{}: 3.09}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+ \hypertarget{index_autotoc_md28}{}\doxysection{Extending Safe\+Plan}\label{index_autotoc_md28}
+Safe\+Plan is designed to be {\bfseries{modular and extensible}}, so you can easily add your own planners, evaluation metrics, or environments. ~\newline
+ This makes it straightforward for researchers and developers to benchmark {\bfseries{new ideas}} while reusing the existing infrastructure.\hypertarget{index_autotoc_md29}{}\doxysubsection{Adding a New Planner}\label{index_autotoc_md29}
+To add a new planner\+:
+\begin{DoxyEnumerate}
+\item Create a new file inside {\ttfamily safeplan/algos/} (e.\+g., {\ttfamily my\+\_\+planner.\+py}).
+\item Inherit from {\ttfamily Base\+Planner} and implement the {\ttfamily plan(start, goal, grid)} method.
+\item Register it in your JSON config under {\ttfamily \char`\"{}algo\+Details\char`\"{}}.
+\end{DoxyEnumerate}
+
+{\bfseries{Example\+:}}
+
+{\ttfamily safeplan/algos/my\+\_\+planner.\+py} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{from .baseplanner import BasePlanner}
+\DoxyCodeLine{}
+\DoxyCodeLine{class MyPlanner(BasePlanner):}
+\DoxyCodeLine{    def plan(self, start, goal, grid):}
+\DoxyCodeLine{        \# Dummy straight-\/line planner}
+\DoxyCodeLine{        path = [start, goal]}
+\DoxyCodeLine{        success = 1}
+\DoxyCodeLine{        info = ["{}Trivial straight path"{}]}
+\DoxyCodeLine{        return success, path, info}
+
+\end{DoxyCode}
+ You can update planner details as in adding in json form\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{"{}algoDetails"{}: [}
+\DoxyCodeLine{    \{"{}name"{}: "{}MyPlanner"{}\}}
+\DoxyCodeLine{]}
+
+\end{DoxyCode}
+\hypertarget{index_autotoc_md30}{}\doxysubsection{Adding a New Metric}\label{index_autotoc_md30}
+To add a new metric\+:
+\begin{DoxyEnumerate}
+\item Create a new file inside {\ttfamily safeplan/evals/} (e.\+g., {\ttfamily my\+\_\+metric.\+py}).
+\item Inherit from {\ttfamily Base\+Eval} and implement the {\ttfamily eval(start,goal,grid,cell\+Size,path)} method.
+\item Register it in your JSON config under {\ttfamily \char`\"{}eval\+Details\char`\"{}}.
+\end{DoxyEnumerate}
+
+{\bfseries{Example\+:}}
+
+{\ttfamily safeplan/evals/my\+\_\+metric.\+py} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{from .baseeval import BaseEval}
+\DoxyCodeLine{}
+\DoxyCodeLine{class MyMetric(BaseEval):}
+\DoxyCodeLine{    def eval(self, start, goal, grid, cellSize, path):}
+\DoxyCodeLine{        \# Example: count path length in steps}
+\DoxyCodeLine{        if not path:}
+\DoxyCodeLine{            return float("{}inf"{})}
+\DoxyCodeLine{        return len(path)}
+
+\end{DoxyCode}
+ You can update eval details as in adding in json form\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{"{}evalDetails"{}: [}
+\DoxyCodeLine{    \{"{}name"{}: "{}MyMetric"{}\}}
+\DoxyCodeLine{]}
+
+\end{DoxyCode}
+\hypertarget{index_autotoc_md31}{}\doxysection{Adding a New Environment}\label{index_autotoc_md31}
+Safe\+Plan lets you plug in new environment generators that return occupancy grids and start/goal pairs in a consistent format. You can either {\bfseries{use the built-\/in {\ttfamily Generate\+Grid}}} (loads polygons from JSON, rasterizes to a grid, caches a {\ttfamily \+\_\+grid.\+json}) or {\bfseries{create your own environment}} by subclassing {\ttfamily Base\+Env}.
+
+\DoxyHorRuler{0}
+\hypertarget{index_autotoc_md33}{}\doxysubsection{Option A — Use the built-\/in $<$tt$>$\+Generate\+Grid$<$/tt$>$}\label{index_autotoc_md33}
+{\ttfamily Generate\+Grid} reads a scene JSON from\+: safeplan/configs/generate\+\_\+grid/$<$\+YOUR\+\_\+\+ENV$>$/$<$\+YOUR\+\_\+\+ENV$>$.json and writes/loads a cache\+: safeplan/configs/generate\+\_\+grid/$<$\+YOUR\+\_\+\+ENV$>$/$<$\+YOUR\+\_\+\+ENV$>$\+\_\+grid.\+json\hypertarget{index_autotoc_md34}{}\doxysubsubsection{What it does\+:}\label{index_autotoc_md34}
+
+\begin{DoxyItemize}
+\item Loads grid size, dimension, cell size, and polygon obstacles.
+\item Rasterizes polygons to an {\bfseries{N-\/D occupancy grid}} ({\ttfamily 0=free}, {\ttfamily 1=obstacle}) via half-\/space checks.
+\item Marks polygon vertices as occupied.
+\item Optionally samples {\bfseries{random start/goal pairs}} in free cells.
+\item {\bfseries{Caches}} the generated grid and pairs to {\ttfamily $<$name$>$\+\_\+grid.\+json}. ~\newline
+ If the cache exists and is readable, it is used directly (fast path).
+\end{DoxyItemize}\hypertarget{index_autotoc_md35}{}\doxysubsubsection{Scene JSON schema (example)\+:}\label{index_autotoc_md35}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{  "{}gridSize"{}: 100,}
+\DoxyCodeLine{  "{}dimensionOfGrid"{}: 2,}
+\DoxyCodeLine{  "{}cellSize"{}: 0.1,}
+\DoxyCodeLine{  "{}envName"{}: "{}SimpleRoom"{},}
+\DoxyCodeLine{  "{}envDes"{}: "{}A 2D room with convex polygon obstacles"{},}
+\DoxyCodeLine{  "{}randomStartGoal"{}: true,}
+\DoxyCodeLine{  "{}numStartGoals"{}: 50,}
+\DoxyCodeLine{  "{}startGoalPairs"{}: [],}
+\DoxyCodeLine{  "{}polygons"{}: [}
+\DoxyCodeLine{    \{ "{}polygon"{}: [[20,20],[40,20],[40,40],[20,40]] \},}
+\DoxyCodeLine{    \{ "{}polygon"{}: [[60,60],[80,60],[80,80],[60,80]] \}}
+\DoxyCodeLine{  ]}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Add to your run config\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{"{}envDetails"{}: [}
+\DoxyCodeLine{  \{ "{}generateGrid"{}: [ \{ "{}name"{}: "{}SimpleRoom"{} \}, \{ "{}name"{}: "{}WarehouseA"{} \} ] \}}
+\DoxyCodeLine{]}
+
+\end{DoxyCode}
+
+
+Option B — Create a Custom Environment (subclass Base\+Env)
+
+
+\begin{DoxyEnumerate}
+\item Create a file, e.\+g. safeplan/envs/my\+\_\+env.\+py, that inherits Base\+Env and implements getmap()\+:
+\end{DoxyEnumerate}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\# safeplan/envs/my\_env.py}
+\DoxyCodeLine{from .baseenv import BaseEnv}
+\DoxyCodeLine{import numpy as np}
+\DoxyCodeLine{}
+\DoxyCodeLine{class MyEnv(BaseEnv):}
+\DoxyCodeLine{    def \_\_init\_\_(self, size=64, cell\_size=0.1):}
+\DoxyCodeLine{        super().\_\_init\_\_()}
+\DoxyCodeLine{        self.size = int(size)}
+\DoxyCodeLine{        self.cell\_size = float(cell\_size)}
+\DoxyCodeLine{}
+\DoxyCodeLine{    def getmap(self):}
+\DoxyCodeLine{        \# Build a simple empty 2D grid with one obstacle line}
+\DoxyCodeLine{        grid = np.zeros((self.size, self.size), dtype=np.uint8)}
+\DoxyCodeLine{        grid[self.size//2, :] = 1  \# a horizontal wall}
+\DoxyCodeLine{}
+\DoxyCodeLine{        envName = "{}MyEnv"{}}
+\DoxyCodeLine{        envDes  = "{}Custom demo environment with a single wall"{}}
+\DoxyCodeLine{        startGoalPairs = [}
+\DoxyCodeLine{            \{"{}start"{}: (5, 5), "{}goal"{}: (self.size-\/6, self.size-\/6)\}}
+\DoxyCodeLine{        ]}
+\DoxyCodeLine{        return grid, self.cell\_size, envName, envDes, startGoalPairs}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyEnumerate}
+\item Register it in your run config by referencing it in code. Two patterns are common\+:
+\end{DoxyEnumerate}
+
+Config-\/driven (extend Safe\+Plan.\+set\+Up\+Envs() to load from JSON).
+
+Direct instantiation if you’re experimenting.
+
+Config-\/driven JSON example\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{"{}envDetails"{}: [}
+\DoxyCodeLine{  \{ "{}generateGrid"{}: [ \{ "{}name"{}: "{}SimpleRoom"{} \} ] \},}
+\DoxyCodeLine{  \{ "{}customEnvs"{}: [ \{ "{}class"{}: "{}MyEnv"{}, "{}args"{}: \{ "{}size"{}: 128, "{}cell\_size"{}: 0.05 \} \} ] \}}
+\DoxyCodeLine{]}
+
+\end{DoxyCode}
+ Expected Return Contract (getmap())
+
+Any environment (including Generate\+Grid) must return\+:
+
+grid \+: numpy.\+ndarray with shape (N1, N2\mbox{[}, N3, ...\mbox{]}), values \{0=free, 1=obstacle\}
+
+cell\+Size \+: float (meters per cell, or chosen unit)
+
+env\+Name \+: str
+
+env\+Des \+: str
+
+start\+Goal\+Pairs \+: list of objects like\+:\hypertarget{index_autotoc_md36}{}\doxysection{Caching \& Reloading (\+Generate\+Grid)}\label{index_autotoc_md36}
+First run\+: Generate\+Grid loads $<$name$>$.json, rasterizes polygons, optionally samples random pairs, and writes $<$name$>$\+\_\+grid.\+json.
+
+Subsequent runs\+: If $<$name$>$\+\_\+grid.\+json is present and readable, it skips generation and loads from cache.
+
+Tip\+: Delete the \+\_\+grid.\+json cache to force regeneration after changes to the base scene JSON.\hypertarget{index_autotoc_md37}{}\doxysection{Random Start/\+Goal Pairs (\+Generate\+Grid)}\label{index_autotoc_md37}
+If \char`\"{}random\+Start\+Goal\char`\"{}\+: true, Safe\+Plan will sample num\+Start\+Goals distinct pairs in free cells.
+
+If \char`\"{}random\+Start\+Goal\char`\"{}\+: false, Safe\+Plan uses the provided \char`\"{}start\+Goal\+Pairs\char`\"{} array as-\/is.\hypertarget{index_autotoc_md38}{}\doxysection{Troubleshooting}\label{index_autotoc_md38}
+“\+File exists and is readable” but scene didn’t change\+: Delete the cached \+\_\+grid.\+json to regenerate.
+
+No obstacles appear\+: Check your polygons are convex and have valid vertex order; Convex\+Hull requires non-\/degenerate input.
+
+Invalid pairs\+: Ensure start/goal lie within grid bounds and on free cells (grid\mbox{[}...\mbox{]} == 0).
+
+3D grids\+: Use dimension\+Of\+Grid\+: 3 and provide 3D polygons (polyhedra faces) that form valid convex hulls.\hypertarget{index_autotoc_md39}{}\doxysubsection{Cite Safe\+Plan}\label{index_autotoc_md39}
+If you use {\bfseries{Safe\+Plan}} in your research, please cite\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{@misc\{,}
+\DoxyCodeLine{  doi = \{\},}
+\DoxyCodeLine{  url = \{\},}
+\DoxyCodeLine{  author = \{\},}
+\DoxyCodeLine{  keywords = \{\},}
+\DoxyCodeLine{  title = \{\},}
+\DoxyCodeLine{  publisher = \{\},}
+\DoxyCodeLine{  year = \{\},}
+\DoxyCodeLine{  copyright = \{\}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+ 

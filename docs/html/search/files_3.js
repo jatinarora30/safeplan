@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['danger_5fviolations_2epy_285',['danger_violations.py',['../danger__violations_8py.html',1,'']]],
-  ['dijkstra_2epy_286',['dijkstra.py',['../dijkstra_8py.html',1,'']]],
-  ['distance_5fto_5fgoal_2epy_287',['distance_to_goal.py',['../distance__to__goal_8py.html',1,'']]]
+  ['cbf_5frrt_2epy_287',['cbf_rrt.py',['../cbf__rrt_8py.html',1,'']]],
+  ['clearance_5fvariability_2epy_288',['clearance_variability.py',['../clearance__variability_8py.html',1,'']]]
 ];

@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['a_5fstar_2epy_278',['a_star.py',['../a__star_8py.html',1,'']]],
-  ['average_5fminimum_5fclearance_2epy_279',['average_minimum_clearance.py',['../average__minimum__clearance_8py.html',1,'']]]
+  ['_5f_5finit_5f_5f_2epy_281',['__init__.py',['../____init_____8py.html',1,'']]]
 ];
