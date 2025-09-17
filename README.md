@@ -381,6 +381,20 @@ SafePlan experimental results  in results folder on calling stats for planners f
 }
 
 ```
+
+## Environments
+
+SafePlan currently provides **12 benchmark environments**:
+
+- **2D Large (1000×1000):** 5 maps  
+- **2D Medium (100×100):** 5 maps  
+- **3D Volumetric (100×100×100):** 2 maps  
+
+These cover a diverse range of planning challenges:
+- Large-scale grids for stress testing scalability  
+- Medium-sized grids for rapid prototyping  
+- Full 3D voxel maps for UAV and mobile robot planning  
+
 ##  Extending SafePlan
 
 SafePlan is designed to be **modular and extensible**, so you can easily add your own planners, evaluation metrics, or environments.  
@@ -442,13 +456,13 @@ You can update eval details as in adding in json form:
 ]
 ```
 
-##  Adding a New Environment
+### Adding a New Environment
 
 SafePlan lets you plug in new environment generators that return occupancy grids and start/goal pairs in a consistent format. You can either **use the built-in `GenerateGrid`** (loads polygons from JSON, rasterizes to a grid, caches a `_grid.json`) or **create your own environment** by subclassing `BaseEnv`.
 
 ---
 
-### Option A — Use the built-in `GenerateGrid`
+Option A — Use the built-in `GenerateGrid`
 
 `GenerateGrid` reads a scene JSON from:
 safeplan/configs/generate_grid/<YOUR_ENV>/<YOUR_ENV>.json
@@ -456,7 +470,7 @@ and writes/loads a cache:
 safeplan/configs/generate_grid/<YOUR_ENV>/<YOUR_ENV>_grid.json
 
 
-#### What it does:
+What it does:
 - Loads grid size, dimension, cell size, and polygon obstacles.
 - Rasterizes polygons to an **N-D occupancy grid** (`0=free`, `1=obstacle`) via half-space checks.
 - Marks polygon vertices as occupied.
@@ -464,7 +478,7 @@ safeplan/configs/generate_grid/<YOUR_ENV>/<YOUR_ENV>_grid.json
 - **Caches** the generated grid and pairs to `<name>_grid.json`.  
   If the cache exists and is readable, it is used directly (fast path).
 
-#### Scene JSON schema (example):
+Scene JSON schema (example):
 ```json
 {
   "gridSize": 100,
@@ -547,7 +561,7 @@ envDes : str
 
 startGoalPairs : list of objects like:
 
-# Caching & Reloading (GenerateGrid)
+## Caching & Reloading (GenerateGrid)
 
 First run: GenerateGrid loads <name>.json, rasterizes polygons, optionally samples random pairs, and writes <name>_grid.json.
 
@@ -555,7 +569,7 @@ Subsequent runs: If <name>_grid.json is present and readable, it skips generatio
 
 Tip: Delete the _grid.json cache to force regeneration after changes to the base scene JSON.
 
-# Random Start/Goal Pairs (GenerateGrid)
+## Random Start/Goal Pairs (GenerateGrid)
 
 If "randomStartGoal": true, SafePlan will sample numStartGoals distinct pairs in free cells.
 
