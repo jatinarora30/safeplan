@@ -108,9 +108,7 @@ They capture not only **efficiency**, but also **safety** and **smoothness** —
 SafePlan includes both **traditional planners** and **safety-aware planners**, allowing direct benchmarking on **safety vs. optimality** tradeoffs.
 
 ### 🔹 Traditional Planners
-- **Dijkstra**  
-  Classic graph search algorithm that guarantees shortest paths but can be computationally expensive on large grids.  
-  Reference: (https://www.semanticscholar.org/paper/A-note-on-two-problems-in-connexion-with-graphs-Dijkstra/45786063578e814444b8247028970758bbbd0488)
+
 
 - **A\***  
   Heuristic-guided search algorithm that combines optimality of Dijkstra with efficiency via heuristics.  
@@ -124,9 +122,6 @@ SafePlan includes both **traditional planners** and **safety-aware planners**, a
   Sampling-based motion planning method efficient for high-dimensional spaces.  
   Reference: (https://www.semanticscholar.org/paper/Rapidly-exploring-random-trees-%3A-a-new-tool-for-LaValle/d967d9550f831a8b3f5cb00f8835a4c866da60ad)
 
-- **Weighted A\***  
-  Variant of A\* that scales the heuristic to bias search toward speed vs. optimality tradeoffs.  
-  Reference: (https://www.sciencedirect.com/science/article/pii/S000437020900068X)
 
 ---
 
@@ -147,6 +142,13 @@ SafePlan includes both **traditional planners** and **safety-aware planners**, a
   Enhances RRT with control barrier functions to guarantee safety constraints.  
   Reference: (https://arxiv.org/pdf/2011.06748)
 
+- **FS Planner**  
+  Uses an integrated inverse distance, on lazy theta AStar and also gives a limit on maximum neighbours explored in goal and safe direction
+  Reference: (https://arxiv.org/pdf/2505.24024)
+
+  - **Inflated A**  
+  Inflate the obstacles by ceratin safety raius as hard constraints, then run A*
+  Reference: (https://arxiv.org/pdf/2003.00368)
 
 ## Installation
 

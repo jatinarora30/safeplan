@@ -12,8 +12,6 @@ from .algos.a_star import AStar
 from .algos.voronoi_planner import VoronoiPlanner
 from .algos.upp import UPP
 from .algos.rrt import RRT
-from .algos.dijkstra import Dijkstra
-from .algos.weighted_astar import WeightedAStar
 from .algos.sdf_astar import SDFAStar
 from .algos.cbf_rrt import CBFRRT
 from .algos.optimized_astar import OptimizedAStar
@@ -276,9 +274,6 @@ class SafePlan:
                 self.algos.append(("SDFAStar", SDFAStar(k["args"]["k1"], k["args"]["k2"])))
             if k["name"] == "FSPlanner":
                 self.algos.append(("FSPlanner",FSPlanner(k["args"]["pointSamples"],k["args"]["cw"],k["args"]["epsilon"],k["args"]["maxNeigh"])))
-            if k["name"] == "WeightedAStar":
-                self.algos.append(("WeightedAStar", WeightedAStar(k["args"]["weight"])))
-            
             if k["name"] == "InflatedAStar":
                 self.algos.append(("InflatedAStar", InflatedAStar(k["args"]["radiusInflate"])))
             if k["name"] == "RRT":
