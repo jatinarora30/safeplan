@@ -12,4 +12,10 @@ UPP: https://arxiv.org/pdf/2505.23197
 SDF A*: https://ieeexplore.ieee.org/document/10364842/ 
 Optimized A*: https://www.mdpi.com/1424-8220/24/10/3149
 CBF-RRT: https://arxiv.org/pdf/2011.06748 
+FS Planner-https://arxiv.org/pdf/2505.24024
+Inflated A*: https://arxiv.org/pdf/2003.00368 
 
+https://arxiv.org/pdf/2406.07728
+
+https://link.springer.com/article/10.1007/s11370-025-00618-w
+https://www.mdpi.com/1424-8220/25/9/2761?utm_source=chatgpt.com

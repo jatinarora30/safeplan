@@ -10,6 +10,10 @@ SafePlan also includes the proposed **OptiSafe** metric, designed to quantify th
 
 ## Key Features
 
+- **Resume at any time**
+  - If code crashes or stops due to any reason, it will resume from the last stopped point of iteration
+  - Doesn't do repeated computation 
+
 - **Batch experiments at scale**
   - Run thousands of randomized start–goal trials across multiple maps automatically.
   - Supports repeatable benchmarking with structured JSON outputs.
