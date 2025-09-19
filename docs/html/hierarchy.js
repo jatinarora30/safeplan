@@ -24,13 +24,13 @@ var hierarchy =
       [ "baseplanner.BasePlanner", "classbaseplanner_1_1BasePlanner.html", [
         [ "a_star.AStar", "classa__star_1_1AStar.html", null ],
         [ "cbf_rrt.CBFRRT", "classcbf__rrt_1_1CBFRRT.html", null ],
-        [ "dijkstra.Dijkstra", "classdijkstra_1_1Dijkstra.html", null ],
+        [ "fs_planner.FSPlanner", "classfs__planner_1_1FSPlanner.html", null ],
+        [ "inflated_astar.InflatedAStar", "classinflated__astar_1_1InflatedAStar.html", null ],
         [ "optimized_astar.OptimizedAStar", "classoptimized__astar_1_1OptimizedAStar.html", null ],
         [ "rrt.RRT", "classrrt_1_1RRT.html", null ],
         [ "sdf_astar.SDFAStar", "classsdf__astar_1_1SDFAStar.html", null ],
         [ "upp.UPP", "classupp_1_1UPP.html", null ],
-        [ "voronoi_planner.VoronoiPlanner", "classvoronoi__planner_1_1VoronoiPlanner.html", null ],
-        [ "weighted_astar.WeightedAStar", "classweighted__astar_1_1WeightedAStar.html", null ]
+        [ "voronoi_planner.VoronoiPlanner", "classvoronoi__planner_1_1VoronoiPlanner.html", null ]
       ] ]
     ] ]
 ];

@@ -1,0 +1,82 @@
+\hypertarget{fs__planner_8py}{}\doxysection{safeplan/algos/fs\+\_\+planner.py File Reference}
+\label{fs__planner_8py}\index{safeplan/algos/fs\_planner.py@{safeplan/algos/fs\_planner.py}}
+
+
+FS-\/\+Planner\+: Fast and Safe path planning with SDF guidance and Lazy Theta$\ast$.  
+
+
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classfs__planner_1_1FSPlanner}{fs\+\_\+planner.\+FSPlanner}}
+\begin{DoxyCompactList}\small\item\em Fast and Safe planner with SDF-\/guided costs and Lazy Theta$\ast$. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \mbox{\hyperlink{namespacefs__planner}{fs\+\_\+planner}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+FS-\/\+Planner\+: Fast and Safe path planning with SDF guidance and Lazy Theta$\ast$. 
+
+Implements FS-\/\+Planner over an N-\/D Num\+Py occupancy grid (0 = free, 1 = obstacle). FS-\/\+Planner augments A$\ast$ with\+:
+\begin{DoxyItemize}
+\item Signed Distance Field (SDF) based safety-\/aware edge costs,
+\item SDF-\/derivative guidance to prefer safer corridors,
+\item Lazy Theta$\ast$ line-\/of-\/sight (LOS) parent connections to reduce expansions,
+\item Adaptive neighbor pruning toward a blended safety/goal direction.
+\end{DoxyItemize}
+
+Grid cells are addressed in index space. Start and goal are N-\/D integer tuples.
+
+Key behaviors\+:
+\begin{DoxyItemize}
+\item Neighborhood\+: full 3$^\wedge$N -\/ 1 offsets (axis-\/aligned and diagonals).
+\item Heuristic\+: Euclidean distance to the goal.
+\item Step cost\+: geometric distance, plus an SDF-\/based clearance penalty.
+\item Collision checking along edges via uniform samples.
+\end{DoxyItemize}
+
+FS-\/\+Planner trades strict shortest-\/path optimality for higher clearance and smoother, lower-\/risk routes. Tuning {\ttfamily cw} adjusts this trade-\/off.
+
+\begin{DoxyParagraph}{Inputs (to plan())}
+
+\begin{DoxyItemize}
+\item {\ttfamily start} \+: tuple\mbox{[}int, ...\mbox{]} — start grid cell
+\item {\ttfamily goal} \+: tuple\mbox{[}int, ...\mbox{]} — goal grid cell
+\item {\ttfamily grid} \+: numpy.\+ndarray (N-\/D), occupancy \{0=free, 1=obstacle\}
+\end{DoxyItemize}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Constructor Args}
+
+\begin{DoxyItemize}
+\item {\ttfamily point\+Samples} \+: int — samples per edge for collision checks
+\item {\ttfamily cw} \+: float — clearance weight in edge cost
+\item {\ttfamily epsilon} \+: float — small constant for numerical stability
+\item {\ttfamily max\+Neigh} \+: int — cap on neighbors kept after adaptive pruning
+\end{DoxyItemize}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Outputs (from plan())}
+
+\begin{DoxyItemize}
+\item {\ttfamily success} \+: int — 1 if a path is found, else 0
+\item {\ttfamily path} \+: list\mbox{[}tuple\mbox{[}int, ...\mbox{]}\mbox{]} — start→goal (inclusive) or empty
+\item {\ttfamily info} \+: list\mbox{[}str\mbox{]} — diagnostics (e.\+g., \char`\"{}\+Invalid goal\char`\"{})
+\end{DoxyItemize}
+\end{DoxyParagraph}
+\begin{DoxyNote}{Note}
+
+\begin{DoxyItemize}
+\item Heuristic optimality guarantees do not strictly hold with clearance penalties.
+\item Set cw=0 to approximate baseline A$\ast$ (still with LOS smoothing if unmodified).
+\item Distance transform is computed on (1 -\/ grid) so free cells have positive distance.
+\end{DoxyItemize}
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+Base\+Planner
+\end{DoxySeeAlso}
+@references
+\begin{DoxyItemize}
+\item FS-\/\+Planner paper\+: \href{https://arxiv.org/pdf/2505.24024}{\texttt{ https\+://arxiv.\+org/pdf/2505.\+24024}} 
+\end{DoxyItemize}

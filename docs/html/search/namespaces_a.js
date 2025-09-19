@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['path_5fcost_269',['path_cost',['../namespacepath__cost.html',1,'']]]
+  ['nodes_5fin_5fpath_284',['nodes_in_path',['../namespacenodes__in__path.html',1,'']]]
 ];

@@ -24,14 +24,17 @@ var annotated_dup =
     [ "danger_violations", "namespacedanger__violations.html", [
       [ "DangerViolations", "classdanger__violations_1_1DangerViolations.html", "classdanger__violations_1_1DangerViolations" ]
     ] ],
-    [ "dijkstra", "namespacedijkstra.html", [
-      [ "Dijkstra", "classdijkstra_1_1Dijkstra.html", "classdijkstra_1_1Dijkstra" ]
-    ] ],
     [ "distance_to_goal", "namespacedistance__to__goal.html", [
       [ "DistanceToGoal", "classdistance__to__goal_1_1DistanceToGoal.html", "classdistance__to__goal_1_1DistanceToGoal" ]
     ] ],
+    [ "fs_planner", "namespacefs__planner.html", [
+      [ "FSPlanner", "classfs__planner_1_1FSPlanner.html", "classfs__planner_1_1FSPlanner" ]
+    ] ],
     [ "generate_grid", "namespacegenerate__grid.html", [
       [ "GenerateGrid", "classgenerate__grid_1_1GenerateGrid.html", "classgenerate__grid_1_1GenerateGrid" ]
+    ] ],
+    [ "inflated_astar", "namespaceinflated__astar.html", [
+      [ "InflatedAStar", "classinflated__astar_1_1InflatedAStar.html", "classinflated__astar_1_1InflatedAStar" ]
     ] ],
     [ "jerk_per_meter", "namespacejerk__per__meter.html", [
       [ "JerkPerMeter", "classjerk__per__meter_1_1JerkPerMeter.html", "classjerk__per__meter_1_1JerkPerMeter" ]
@@ -82,8 +85,5 @@ var annotated_dup =
     ] ],
     [ "voronoi_planner", "namespacevoronoi__planner.html", [
       [ "VoronoiPlanner", "classvoronoi__planner_1_1VoronoiPlanner.html", "classvoronoi__planner_1_1VoronoiPlanner" ]
-    ] ],
-    [ "weighted_astar", "namespaceweighted__astar.html", [
-      [ "WeightedAStar", "classweighted__astar_1_1WeightedAStar.html", "classweighted__astar_1_1WeightedAStar" ]
     ] ]
 ];

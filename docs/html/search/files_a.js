@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['optimal_5fdeviation_2epy_298',['optimal_deviation.py',['../optimal__deviation_8py.html',1,'']]],
-  ['optimized_5fastar_2epy_299',['optimized_astar.py',['../optimized__astar_8py.html',1,'']]],
-  ['optisafe_5findex_2epy_300',['optisafe_index.py',['../optisafe__index_8py.html',1,'']]]
+  ['main_2epy_316',['main.py',['../main_8py.html',1,'']]],
+  ['minimum_5fclearance_2epy_317',['minimum_clearance.py',['../minimum__clearance_8py.html',1,'']]]
 ];

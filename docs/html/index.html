@@ -96,6 +96,11 @@ Overview</h1>
 <h1><a class="anchor" id="autotoc_md2"></a>
 Key Features</h1>
 <ul>
+<li><b>Resume at any time</b><ul>
+<li>If code crashes or stops due to any reason, it will resume from the last stopped point of iteration</li>
+<li>Doesn't do repeated computation</li>
+</ul>
+</li>
 <li><b>Batch experiments at scale</b><ul>
 <li>Run thousands of randomized start–goal trials across multiple maps automatically.</li>
 <li>Supports repeatable benchmarking with structured JSON outputs.</li>
@@ -254,9 +259,6 @@ Algorithms in SafePlan</h1>
 <h2><a class="anchor" id="autotoc_md19"></a>
 🔹 Traditional Planners</h2>
 <ul>
-<li><b>Dijkstra</b> <br  />
- Classic graph search algorithm that guarantees shortest paths but can be computationally expensive on large grids. <br  />
- Reference: (<a href="https://www.semanticscholar.org/paper/A-note-on-two-problems-in-connexion-with-graphs-Dijkstra/45786063578e814444b8247028970758bbbd0488">https://www.semanticscholar.org/paper/A-note-on-two-problems-in-connexion-with-graphs-Dijkstra/45786063578e814444b8247028970758bbbd0488</a>)</li>
 <li><b>A*</b> <br  />
  Heuristic-guided search algorithm that combines optimality of Dijkstra with efficiency via heuristics. <br  />
  Reference: (<a href="https://ieeexplore.ieee.org/document/4082128">https://ieeexplore.ieee.org/document/4082128</a>)</li>
@@ -266,9 +268,6 @@ Algorithms in SafePlan</h1>
 <li><b>RRT (Rapidly-Exploring Random Trees)</b> <br  />
  Sampling-based motion planning method efficient for high-dimensional spaces. <br  />
  Reference: (<a href="https://www.semanticscholar.org/paper/Rapidly-exploring-random-trees-%3A-a-new-tool-for-LaValle/d967d9550f831a8b3f5cb00f8835a4c866da60ad">https://www.semanticscholar.org/paper/Rapidly-exploring-random-trees-%3A-a-new-tool-for-LaValle/d967d9550f831a8b3f5cb00f8835a4c866da60ad</a>)</li>
-<li><b>Weighted A*</b> <br  />
- Variant of A* that scales the heuristic to bias search toward speed vs. optimality tradeoffs. <br  />
- Reference: (<a href="https://www.sciencedirect.com/science/article/pii/S000437020900068X">https://www.sciencedirect.com/science/article/pii/S000437020900068X</a>)</li>
 </ul>
 <hr  />
 <h2><a class="anchor" id="autotoc_md21"></a>
@@ -286,6 +285,10 @@ Algorithms in SafePlan</h1>
 <li><b>CBF-RRT (Control Barrier Function RRT)</b> <br  />
  Enhances RRT with control barrier functions to guarantee safety constraints. <br  />
  Reference: (<a href="https://arxiv.org/pdf/2011.06748">https://arxiv.org/pdf/2011.06748</a>)</li>
+<li><b>FS Planner</b> <br  />
+ Uses an integrated inverse distance, on lazy theta AStar and also gives a limit on maximum neighbours explored in goal and safe direction Reference: (<a href="https://arxiv.org/pdf/2505.24024">https://arxiv.org/pdf/2505.24024</a>)</li>
+<li><b>Inflated A</b> <br  />
+ Inflate the obstacles by ceratin safety radius as hard constraints, then run A* Reference: (<a href="https://arxiv.org/pdf/2003.00368">https://arxiv.org/pdf/2003.00368</a>)</li>
 </ul>
 <h1><a class="anchor" id="autotoc_md22"></a>
 Installation</h1>
@@ -321,7 +324,7 @@ Usage</h1>
 <p>SafePlan experiments are configured via a JSON file (e.g., <code>run1.json</code>). <br  />
  Below is an example:</p>
 <div class="fragment"><div class="line">{</div>
-<div class="line">  &quot;runDetails&quot;: &quot;run1&quot;,</div>
+<div class="line">  &quot;runDetails&quot;: &quot;run2&quot;,</div>
 <div class="line">  &quot;evalDetails&quot;: [</div>
 <div class="line">    {&quot;name&quot;: &quot;PlanningTime&quot;},</div>
 <div class="line">    {&quot;name&quot;: &quot;MinimumClearance&quot;,&quot;args&quot;: {&quot;pointSamples&quot;:100}},</div>
@@ -338,23 +341,23 @@ Usage</h1>
 <div class="line">    {&quot;name&quot;: &quot;NodesInPath&quot;, &quot;args&quot;: {&quot;type&quot;:&quot;RDP&quot;,&quot;epsilon&quot;:0.01}}</div>
 <div class="line">  ],</div>
 <div class="line">  &quot;algoDetails&quot;: [</div>
-<div class="line">    {&quot;name&quot;: &quot;VoronoiPlanner&quot;,&quot;args&quot;: {&quot;pointSamples&quot;:100,&quot;knn&quot;:1000}},</div>
-<div class="line">    {&quot;name&quot;: &quot;UPP&quot;,&quot;args&quot;: {&quot;alpha&quot;:0.5,&quot;beta&quot;:2,&quot;radius&quot;:5,&quot;epsilon&quot;:0.01}},</div>
-<div class="line">    {&quot;name&quot;: &quot;RRT&quot;,&quot;args&quot;: {&quot;maxIter&quot;:10000,&quot;goalSampleRate&quot;:0.05,&quot;stepSize&quot;:7,&quot;pointSamples&quot;:100}},</div>
-<div class="line">    {&quot;name&quot;: &quot;CBFRRT&quot;,&quot;args&quot;: {&quot;maxIter&quot;:10000,&quot;goalSampleRate&quot;:0.05,&quot;stepSize&quot;:7,&quot;pointSamples&quot;:100,&quot;gamma1&quot;:2,&quot;gamma2&quot;:2}},</div>
+<div class="line">    {&quot;name&quot;: &quot;VoronoiPlanner&quot;,&quot;args&quot;: {&quot;pointSamples&quot;:100,&quot;knn&quot;:100}},</div>
 <div class="line">    {&quot;name&quot;: &quot;AStar&quot;},</div>
-<div class="line">    {&quot;name&quot;: &quot;Dijkstra&quot;},</div>
-<div class="line">    {&quot;name&quot;: &quot;WeightedAStar&quot;,&quot;args&quot;: {&quot;weight&quot;:1.2}},</div>
+<div class="line">    {&quot;name&quot;: &quot;RRT&quot;,&quot;args&quot;: {&quot;maxIter&quot;:10000,&quot;goalSampleRate&quot;:0.05,&quot;stepSize&quot;:7,&quot;pointSamples&quot;:100}},</div>
+<div class="line"> </div>
+<div class="line">    {&quot;name&quot;: &quot;UPP&quot;,&quot;args&quot;: {&quot;alpha&quot;:0.5,&quot;beta&quot;:2,&quot;radius&quot;:5,&quot;epsilon&quot;:0.01}},</div>
+<div class="line">    {&quot;name&quot;: &quot;CBFRRT&quot;,&quot;args&quot;: {&quot;maxIter&quot;:10000,&quot;goalSampleRate&quot;:0.05,&quot;stepSize&quot;:7,&quot;pointSamples&quot;:100,&quot;gamma1&quot;:2,&quot;gamma2&quot;:2}},</div>
+<div class="line">    {&quot;name&quot;: &quot;FSPlanner&quot; ,&quot;args&quot;: {&quot;pointSamples&quot;:100,&quot;cw&quot;:1, &quot;epsilon&quot;:0.01,&quot;maxNeigh&quot;:5}},</div>
 <div class="line">    {&quot;name&quot;: &quot;SDFAStar&quot; , &quot;args&quot;: {&quot;k1&quot;:5,&quot;k2&quot;:5}},</div>
-<div class="line">    {&quot;name&quot;: &quot;OptimizedAStar&quot; , &quot;args&quot;: {&quot;turnPenaltyCoefficients&quot;:0.5,&quot;safetyDistGridRadius&quot;:100,&quot;maxInflateIter&quot;:100,&quot;pointSamples&quot;:100}}</div>
+<div class="line">    {&quot;name&quot;: &quot;OptimizedAStar&quot; , &quot;args&quot;: {&quot;turnPenaltyCoefficients&quot;:0.5,&quot;safetyDistGridRadius&quot;:100,&quot;maxInflateIter&quot;:100,&quot;pointSamples&quot;:100}},</div>
+<div class="line">    {&quot;name&quot;: &quot;InflatedAStar&quot; ,&quot;args&quot;: {&quot;radiusInflate&quot;:4}}</div>
 <div class="line">  ],</div>
 <div class="line">  &quot;envDetails&quot;: [</div>
 <div class="line">    {</div>
 <div class="line">      &quot;generateGrid&quot;: [</div>
-<div class="line">        {&quot;name&quot;: &quot;env12&quot;},</div>
-<div class="line">        {&quot;name&quot;: &quot;env2&quot;}</div>
-<div class="line">      ]</div>
-<div class="line">    }</div>
+<div class="line">       </div>
+<div class="line">        {&quot;name&quot;: &quot;env1&quot; }</div>
+<div class="line">      ]    }</div>
 <div class="line">  ]</div>
 <div class="line">}</div>
 </div><!-- fragment --><h1><a class="anchor" id="autotoc_md27"></a>
@@ -512,11 +515,30 @@ Programmatic API</h1>
 <div class="line">        &quot;NodesInPath&quot;: 3.09</div>
 <div class="line">    }</div>
 <div class="line">}</div>
-</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md28"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md28"></a>
+Environments</h1>
+<p>SafePlan currently provides <b>12 benchmark environments</b>:</p>
+<ul>
+<li><b>2D Large (1000×1000):</b> 5 maps <br  />
+</li>
+<li><b>2D Medium (100×100):</b> 5 maps <br  />
+</li>
+<li><b>3D Volumetric (100×100×100):</b> 2 maps <br  />
+</li>
+</ul>
+<p>These cover a diverse range of planning challenges:</p><ul>
+<li>Large-scale grids for stress testing scalability <br  />
+</li>
+<li>Medium-sized grids for rapid prototyping <br  />
+</li>
+<li>Full 3D voxel maps for UAV and mobile robot planning <br  />
+</li>
+</ul>
+<h1><a class="anchor" id="autotoc_md29"></a>
 Extending SafePlan</h1>
 <p>SafePlan is designed to be <b>modular and extensible</b>, so you can easily add your own planners, evaluation metrics, or environments. <br  />
  This makes it straightforward for researchers and developers to benchmark <b>new ideas</b> while reusing the existing infrastructure.</p>
-<h2><a class="anchor" id="autotoc_md29"></a>
+<h2><a class="anchor" id="autotoc_md30"></a>
 Adding a New Planner</h2>
 <p>To add a new planner:</p><ol type="1">
 <li>Create a new file inside <code>safeplan/algos/</code> (e.g., <code>my_planner.py</code>).</li>
@@ -536,7 +558,7 @@ Adding a New Planner</h2>
 </div><!-- fragment --><p> You can update planner details as in adding in json form: </p><div class="fragment"><div class="line">&quot;algoDetails&quot;: [</div>
 <div class="line">    {&quot;name&quot;: &quot;MyPlanner&quot;}</div>
 <div class="line">]</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md30"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md31"></a>
 Adding a New Metric</h2>
 <p>To add a new metric:</p><ol type="1">
 <li>Create a new file inside <code>safeplan/evals/</code> (e.g., <code>my_metric.py</code>).</li>
@@ -555,16 +577,13 @@ Adding a New Metric</h2>
 </div><!-- fragment --><p> You can update eval details as in adding in json form: </p><div class="fragment"><div class="line">&quot;evalDetails&quot;: [</div>
 <div class="line">    {&quot;name&quot;: &quot;MyMetric&quot;}</div>
 <div class="line">]</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md31"></a>
-Adding a New Environment</h1>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md32"></a>
+Adding a New Environment</h2>
 <p>SafePlan lets you plug in new environment generators that return occupancy grids and start/goal pairs in a consistent format. You can either <b>use the built-in <code>GenerateGrid</code></b> (loads polygons from JSON, rasterizes to a grid, caches a <code>_grid.json</code>) or <b>create your own environment</b> by subclassing <code>BaseEnv</code>.</p>
 <hr  />
-<h2><a class="anchor" id="autotoc_md33"></a>
-Option A — Use the built-in &lt;tt&gt;GenerateGrid&lt;/tt&gt;</h2>
+<p>Option A — Use the built-in <code>GenerateGrid</code></p>
 <p><code>GenerateGrid</code> reads a scene JSON from: safeplan/configs/generate_grid/&lt;YOUR_ENV&gt;/&lt;YOUR_ENV&gt;.json and writes/loads a cache: safeplan/configs/generate_grid/&lt;YOUR_ENV&gt;/&lt;YOUR_ENV&gt;_grid.json</p>
-<h3><a class="anchor" id="autotoc_md34"></a>
-What it does:</h3>
-<ul>
+<p>What it does:</p><ul>
 <li>Loads grid size, dimension, cell size, and polygon obstacles.</li>
 <li>Rasterizes polygons to an <b>N-D occupancy grid</b> (<code>0=free</code>, <code>1=obstacle</code>) via half-space checks.</li>
 <li>Marks polygon vertices as occupied.</li>
@@ -572,9 +591,7 @@ What it does:</h3>
 <li><b>Caches</b> the generated grid and pairs to <code>&lt;name&gt;_grid.json</code>. <br  />
  If the cache exists and is readable, it is used directly (fast path).</li>
 </ul>
-<h3><a class="anchor" id="autotoc_md35"></a>
-Scene JSON schema (example):</h3>
-<div class="fragment"><div class="line">{</div>
+<p>Scene JSON schema (example): </p><div class="fragment"><div class="line">{</div>
 <div class="line">  &quot;gridSize&quot;: 100,</div>
 <div class="line">  &quot;dimensionOfGrid&quot;: 2,</div>
 <div class="line">  &quot;cellSize&quot;: 0.1,</div>
@@ -633,22 +650,22 @@ Scene JSON schema (example):</h3>
 <p>envName : str</p>
 <p>envDes : str</p>
 <p>startGoalPairs : list of objects like:</p>
-<h1><a class="anchor" id="autotoc_md36"></a>
+<h1><a class="anchor" id="autotoc_md34"></a>
 Caching &amp; Reloading (GenerateGrid)</h1>
 <p>First run: GenerateGrid loads &lt;name&gt;.json, rasterizes polygons, optionally samples random pairs, and writes &lt;name&gt;_grid.json.</p>
 <p>Subsequent runs: If &lt;name&gt;_grid.json is present and readable, it skips generation and loads from cache.</p>
 <p>Tip: Delete the _grid.json cache to force regeneration after changes to the base scene JSON.</p>
-<h1><a class="anchor" id="autotoc_md37"></a>
+<h1><a class="anchor" id="autotoc_md35"></a>
 Random Start/Goal Pairs (GenerateGrid)</h1>
 <p>If "randomStartGoal": true, SafePlan will sample numStartGoals distinct pairs in free cells.</p>
 <p>If "randomStartGoal": false, SafePlan uses the provided "startGoalPairs" array as-is.</p>
-<h1><a class="anchor" id="autotoc_md38"></a>
+<h1><a class="anchor" id="autotoc_md36"></a>
 Troubleshooting</h1>
 <p>“File exists and is readable” but scene didn’t change: Delete the cached _grid.json to regenerate.</p>
 <p>No obstacles appear: Check your polygons are convex and have valid vertex order; ConvexHull requires non-degenerate input.</p>
 <p>Invalid pairs: Ensure start/goal lie within grid bounds and on free cells (grid[...] == 0).</p>
 <p>3D grids: Use dimensionOfGrid: 3 and provide 3D polygons (polyhedra faces) that form valid convex hulls.</p>
-<h2><a class="anchor" id="autotoc_md39"></a>
+<h2><a class="anchor" id="autotoc_md37"></a>
 Cite SafePlan</h2>
 <p>If you use <b>SafePlan</b> in your research, please cite:</p>
 <div class="fragment"><div class="line">@misc{,</div>

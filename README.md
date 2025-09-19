@@ -146,8 +146,8 @@ SafePlan includes both **traditional planners** and **safety-aware planners**, a
   Uses an integrated inverse distance, on lazy theta AStar and also gives a limit on maximum neighbours explored in goal and safe direction
   Reference: (https://arxiv.org/pdf/2505.24024)
 
-  - **Inflated A**  
-  Inflate the obstacles by ceratin safety raius as hard constraints, then run A*
+- **Inflated A**  
+  Inflate the obstacles by ceratin safety radius as hard constraints, then run A*
   Reference: (https://arxiv.org/pdf/2003.00368)
 
 ## Installation
@@ -186,7 +186,7 @@ Below is an example:
 
 ```json
 {
-  "runDetails": "run1",
+  "runDetails": "run2",
   "evalDetails": [
     {"name": "PlanningTime"},
     {"name": "MinimumClearance","args": {"pointSamples":100}},
@@ -203,23 +203,23 @@ Below is an example:
     {"name": "NodesInPath", "args": {"type":"RDP","epsilon":0.01}}
   ],
   "algoDetails": [
-    {"name": "VoronoiPlanner","args": {"pointSamples":100,"knn":1000}},
-    {"name": "UPP","args": {"alpha":0.5,"beta":2,"radius":5,"epsilon":0.01}},
-    {"name": "RRT","args": {"maxIter":10000,"goalSampleRate":0.05,"stepSize":7,"pointSamples":100}},
-    {"name": "CBFRRT","args": {"maxIter":10000,"goalSampleRate":0.05,"stepSize":7,"pointSamples":100,"gamma1":2,"gamma2":2}},
+    {"name": "VoronoiPlanner","args": {"pointSamples":100,"knn":100}},
     {"name": "AStar"},
-    {"name": "Dijkstra"},
-    {"name": "WeightedAStar","args": {"weight":1.2}},
+    {"name": "RRT","args": {"maxIter":10000,"goalSampleRate":0.05,"stepSize":7,"pointSamples":100}},
+
+    {"name": "UPP","args": {"alpha":0.5,"beta":2,"radius":5,"epsilon":0.01}},
+    {"name": "CBFRRT","args": {"maxIter":10000,"goalSampleRate":0.05,"stepSize":7,"pointSamples":100,"gamma1":2,"gamma2":2}},
+    {"name": "FSPlanner" ,"args": {"pointSamples":100,"cw":1, "epsilon":0.01,"maxNeigh":5}},
     {"name": "SDFAStar" , "args": {"k1":5,"k2":5}},
-    {"name": "OptimizedAStar" , "args": {"turnPenaltyCoefficients":0.5,"safetyDistGridRadius":100,"maxInflateIter":100,"pointSamples":100}}
+    {"name": "OptimizedAStar" , "args": {"turnPenaltyCoefficients":0.5,"safetyDistGridRadius":100,"maxInflateIter":100,"pointSamples":100}},
+    {"name": "InflatedAStar" ,"args": {"radiusInflate":4}}
   ],
   "envDetails": [
     {
       "generateGrid": [
-        {"name": "env12"},
-        {"name": "env2"}
-      ]
-    }
+       
+        {"name": "env1" }
+      ]    }
   ]
 }
 ```

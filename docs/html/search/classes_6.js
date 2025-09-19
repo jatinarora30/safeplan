@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['logger_235',['Logger',['../classlogger_1_1Logger.html',1,'logger']]]
+  ['inflatedastar_251',['InflatedAStar',['../classinflated__astar_1_1InflatedAStar.html',1,'inflated_astar']]]
 ];

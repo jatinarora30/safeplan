@@ -1,12 +1,12 @@
 <map id="cbf_rrt.CBFRRT.isEdgeFree" name="cbf_rrt.CBFRRT.isEdgeFree">
-<area shape="rect" id="node1" title="Check if the segment between two points is collision&#45;free." alt="" coords="5,224,199,251"/>
+<area shape="rect" id="node1" title="Check if the segment between two points is collision&#45;free." alt="" coords="5,231,199,257"/>
 <area shape="rect" id="node2" href="$classa__star_1_1AStar.html#ad2b6aceaa3b33aed84b74d0419ee3e76" title="Check whether a cell lies within grid bounds." alt="" coords="295,5,441,32"/>
 <area shape="rect" id="node3" href="$classcbf__rrt_1_1CBFRRT.html#a18bef5b5fca7a319e31e1bc837675a30" title="Check whether a cell lies within grid bounds." alt="" coords="285,56,451,83"/>
-<area shape="rect" id="node4" href="$classdijkstra_1_1Dijkstra.html#aff101244ca60cdec3cc65f1a26f1d396" title="Check whether a cell lies within grid bounds." alt="" coords="281,107,455,133"/>
-<area shape="rect" id="node5" href="$classoptimized__astar_1_1OptimizedAStar.html#a753c4860a21c8819eaccc8e95f197373" title="Check whether a cell lies within grid bounds." alt="" coords="269,158,467,199"/>
-<area shape="rect" id="node6" href="$classrrt_1_1RRT.html#a4b573e97af5b918e0b33f66a315b31ea" title="Check whether a cell lies within grid bounds." alt="" coords="312,224,424,251"/>
-<area shape="rect" id="node7" href="$classsdf__astar_1_1SDFAStar.html#a60d5448604317e368b1cf5a537ddc371" title="Check whether a cell lies within grid bounds." alt="" coords="273,275,463,301"/>
-<area shape="rect" id="node8" href="$classupp_1_1UPP.html#a3ecacb3783e49764516828b56fc8e365" title="Check whether a cell lies within grid bounds." alt="" coords="307,325,429,352"/>
-<area shape="rect" id="node9" href="$classvoronoi__planner_1_1VoronoiPlanner.html#ab26a9e362b5b2f27cf462b76038361e4" title="Check whether a grid&#45;cell index lies within bounds." alt="" coords="247,377,489,418"/>
-<area shape="rect" id="node10" href="$classweighted__astar_1_1WeightedAStar.html#a0103dcfcd34213675b10221a7b31ea75" title="Check whether a cell lies within grid bounds." alt="" coords="251,442,485,483"/>
+<area shape="rect" id="node4" href="$classfs__planner_1_1FSPlanner.html#a3b187fffd089e3ce0b92c4169a153360" title="Check whether a cell index lies within grid bounds." alt="" coords="267,107,469,133"/>
+<area shape="rect" id="node5" href="$classinflated__astar_1_1InflatedAStar.html#a49316cbb2af2a91696b84b39d5cd3ce0" title="Check whether a cell lies within grid bounds." alt="" coords="262,158,474,199"/>
+<area shape="rect" id="node6" href="$classoptimized__astar_1_1OptimizedAStar.html#a753c4860a21c8819eaccc8e95f197373" title="Check whether a cell lies within grid bounds." alt="" coords="269,223,467,265"/>
+<area shape="rect" id="node7" href="$classrrt_1_1RRT.html#a4b573e97af5b918e0b33f66a315b31ea" title="Check whether a cell lies within grid bounds." alt="" coords="312,289,424,316"/>
+<area shape="rect" id="node8" href="$classsdf__astar_1_1SDFAStar.html#a60d5448604317e368b1cf5a537ddc371" title="Check whether a cell lies within grid bounds." alt="" coords="273,340,463,367"/>
+<area shape="rect" id="node9" href="$classupp_1_1UPP.html#a3ecacb3783e49764516828b56fc8e365" title="Check whether a cell lies within grid bounds." alt="" coords="307,391,429,417"/>
+<area shape="rect" id="node10" href="$classvoronoi__planner_1_1VoronoiPlanner.html#ab26a9e362b5b2f27cf462b76038361e4" title="Check whether a grid&#45;cell index lies within bounds." alt="" coords="247,442,489,483"/>
 </map>

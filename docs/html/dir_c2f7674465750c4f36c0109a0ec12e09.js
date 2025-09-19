@@ -7,8 +7,11 @@ var dir_c2f7674465750c4f36c0109a0ec12e09 =
     [ "cbf_rrt.py", "cbf__rrt_8py.html", [
       [ "CBFRRT", "classcbf__rrt_1_1CBFRRT.html", "classcbf__rrt_1_1CBFRRT" ]
     ] ],
-    [ "dijkstra.py", "dijkstra_8py.html", [
-      [ "Dijkstra", "classdijkstra_1_1Dijkstra.html", "classdijkstra_1_1Dijkstra" ]
+    [ "fs_planner.py", "fs__planner_8py.html", [
+      [ "FSPlanner", "classfs__planner_1_1FSPlanner.html", "classfs__planner_1_1FSPlanner" ]
+    ] ],
+    [ "inflated_astar.py", "inflated__astar_8py.html", [
+      [ "InflatedAStar", "classinflated__astar_1_1InflatedAStar.html", "classinflated__astar_1_1InflatedAStar" ]
     ] ],
     [ "optimized_astar.py", "optimized__astar_8py.html", [
       [ "OptimizedAStar", "classoptimized__astar_1_1OptimizedAStar.html", "classoptimized__astar_1_1OptimizedAStar" ]
@@ -24,8 +27,5 @@ var dir_c2f7674465750c4f36c0109a0ec12e09 =
     ] ],
     [ "voronoi_planner.py", "voronoi__planner_8py.html", [
       [ "VoronoiPlanner", "classvoronoi__planner_1_1VoronoiPlanner.html", "classvoronoi__planner_1_1VoronoiPlanner" ]
-    ] ],
-    [ "weighted_astar.py", "weighted__astar_8py.html", [
-      [ "WeightedAStar", "classweighted__astar_1_1WeightedAStar.html", "classweighted__astar_1_1WeightedAStar" ]
     ] ]
 ];

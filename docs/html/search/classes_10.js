@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['weightedastar_250',['WeightedAStar',['../classweighted__astar_1_1WeightedAStar.html',1,'weighted_astar']]]
+  ['upp_265',['UPP',['../classupp_1_1UPP.html',1,'upp']]]
 ];

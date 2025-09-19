@@ -53,26 +53,23 @@ var NAVTREE =
       ] ],
       [ "Usage", "index.html#autotoc_md26", null ],
       [ "Programmatic API", "index.html#autotoc_md27", null ],
-      [ "Extending SafePlan", "index.html#autotoc_md28", [
-        [ "Adding a New Planner", "index.html#autotoc_md29", null ],
-        [ "Adding a New Metric", "index.html#autotoc_md30", null ]
+      [ "Environments", "index.html#autotoc_md28", null ],
+      [ "Extending SafePlan", "index.html#autotoc_md29", [
+        [ "Adding a New Planner", "index.html#autotoc_md30", null ],
+        [ "Adding a New Metric", "index.html#autotoc_md31", null ],
+        [ "Adding a New Environment", "index.html#autotoc_md32", null ]
       ] ],
-      [ "Adding a New Environment", "index.html#autotoc_md31", [
-        [ "Option A — Use the built-in <tt>GenerateGrid</tt>", "index.html#autotoc_md33", [
-          [ "What it does:", "index.html#autotoc_md34", null ],
-          [ "Scene JSON schema (example):", "index.html#autotoc_md35", null ]
-        ] ]
-      ] ],
-      [ "Caching & Reloading (GenerateGrid)", "index.html#autotoc_md36", null ],
-      [ "Random Start/Goal Pairs (GenerateGrid)", "index.html#autotoc_md37", null ],
-      [ "Troubleshooting", "index.html#autotoc_md38", [
-        [ "Cite SafePlan", "index.html#autotoc_md39", null ]
+      [ "Caching & Reloading (GenerateGrid)", "index.html#autotoc_md34", null ],
+      [ "Random Start/Goal Pairs (GenerateGrid)", "index.html#autotoc_md35", null ],
+      [ "Troubleshooting", "index.html#autotoc_md36", [
+        [ "Cite SafePlan", "index.html#autotoc_md37", null ]
       ] ]
     ] ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
       [ "Namespace Members", "namespacemembers.html", [
         [ "All", "namespacemembers.html", null ],
+        [ "Functions", "namespacemembers_func.html", null ],
         [ "Variables", "namespacemembers_vars.html", null ]
       ] ]
     ] ],
@@ -95,8 +92,8 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "____init_____8py.html",
-"classsafeplan_1_1main_1_1SafePlan.html#ae7cfc679ebe124c8a8d8df104822a846",
-"namespaceminimum__clearance.html"
+"classrrt_1_1RRT.html#a4c1e29f53ad9fe872d734b151a9efe30",
+"namespacebaseeval.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

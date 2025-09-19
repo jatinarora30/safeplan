@@ -1,0 +1,470 @@
+\hypertarget{classfs__planner_1_1FSPlanner}{}\doxysection{fs\+\_\+planner.\+FSPlanner Class Reference}
+\label{classfs__planner_1_1FSPlanner}\index{fs\_planner.FSPlanner@{fs\_planner.FSPlanner}}
+
+
+Fast and Safe planner with SDF-\/guided costs and Lazy Theta$\ast$.  
+
+
+
+
+Inheritance diagram for fs\+\_\+planner.\+FSPlanner\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=220pt]{classfs__planner_1_1FSPlanner__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for fs\+\_\+planner.\+FSPlanner\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=220pt]{classfs__planner_1_1FSPlanner__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{classfs__planner_1_1FSPlanner_a17bfcc62f73232a5ebf4a11af431e580}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, int \mbox{\hyperlink{classfs__planner_1_1FSPlanner_a46833e8eb03759a3f2b23c4556abae60}{point\+Samples}}, float \mbox{\hyperlink{classfs__planner_1_1FSPlanner_af6211aef0814a38ac5b307bbbd050f6b}{cw}}, float epsilon, int \mbox{\hyperlink{classfs__planner_1_1FSPlanner_a794510958722882e67fbd8b64df61eca}{max\+Neigh}})
+\begin{DoxyCompactList}\small\item\em Construct an \mbox{\hyperlink{classfs__planner_1_1FSPlanner}{FSPlanner}} instance. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classfs__planner_1_1FSPlanner_a3b187fffd089e3ce0b92c4169a153360}{is\+Valid}} (self, grid\+\_\+cell)
+\begin{DoxyCompactList}\small\item\em Check whether a cell index lies within grid bounds. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classfs__planner_1_1FSPlanner_a60b16e523a082bba0915e5466d1edeb1}{dist}} (self, a, b)
+\begin{DoxyCompactList}\small\item\em Euclidean distance between two N-\/D grid points. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classfs__planner_1_1FSPlanner_a4d0ac8768517a255928ea128f768dc41}{adjacent\+Coordinates}} (self, \mbox{\hyperlink{classfs__planner_1_1FSPlanner_a25db73595026972d647febe6f14683a2}{node}})
+\begin{DoxyCompactList}\small\item\em Enumerate all adjacent coordinates in N-\/D including diagonals. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classfs__planner_1_1FSPlanner_af6c1ddea4a67b7b442c8ac977074bd85}{is\+Edge\+Free}} (self, pt1, pt2)
+\begin{DoxyCompactList}\small\item\em Check if the straight segment between two points is collision-\/free. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classfs__planner_1_1FSPlanner_a2f4f38e5d39ae2e36943fa3f4842da33}{EDFDeriv}} (self, node1, node2)
+\begin{DoxyCompactList}\small\item\em Directional clearance change from node1 to node2. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classfs__planner_1_1FSPlanner_a3aa9b561c9617f131e6e2d7fa794ecba}{EDFCost}} (self, node1, node2)
+\begin{DoxyCompactList}\small\item\em Clearance penalty for traversing from node1 to node2. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classfs__planner_1_1FSPlanner_a21d2d95fbcf4eb73de67a46d3057ce5c}{get\+EDFNeigh}} (self, adjacent\+Nodes, dist\+Vec)
+\begin{DoxyCompactList}\small\item\em Keep up to {\ttfamily max\+Neigh} neighbors best aligned with a target direction. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classfs__planner_1_1FSPlanner_a0ed6b41a13ce67f3b1cdac1c387fe93c}{plan}} (self, \mbox{\hyperlink{classfs__planner_1_1FSPlanner_afde21e0e6fb96552a62fd1fd93d22ae1}{start}}, \mbox{\hyperlink{classfs__planner_1_1FSPlanner_a5bb5ec7ca1dd7815c0466d3354f9ca79}{goal}}, \mbox{\hyperlink{classfs__planner_1_1FSPlanner_aecba7611a9fe2ecc1effe30441c9a538}{grid}})
+\begin{DoxyCompactList}\small\item\em Run FS-\/\+Planner on an N-\/D occupancy grid. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classfs__planner_1_1FSPlanner_a81146297d3b212c9c36c2b87da98e756}{success}}
+\item 
+\mbox{\hyperlink{classfs__planner_1_1FSPlanner_a46833e8eb03759a3f2b23c4556abae60}{point\+Samples}}
+\item 
+\mbox{\hyperlink{classfs__planner_1_1FSPlanner_af6211aef0814a38ac5b307bbbd050f6b}{cw}}
+\item 
+\mbox{\hyperlink{classfs__planner_1_1FSPlanner_a115dc16570aa5d9fd7e11e1dbd35ea45}{eps}}
+\item 
+\mbox{\hyperlink{classfs__planner_1_1FSPlanner_a794510958722882e67fbd8b64df61eca}{max\+Neigh}}
+\item 
+\mbox{\hyperlink{classfs__planner_1_1FSPlanner_a4f07373ca99787b843c71d727f38d516}{info}}
+\item 
+\mbox{\hyperlink{classfs__planner_1_1FSPlanner_a3ecb15f79a1e2676d49e39bb63a61ec7}{path}}
+\item 
+\mbox{\hyperlink{classfs__planner_1_1FSPlanner_afde21e0e6fb96552a62fd1fd93d22ae1}{start}}
+\item 
+\mbox{\hyperlink{classfs__planner_1_1FSPlanner_a5bb5ec7ca1dd7815c0466d3354f9ca79}{goal}}
+\item 
+\mbox{\hyperlink{classfs__planner_1_1FSPlanner_aecba7611a9fe2ecc1effe30441c9a538}{grid}}
+\item 
+\mbox{\hyperlink{classfs__planner_1_1FSPlanner_ab70c691a174b9a2e38ed1b20d6f3d44a}{dimension}}
+\item 
+\mbox{\hyperlink{classfs__planner_1_1FSPlanner_ac5b5820061d3879663575e3933edd0b2}{sizes}}
+\item 
+\mbox{\hyperlink{classfs__planner_1_1FSPlanner_af3ac0c354d3ed1de522139be28576dbf}{distance\+Transform}}
+\item 
+\mbox{\hyperlink{classfs__planner_1_1FSPlanner_a25db73595026972d647febe6f14683a2}{node}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Fast and Safe planner with SDF-\/guided costs and Lazy Theta$\ast$. 
+
+Enhances A$\ast$ by\+:
+\begin{DoxyItemize}
+\item Using a signed-\/distance-\/like map (via EDT on free space) to penalize traversal near obstacles,
+\item Projecting neighbor expansion toward a blended target direction formed by goal direction and safest local direction,
+\item Attempting direct LOS connections to the parent\textquotesingle{}s parent (Lazy Theta$\ast$) to reduce expansions and path zig-\/zags. 
+\end{DoxyItemize}
+
+Definition at line 71 of file fs\+\_\+planner.\+py.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classfs__planner_1_1FSPlanner_a17bfcc62f73232a5ebf4a11af431e580}\label{classfs__planner_1_1FSPlanner_a17bfcc62f73232a5ebf4a11af431e580}} 
+\index{fs\_planner.FSPlanner@{fs\_planner.FSPlanner}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!fs\_planner.FSPlanner@{fs\_planner.FSPlanner}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily def fs\+\_\+planner.\+FSPlanner.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{int}]{point\+Samples,  }\item[{float}]{cw,  }\item[{float}]{epsilon,  }\item[{int}]{max\+Neigh }\end{DoxyParamCaption})}
+
+
+
+Construct an \mbox{\hyperlink{classfs__planner_1_1FSPlanner}{FSPlanner}} instance. 
+
+\begin{DoxyVerb}   @param pointSamples Number of interpolation samples for edge collision checks.
+   @param cw Clearance weight in the edge cost.
+   @param epsilon Small constant to avoid division by zero and improve stability.
+   @param maxNeigh Maximum number of neighbors retained after pruning.
+\end{DoxyVerb}
+ 
+
+Definition at line 81 of file fs\+\_\+planner.\+py.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classfs__planner_1_1FSPlanner_a4d0ac8768517a255928ea128f768dc41}\label{classfs__planner_1_1FSPlanner_a4d0ac8768517a255928ea128f768dc41}} 
+\index{fs\_planner.FSPlanner@{fs\_planner.FSPlanner}!adjacentCoordinates@{adjacentCoordinates}}
+\index{adjacentCoordinates@{adjacentCoordinates}!fs\_planner.FSPlanner@{fs\_planner.FSPlanner}}
+\doxysubsubsection{\texorpdfstring{adjacentCoordinates()}{adjacentCoordinates()}}
+{\footnotesize\ttfamily def fs\+\_\+planner.\+FSPlanner.\+adjacent\+Coordinates (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{node }\end{DoxyParamCaption})}
+
+
+
+Enumerate all adjacent coordinates in N-\/D including diagonals. 
+
+\begin{DoxyVerb}   @param node Reference grid cell (tuple[int,...]).
+   @return List of neighbors without bounds or occupancy filtering.
+\end{DoxyVerb}
+ 
+
+Definition at line 119 of file fs\+\_\+planner.\+py.
+
+\mbox{\Hypertarget{classfs__planner_1_1FSPlanner_a60b16e523a082bba0915e5466d1edeb1}\label{classfs__planner_1_1FSPlanner_a60b16e523a082bba0915e5466d1edeb1}} 
+\index{fs\_planner.FSPlanner@{fs\_planner.FSPlanner}!dist@{dist}}
+\index{dist@{dist}!fs\_planner.FSPlanner@{fs\_planner.FSPlanner}}
+\doxysubsubsection{\texorpdfstring{dist()}{dist()}}
+{\footnotesize\ttfamily  float fs\+\_\+planner.\+FSPlanner.\+dist (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{a,  }\item[{}]{b }\end{DoxyParamCaption})}
+
+
+
+Euclidean distance between two N-\/D grid points. 
+
+
+
+Definition at line 110 of file fs\+\_\+planner.\+py.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classfs__planner_1_1FSPlanner_a60b16e523a082bba0915e5466d1edeb1_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classfs__planner_1_1FSPlanner_a3aa9b561c9617f131e6e2d7fa794ecba}\label{classfs__planner_1_1FSPlanner_a3aa9b561c9617f131e6e2d7fa794ecba}} 
+\index{fs\_planner.FSPlanner@{fs\_planner.FSPlanner}!EDFCost@{EDFCost}}
+\index{EDFCost@{EDFCost}!fs\_planner.FSPlanner@{fs\_planner.FSPlanner}}
+\doxysubsubsection{\texorpdfstring{EDFCost()}{EDFCost()}}
+{\footnotesize\ttfamily  float fs\+\_\+planner.\+FSPlanner.\+EDFCost (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{node1,  }\item[{}]{node2 }\end{DoxyParamCaption})}
+
+
+
+Clearance penalty for traversing from node1 to node2. 
+
+\begin{DoxyVerb}   @details
+   Uses average clearance along the step and scales the penalty with @p cw.
+   Larger penalty discourages steps through narrow regions.
+\end{DoxyVerb}
+ 
+
+Definition at line 176 of file fs\+\_\+planner.\+py.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classfs__planner_1_1FSPlanner_a3aa9b561c9617f131e6e2d7fa794ecba_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=241pt]{classfs__planner_1_1FSPlanner_a3aa9b561c9617f131e6e2d7fa794ecba_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classfs__planner_1_1FSPlanner_a2f4f38e5d39ae2e36943fa3f4842da33}\label{classfs__planner_1_1FSPlanner_a2f4f38e5d39ae2e36943fa3f4842da33}} 
+\index{fs\_planner.FSPlanner@{fs\_planner.FSPlanner}!EDFDeriv@{EDFDeriv}}
+\index{EDFDeriv@{EDFDeriv}!fs\_planner.FSPlanner@{fs\_planner.FSPlanner}}
+\doxysubsubsection{\texorpdfstring{EDFDeriv()}{EDFDeriv()}}
+{\footnotesize\ttfamily  float fs\+\_\+planner.\+FSPlanner.\+EDFDeriv (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{node1,  }\item[{}]{node2 }\end{DoxyParamCaption})}
+
+
+
+Directional clearance change from node1 to node2. 
+
+\begin{DoxyVerb}   @details
+   Approximates how clearance varies along the step. Lower values suggest
+   moving into safer space. Used for neighbor ordering.
+\end{DoxyVerb}
+ 
+
+Definition at line 165 of file fs\+\_\+planner.\+py.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classfs__planner_1_1FSPlanner_a2f4f38e5d39ae2e36943fa3f4842da33_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classfs__planner_1_1FSPlanner_a21d2d95fbcf4eb73de67a46d3057ce5c}\label{classfs__planner_1_1FSPlanner_a21d2d95fbcf4eb73de67a46d3057ce5c}} 
+\index{fs\_planner.FSPlanner@{fs\_planner.FSPlanner}!getEDFNeigh@{getEDFNeigh}}
+\index{getEDFNeigh@{getEDFNeigh}!fs\_planner.FSPlanner@{fs\_planner.FSPlanner}}
+\doxysubsubsection{\texorpdfstring{getEDFNeigh()}{getEDFNeigh()}}
+{\footnotesize\ttfamily def fs\+\_\+planner.\+FSPlanner.\+get\+EDFNeigh (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{adjacent\+Nodes,  }\item[{}]{dist\+Vec }\end{DoxyParamCaption})}
+
+
+
+Keep up to {\ttfamily max\+Neigh} neighbors best aligned with a target direction. 
+
+\begin{DoxyVerb}   @details
+   Scores each neighbor by the cosine with @p distVec (goal direction blended
+   with safest local direction), keeps the top @p maxNeigh.
+\end{DoxyVerb}
+ 
+
+Definition at line 201 of file fs\+\_\+planner.\+py.
+
+\mbox{\Hypertarget{classfs__planner_1_1FSPlanner_af6c1ddea4a67b7b442c8ac977074bd85}\label{classfs__planner_1_1FSPlanner_af6c1ddea4a67b7b442c8ac977074bd85}} 
+\index{fs\_planner.FSPlanner@{fs\_planner.FSPlanner}!isEdgeFree@{isEdgeFree}}
+\index{isEdgeFree@{isEdgeFree}!fs\_planner.FSPlanner@{fs\_planner.FSPlanner}}
+\doxysubsubsection{\texorpdfstring{isEdgeFree()}{isEdgeFree()}}
+{\footnotesize\ttfamily  bool fs\+\_\+planner.\+FSPlanner.\+is\+Edge\+Free (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{pt1,  }\item[{}]{pt2 }\end{DoxyParamCaption})}
+
+
+
+Check if the straight segment between two points is collision-\/free. 
+
+\begin{DoxyVerb}   @details
+   Uniformly samples @p self.pointSamples points on the segment [pt1, pt2],
+   rounds each sample to the nearest grid index, and rejects the edge if any
+   index is out-of-bounds or occupied.
+
+   @param pt1 Start point (tuple[int,...]).
+   @param pt2 End point   (tuple[int,...]).
+   @return True if all sampled indices are valid and free.
+\end{DoxyVerb}
+ 
+
+Definition at line 146 of file fs\+\_\+planner.\+py.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classfs__planner_1_1FSPlanner_af6c1ddea4a67b7b442c8ac977074bd85_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classfs__planner_1_1FSPlanner_af6c1ddea4a67b7b442c8ac977074bd85_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classfs__planner_1_1FSPlanner_a3b187fffd089e3ce0b92c4169a153360}\label{classfs__planner_1_1FSPlanner_a3b187fffd089e3ce0b92c4169a153360}} 
+\index{fs\_planner.FSPlanner@{fs\_planner.FSPlanner}!isValid@{isValid}}
+\index{isValid@{isValid}!fs\_planner.FSPlanner@{fs\_planner.FSPlanner}}
+\doxysubsubsection{\texorpdfstring{isValid()}{isValid()}}
+{\footnotesize\ttfamily  bool fs\+\_\+planner.\+FSPlanner.\+is\+Valid (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{grid\+\_\+cell }\end{DoxyParamCaption})}
+
+
+
+Check whether a cell index lies within grid bounds. 
+
+\begin{DoxyVerb}   @param grid_cell N-D integer coordinate (tuple[int,...]).
+   @return True if inside bounds; False otherwise.
+\end{DoxyVerb}
+ 
+
+Definition at line 101 of file fs\+\_\+planner.\+py.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classfs__planner_1_1FSPlanner_a3b187fffd089e3ce0b92c4169a153360_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classfs__planner_1_1FSPlanner_a0ed6b41a13ce67f3b1cdac1c387fe93c}\label{classfs__planner_1_1FSPlanner_a0ed6b41a13ce67f3b1cdac1c387fe93c}} 
+\index{fs\_planner.FSPlanner@{fs\_planner.FSPlanner}!plan@{plan}}
+\index{plan@{plan}!fs\_planner.FSPlanner@{fs\_planner.FSPlanner}}
+\doxysubsubsection{\texorpdfstring{plan()}{plan()}}
+{\footnotesize\ttfamily def fs\+\_\+planner.\+FSPlanner.\+plan (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{start,  }\item[{}]{goal,  }\item[{}]{grid }\end{DoxyParamCaption})}
+
+
+
+Run FS-\/\+Planner on an N-\/D occupancy grid. 
+
+\begin{DoxyVerb}   @param start Start cell (tuple[int,...]).
+   @param goal  Goal cell  (tuple[int,...]).
+   @param grid  N-D occupancy array with values {0=free, 1=obstacle}.
+
+   @return (success, path, info)
+     - success: 1 on success, else 0
+     - path   : list of N-D cells from start to goal (inclusive) or empty
+     - info   : diagnostics list
+
+   @diagnostics
+\end{DoxyVerb}
+ 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{stringliteral}{"{}Invalid start"{}}, \textcolor{stringliteral}{"{}Invalid goal"{}}, \textcolor{stringliteral}{"{}Start has obstacle"{}},}
+\DoxyCodeLine{\textcolor{stringliteral}{"{}Goal has obstacle"{}}, \textcolor{stringliteral}{"{}Start and goal are same"{}},}
+\DoxyCodeLine{\textcolor{stringliteral}{"{}Failed to reconstruct path."{}}}
+
+\end{DoxyCode}
+ 
+
+Definition at line 236 of file fs\+\_\+planner.\+py.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classfs__planner_1_1FSPlanner_af6211aef0814a38ac5b307bbbd050f6b}\label{classfs__planner_1_1FSPlanner_af6211aef0814a38ac5b307bbbd050f6b}} 
+\index{fs\_planner.FSPlanner@{fs\_planner.FSPlanner}!cw@{cw}}
+\index{cw@{cw}!fs\_planner.FSPlanner@{fs\_planner.FSPlanner}}
+\doxysubsubsection{\texorpdfstring{cw}{cw}}
+{\footnotesize\ttfamily fs\+\_\+planner.\+FSPlanner.\+cw}
+
+
+
+Definition at line 84 of file fs\+\_\+planner.\+py.
+
+\mbox{\Hypertarget{classfs__planner_1_1FSPlanner_ab70c691a174b9a2e38ed1b20d6f3d44a}\label{classfs__planner_1_1FSPlanner_ab70c691a174b9a2e38ed1b20d6f3d44a}} 
+\index{fs\_planner.FSPlanner@{fs\_planner.FSPlanner}!dimension@{dimension}}
+\index{dimension@{dimension}!fs\_planner.FSPlanner@{fs\_planner.FSPlanner}}
+\doxysubsubsection{\texorpdfstring{dimension}{dimension}}
+{\footnotesize\ttfamily fs\+\_\+planner.\+FSPlanner.\+dimension}
+
+
+
+Definition at line 245 of file fs\+\_\+planner.\+py.
+
+\mbox{\Hypertarget{classfs__planner_1_1FSPlanner_af3ac0c354d3ed1de522139be28576dbf}\label{classfs__planner_1_1FSPlanner_af3ac0c354d3ed1de522139be28576dbf}} 
+\index{fs\_planner.FSPlanner@{fs\_planner.FSPlanner}!distanceTransform@{distanceTransform}}
+\index{distanceTransform@{distanceTransform}!fs\_planner.FSPlanner@{fs\_planner.FSPlanner}}
+\doxysubsubsection{\texorpdfstring{distanceTransform}{distanceTransform}}
+{\footnotesize\ttfamily fs\+\_\+planner.\+FSPlanner.\+distance\+Transform}
+
+
+
+Definition at line 273 of file fs\+\_\+planner.\+py.
+
+\mbox{\Hypertarget{classfs__planner_1_1FSPlanner_a115dc16570aa5d9fd7e11e1dbd35ea45}\label{classfs__planner_1_1FSPlanner_a115dc16570aa5d9fd7e11e1dbd35ea45}} 
+\index{fs\_planner.FSPlanner@{fs\_planner.FSPlanner}!eps@{eps}}
+\index{eps@{eps}!fs\_planner.FSPlanner@{fs\_planner.FSPlanner}}
+\doxysubsubsection{\texorpdfstring{eps}{eps}}
+{\footnotesize\ttfamily fs\+\_\+planner.\+FSPlanner.\+eps}
+
+
+
+Definition at line 85 of file fs\+\_\+planner.\+py.
+
+\mbox{\Hypertarget{classfs__planner_1_1FSPlanner_a5bb5ec7ca1dd7815c0466d3354f9ca79}\label{classfs__planner_1_1FSPlanner_a5bb5ec7ca1dd7815c0466d3354f9ca79}} 
+\index{fs\_planner.FSPlanner@{fs\_planner.FSPlanner}!goal@{goal}}
+\index{goal@{goal}!fs\_planner.FSPlanner@{fs\_planner.FSPlanner}}
+\doxysubsubsection{\texorpdfstring{goal}{goal}}
+{\footnotesize\ttfamily fs\+\_\+planner.\+FSPlanner.\+goal}
+
+
+
+Definition at line 239 of file fs\+\_\+planner.\+py.
+
+\mbox{\Hypertarget{classfs__planner_1_1FSPlanner_aecba7611a9fe2ecc1effe30441c9a538}\label{classfs__planner_1_1FSPlanner_aecba7611a9fe2ecc1effe30441c9a538}} 
+\index{fs\_planner.FSPlanner@{fs\_planner.FSPlanner}!grid@{grid}}
+\index{grid@{grid}!fs\_planner.FSPlanner@{fs\_planner.FSPlanner}}
+\doxysubsubsection{\texorpdfstring{grid}{grid}}
+{\footnotesize\ttfamily fs\+\_\+planner.\+FSPlanner.\+grid}
+
+
+
+Definition at line 240 of file fs\+\_\+planner.\+py.
+
+\mbox{\Hypertarget{classfs__planner_1_1FSPlanner_a4f07373ca99787b843c71d727f38d516}\label{classfs__planner_1_1FSPlanner_a4f07373ca99787b843c71d727f38d516}} 
+\index{fs\_planner.FSPlanner@{fs\_planner.FSPlanner}!info@{info}}
+\index{info@{info}!fs\_planner.FSPlanner@{fs\_planner.FSPlanner}}
+\doxysubsubsection{\texorpdfstring{info}{info}}
+{\footnotesize\ttfamily fs\+\_\+planner.\+FSPlanner.\+info}
+
+
+
+Definition at line 88 of file fs\+\_\+planner.\+py.
+
+\mbox{\Hypertarget{classfs__planner_1_1FSPlanner_a794510958722882e67fbd8b64df61eca}\label{classfs__planner_1_1FSPlanner_a794510958722882e67fbd8b64df61eca}} 
+\index{fs\_planner.FSPlanner@{fs\_planner.FSPlanner}!maxNeigh@{maxNeigh}}
+\index{maxNeigh@{maxNeigh}!fs\_planner.FSPlanner@{fs\_planner.FSPlanner}}
+\doxysubsubsection{\texorpdfstring{maxNeigh}{maxNeigh}}
+{\footnotesize\ttfamily fs\+\_\+planner.\+FSPlanner.\+max\+Neigh}
+
+
+
+Definition at line 86 of file fs\+\_\+planner.\+py.
+
+\mbox{\Hypertarget{classfs__planner_1_1FSPlanner_a25db73595026972d647febe6f14683a2}\label{classfs__planner_1_1FSPlanner_a25db73595026972d647febe6f14683a2}} 
+\index{fs\_planner.FSPlanner@{fs\_planner.FSPlanner}!node@{node}}
+\index{node@{node}!fs\_planner.FSPlanner@{fs\_planner.FSPlanner}}
+\doxysubsubsection{\texorpdfstring{node}{node}}
+{\footnotesize\ttfamily fs\+\_\+planner.\+FSPlanner.\+node}
+
+
+
+Definition at line 285 of file fs\+\_\+planner.\+py.
+
+\mbox{\Hypertarget{classfs__planner_1_1FSPlanner_a3ecb15f79a1e2676d49e39bb63a61ec7}\label{classfs__planner_1_1FSPlanner_a3ecb15f79a1e2676d49e39bb63a61ec7}} 
+\index{fs\_planner.FSPlanner@{fs\_planner.FSPlanner}!path@{path}}
+\index{path@{path}!fs\_planner.FSPlanner@{fs\_planner.FSPlanner}}
+\doxysubsubsection{\texorpdfstring{path}{path}}
+{\footnotesize\ttfamily fs\+\_\+planner.\+FSPlanner.\+path}
+
+
+
+Definition at line 89 of file fs\+\_\+planner.\+py.
+
+\mbox{\Hypertarget{classfs__planner_1_1FSPlanner_a46833e8eb03759a3f2b23c4556abae60}\label{classfs__planner_1_1FSPlanner_a46833e8eb03759a3f2b23c4556abae60}} 
+\index{fs\_planner.FSPlanner@{fs\_planner.FSPlanner}!pointSamples@{pointSamples}}
+\index{pointSamples@{pointSamples}!fs\_planner.FSPlanner@{fs\_planner.FSPlanner}}
+\doxysubsubsection{\texorpdfstring{pointSamples}{pointSamples}}
+{\footnotesize\ttfamily fs\+\_\+planner.\+FSPlanner.\+point\+Samples}
+
+
+
+Definition at line 83 of file fs\+\_\+planner.\+py.
+
+\mbox{\Hypertarget{classfs__planner_1_1FSPlanner_ac5b5820061d3879663575e3933edd0b2}\label{classfs__planner_1_1FSPlanner_ac5b5820061d3879663575e3933edd0b2}} 
+\index{fs\_planner.FSPlanner@{fs\_planner.FSPlanner}!sizes@{sizes}}
+\index{sizes@{sizes}!fs\_planner.FSPlanner@{fs\_planner.FSPlanner}}
+\doxysubsubsection{\texorpdfstring{sizes}{sizes}}
+{\footnotesize\ttfamily fs\+\_\+planner.\+FSPlanner.\+sizes}
+
+
+
+Definition at line 246 of file fs\+\_\+planner.\+py.
+
+\mbox{\Hypertarget{classfs__planner_1_1FSPlanner_afde21e0e6fb96552a62fd1fd93d22ae1}\label{classfs__planner_1_1FSPlanner_afde21e0e6fb96552a62fd1fd93d22ae1}} 
+\index{fs\_planner.FSPlanner@{fs\_planner.FSPlanner}!start@{start}}
+\index{start@{start}!fs\_planner.FSPlanner@{fs\_planner.FSPlanner}}
+\doxysubsubsection{\texorpdfstring{start}{start}}
+{\footnotesize\ttfamily fs\+\_\+planner.\+FSPlanner.\+start}
+
+
+
+Definition at line 238 of file fs\+\_\+planner.\+py.
+
+\mbox{\Hypertarget{classfs__planner_1_1FSPlanner_a81146297d3b212c9c36c2b87da98e756}\label{classfs__planner_1_1FSPlanner_a81146297d3b212c9c36c2b87da98e756}} 
+\index{fs\_planner.FSPlanner@{fs\_planner.FSPlanner}!success@{success}}
+\index{success@{success}!fs\_planner.FSPlanner@{fs\_planner.FSPlanner}}
+\doxysubsubsection{\texorpdfstring{success}{success}}
+{\footnotesize\ttfamily fs\+\_\+planner.\+FSPlanner.\+success}
+
+
+
+Definition at line 82 of file fs\+\_\+planner.\+py.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+safeplan/algos/\mbox{\hyperlink{fs__planner_8py}{fs\+\_\+planner.\+py}}\end{DoxyCompactItemize}
