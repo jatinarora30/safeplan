@@ -146,8 +146,8 @@ SafePlan includes both **traditional planners** and **safety-aware planners**, a
   Uses an integrated inverse distance, on lazy theta AStar and also gives a limit on maximum neighbours explored in goal and safe direction
   Reference: (https://arxiv.org/pdf/2505.24024)
 
-- **Inflated A**  
-  Inflate the obstacles by ceratin safety radius as hard constraints, then run A*
+- **Inflated A\***  
+  Inflate the obstacles by certain safety radius as hard constraints, then run A\*
   Reference: (https://arxiv.org/pdf/2003.00368)
 
 ## Installation
