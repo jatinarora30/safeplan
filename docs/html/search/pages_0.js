@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['safeplan_3a_20a_20benchmark_20for_20safe_20and_20optimal_20path_20planning_466',['SafePlan: A Benchmark for Safe and Optimal Path Planning',['../index.html',1,'']]]
+  ['measuring_20balance_3a_20the_20optisafe_20index_20and_20safeplan_20benchmark_20for_20safe_20navigation_466',['Measuring Balance: The OptiSafe Index and SafePlan Benchmark for Safe Navigation',['../index.html',1,'']]]
 ];

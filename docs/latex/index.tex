@@ -22,7 +22,7 @@ Safe\+Plan also includes the proposed {\bfseries{Opti\+Safe}} metric, designed t
 \item {\bfseries{Reproducibility \& logging}}
 \begin{DoxyItemize}
 \item Standardized JSON logs for each run with environment, path, and evaluation info.
-\item Aggregated statistics in CSV/\+JSON and optional visualization outputs.
+\item Aggregated statistics in JSON and optional visualization outputs.
 \end{DoxyItemize}
 \item {\bfseries{Visualization tools}}
 \begin{DoxyItemize}
@@ -290,147 +290,20 @@ You can run Safe\+Plan directly from Python by importing the main API and passin
 \end{DoxyCode}
 
 
-Safe\+Plan experimental results in results folder on calling stats for planners for various metrices are shown in json form as follows\+: 
-\begin{DoxyCode}{0}
-\DoxyCodeLine{\{}
-\DoxyCodeLine{    "{}VoronoiPlanner"{}: \{}
-\DoxyCodeLine{        "{}PlanningTime"{}: 34.41541785260046,}
-\DoxyCodeLine{        "{}MinimumClearance"{}: 1.1250388913720941,}
-\DoxyCodeLine{        "{}AverageMinimumClearance"{}: 2.352815958430445,}
-\DoxyCodeLine{        "{}ClearanceVariability"{}: 28.298456912893112,}
-\DoxyCodeLine{        "{}DangerViolations"{}: 25.48421052631579,}
-\DoxyCodeLine{        "{}TurningAngle"{}: 50.832074296827976,}
-\DoxyCodeLine{        "{}JerkPerMeter"{}: 0.1293378835798869,}
-\DoxyCodeLine{        "{}SuccessRate"{}: 0.78,}
-\DoxyCodeLine{        "{}OptimalDeviation"{}: -\/0.04541845530415791,}
-\DoxyCodeLine{        "{}PathCost"{}: 14.881445458621005,}
-\DoxyCodeLine{        "{}DistanceToGoal"{}: 3.3916573898608524,}
-\DoxyCodeLine{        "{}OptiSafeIndex"{}: 0.7065313469330626,}
-\DoxyCodeLine{        "{}NodesInPath"{}: 2.294736842105263}
-\DoxyCodeLine{    \},}
-\DoxyCodeLine{    "{}UPP"{}: \{}
-\DoxyCodeLine{        "{}PlanningTime"{}: 596.5560107800275,}
-\DoxyCodeLine{        "{}MinimumClearance"{}: 1.1739753421354147,}
-\DoxyCodeLine{        "{}AverageMinimumClearance"{}: 2.3505294974739472,}
-\DoxyCodeLine{        "{}ClearanceVariability"{}: 32.347431493838286,}
-\DoxyCodeLine{        "{}DangerViolations"{}: 1258.0,}
-\DoxyCodeLine{        "{}TurningAngle"{}: 391.1796618233935,}
-\DoxyCodeLine{        "{}JerkPerMeter"{}: 0.11140010671457004,}
-\DoxyCodeLine{        "{}SuccessRate"{}: 1.0,}
-\DoxyCodeLine{        "{}OptimalDeviation"{}: 0.04545741951548409,}
-\DoxyCodeLine{        "{}PathCost"{}: 17.57754551728892,}
-\DoxyCodeLine{        "{}DistanceToGoal"{}: 0.0,}
-\DoxyCodeLine{        "{}OptiSafeIndex"{}: 0.7248084252595861,}
-\DoxyCodeLine{        "{}NodesInPath"{}: 10.58}
-\DoxyCodeLine{    \},}
-\DoxyCodeLine{    "{}RRT"{}: \{}
-\DoxyCodeLine{        "{}PlanningTime"{}: 3710.6396523877615,}
-\DoxyCodeLine{        "{}MinimumClearance"{}: 0.7774365236197455,}
-\DoxyCodeLine{        "{}AverageMinimumClearance"{}: 2.1454706756834785,}
-\DoxyCodeLine{        "{}ClearanceVariability"{}: 32.811645103595026,}
-\DoxyCodeLine{        "{}DangerViolations"{}: 1158.6530612244899,}
-\DoxyCodeLine{        "{}TurningAngle"{}: 1854.150451654323,}
-\DoxyCodeLine{        "{}JerkPerMeter"{}: 0.8274345209351016,}
-\DoxyCodeLine{        "{}SuccessRate"{}: 0.94,}
-\DoxyCodeLine{        "{}OptimalDeviation"{}: 0.3328127469478287,}
-\DoxyCodeLine{        "{}PathCost"{}: 21.397049521927464,}
-\DoxyCodeLine{        "{}DistanceToGoal"{}: 0.8620635171868056,}
-\DoxyCodeLine{        "{}OptiSafeIndex"{}: 0.405458422344748,}
-\DoxyCodeLine{        "{}NodesInPath"{}: 53.19387755102041}
-\DoxyCodeLine{    \},}
-\DoxyCodeLine{    "{}CBFRRT"{}: \{}
-\DoxyCodeLine{        "{}PlanningTime"{}: 2878.820585159561,}
-\DoxyCodeLine{        "{}MinimumClearance"{}: 0.7667586101167566,}
-\DoxyCodeLine{        "{}AverageMinimumClearance"{}: 2.2535040753205755,}
-\DoxyCodeLine{        "{}ClearanceVariability"{}: 33.721935597252006,}
-\DoxyCodeLine{        "{}DangerViolations"{}: 879.6595744680851,}
-\DoxyCodeLine{        "{}TurningAngle"{}: 1909.2118279618126,}
-\DoxyCodeLine{        "{}JerkPerMeter"{}: 0.8389019157175471,}
-\DoxyCodeLine{        "{}SuccessRate"{}: 0.91,}
-\DoxyCodeLine{        "{}OptimalDeviation"{}: 0.3399416476233767,}
-\DoxyCodeLine{        "{}PathCost"{}: 22.32407924888354,}
-\DoxyCodeLine{        "{}DistanceToGoal"{}: 0.7363309040081364,}
-\DoxyCodeLine{        "{}OptiSafeIndex"{}: 0.39376363852758384,}
-\DoxyCodeLine{        "{}NodesInPath"{}: 55.48936170212766}
-\DoxyCodeLine{    \},}
-\DoxyCodeLine{    "{}AStar"{}: \{}
-\DoxyCodeLine{        "{}PlanningTime"{}: 174.72529752001265,}
-\DoxyCodeLine{        "{}MinimumClearance"{}: 1.0151776710837503,}
-\DoxyCodeLine{        "{}AverageMinimumClearance"{}: 2.2424191120707406,}
-\DoxyCodeLine{        "{}ClearanceVariability"{}: 34.30131815730188,}
-\DoxyCodeLine{        "{}DangerViolations"{}: 15076.0,}
-\DoxyCodeLine{        "{}TurningAngle"{}: 197.23881127868557,}
-\DoxyCodeLine{        "{}JerkPerMeter"{}: 0.056250231194724935,}
-\DoxyCodeLine{        "{}SuccessRate"{}: 1.0,}
-\DoxyCodeLine{        "{}OptimalDeviation"{}: 0.0,}
-\DoxyCodeLine{        "{}PathCost"{}: 17.440011462679397,}
-\DoxyCodeLine{        "{}DistanceToGoal"{}: 0.0,}
-\DoxyCodeLine{        "{}OptiSafeIndex"{}: 0.5991712447987082,}
-\DoxyCodeLine{        "{}NodesInPath"{}: 6.35}
-\DoxyCodeLine{    \},}
-\DoxyCodeLine{    "{}Dijkstra"{}: \{}
-\DoxyCodeLine{        "{}PlanningTime"{}: 6141.7088189300275,}
-\DoxyCodeLine{        "{}MinimumClearance"{}: 1.0288958202911573,}
-\DoxyCodeLine{        "{}AverageMinimumClearance"{}: 2.2705344720789187,}
-\DoxyCodeLine{        "{}ClearanceVariability"{}: 34.22195930119145,}
-\DoxyCodeLine{        "{}DangerViolations"{}: 13818.0,}
-\DoxyCodeLine{        "{}TurningAngle"{}: 243.10344947451517,}
-\DoxyCodeLine{        "{}JerkPerMeter"{}: 0.06028571145884985,}
-\DoxyCodeLine{        "{}SuccessRate"{}: 1.0,}
-\DoxyCodeLine{        "{}OptimalDeviation"{}: -\/0.0052263642391577984,}
-\DoxyCodeLine{        "{}PathCost"{}: 17.214877082475255,}
-\DoxyCodeLine{        "{}DistanceToGoal"{}: 0.0,}
-\DoxyCodeLine{        "{}OptiSafeIndex"{}: 0.5965422912166155,}
-\DoxyCodeLine{        "{}NodesInPath"{}: 7.36}
-\DoxyCodeLine{    \},}
-\DoxyCodeLine{    "{}WeightedAStar"{}: \{}
-\DoxyCodeLine{        "{}PlanningTime"{}: 153.34242371997675,}
-\DoxyCodeLine{        "{}MinimumClearance"{}: 1.0151776710837503,}
-\DoxyCodeLine{        "{}AverageMinimumClearance"{}: 2.241324597144535,}
-\DoxyCodeLine{        "{}ClearanceVariability"{}: 34.311112829724934,}
-\DoxyCodeLine{        "{}DangerViolations"{}: 15098.0,}
-\DoxyCodeLine{        "{}TurningAngle"{}: 392.97292911634526,}
-\DoxyCodeLine{        "{}JerkPerMeter"{}: 0.08123820680601991,}
-\DoxyCodeLine{        "{}SuccessRate"{}: 1.0,}
-\DoxyCodeLine{        "{}OptimalDeviation"{}: 0.004609068328356913,}
-\DoxyCodeLine{        "{}PathCost"{}: 17.514478020814526,}
-\DoxyCodeLine{        "{}DistanceToGoal"{}: 0.0,}
-\DoxyCodeLine{        "{}OptiSafeIndex"{}: 0.5999460252793478,}
-\DoxyCodeLine{        "{}NodesInPath"{}: 10.66}
-\DoxyCodeLine{    \},}
-\DoxyCodeLine{    "{}SDFAStar"{}: \{}
-\DoxyCodeLine{        "{}PlanningTime"{}: 2218.002218519984,}
-\DoxyCodeLine{        "{}MinimumClearance"{}: 1.68614096294055,}
-\DoxyCodeLine{        "{}AverageMinimumClearance"{}: 2.6620601013107192,}
-\DoxyCodeLine{        "{}ClearanceVariability"{}: 19.980510612103856,}
-\DoxyCodeLine{        "{}DangerViolations"{}: 2476.0,}
-\DoxyCodeLine{        "{}TurningAngle"{}: 1252.5719528909428,}
-\DoxyCodeLine{        "{}JerkPerMeter"{}: 0.21314981311808062,}
-\DoxyCodeLine{        "{}SuccessRate"{}: 1.0,}
-\DoxyCodeLine{        "{}OptimalDeviation"{}: 0.09742635893468785,}
-\DoxyCodeLine{        "{}PathCost"{}: 19.207122069010566,}
-\DoxyCodeLine{        "{}DistanceToGoal"{}: 0.0,}
-\DoxyCodeLine{        "{}OptiSafeIndex"{}: 0.722120828235946,}
-\DoxyCodeLine{        "{}NodesInPath"{}: 22.31}
-\DoxyCodeLine{    \},}
-\DoxyCodeLine{    "{}OptimizedAStar"{}: \{}
-\DoxyCodeLine{        "{}PlanningTime"{}: 483.78120382995337,}
-\DoxyCodeLine{        "{}MinimumClearance"{}: 1.0693436713052826,}
-\DoxyCodeLine{        "{}AverageMinimumClearance"{}: 2.6235459319424956,}
-\DoxyCodeLine{        "{}ClearanceVariability"{}: 32.59846635393538,}
-\DoxyCodeLine{        "{}DangerViolations"{}: 56.84,}
-\DoxyCodeLine{        "{}TurningAngle"{}: 89.06605471889655,}
-\DoxyCodeLine{        "{}JerkPerMeter"{}: 0.2828841739505983,}
-\DoxyCodeLine{        "{}SuccessRate"{}: 1.0,}
-\DoxyCodeLine{        "{}OptimalDeviation"{}: 0.10790189307066612,}
-\DoxyCodeLine{        "{}PathCost"{}: 19.070090151242606,}
-\DoxyCodeLine{        "{}DistanceToGoal"{}: 0.0,}
-\DoxyCodeLine{        "{}OptiSafeIndex"{}: 0.6469495215941641,}
-\DoxyCodeLine{        "{}NodesInPath"{}: 3.09}
-\DoxyCodeLine{    \}}
-\DoxyCodeLine{\}}
-
-\end{DoxyCode}
+Safe\+Plan experimental results in results folder on calling stats for planners for various metrices are shown in json form as follows\+: \tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{14}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Algorithm   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Planning Time   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Min Clearance   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Avg Min Clearance   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Clearance Var   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Danger Violations   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Turning Angle   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Jerk / m   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Success Rate   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Opt Dev   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Path Cost   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Dist to Goal   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Opti\+Safe Index   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Nodes in Path    }\\\cline{1-14}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Algorithm   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Planning Time   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Min Clearance   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Avg Min Clearance   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Clearance Var   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Danger Violations   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Turning Angle   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Jerk / m   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Success Rate   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Opt Dev   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Path Cost   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Dist to Goal   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Opti\+Safe Index   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Nodes in Path    }\\\cline{1-14}
+\endhead
+Safe\+AStar   &374.\+96   &2.\+08   &3.\+86   &47.\+18   &159.\+62   &313.\+67   &0.\+108   &1.\+0   &0.\+0208   &13.\+77   &0.\+0   &0.\+887   &9.\+04    \\\cline{1-14}
+AStar   &38.\+09   &2.\+02   &3.\+84   &49.\+88   &2317.\+31   &90.\+41   &0.\+0447   &1.\+0   &0.\+0   &13.\+71   &0.\+0   &0.\+842   &4.\+08    \\\cline{1-14}
+FSPlanner   &712.\+05   &2.\+05   &3.\+82   &47.\+66   &48.\+08   &30.\+41   &0.\+00735   &1.\+0   &-\/0.\+0539   &13.\+29   &0.\+0   &0.\+934   &2.\+69   \\\cline{1-14}
+\end{longtabu}
 \hypertarget{index_autotoc_md28}{}\doxysection{Environments}\label{index_autotoc_md28}
 Safe\+Plan currently provides {\bfseries{12 benchmark environments}}\+:
 

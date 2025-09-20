@@ -44,11 +44,14 @@ class OptimalDeviation(BaseEval):
         
         """
         self.value=0
-        optimalPath=self.planner.plan(start,goal,grid)
-        optimalCost=self.pathCost.eval(None,None,None,cellSize,optimalPath[1])
-        originalCost=self.pathCost.eval(None,None,None,cellSize,path)
-        if optimalCost !=0:
-            self.value=((originalCost-optimalCost)/(optimalCost))
+        if path is not None:
+            optimalPath=self.planner.plan(start,goal,grid)
+            optimalCost=self.pathCost.eval(None,None,None,cellSize,optimalPath[1])
+            originalCost=self.pathCost.eval(None,None,None,cellSize,path)
+            if optimalCost !=0:
+                self.value=((originalCost-optimalCost)/(optimalCost))
+            else:
+                self.value=0
         else:
             self.value=0
         

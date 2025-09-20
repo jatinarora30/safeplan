@@ -1,4 +1,4 @@
-# SafePlan: A Benchmark for Safe and Optimal Path Planning
+# Measuring Balance: The OptiSafe Index and SafePlan Benchmark for Safe Navigation
 
 ## Overview
 

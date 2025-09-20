@@ -53,16 +53,20 @@ class OptiSafeIndex(BaseEval):
         optimalCost=self.pathCost.eval(None,None,None,cellSize,optimalPath[1])
         originalCost=self.pathCost.eval(None,None,None,cellSize,path)
         safePath=self.vornoiPlanner.plan(start,goal,grid)
-        minimumSafe=self.minimumClearance.eval(start,goal,grid,cellSize,safePath[1])
-        originalSafe=self.minimumClearance.eval(start,goal,grid,cellSize,path)
+
+        if safePath[0]==1:
+            minimumSafe=self.minimumClearance.eval(start,goal,grid,cellSize,safePath[1])
+            originalSafe=self.minimumClearance.eval(start,goal,grid,cellSize,path)
         
         
-        if minimumSafe>0:
-            if(originalSafe>minimumSafe):
-                sd=0
+            if minimumSafe>0:
+                if(originalSafe>minimumSafe):
+                    sd=0
+                else:
+                    sd=(minimumSafe-originalSafe)/minimumSafe
+                    
             else:
-                sd=(minimumSafe-originalSafe)/minimumSafe
-                
+                sd=1
         else:
             sd=1
             

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>SafePlan: SafePlan: A Benchmark for Safe and Optimal Path Planning</title>
+<title>SafePlan: Measuring Balance: The OptiSafe Index and SafePlan Benchmark for Safe Navigation</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -82,7 +82,7 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 
 <div class="PageDoc"><div class="header">
   <div class="headertitle">
-<div class="title">SafePlan: A Benchmark for Safe and Optimal Path Planning </div>  </div>
+<div class="title">Measuring Balance: The OptiSafe Index and SafePlan Benchmark for Safe Navigation </div>  </div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p><a class="anchor" id="md_README"></a> </p>
@@ -108,7 +108,7 @@ Key Features</h1>
 </li>
 <li><b>Reproducibility &amp; logging</b><ul>
 <li>Standardized JSON logs for each run with environment, path, and evaluation info.</li>
-<li>Aggregated statistics in CSV/JSON and optional visualization outputs.</li>
+<li>Aggregated statistics in JSON and optional visualization outputs.</li>
 </ul>
 </li>
 <li><b>Visualization tools</b><ul>
@@ -378,144 +378,17 @@ Programmatic API</h1>
 <div class="line"># 3) Visualize one iteration (2D → PNG, 3D → Plotly HTML)</div>
 <div class="line">viz = Visualize()</div>
 <div class="line">viz.see(&quot;/home/run1.json&quot;, iterNo=1, prefer_plotly=True)</div>
-</div><!-- fragment --><p>SafePlan experimental results in results folder on calling stats for planners for various metrices are shown in json form as follows: </p><div class="fragment"><div class="line">{</div>
-<div class="line">    &quot;VoronoiPlanner&quot;: {</div>
-<div class="line">        &quot;PlanningTime&quot;: 34.41541785260046,</div>
-<div class="line">        &quot;MinimumClearance&quot;: 1.1250388913720941,</div>
-<div class="line">        &quot;AverageMinimumClearance&quot;: 2.352815958430445,</div>
-<div class="line">        &quot;ClearanceVariability&quot;: 28.298456912893112,</div>
-<div class="line">        &quot;DangerViolations&quot;: 25.48421052631579,</div>
-<div class="line">        &quot;TurningAngle&quot;: 50.832074296827976,</div>
-<div class="line">        &quot;JerkPerMeter&quot;: 0.1293378835798869,</div>
-<div class="line">        &quot;SuccessRate&quot;: 0.78,</div>
-<div class="line">        &quot;OptimalDeviation&quot;: -0.04541845530415791,</div>
-<div class="line">        &quot;PathCost&quot;: 14.881445458621005,</div>
-<div class="line">        &quot;DistanceToGoal&quot;: 3.3916573898608524,</div>
-<div class="line">        &quot;OptiSafeIndex&quot;: 0.7065313469330626,</div>
-<div class="line">        &quot;NodesInPath&quot;: 2.294736842105263</div>
-<div class="line">    },</div>
-<div class="line">    &quot;UPP&quot;: {</div>
-<div class="line">        &quot;PlanningTime&quot;: 596.5560107800275,</div>
-<div class="line">        &quot;MinimumClearance&quot;: 1.1739753421354147,</div>
-<div class="line">        &quot;AverageMinimumClearance&quot;: 2.3505294974739472,</div>
-<div class="line">        &quot;ClearanceVariability&quot;: 32.347431493838286,</div>
-<div class="line">        &quot;DangerViolations&quot;: 1258.0,</div>
-<div class="line">        &quot;TurningAngle&quot;: 391.1796618233935,</div>
-<div class="line">        &quot;JerkPerMeter&quot;: 0.11140010671457004,</div>
-<div class="line">        &quot;SuccessRate&quot;: 1.0,</div>
-<div class="line">        &quot;OptimalDeviation&quot;: 0.04545741951548409,</div>
-<div class="line">        &quot;PathCost&quot;: 17.57754551728892,</div>
-<div class="line">        &quot;DistanceToGoal&quot;: 0.0,</div>
-<div class="line">        &quot;OptiSafeIndex&quot;: 0.7248084252595861,</div>
-<div class="line">        &quot;NodesInPath&quot;: 10.58</div>
-<div class="line">    },</div>
-<div class="line">    &quot;RRT&quot;: {</div>
-<div class="line">        &quot;PlanningTime&quot;: 3710.6396523877615,</div>
-<div class="line">        &quot;MinimumClearance&quot;: 0.7774365236197455,</div>
-<div class="line">        &quot;AverageMinimumClearance&quot;: 2.1454706756834785,</div>
-<div class="line">        &quot;ClearanceVariability&quot;: 32.811645103595026,</div>
-<div class="line">        &quot;DangerViolations&quot;: 1158.6530612244899,</div>
-<div class="line">        &quot;TurningAngle&quot;: 1854.150451654323,</div>
-<div class="line">        &quot;JerkPerMeter&quot;: 0.8274345209351016,</div>
-<div class="line">        &quot;SuccessRate&quot;: 0.94,</div>
-<div class="line">        &quot;OptimalDeviation&quot;: 0.3328127469478287,</div>
-<div class="line">        &quot;PathCost&quot;: 21.397049521927464,</div>
-<div class="line">        &quot;DistanceToGoal&quot;: 0.8620635171868056,</div>
-<div class="line">        &quot;OptiSafeIndex&quot;: 0.405458422344748,</div>
-<div class="line">        &quot;NodesInPath&quot;: 53.19387755102041</div>
-<div class="line">    },</div>
-<div class="line">    &quot;CBFRRT&quot;: {</div>
-<div class="line">        &quot;PlanningTime&quot;: 2878.820585159561,</div>
-<div class="line">        &quot;MinimumClearance&quot;: 0.7667586101167566,</div>
-<div class="line">        &quot;AverageMinimumClearance&quot;: 2.2535040753205755,</div>
-<div class="line">        &quot;ClearanceVariability&quot;: 33.721935597252006,</div>
-<div class="line">        &quot;DangerViolations&quot;: 879.6595744680851,</div>
-<div class="line">        &quot;TurningAngle&quot;: 1909.2118279618126,</div>
-<div class="line">        &quot;JerkPerMeter&quot;: 0.8389019157175471,</div>
-<div class="line">        &quot;SuccessRate&quot;: 0.91,</div>
-<div class="line">        &quot;OptimalDeviation&quot;: 0.3399416476233767,</div>
-<div class="line">        &quot;PathCost&quot;: 22.32407924888354,</div>
-<div class="line">        &quot;DistanceToGoal&quot;: 0.7363309040081364,</div>
-<div class="line">        &quot;OptiSafeIndex&quot;: 0.39376363852758384,</div>
-<div class="line">        &quot;NodesInPath&quot;: 55.48936170212766</div>
-<div class="line">    },</div>
-<div class="line">    &quot;AStar&quot;: {</div>
-<div class="line">        &quot;PlanningTime&quot;: 174.72529752001265,</div>
-<div class="line">        &quot;MinimumClearance&quot;: 1.0151776710837503,</div>
-<div class="line">        &quot;AverageMinimumClearance&quot;: 2.2424191120707406,</div>
-<div class="line">        &quot;ClearanceVariability&quot;: 34.30131815730188,</div>
-<div class="line">        &quot;DangerViolations&quot;: 15076.0,</div>
-<div class="line">        &quot;TurningAngle&quot;: 197.23881127868557,</div>
-<div class="line">        &quot;JerkPerMeter&quot;: 0.056250231194724935,</div>
-<div class="line">        &quot;SuccessRate&quot;: 1.0,</div>
-<div class="line">        &quot;OptimalDeviation&quot;: 0.0,</div>
-<div class="line">        &quot;PathCost&quot;: 17.440011462679397,</div>
-<div class="line">        &quot;DistanceToGoal&quot;: 0.0,</div>
-<div class="line">        &quot;OptiSafeIndex&quot;: 0.5991712447987082,</div>
-<div class="line">        &quot;NodesInPath&quot;: 6.35</div>
-<div class="line">    },</div>
-<div class="line">    &quot;Dijkstra&quot;: {</div>
-<div class="line">        &quot;PlanningTime&quot;: 6141.7088189300275,</div>
-<div class="line">        &quot;MinimumClearance&quot;: 1.0288958202911573,</div>
-<div class="line">        &quot;AverageMinimumClearance&quot;: 2.2705344720789187,</div>
-<div class="line">        &quot;ClearanceVariability&quot;: 34.22195930119145,</div>
-<div class="line">        &quot;DangerViolations&quot;: 13818.0,</div>
-<div class="line">        &quot;TurningAngle&quot;: 243.10344947451517,</div>
-<div class="line">        &quot;JerkPerMeter&quot;: 0.06028571145884985,</div>
-<div class="line">        &quot;SuccessRate&quot;: 1.0,</div>
-<div class="line">        &quot;OptimalDeviation&quot;: -0.0052263642391577984,</div>
-<div class="line">        &quot;PathCost&quot;: 17.214877082475255,</div>
-<div class="line">        &quot;DistanceToGoal&quot;: 0.0,</div>
-<div class="line">        &quot;OptiSafeIndex&quot;: 0.5965422912166155,</div>
-<div class="line">        &quot;NodesInPath&quot;: 7.36</div>
-<div class="line">    },</div>
-<div class="line">    &quot;WeightedAStar&quot;: {</div>
-<div class="line">        &quot;PlanningTime&quot;: 153.34242371997675,</div>
-<div class="line">        &quot;MinimumClearance&quot;: 1.0151776710837503,</div>
-<div class="line">        &quot;AverageMinimumClearance&quot;: 2.241324597144535,</div>
-<div class="line">        &quot;ClearanceVariability&quot;: 34.311112829724934,</div>
-<div class="line">        &quot;DangerViolations&quot;: 15098.0,</div>
-<div class="line">        &quot;TurningAngle&quot;: 392.97292911634526,</div>
-<div class="line">        &quot;JerkPerMeter&quot;: 0.08123820680601991,</div>
-<div class="line">        &quot;SuccessRate&quot;: 1.0,</div>
-<div class="line">        &quot;OptimalDeviation&quot;: 0.004609068328356913,</div>
-<div class="line">        &quot;PathCost&quot;: 17.514478020814526,</div>
-<div class="line">        &quot;DistanceToGoal&quot;: 0.0,</div>
-<div class="line">        &quot;OptiSafeIndex&quot;: 0.5999460252793478,</div>
-<div class="line">        &quot;NodesInPath&quot;: 10.66</div>
-<div class="line">    },</div>
-<div class="line">    &quot;SDFAStar&quot;: {</div>
-<div class="line">        &quot;PlanningTime&quot;: 2218.002218519984,</div>
-<div class="line">        &quot;MinimumClearance&quot;: 1.68614096294055,</div>
-<div class="line">        &quot;AverageMinimumClearance&quot;: 2.6620601013107192,</div>
-<div class="line">        &quot;ClearanceVariability&quot;: 19.980510612103856,</div>
-<div class="line">        &quot;DangerViolations&quot;: 2476.0,</div>
-<div class="line">        &quot;TurningAngle&quot;: 1252.5719528909428,</div>
-<div class="line">        &quot;JerkPerMeter&quot;: 0.21314981311808062,</div>
-<div class="line">        &quot;SuccessRate&quot;: 1.0,</div>
-<div class="line">        &quot;OptimalDeviation&quot;: 0.09742635893468785,</div>
-<div class="line">        &quot;PathCost&quot;: 19.207122069010566,</div>
-<div class="line">        &quot;DistanceToGoal&quot;: 0.0,</div>
-<div class="line">        &quot;OptiSafeIndex&quot;: 0.722120828235946,</div>
-<div class="line">        &quot;NodesInPath&quot;: 22.31</div>
-<div class="line">    },</div>
-<div class="line">    &quot;OptimizedAStar&quot;: {</div>
-<div class="line">        &quot;PlanningTime&quot;: 483.78120382995337,</div>
-<div class="line">        &quot;MinimumClearance&quot;: 1.0693436713052826,</div>
-<div class="line">        &quot;AverageMinimumClearance&quot;: 2.6235459319424956,</div>
-<div class="line">        &quot;ClearanceVariability&quot;: 32.59846635393538,</div>
-<div class="line">        &quot;DangerViolations&quot;: 56.84,</div>
-<div class="line">        &quot;TurningAngle&quot;: 89.06605471889655,</div>
-<div class="line">        &quot;JerkPerMeter&quot;: 0.2828841739505983,</div>
-<div class="line">        &quot;SuccessRate&quot;: 1.0,</div>
-<div class="line">        &quot;OptimalDeviation&quot;: 0.10790189307066612,</div>
-<div class="line">        &quot;PathCost&quot;: 19.070090151242606,</div>
-<div class="line">        &quot;DistanceToGoal&quot;: 0.0,</div>
-<div class="line">        &quot;OptiSafeIndex&quot;: 0.6469495215941641,</div>
-<div class="line">        &quot;NodesInPath&quot;: 3.09</div>
-<div class="line">    }</div>
-<div class="line">}</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md28"></a>
+</div><!-- fragment --><p>SafePlan experimental results in results folder on calling stats for planners for various metrices are shown in json form as follows: </p><table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Algorithm   </th><th class="markdownTableHeadNone">Planning Time   </th><th class="markdownTableHeadNone">Min Clearance   </th><th class="markdownTableHeadNone">Avg Min Clearance   </th><th class="markdownTableHeadNone">Clearance Var   </th><th class="markdownTableHeadNone">Danger Violations   </th><th class="markdownTableHeadNone">Turning Angle   </th><th class="markdownTableHeadNone">Jerk / m   </th><th class="markdownTableHeadNone">Success Rate   </th><th class="markdownTableHeadNone">Opt Dev   </th><th class="markdownTableHeadNone">Path Cost   </th><th class="markdownTableHeadNone">Dist to Goal   </th><th class="markdownTableHeadNone">OptiSafe Index   </th><th class="markdownTableHeadNone">Nodes in Path    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">SafeAStar   </td><td class="markdownTableBodyNone">374.96   </td><td class="markdownTableBodyNone">2.08   </td><td class="markdownTableBodyNone">3.86   </td><td class="markdownTableBodyNone">47.18   </td><td class="markdownTableBodyNone">159.62   </td><td class="markdownTableBodyNone">313.67   </td><td class="markdownTableBodyNone">0.108   </td><td class="markdownTableBodyNone">1.0   </td><td class="markdownTableBodyNone">0.0208   </td><td class="markdownTableBodyNone">13.77   </td><td class="markdownTableBodyNone">0.0   </td><td class="markdownTableBodyNone">0.887   </td><td class="markdownTableBodyNone">9.04    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">AStar   </td><td class="markdownTableBodyNone">38.09   </td><td class="markdownTableBodyNone">2.02   </td><td class="markdownTableBodyNone">3.84   </td><td class="markdownTableBodyNone">49.88   </td><td class="markdownTableBodyNone">2317.31   </td><td class="markdownTableBodyNone">90.41   </td><td class="markdownTableBodyNone">0.0447   </td><td class="markdownTableBodyNone">1.0   </td><td class="markdownTableBodyNone">0.0   </td><td class="markdownTableBodyNone">13.71   </td><td class="markdownTableBodyNone">0.0   </td><td class="markdownTableBodyNone">0.842   </td><td class="markdownTableBodyNone">4.08    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">FSPlanner   </td><td class="markdownTableBodyNone">712.05   </td><td class="markdownTableBodyNone">2.05   </td><td class="markdownTableBodyNone">3.82   </td><td class="markdownTableBodyNone">47.66   </td><td class="markdownTableBodyNone">48.08   </td><td class="markdownTableBodyNone">30.41   </td><td class="markdownTableBodyNone">0.00735   </td><td class="markdownTableBodyNone">1.0   </td><td class="markdownTableBodyNone">-0.0539   </td><td class="markdownTableBodyNone">13.29   </td><td class="markdownTableBodyNone">0.0   </td><td class="markdownTableBodyNone">0.934   </td><td class="markdownTableBodyNone">2.69   </td></tr>
+</table>
+<h1><a class="anchor" id="autotoc_md28"></a>
 Environments</h1>
 <p>SafePlan currently provides <b>12 benchmark environments</b>:</p>
 <ul>

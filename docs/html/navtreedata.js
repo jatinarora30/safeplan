@@ -25,7 +25,7 @@
 var NAVTREE =
 [
   [ "SafePlan", "index.html", [
-    [ "SafePlan: A Benchmark for Safe and Optimal Path Planning", "index.html", [
+    [ "Measuring Balance: The OptiSafe Index and SafePlan Benchmark for Safe Navigation", "index.html", [
       [ "Overview", "index.html#autotoc_md1", null ],
       [ "Key Features", "index.html#autotoc_md2", null ],
       [ "Evaluation Metrics", "index.html#autotoc_md3", [
