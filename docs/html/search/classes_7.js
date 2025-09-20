@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['jerkpermeter_252',['JerkPerMeter',['../classjerk__per__meter_1_1JerkPerMeter.html',1,'jerk_per_meter']]]
+  ['logger_245',['Logger',['../classlogger_1_1Logger.html',1,'logger']]]
 ];

@@ -287,8 +287,8 @@ Algorithms in SafePlan</h1>
  Reference: (<a href="https://arxiv.org/pdf/2011.06748">https://arxiv.org/pdf/2011.06748</a>)</li>
 <li><b>FS Planner</b> <br  />
  Uses an integrated inverse distance, on lazy theta AStar and also gives a limit on maximum neighbours explored in goal and safe direction Reference: (<a href="https://arxiv.org/pdf/2505.24024">https://arxiv.org/pdf/2505.24024</a>)</li>
-<li><b>Inflated A*</b> <br  />
- Inflate the obstacles by certain safety radius as hard constraints, then run A* Reference: (<a href="https://arxiv.org/pdf/2003.00368">https://arxiv.org/pdf/2003.00368</a>)</li>
+<li><b>Safe A*</b> <br  />
+ Safe A*: This approach is conceptually inspired by the inflation layer in the ROS Navigation framework wher traversal costs are increased in proportion to proximity to obstacles. Unlike Nav2, which uses an exponential decay function to inflate costs, we adopt a simplified inverse-distance formulation to achieve a similar safety bias.</li>
 </ul>
 <h1><a class="anchor" id="autotoc_md22"></a>
 Installation</h1>
@@ -350,7 +350,7 @@ Usage</h1>
 <div class="line">    {&quot;name&quot;: &quot;FSPlanner&quot; ,&quot;args&quot;: {&quot;pointSamples&quot;:100,&quot;cw&quot;:1, &quot;epsilon&quot;:0.01,&quot;maxNeigh&quot;:5}},</div>
 <div class="line">    {&quot;name&quot;: &quot;SDFAStar&quot; , &quot;args&quot;: {&quot;k1&quot;:5,&quot;k2&quot;:5}},</div>
 <div class="line">    {&quot;name&quot;: &quot;OptimizedAStar&quot; , &quot;args&quot;: {&quot;turnPenaltyCoefficients&quot;:0.5,&quot;safetyDistGridRadius&quot;:100,&quot;maxInflateIter&quot;:100,&quot;pointSamples&quot;:100}},</div>
-<div class="line">    {&quot;name&quot;: &quot;InflatedAStar&quot; ,&quot;args&quot;: {&quot;radiusInflate&quot;:4}}</div>
+<div class="line">    {&quot;name&quot;: &quot;SafeAStar&quot; ,&quot;args&quot;: {&quot;safetyFactor&quot;:4,&quot;epsilon&quot;:0.01}}</div>
 <div class="line">  ],</div>
 <div class="line">  &quot;envDetails&quot;: [</div>
 <div class="line">    {</div>

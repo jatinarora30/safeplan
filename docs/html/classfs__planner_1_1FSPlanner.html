@@ -166,14 +166,14 @@ Public Attributes</h2></td></tr>
 <tr class="separator:a4f07373ca99787b843c71d727f38d516"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3ecb15f79a1e2676d49e39bb63a61ec7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfs__planner_1_1FSPlanner.html#a3ecb15f79a1e2676d49e39bb63a61ec7">path</a></td></tr>
 <tr class="separator:a3ecb15f79a1e2676d49e39bb63a61ec7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab70c691a174b9a2e38ed1b20d6f3d44a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfs__planner_1_1FSPlanner.html#ab70c691a174b9a2e38ed1b20d6f3d44a">dimension</a></td></tr>
+<tr class="separator:ab70c691a174b9a2e38ed1b20d6f3d44a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afde21e0e6fb96552a62fd1fd93d22ae1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfs__planner_1_1FSPlanner.html#afde21e0e6fb96552a62fd1fd93d22ae1">start</a></td></tr>
 <tr class="separator:afde21e0e6fb96552a62fd1fd93d22ae1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5bb5ec7ca1dd7815c0466d3354f9ca79"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfs__planner_1_1FSPlanner.html#a5bb5ec7ca1dd7815c0466d3354f9ca79">goal</a></td></tr>
 <tr class="separator:a5bb5ec7ca1dd7815c0466d3354f9ca79"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aecba7611a9fe2ecc1effe30441c9a538"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfs__planner_1_1FSPlanner.html#aecba7611a9fe2ecc1effe30441c9a538">grid</a></td></tr>
 <tr class="separator:aecba7611a9fe2ecc1effe30441c9a538"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab70c691a174b9a2e38ed1b20d6f3d44a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfs__planner_1_1FSPlanner.html#ab70c691a174b9a2e38ed1b20d6f3d44a">dimension</a></td></tr>
-<tr class="separator:ab70c691a174b9a2e38ed1b20d6f3d44a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac5b5820061d3879663575e3933edd0b2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfs__planner_1_1FSPlanner.html#ac5b5820061d3879663575e3933edd0b2">sizes</a></td></tr>
 <tr class="separator:ac5b5820061d3879663575e3933edd0b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af3ac0c354d3ed1de522139be28576dbf"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfs__planner_1_1FSPlanner.html#af3ac0c354d3ed1de522139be28576dbf">distanceTransform</a></td></tr>
@@ -237,11 +237,12 @@ Public Attributes</h2></td></tr>
 
 <p>Construct an <a class="el" href="classfs__planner_1_1FSPlanner.html" title="Fast and Safe planner with SDF-guided costs and Lazy Theta*.">FSPlanner</a> instance. </p>
 <pre class="fragment">   @param pointSamples Number of interpolation samples for edge collision checks.
+                       (Kept for API compatibility; LOS now uses integer stepping.)
    @param cw Clearance weight in the edge cost.
    @param epsilon Small constant to avoid division by zero and improve stability.
    @param maxNeigh Maximum number of neighbors retained after pruning.
 </pre> 
-<p class="definition">Definition at line <a class="el" href="fs__planner_8py_source.html#l00081">81</a> of file <a class="el" href="fs__planner_8py_source.html">fs_planner.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="fs__planner_8py_source.html#l00082">82</a> of file <a class="el" href="fs__planner_8py_source.html">fs_planner.py</a>.</p>
 
 </div>
 </div>
@@ -273,10 +274,25 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Enumerate all adjacent coordinates in N-D including diagonals. </p>
-<pre class="fragment">   @param node Reference grid cell (tuple[int,...]).
-   @return List of neighbors without bounds or occupancy filtering.
-</pre> 
-<p class="definition">Definition at line <a class="el" href="fs__planner_8py_source.html#l00119">119</a> of file <a class="el" href="fs__planner_8py_source.html">fs_planner.py</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="fs__planner_8py_source.html#l00120">120</a> of file <a class="el" href="fs__planner_8py_source.html">fs_planner.py</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classfs__planner_1_1FSPlanner_a4d0ac8768517a255928ea128f768dc41_cgraph.png" border="0" usemap="#aclassfs__planner_1_1FSPlanner_a4d0ac8768517a255928ea128f768dc41_cgraph" alt=""/></div>
+<map name="aclassfs__planner_1_1FSPlanner_a4d0ac8768517a255928ea128f768dc41_cgraph" id="aclassfs__planner_1_1FSPlanner_a4d0ac8768517a255928ea128f768dc41_cgraph">
+<area shape="rect" title="Enumerate all adjacent coordinates in N&#45;D including diagonals." alt="" coords="5,217,221,258"/>
+<area shape="rect" href="classa__star_1_1AStar.html#ad2b6aceaa3b33aed84b74d0419ee3e76" title="Check whether a cell lies within grid bounds." alt="" coords="317,5,464,32"/>
+<area shape="rect" href="classcbf__rrt_1_1CBFRRT.html#a18bef5b5fca7a319e31e1bc837675a30" title="Check whether a cell lies within grid bounds." alt="" coords="308,56,473,83"/>
+<area shape="rect" href="classfs__planner_1_1FSPlanner.html#a3b187fffd089e3ce0b92c4169a153360" title="Check whether a cell index lies within grid bounds." alt="" coords="289,107,492,133"/>
+<area shape="rect" href="classoptimized__astar_1_1OptimizedAStar.html#a753c4860a21c8819eaccc8e95f197373" title="Check whether a cell lies within grid bounds." alt="" coords="292,158,489,199"/>
+<area shape="rect" href="classrrt_1_1RRT.html#a4b573e97af5b918e0b33f66a315b31ea" title="Check whether a cell lies within grid bounds." alt="" coords="335,224,447,251"/>
+<area shape="rect" href="classsafe__astar_1_1SafeAStar.html#a21cfc85b394b641192de43952a478b48" title="Check whether a cell lies within grid bounds." alt="" coords="289,275,492,301"/>
+<area shape="rect" href="classsdf__astar_1_1SDFAStar.html#a60d5448604317e368b1cf5a537ddc371" title="Check whether a cell lies within grid bounds." alt="" coords="295,325,486,352"/>
+<area shape="rect" href="classupp_1_1UPP.html#a3ecacb3783e49764516828b56fc8e365" title="Check whether a cell lies within grid bounds." alt="" coords="330,376,451,403"/>
+<area shape="rect" href="classvoronoi__planner_1_1VoronoiPlanner.html#ab26a9e362b5b2f27cf462b76038361e4" title="Check whether a grid&#45;cell index lies within bounds." alt="" coords="269,427,512,469"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -314,7 +330,7 @@ Public Attributes</h2></td></tr>
 
 <p>Euclidean distance between two N-D grid points. </p>
 
-<p class="definition">Definition at line <a class="el" href="fs__planner_8py_source.html#l00110">110</a> of file <a class="el" href="fs__planner_8py_source.html">fs_planner.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="fs__planner_8py_source.html#l00112">112</a> of file <a class="el" href="fs__planner_8py_source.html">fs_planner.py</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -363,11 +379,8 @@ Here is the caller graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Clearance penalty for traversing from node1 to node2. </p>
-<pre class="fragment">   @details
-   Uses average clearance along the step and scales the penalty with @p cw.
-   Larger penalty discourages steps through narrow regions.
-</pre> 
-<p class="definition">Definition at line <a class="el" href="fs__planner_8py_source.html#l00176">176</a> of file <a class="el" href="fs__planner_8py_source.html">fs_planner.py</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="fs__planner_8py_source.html#l00230">230</a> of file <a class="el" href="fs__planner_8py_source.html">fs_planner.py</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -423,11 +436,8 @@ Here is the caller graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Directional clearance change from node1 to node2. </p>
-<pre class="fragment">   @details
-   Approximates how clearance varies along the step. Lower values suggest
-   moving into safer space. Used for neighbor ordering.
-</pre> 
-<p class="definition">Definition at line <a class="el" href="fs__planner_8py_source.html#l00165">165</a> of file <a class="el" href="fs__planner_8py_source.html">fs_planner.py</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="fs__planner_8py_source.html#l00225">225</a> of file <a class="el" href="fs__planner_8py_source.html">fs_planner.py</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -475,11 +485,9 @@ Here is the call graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Keep up to <code>maxNeigh</code> neighbors best aligned with a target direction. </p>
-<pre class="fragment">   @details
-   Scores each neighbor by the cosine with @p distVec (goal direction blended
-   with safest local direction), keeps the top @p maxNeigh.
-</pre> 
-<p class="definition">Definition at line <a class="el" href="fs__planner_8py_source.html#l00201">201</a> of file <a class="el" href="fs__planner_8py_source.html">fs_planner.py</a>.</p>
+<p>Uses precomputed neighbor unit vectors to avoid per-step allocations. </p>
+
+<p class="definition">Definition at line <a class="el" href="fs__planner_8py_source.html#l00252">252</a> of file <a class="el" href="fs__planner_8py_source.html">fs_planner.py</a>.</p>
 
 </div>
 </div>
@@ -516,31 +524,16 @@ Here is the call graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Check if the straight segment between two points is collision-free. </p>
-<pre class="fragment">   @details
-   Uniformly samples @p self.pointSamples points on the segment [pt1, pt2],
-   rounds each sample to the nearest grid index, and rejects the edge if any
-   index is out-of-bounds or occupied.
+<p>Uses supercover Bresenham in 2-D; falls back to simple voxel stepping for N-D. </p>
 
-   @param pt1 Start point (tuple[int,...]).
-   @param pt2 End point   (tuple[int,...]).
-   @return True if all sampled indices are valid and free.
-</pre> 
-<p class="definition">Definition at line <a class="el" href="fs__planner_8py_source.html#l00146">146</a> of file <a class="el" href="fs__planner_8py_source.html">fs_planner.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="fs__planner_8py_source.html#l00182">182</a> of file <a class="el" href="fs__planner_8py_source.html">fs_planner.py</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classfs__planner_1_1FSPlanner_af6c1ddea4a67b7b442c8ac977074bd85_cgraph.png" border="0" usemap="#aclassfs__planner_1_1FSPlanner_af6c1ddea4a67b7b442c8ac977074bd85_cgraph" alt=""/></div>
 <map name="aclassfs__planner_1_1FSPlanner_af6c1ddea4a67b7b442c8ac977074bd85_cgraph" id="aclassfs__planner_1_1FSPlanner_af6c1ddea4a67b7b442c8ac977074bd85_cgraph">
-<area shape="rect" title="Check if the straight segment between two points is collision&#45;free." alt="" coords="5,231,236,257"/>
-<area shape="rect" href="classa__star_1_1AStar.html#ad2b6aceaa3b33aed84b74d0419ee3e76" title="Check whether a cell lies within grid bounds." alt="" coords="332,5,479,32"/>
-<area shape="rect" href="classcbf__rrt_1_1CBFRRT.html#a18bef5b5fca7a319e31e1bc837675a30" title="Check whether a cell lies within grid bounds." alt="" coords="323,56,488,83"/>
-<area shape="rect" href="classfs__planner_1_1FSPlanner.html#a3b187fffd089e3ce0b92c4169a153360" title="Check whether a cell index lies within grid bounds." alt="" coords="304,107,507,133"/>
-<area shape="rect" href="classinflated__astar_1_1InflatedAStar.html#a49316cbb2af2a91696b84b39d5cd3ce0" title="Check whether a cell lies within grid bounds." alt="" coords="299,158,511,199"/>
-<area shape="rect" href="classoptimized__astar_1_1OptimizedAStar.html#a753c4860a21c8819eaccc8e95f197373" title="Check whether a cell lies within grid bounds." alt="" coords="307,223,504,265"/>
-<area shape="rect" href="classrrt_1_1RRT.html#a4b573e97af5b918e0b33f66a315b31ea" title="Check whether a cell lies within grid bounds." alt="" coords="349,289,461,316"/>
-<area shape="rect" href="classsdf__astar_1_1SDFAStar.html#a60d5448604317e368b1cf5a537ddc371" title="Check whether a cell lies within grid bounds." alt="" coords="310,340,501,367"/>
-<area shape="rect" href="classupp_1_1UPP.html#a3ecacb3783e49764516828b56fc8e365" title="Check whether a cell lies within grid bounds." alt="" coords="345,391,466,417"/>
-<area shape="rect" href="classvoronoi__planner_1_1VoronoiPlanner.html#ab26a9e362b5b2f27cf462b76038361e4" title="Check whether a grid&#45;cell index lies within bounds." alt="" coords="284,442,527,483"/>
+<area shape="rect" title="Check if the straight segment between two points is collision&#45;free." alt="" coords="5,13,236,39"/>
+<area shape="rect" href="classfs__planner_1_1FSPlanner.html#aee2c0549dc810af2f68bb53eaf2682b3" title=" " alt="" coords="284,5,444,47"/>
 </map>
 </div>
 <div class="dynheader">
@@ -583,23 +576,21 @@ Here is the caller graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Check whether a cell index lies within grid bounds. </p>
-<pre class="fragment">   @param grid_cell N-D integer coordinate (tuple[int,...]).
-   @return True if inside bounds; False otherwise.
-</pre> 
-<p class="definition">Definition at line <a class="el" href="fs__planner_8py_source.html#l00101">101</a> of file <a class="el" href="fs__planner_8py_source.html">fs_planner.py</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="fs__planner_8py_source.html#l00104">104</a> of file <a class="el" href="fs__planner_8py_source.html">fs_planner.py</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classfs__planner_1_1FSPlanner_a3b187fffd089e3ce0b92c4169a153360_icgraph.png" border="0" usemap="#aclassfs__planner_1_1FSPlanner_a3b187fffd089e3ce0b92c4169a153360_icgraph" alt=""/></div>
 <map name="aclassfs__planner_1_1FSPlanner_a3b187fffd089e3ce0b92c4169a153360_icgraph" id="aclassfs__planner_1_1FSPlanner_a3b187fffd089e3ce0b92c4169a153360_icgraph">
-<area shape="rect" title="Check whether a cell index lies within grid bounds." alt="" coords="789,115,992,141"/>
-<area shape="rect" href="classcbf__rrt_1_1CBFRRT.html#a82a820b0528e668d2b59b34abd5f5f55" title="Check if the segment between two points is collision&#45;free." alt="" coords="523,5,717,32"/>
-<area shape="rect" href="classfs__planner_1_1FSPlanner.html#af6c1ddea4a67b7b442c8ac977074bd85" title="Check if the straight segment between two points is collision&#45;free." alt="" coords="505,56,735,83"/>
-<area shape="rect" href="classoptimized__astar_1_1OptimizedAStar.html#aba36b053b8514d9048881d0132b80ba6" title="Check if the segment between two points is collision&#45;free with clearance." alt="" coords="521,107,719,149"/>
-<area shape="rect" href="classrrt_1_1RRT.html#ac9212c57e97017d0fbcec815774c86ab" title="Check if the segment between two points is collision&#45;free." alt="" coords="550,173,690,200"/>
-<area shape="rect" href="classvoronoi__planner_1_1VoronoiPlanner.html#aec0c7bc228c11a8ef7247d33b56f41b8" title="Check if the segment between two points is collision&#45;free." alt="" coords="499,225,741,266"/>
-<area shape="rect" href="classoptimized__astar_1_1OptimizedAStar.html#a4f21260374482974a30986f653d9d942" title="Shortcut a path by removing unnecessary waypoints in one direction." alt="" coords="253,107,451,149"/>
-<area shape="rect" href="classoptimized__astar_1_1OptimizedAStar.html#a7cd90a3d3026598224d31ce4700995b3" title="Apply directional shortcutting in both directions and choose the better result." alt="" coords="5,107,205,149"/>
+<area shape="rect" title="Check whether a cell index lies within grid bounds." alt="" coords="789,130,992,157"/>
+<area shape="rect" href="classfs__planner_1_1FSPlanner.html#a4d0ac8768517a255928ea128f768dc41" title="Enumerate all adjacent coordinates in N&#45;D including diagonals." alt="" coords="512,5,728,47"/>
+<area shape="rect" href="classcbf__rrt_1_1CBFRRT.html#a82a820b0528e668d2b59b34abd5f5f55" title="Check if the segment between two points is collision&#45;free." alt="" coords="523,71,717,98"/>
+<area shape="rect" href="classoptimized__astar_1_1OptimizedAStar.html#aba36b053b8514d9048881d0132b80ba6" title="Check if the segment between two points is collision&#45;free with clearance." alt="" coords="521,123,719,164"/>
+<area shape="rect" href="classrrt_1_1RRT.html#ac9212c57e97017d0fbcec815774c86ab" title="Check if the segment between two points is collision&#45;free." alt="" coords="550,189,690,215"/>
+<area shape="rect" href="classvoronoi__planner_1_1VoronoiPlanner.html#aec0c7bc228c11a8ef7247d33b56f41b8" title="Check if the segment between two points is collision&#45;free." alt="" coords="499,240,741,281"/>
+<area shape="rect" href="classoptimized__astar_1_1OptimizedAStar.html#a4f21260374482974a30986f653d9d942" title="Shortcut a path by removing unnecessary waypoints in one direction." alt="" coords="253,152,451,193"/>
+<area shape="rect" href="classoptimized__astar_1_1OptimizedAStar.html#a7cd90a3d3026598224d31ce4700995b3" title="Apply directional shortcutting in both directions and choose the better result." alt="" coords="5,152,205,193"/>
 </map>
 </div>
 
@@ -644,21 +635,9 @@ Here is the caller graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Run FS-Planner on an N-D occupancy grid. </p>
-<pre class="fragment">   @param start Start cell (tuple[int,...]).
-   @param goal  Goal cell  (tuple[int,...]).
-   @param grid  N-D occupancy array with values {0=free, 1=obstacle}.
-
-   @return (success, path, info)
-     - success: 1 on success, else 0
-     - path   : list of N-D cells from start to goal (inclusive) or empty
-     - info   : diagnostics list
-
-   @diagnostics
-</pre> <div class="fragment"><div class="line"><span class="stringliteral">&quot;Invalid start&quot;</span>, <span class="stringliteral">&quot;Invalid goal&quot;</span>, <span class="stringliteral">&quot;Start has obstacle&quot;</span>,</div>
-<div class="line"><span class="stringliteral">&quot;Goal has obstacle&quot;</span>, <span class="stringliteral">&quot;Start and goal are same&quot;</span>,</div>
-<div class="line"><span class="stringliteral">&quot;Failed to reconstruct path.&quot;</span></div>
-</div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="fs__planner_8py_source.html#l00236">236</a> of file <a class="el" href="fs__planner_8py_source.html">fs_planner.py</a>.</p>
+<pre class="fragment">   @return (success, path, info)
+</pre> 
+<p class="definition">Definition at line <a class="el" href="fs__planner_8py_source.html#l00293">293</a> of file <a class="el" href="fs__planner_8py_source.html">fs_planner.py</a>.</p>
 
 </div>
 </div>
@@ -675,7 +654,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="fs__planner_8py_source.html#l00084">84</a> of file <a class="el" href="fs__planner_8py_source.html">fs_planner.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="fs__planner_8py_source.html#l00085">85</a> of file <a class="el" href="fs__planner_8py_source.html">fs_planner.py</a>.</p>
 
 </div>
 </div>
@@ -691,7 +670,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="fs__planner_8py_source.html#l00245">245</a> of file <a class="el" href="fs__planner_8py_source.html">fs_planner.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="fs__planner_8py_source.html#l00189">189</a> of file <a class="el" href="fs__planner_8py_source.html">fs_planner.py</a>.</p>
 
 </div>
 </div>
@@ -707,7 +686,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="fs__planner_8py_source.html#l00273">273</a> of file <a class="el" href="fs__planner_8py_source.html">fs_planner.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="fs__planner_8py_source.html#l00356">356</a> of file <a class="el" href="fs__planner_8py_source.html">fs_planner.py</a>.</p>
 
 </div>
 </div>
@@ -723,7 +702,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="fs__planner_8py_source.html#l00085">85</a> of file <a class="el" href="fs__planner_8py_source.html">fs_planner.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="fs__planner_8py_source.html#l00086">86</a> of file <a class="el" href="fs__planner_8py_source.html">fs_planner.py</a>.</p>
 
 </div>
 </div>
@@ -739,7 +718,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="fs__planner_8py_source.html#l00239">239</a> of file <a class="el" href="fs__planner_8py_source.html">fs_planner.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="fs__planner_8py_source.html#l00296">296</a> of file <a class="el" href="fs__planner_8py_source.html">fs_planner.py</a>.</p>
 
 </div>
 </div>
@@ -755,7 +734,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="fs__planner_8py_source.html#l00240">240</a> of file <a class="el" href="fs__planner_8py_source.html">fs_planner.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="fs__planner_8py_source.html#l00297">297</a> of file <a class="el" href="fs__planner_8py_source.html">fs_planner.py</a>.</p>
 
 </div>
 </div>
@@ -771,7 +750,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="fs__planner_8py_source.html#l00088">88</a> of file <a class="el" href="fs__planner_8py_source.html">fs_planner.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="fs__planner_8py_source.html#l00089">89</a> of file <a class="el" href="fs__planner_8py_source.html">fs_planner.py</a>.</p>
 
 </div>
 </div>
@@ -787,7 +766,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="fs__planner_8py_source.html#l00086">86</a> of file <a class="el" href="fs__planner_8py_source.html">fs_planner.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="fs__planner_8py_source.html#l00087">87</a> of file <a class="el" href="fs__planner_8py_source.html">fs_planner.py</a>.</p>
 
 </div>
 </div>
@@ -803,7 +782,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="fs__planner_8py_source.html#l00285">285</a> of file <a class="el" href="fs__planner_8py_source.html">fs_planner.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="fs__planner_8py_source.html#l00374">374</a> of file <a class="el" href="fs__planner_8py_source.html">fs_planner.py</a>.</p>
 
 </div>
 </div>
@@ -819,7 +798,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="fs__planner_8py_source.html#l00089">89</a> of file <a class="el" href="fs__planner_8py_source.html">fs_planner.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="fs__planner_8py_source.html#l00090">90</a> of file <a class="el" href="fs__planner_8py_source.html">fs_planner.py</a>.</p>
 
 </div>
 </div>
@@ -835,7 +814,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="fs__planner_8py_source.html#l00083">83</a> of file <a class="el" href="fs__planner_8py_source.html">fs_planner.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="fs__planner_8py_source.html#l00084">84</a> of file <a class="el" href="fs__planner_8py_source.html">fs_planner.py</a>.</p>
 
 </div>
 </div>
@@ -851,7 +830,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="fs__planner_8py_source.html#l00246">246</a> of file <a class="el" href="fs__planner_8py_source.html">fs_planner.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="fs__planner_8py_source.html#l00303">303</a> of file <a class="el" href="fs__planner_8py_source.html">fs_planner.py</a>.</p>
 
 </div>
 </div>
@@ -867,7 +846,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="fs__planner_8py_source.html#l00238">238</a> of file <a class="el" href="fs__planner_8py_source.html">fs_planner.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="fs__planner_8py_source.html#l00295">295</a> of file <a class="el" href="fs__planner_8py_source.html">fs_planner.py</a>.</p>
 
 </div>
 </div>
@@ -883,7 +862,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="fs__planner_8py_source.html#l00082">82</a> of file <a class="el" href="fs__planner_8py_source.html">fs_planner.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="fs__planner_8py_source.html#l00083">83</a> of file <a class="el" href="fs__planner_8py_source.html">fs_planner.py</a>.</p>
 
 </div>
 </div>

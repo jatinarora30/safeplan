@@ -33,9 +33,6 @@ var annotated_dup =
     [ "generate_grid", "namespacegenerate__grid.html", [
       [ "GenerateGrid", "classgenerate__grid_1_1GenerateGrid.html", "classgenerate__grid_1_1GenerateGrid" ]
     ] ],
-    [ "inflated_astar", "namespaceinflated__astar.html", [
-      [ "InflatedAStar", "classinflated__astar_1_1InflatedAStar.html", "classinflated__astar_1_1InflatedAStar" ]
-    ] ],
     [ "jerk_per_meter", "namespacejerk__per__meter.html", [
       [ "JerkPerMeter", "classjerk__per__meter_1_1JerkPerMeter.html", "classjerk__per__meter_1_1JerkPerMeter" ]
     ] ],
@@ -62,6 +59,9 @@ var annotated_dup =
     ] ],
     [ "rrt", "namespacerrt.html", [
       [ "RRT", "classrrt_1_1RRT.html", "classrrt_1_1RRT" ]
+    ] ],
+    [ "safe_astar", "namespacesafe__astar.html", [
+      [ "SafeAStar", "classsafe__astar_1_1SafeAStar.html", "classsafe__astar_1_1SafeAStar" ]
     ] ],
     [ "safeplan", "namespacesafeplan.html", [
       [ "main", "namespacesafeplan_1_1main.html", [

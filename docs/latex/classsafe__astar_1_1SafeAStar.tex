@@ -1,0 +1,353 @@
+\hypertarget{classsafe__astar_1_1SafeAStar}{}\doxysection{safe\+\_\+astar.\+Safe\+AStar Class Reference}
+\label{classsafe__astar_1_1SafeAStar}\index{safe\_astar.SafeAStar@{safe\_astar.SafeAStar}}
+
+
+A$\ast$ with EDT-\/weighted safety costs (no hard inflation).  
+
+
+
+
+Inheritance diagram for safe\+\_\+astar.\+Safe\+AStar\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=220pt]{classsafe__astar_1_1SafeAStar__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for safe\+\_\+astar.\+Safe\+AStar\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=220pt]{classsafe__astar_1_1SafeAStar__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{classsafe__astar_1_1SafeAStar_a1d6bc63d8f2b4a27371c65b448b2c46c}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, float \mbox{\hyperlink{classsafe__astar_1_1SafeAStar_aaaf72993c468f8c6be198985e63af3f0}{safety\+Factor}}, float \mbox{\hyperlink{classsafe__astar_1_1SafeAStar_a195b7fe2df4a17a8e8408d17907b5a08}{epsilon}})
+\begin{DoxyCompactList}\small\item\em Construct a clearance-\/aware A$\ast$ planner. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classsafe__astar_1_1SafeAStar_a21cfc85b394b641192de43952a478b48}{is\+Valid}} (self, grid\+\_\+cell)
+\begin{DoxyCompactList}\small\item\em Check whether a cell lies within grid bounds. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classsafe__astar_1_1SafeAStar_a035f4e2770a922203a5b94b76121fa3e}{heuristics}} (self, node1, node2)
+\begin{DoxyCompactList}\small\item\em Manhattan (L1) heuristic between two nodes. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classsafe__astar_1_1SafeAStar_af1429c03303369f647b8a63aa6eceb37}{adjacent\+Coordinates}} (self, \mbox{\hyperlink{classsafe__astar_1_1SafeAStar_a5e4d8eb43ad965520d0f71943bd5bf29}{node}})
+\begin{DoxyCompactList}\small\item\em Enumerate all adjacent coordinates in N-\/D (including diagonals). \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classsafe__astar_1_1SafeAStar_a732f8d61613db56962e93c8d399c0579}{plan}} (self, \mbox{\hyperlink{classsafe__astar_1_1SafeAStar_a954f489be830c4382edde4f109324a52}{start}}, \mbox{\hyperlink{classsafe__astar_1_1SafeAStar_aee8d4a76e6b0407c59b82bbb8cc6969a}{goal}}, \mbox{\hyperlink{classsafe__astar_1_1SafeAStar_abfc1f9e547de6a3ece3f40b25eb2c047}{grid}})
+\begin{DoxyCompactList}\small\item\em Run clearance-\/aware A$\ast$ from {\ttfamily start} to {\ttfamily goal} on {\ttfamily grid}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classsafe__astar_1_1SafeAStar_aa573663cab2c5b996e80d1481b2b654b}{success}}
+\item 
+\mbox{\hyperlink{classsafe__astar_1_1SafeAStar_aaaf72993c468f8c6be198985e63af3f0}{safety\+Factor}}
+\item 
+\mbox{\hyperlink{classsafe__astar_1_1SafeAStar_a195b7fe2df4a17a8e8408d17907b5a08}{epsilon}}
+\item 
+\mbox{\hyperlink{classsafe__astar_1_1SafeAStar_acced2898482cf1f3c41818859d4b669f}{info}}
+\item 
+\mbox{\hyperlink{classsafe__astar_1_1SafeAStar_acf0f92f4bef234a290af2eb69348e235}{path}}
+\item 
+\mbox{\hyperlink{classsafe__astar_1_1SafeAStar_a954f489be830c4382edde4f109324a52}{start}}
+\item 
+\mbox{\hyperlink{classsafe__astar_1_1SafeAStar_aee8d4a76e6b0407c59b82bbb8cc6969a}{goal}}
+\item 
+\mbox{\hyperlink{classsafe__astar_1_1SafeAStar_abfc1f9e547de6a3ece3f40b25eb2c047}{grid}}
+\item 
+\mbox{\hyperlink{classsafe__astar_1_1SafeAStar_aba5f4df4b0aea680d23c8dab8731c1c8}{dimension}}
+\item 
+\mbox{\hyperlink{classsafe__astar_1_1SafeAStar_af660d7bfe41d9433fe51819d24ae190c}{sizes}}
+\item 
+\mbox{\hyperlink{classsafe__astar_1_1SafeAStar_a428093da5e378e513146170283d481be}{distance\+Transform}}
+\item 
+\mbox{\hyperlink{classsafe__astar_1_1SafeAStar_a498deb589c42ab51c0a63d0e717e3db6}{parent}}
+\item 
+\mbox{\hyperlink{classsafe__astar_1_1SafeAStar_a5e4d8eb43ad965520d0f71943bd5bf29}{node}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A$\ast$ with EDT-\/weighted safety costs (no hard inflation). 
+
+\begin{DoxyParagraph}{Pipeline}
+1) Compute EDT on (1 -\/ grid) so free cells carry clearance values. 2) Use full 3$^\wedge$N -\/ 1 neighborhood for expansion. 3) Edge cost = step\+\_\+cost + safety\+Factor / (epsilon + avg(EDT(u), EDT(v))). 4) Run A$\ast$ and reconstruct the path on success.
+\end{DoxyParagraph}
+This preserves reachability of narrow corridors while penalizing low-\/clearance motion, often yielding safer paths compared to pure geometric cost. 
+
+Definition at line 76 of file safe\+\_\+astar.\+py.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classsafe__astar_1_1SafeAStar_a1d6bc63d8f2b4a27371c65b448b2c46c}\label{classsafe__astar_1_1SafeAStar_a1d6bc63d8f2b4a27371c65b448b2c46c}} 
+\index{safe\_astar.SafeAStar@{safe\_astar.SafeAStar}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!safe\_astar.SafeAStar@{safe\_astar.SafeAStar}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily def safe\+\_\+astar.\+Safe\+AStar.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{float}]{safety\+Factor,  }\item[{float}]{epsilon }\end{DoxyParamCaption})}
+
+
+
+Construct a clearance-\/aware A$\ast$ planner. 
+
+\begin{DoxyVerb}   @param safetyFactor Weight on the EDT-based safety penalty term.
+   @param epsilon      Small positive constant providing numerical stability.
+\end{DoxyVerb}
+ 
+
+Definition at line 84 of file safe\+\_\+astar.\+py.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classsafe__astar_1_1SafeAStar_af1429c03303369f647b8a63aa6eceb37}\label{classsafe__astar_1_1SafeAStar_af1429c03303369f647b8a63aa6eceb37}} 
+\index{safe\_astar.SafeAStar@{safe\_astar.SafeAStar}!adjacentCoordinates@{adjacentCoordinates}}
+\index{adjacentCoordinates@{adjacentCoordinates}!safe\_astar.SafeAStar@{safe\_astar.SafeAStar}}
+\doxysubsubsection{\texorpdfstring{adjacentCoordinates()}{adjacentCoordinates()}}
+{\footnotesize\ttfamily def safe\+\_\+astar.\+Safe\+AStar.\+adjacent\+Coordinates (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{node }\end{DoxyParamCaption})}
+
+
+
+Enumerate all adjacent coordinates in N-\/D (including diagonals). 
+
+\begin{DoxyVerb}   @param node tuple[int, ...] The reference grid cell.
+   @return list[tuple[int, ...]] All 3^N - 1 neighbor coordinates
+           (not yet filtered by bounds/occupancy).
+
+   @details
+   Generates offsets in {-1, 0, 1}^N \\ {0} via itertools.product.
+   Validity and occupancy checks are performed during expansion in @ref plan().
+
+   @complexity O(3^N).
+\end{DoxyVerb}
+ 
+
+Definition at line 138 of file safe\+\_\+astar.\+py.
+
+\mbox{\Hypertarget{classsafe__astar_1_1SafeAStar_a035f4e2770a922203a5b94b76121fa3e}\label{classsafe__astar_1_1SafeAStar_a035f4e2770a922203a5b94b76121fa3e}} 
+\index{safe\_astar.SafeAStar@{safe\_astar.SafeAStar}!heuristics@{heuristics}}
+\index{heuristics@{heuristics}!safe\_astar.SafeAStar@{safe\_astar.SafeAStar}}
+\doxysubsubsection{\texorpdfstring{heuristics()}{heuristics()}}
+{\footnotesize\ttfamily  float safe\+\_\+astar.\+Safe\+AStar.\+heuristics (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{node1,  }\item[{}]{node2 }\end{DoxyParamCaption})}
+
+
+
+Manhattan (L1) heuristic between two nodes. 
+
+\begin{DoxyVerb}   @param node1 tuple[int, ...]
+   @param node2 tuple[int, ...]
+   @return float Sum over dimensions of |node1[i] - node2[i]|.
+
+   @note For diagonal-enabled neighborhoods, consider Chebyshev (L∞) or
+         Euclidean (L2 with compatible step costs) for strict admissibility.
+\end{DoxyVerb}
+ 
+
+Definition at line 119 of file safe\+\_\+astar.\+py.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classsafe__astar_1_1SafeAStar_a035f4e2770a922203a5b94b76121fa3e_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classsafe__astar_1_1SafeAStar_a21cfc85b394b641192de43952a478b48}\label{classsafe__astar_1_1SafeAStar_a21cfc85b394b641192de43952a478b48}} 
+\index{safe\_astar.SafeAStar@{safe\_astar.SafeAStar}!isValid@{isValid}}
+\index{isValid@{isValid}!safe\_astar.SafeAStar@{safe\_astar.SafeAStar}}
+\doxysubsubsection{\texorpdfstring{isValid()}{isValid()}}
+{\footnotesize\ttfamily  bool safe\+\_\+astar.\+Safe\+AStar.\+is\+Valid (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{grid\+\_\+cell }\end{DoxyParamCaption})}
+
+
+
+Check whether a cell lies within grid bounds. 
+
+\begin{DoxyVerb}   @param grid_cell tuple[int, ...] Cell index to validate.
+   @return True if the cell is inside the grid extent; False otherwise.
+
+   @complexity O(N) with N = grid dimensionality.
+\end{DoxyVerb}
+ 
+
+Definition at line 103 of file safe\+\_\+astar.\+py.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classsafe__astar_1_1SafeAStar_a21cfc85b394b641192de43952a478b48_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classsafe__astar_1_1SafeAStar_a732f8d61613db56962e93c8d399c0579}\label{classsafe__astar_1_1SafeAStar_a732f8d61613db56962e93c8d399c0579}} 
+\index{safe\_astar.SafeAStar@{safe\_astar.SafeAStar}!plan@{plan}}
+\index{plan@{plan}!safe\_astar.SafeAStar@{safe\_astar.SafeAStar}}
+\doxysubsubsection{\texorpdfstring{plan()}{plan()}}
+{\footnotesize\ttfamily def safe\+\_\+astar.\+Safe\+AStar.\+plan (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{start,  }\item[{}]{goal,  }\item[{}]{grid }\end{DoxyParamCaption})}
+
+
+
+Run clearance-\/aware A$\ast$ from {\ttfamily start} to {\ttfamily goal} on {\ttfamily grid}. 
+
+\begin{DoxyVerb}   @param start tuple[int, ...] Start index in the N-D grid.
+   @param goal  tuple[int, ...] Goal index in the N-D grid.
+   @param grid  numpy.ndarray Occupancy grid (0=free, 1=obstacle).
+
+   @return (success, path, info)
+     - success (int): 1 if a path is found, else 0
+     - path (list[tuple[int, ...]]): sequence from start→goal (inclusive)
+     - info (list[str]): diagnostics / failure reasons
+
+   @diagnostics
+\end{DoxyVerb}
+ 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{-\/ \textcolor{stringliteral}{"{}Invalid start"{}}, \textcolor{stringliteral}{"{}Invalid goal"{}}}
+\DoxyCodeLine{-\/ \textcolor{stringliteral}{"{}Start has obstacle"{}}, \textcolor{stringliteral}{"{}Goal has obstacle"{}}}
+\DoxyCodeLine{-\/ \textcolor{stringliteral}{"{}Start and goal are same"{}}}
+\DoxyCodeLine{-\/ \textcolor{stringliteral}{"{}Failed to reconstruct path."{}}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{preprocessor}{@complexity}}
+
+\end{DoxyCode}
+ Time\+: O(\+E log V) with a binary heap, where V is the number of valid cells and E the number of explored edges under the chosen neighborhood. Space O(\+V) for g\+\_\+score, visited, and parents. 
+
+Definition at line 178 of file safe\+\_\+astar.\+py.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classsafe__astar_1_1SafeAStar_aba5f4df4b0aea680d23c8dab8731c1c8}\label{classsafe__astar_1_1SafeAStar_aba5f4df4b0aea680d23c8dab8731c1c8}} 
+\index{safe\_astar.SafeAStar@{safe\_astar.SafeAStar}!dimension@{dimension}}
+\index{dimension@{dimension}!safe\_astar.SafeAStar@{safe\_astar.SafeAStar}}
+\doxysubsubsection{\texorpdfstring{dimension}{dimension}}
+{\footnotesize\ttfamily safe\+\_\+astar.\+Safe\+AStar.\+dimension}
+
+
+
+Definition at line 187 of file safe\+\_\+astar.\+py.
+
+\mbox{\Hypertarget{classsafe__astar_1_1SafeAStar_a428093da5e378e513146170283d481be}\label{classsafe__astar_1_1SafeAStar_a428093da5e378e513146170283d481be}} 
+\index{safe\_astar.SafeAStar@{safe\_astar.SafeAStar}!distanceTransform@{distanceTransform}}
+\index{distanceTransform@{distanceTransform}!safe\_astar.SafeAStar@{safe\_astar.SafeAStar}}
+\doxysubsubsection{\texorpdfstring{distanceTransform}{distanceTransform}}
+{\footnotesize\ttfamily safe\+\_\+astar.\+Safe\+AStar.\+distance\+Transform}
+
+
+
+Definition at line 214 of file safe\+\_\+astar.\+py.
+
+\mbox{\Hypertarget{classsafe__astar_1_1SafeAStar_a195b7fe2df4a17a8e8408d17907b5a08}\label{classsafe__astar_1_1SafeAStar_a195b7fe2df4a17a8e8408d17907b5a08}} 
+\index{safe\_astar.SafeAStar@{safe\_astar.SafeAStar}!epsilon@{epsilon}}
+\index{epsilon@{epsilon}!safe\_astar.SafeAStar@{safe\_astar.SafeAStar}}
+\doxysubsubsection{\texorpdfstring{epsilon}{epsilon}}
+{\footnotesize\ttfamily safe\+\_\+astar.\+Safe\+AStar.\+epsilon}
+
+
+
+Definition at line 87 of file safe\+\_\+astar.\+py.
+
+\mbox{\Hypertarget{classsafe__astar_1_1SafeAStar_aee8d4a76e6b0407c59b82bbb8cc6969a}\label{classsafe__astar_1_1SafeAStar_aee8d4a76e6b0407c59b82bbb8cc6969a}} 
+\index{safe\_astar.SafeAStar@{safe\_astar.SafeAStar}!goal@{goal}}
+\index{goal@{goal}!safe\_astar.SafeAStar@{safe\_astar.SafeAStar}}
+\doxysubsubsection{\texorpdfstring{goal}{goal}}
+{\footnotesize\ttfamily safe\+\_\+astar.\+Safe\+AStar.\+goal}
+
+
+
+Definition at line 181 of file safe\+\_\+astar.\+py.
+
+\mbox{\Hypertarget{classsafe__astar_1_1SafeAStar_abfc1f9e547de6a3ece3f40b25eb2c047}\label{classsafe__astar_1_1SafeAStar_abfc1f9e547de6a3ece3f40b25eb2c047}} 
+\index{safe\_astar.SafeAStar@{safe\_astar.SafeAStar}!grid@{grid}}
+\index{grid@{grid}!safe\_astar.SafeAStar@{safe\_astar.SafeAStar}}
+\doxysubsubsection{\texorpdfstring{grid}{grid}}
+{\footnotesize\ttfamily safe\+\_\+astar.\+Safe\+AStar.\+grid}
+
+
+
+Definition at line 182 of file safe\+\_\+astar.\+py.
+
+\mbox{\Hypertarget{classsafe__astar_1_1SafeAStar_acced2898482cf1f3c41818859d4b669f}\label{classsafe__astar_1_1SafeAStar_acced2898482cf1f3c41818859d4b669f}} 
+\index{safe\_astar.SafeAStar@{safe\_astar.SafeAStar}!info@{info}}
+\index{info@{info}!safe\_astar.SafeAStar@{safe\_astar.SafeAStar}}
+\doxysubsubsection{\texorpdfstring{info}{info}}
+{\footnotesize\ttfamily safe\+\_\+astar.\+Safe\+AStar.\+info}
+
+
+
+Definition at line 88 of file safe\+\_\+astar.\+py.
+
+\mbox{\Hypertarget{classsafe__astar_1_1SafeAStar_a5e4d8eb43ad965520d0f71943bd5bf29}\label{classsafe__astar_1_1SafeAStar_a5e4d8eb43ad965520d0f71943bd5bf29}} 
+\index{safe\_astar.SafeAStar@{safe\_astar.SafeAStar}!node@{node}}
+\index{node@{node}!safe\_astar.SafeAStar@{safe\_astar.SafeAStar}}
+\doxysubsubsection{\texorpdfstring{node}{node}}
+{\footnotesize\ttfamily safe\+\_\+astar.\+Safe\+AStar.\+node}
+
+
+
+Definition at line 226 of file safe\+\_\+astar.\+py.
+
+\mbox{\Hypertarget{classsafe__astar_1_1SafeAStar_a498deb589c42ab51c0a63d0e717e3db6}\label{classsafe__astar_1_1SafeAStar_a498deb589c42ab51c0a63d0e717e3db6}} 
+\index{safe\_astar.SafeAStar@{safe\_astar.SafeAStar}!parent@{parent}}
+\index{parent@{parent}!safe\_astar.SafeAStar@{safe\_astar.SafeAStar}}
+\doxysubsubsection{\texorpdfstring{parent}{parent}}
+{\footnotesize\ttfamily safe\+\_\+astar.\+Safe\+AStar.\+parent}
+
+
+
+Definition at line 225 of file safe\+\_\+astar.\+py.
+
+\mbox{\Hypertarget{classsafe__astar_1_1SafeAStar_acf0f92f4bef234a290af2eb69348e235}\label{classsafe__astar_1_1SafeAStar_acf0f92f4bef234a290af2eb69348e235}} 
+\index{safe\_astar.SafeAStar@{safe\_astar.SafeAStar}!path@{path}}
+\index{path@{path}!safe\_astar.SafeAStar@{safe\_astar.SafeAStar}}
+\doxysubsubsection{\texorpdfstring{path}{path}}
+{\footnotesize\ttfamily safe\+\_\+astar.\+Safe\+AStar.\+path}
+
+
+
+Definition at line 89 of file safe\+\_\+astar.\+py.
+
+\mbox{\Hypertarget{classsafe__astar_1_1SafeAStar_aaaf72993c468f8c6be198985e63af3f0}\label{classsafe__astar_1_1SafeAStar_aaaf72993c468f8c6be198985e63af3f0}} 
+\index{safe\_astar.SafeAStar@{safe\_astar.SafeAStar}!safetyFactor@{safetyFactor}}
+\index{safetyFactor@{safetyFactor}!safe\_astar.SafeAStar@{safe\_astar.SafeAStar}}
+\doxysubsubsection{\texorpdfstring{safetyFactor}{safetyFactor}}
+{\footnotesize\ttfamily safe\+\_\+astar.\+Safe\+AStar.\+safety\+Factor}
+
+
+
+Definition at line 86 of file safe\+\_\+astar.\+py.
+
+\mbox{\Hypertarget{classsafe__astar_1_1SafeAStar_af660d7bfe41d9433fe51819d24ae190c}\label{classsafe__astar_1_1SafeAStar_af660d7bfe41d9433fe51819d24ae190c}} 
+\index{safe\_astar.SafeAStar@{safe\_astar.SafeAStar}!sizes@{sizes}}
+\index{sizes@{sizes}!safe\_astar.SafeAStar@{safe\_astar.SafeAStar}}
+\doxysubsubsection{\texorpdfstring{sizes}{sizes}}
+{\footnotesize\ttfamily safe\+\_\+astar.\+Safe\+AStar.\+sizes}
+
+
+
+Definition at line 188 of file safe\+\_\+astar.\+py.
+
+\mbox{\Hypertarget{classsafe__astar_1_1SafeAStar_a954f489be830c4382edde4f109324a52}\label{classsafe__astar_1_1SafeAStar_a954f489be830c4382edde4f109324a52}} 
+\index{safe\_astar.SafeAStar@{safe\_astar.SafeAStar}!start@{start}}
+\index{start@{start}!safe\_astar.SafeAStar@{safe\_astar.SafeAStar}}
+\doxysubsubsection{\texorpdfstring{start}{start}}
+{\footnotesize\ttfamily safe\+\_\+astar.\+Safe\+AStar.\+start}
+
+
+
+Definition at line 180 of file safe\+\_\+astar.\+py.
+
+\mbox{\Hypertarget{classsafe__astar_1_1SafeAStar_aa573663cab2c5b996e80d1481b2b654b}\label{classsafe__astar_1_1SafeAStar_aa573663cab2c5b996e80d1481b2b654b}} 
+\index{safe\_astar.SafeAStar@{safe\_astar.SafeAStar}!success@{success}}
+\index{success@{success}!safe\_astar.SafeAStar@{safe\_astar.SafeAStar}}
+\doxysubsubsection{\texorpdfstring{success}{success}}
+{\footnotesize\ttfamily safe\+\_\+astar.\+Safe\+AStar.\+success}
+
+
+
+Definition at line 85 of file safe\+\_\+astar.\+py.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+safeplan/algos/\mbox{\hyperlink{safe__astar_8py}{safe\+\_\+astar.\+py}}\end{DoxyCompactItemize}

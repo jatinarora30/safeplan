@@ -1,8 +1,8 @@
 <map id="cbf_rrt.CBFRRT.isSafe" name="cbf_rrt.CBFRRT.isSafe">
-<area shape="rect" id="node1" title="Control Barrier Function (CBF) safety check for a candidate cell and velocity." alt="" coords="5,107,168,133"/>
-<area shape="rect" id="node2" href="$classa__star_1_1AStar.html#ad067114e66c7d06d0a59d3a90e2a26c2" title="Compute the heuristic distance between two nodes (Manhattan / L1)." alt="" coords="265,5,431,32"/>
-<area shape="rect" id="node3" href="$classcbf__rrt_1_1CBFRRT.html#a35ff8d0a68b82a5919947bd521e621f1" title="Squared Euclidean proxy between two nodes." alt="" coords="255,56,441,83"/>
-<area shape="rect" id="node4" href="$classinflated__astar_1_1InflatedAStar.html#a09966515baaed27358d5e860536b4508" title="Manhattan (L1) heuristic between two nodes." alt="" coords="216,107,480,133"/>
-<area shape="rect" id="node5" href="$classoptimized__astar_1_1OptimizedAStar.html#a459963ca43f7006d271c1c0aa50ab2c3" title="Heuristic distance between two nodes (Manhattan)." alt="" coords="249,158,447,199"/>
-<area shape="rect" id="node6" href="$classsdf__astar_1_1SDFAStar.html#a9b0debabdcc2e356e1a1d9ff01e67326" title="Heuristic distance between two nodes (Manhattan)." alt="" coords="243,224,453,251"/>
+<area shape="rect" id="node1" title="Control Barrier Function (CBF) safety check for a candidate cell and velocity." alt="" coords="5,115,168,141"/>
+<area shape="rect" id="node2" href="$classa__star_1_1AStar.html#ad067114e66c7d06d0a59d3a90e2a26c2" title="Compute the heuristic distance between two nodes (Manhattan / L1)." alt="" coords="244,5,411,32"/>
+<area shape="rect" id="node3" href="$classcbf__rrt_1_1CBFRRT.html#a35ff8d0a68b82a5919947bd521e621f1" title="Squared Euclidean proxy between two nodes." alt="" coords="235,56,420,83"/>
+<area shape="rect" id="node4" href="$classoptimized__astar_1_1OptimizedAStar.html#a459963ca43f7006d271c1c0aa50ab2c3" title="Heuristic distance between two nodes (Manhattan)." alt="" coords="229,107,426,149"/>
+<area shape="rect" id="node5" href="$classsafe__astar_1_1SafeAStar.html#a035f4e2770a922203a5b94b76121fa3e" title="Manhattan (L1) heuristic between two nodes." alt="" coords="216,173,439,200"/>
+<area shape="rect" id="node6" href="$classsdf__astar_1_1SDFAStar.html#a9b0debabdcc2e356e1a1d9ff01e67326" title="Heuristic distance between two nodes (Manhattan)." alt="" coords="222,224,433,251"/>
 </map>

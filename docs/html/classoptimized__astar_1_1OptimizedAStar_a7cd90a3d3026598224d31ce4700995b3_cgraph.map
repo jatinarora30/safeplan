@@ -1,18 +1,19 @@
 <map id="optimized_astar.OptimizedAStar.bidirectionalOptimize" name="optimized_astar.OptimizedAStar.bidirectionalOptimize">
-<area shape="rect" id="node1" title="Apply directional shortcutting in both directions and choose the better result." alt="" coords="5,231,205,272"/>
-<area shape="rect" id="node2" href="$classoptimized__astar_1_1OptimizedAStar.html#a4f21260374482974a30986f653d9d942" title="Shortcut a path by removing unnecessary waypoints in one direction." alt="" coords="253,231,451,272"/>
-<area shape="rect" id="node3" href="$classcbf__rrt_1_1CBFRRT.html#a82a820b0528e668d2b59b34abd5f5f55" title="Check if the segment between two points is collision&#45;free." alt="" coords="523,187,717,214"/>
-<area shape="rect" id="node13" href="$classfs__planner_1_1FSPlanner.html#af6c1ddea4a67b7b442c8ac977074bd85" title="Check if the straight segment between two points is collision&#45;free." alt="" coords="505,238,735,265"/>
-<area shape="rect" id="node14" href="$classoptimized__astar_1_1OptimizedAStar.html#aba36b053b8514d9048881d0132b80ba6" title="Check if the segment between two points is collision&#45;free with clearance." alt="" coords="521,289,719,331"/>
-<area shape="rect" id="node15" href="$classrrt_1_1RRT.html#ac9212c57e97017d0fbcec815774c86ab" title="Check if the segment between two points is collision&#45;free." alt="" coords="550,355,690,382"/>
-<area shape="rect" id="node16" href="$classvoronoi__planner_1_1VoronoiPlanner.html#aec0c7bc228c11a8ef7247d33b56f41b8" title="Check if the segment between two points is collision&#45;free." alt="" coords="499,121,741,163"/>
-<area shape="rect" id="node4" href="$classa__star_1_1AStar.html#ad2b6aceaa3b33aed84b74d0419ee3e76" title="Check whether a cell lies within grid bounds." alt="" coords="837,355,984,382"/>
-<area shape="rect" id="node5" href="$classcbf__rrt_1_1CBFRRT.html#a18bef5b5fca7a319e31e1bc837675a30" title="Check whether a cell lies within grid bounds." alt="" coords="828,406,993,433"/>
-<area shape="rect" id="node6" href="$classfs__planner_1_1FSPlanner.html#a3b187fffd089e3ce0b92c4169a153360" title="Check whether a cell index lies within grid bounds." alt="" coords="809,457,1012,483"/>
-<area shape="rect" id="node7" href="$classinflated__astar_1_1InflatedAStar.html#a49316cbb2af2a91696b84b39d5cd3ce0" title="Check whether a cell lies within grid bounds." alt="" coords="805,5,1017,47"/>
-<area shape="rect" id="node8" href="$classoptimized__astar_1_1OptimizedAStar.html#a753c4860a21c8819eaccc8e95f197373" title="Check whether a cell lies within grid bounds." alt="" coords="812,71,1009,112"/>
-<area shape="rect" id="node9" href="$classrrt_1_1RRT.html#a4b573e97af5b918e0b33f66a315b31ea" title="Check whether a cell lies within grid bounds." alt="" coords="855,137,967,163"/>
-<area shape="rect" id="node10" href="$classsdf__astar_1_1SDFAStar.html#a60d5448604317e368b1cf5a537ddc371" title="Check whether a cell lies within grid bounds." alt="" coords="815,187,1006,214"/>
-<area shape="rect" id="node11" href="$classupp_1_1UPP.html#a3ecacb3783e49764516828b56fc8e365" title="Check whether a cell lies within grid bounds." alt="" coords="850,238,971,265"/>
-<area shape="rect" id="node12" href="$classvoronoi__planner_1_1VoronoiPlanner.html#ab26a9e362b5b2f27cf462b76038361e4" title="Check whether a grid&#45;cell index lies within bounds." alt="" coords="789,289,1032,331"/>
+<area shape="rect" id="node1" title="Apply directional shortcutting in both directions and choose the better result." alt="" coords="5,259,205,301"/>
+<area shape="rect" id="node2" href="$classoptimized__astar_1_1OptimizedAStar.html#a4f21260374482974a30986f653d9d942" title="Shortcut a path by removing unnecessary waypoints in one direction." alt="" coords="253,259,451,301"/>
+<area shape="rect" id="node3" href="$classcbf__rrt_1_1CBFRRT.html#a82a820b0528e668d2b59b34abd5f5f55" title="Check if the segment between two points is collision&#45;free." alt="" coords="523,208,717,235"/>
+<area shape="rect" id="node13" href="$classfs__planner_1_1FSPlanner.html#af6c1ddea4a67b7b442c8ac977074bd85" title="Check if the straight segment between two points is collision&#45;free." alt="" coords="505,437,735,464"/>
+<area shape="rect" id="node15" href="$classoptimized__astar_1_1OptimizedAStar.html#aba36b053b8514d9048881d0132b80ba6" title="Check if the segment between two points is collision&#45;free with clearance." alt="" coords="521,259,719,301"/>
+<area shape="rect" id="node16" href="$classrrt_1_1RRT.html#ac9212c57e97017d0fbcec815774c86ab" title="Check if the segment between two points is collision&#45;free." alt="" coords="550,325,690,352"/>
+<area shape="rect" id="node17" href="$classvoronoi__planner_1_1VoronoiPlanner.html#aec0c7bc228c11a8ef7247d33b56f41b8" title="Check if the segment between two points is collision&#45;free." alt="" coords="499,142,741,183"/>
+<area shape="rect" id="node4" href="$classa__star_1_1AStar.html#ad2b6aceaa3b33aed84b74d0419ee3e76" title="Check whether a cell lies within grid bounds." alt="" coords="837,5,984,32"/>
+<area shape="rect" id="node5" href="$classcbf__rrt_1_1CBFRRT.html#a18bef5b5fca7a319e31e1bc837675a30" title="Check whether a cell lies within grid bounds." alt="" coords="828,56,993,83"/>
+<area shape="rect" id="node6" href="$classfs__planner_1_1FSPlanner.html#a3b187fffd089e3ce0b92c4169a153360" title="Check whether a cell index lies within grid bounds." alt="" coords="809,107,1012,133"/>
+<area shape="rect" id="node7" href="$classoptimized__astar_1_1OptimizedAStar.html#a753c4860a21c8819eaccc8e95f197373" title="Check whether a cell lies within grid bounds." alt="" coords="812,158,1009,199"/>
+<area shape="rect" id="node8" href="$classrrt_1_1RRT.html#a4b573e97af5b918e0b33f66a315b31ea" title="Check whether a cell lies within grid bounds." alt="" coords="855,224,967,251"/>
+<area shape="rect" id="node9" href="$classsafe__astar_1_1SafeAStar.html#a21cfc85b394b641192de43952a478b48" title="Check whether a cell lies within grid bounds." alt="" coords="809,275,1012,301"/>
+<area shape="rect" id="node10" href="$classsdf__astar_1_1SDFAStar.html#a60d5448604317e368b1cf5a537ddc371" title="Check whether a cell lies within grid bounds." alt="" coords="815,325,1006,352"/>
+<area shape="rect" id="node11" href="$classupp_1_1UPP.html#a3ecacb3783e49764516828b56fc8e365" title="Check whether a cell lies within grid bounds." alt="" coords="850,376,971,403"/>
+<area shape="rect" id="node12" href="$classvoronoi__planner_1_1VoronoiPlanner.html#ab26a9e362b5b2f27cf462b76038361e4" title="Check whether a grid&#45;cell index lies within bounds." alt="" coords="789,427,1032,469"/>
+<area shape="rect" id="node14" href="$classfs__planner_1_1FSPlanner.html#aee2c0549dc810af2f68bb53eaf2682b3" title=" " alt="" coords="831,493,991,534"/>
 </map>

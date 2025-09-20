@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['nodesinpath_255',['NodesInPath',['../classnodes__in__path_1_1NodesInPath.html',1,'nodes_in_path']]]
+  ['optimaldeviation_248',['OptimalDeviation',['../classoptimal__deviation_1_1OptimalDeviation.html',1,'optimal_deviation']]],
+  ['optimizedastar_249',['OptimizedAStar',['../classoptimized__astar_1_1OptimizedAStar.html',1,'optimized_astar']]],
+  ['optisafeindex_250',['OptiSafeIndex',['../classoptisafe__index_1_1OptiSafeIndex.html',1,'optisafe_index']]]
 ];

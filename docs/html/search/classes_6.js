@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['inflatedastar_251',['InflatedAStar',['../classinflated__astar_1_1InflatedAStar.html',1,'inflated_astar']]]
+  ['jerkpermeter_244',['JerkPerMeter',['../classjerk__per__meter_1_1JerkPerMeter.html',1,'jerk_per_meter']]]
 ];

@@ -15,7 +15,6 @@ var namespaces_dup =
     [ "distance_to_goal", "namespacedistance__to__goal.html", "namespacedistance__to__goal" ],
     [ "fs_planner", "namespacefs__planner.html", "namespacefs__planner" ],
     [ "generate_grid", "namespacegenerate__grid.html", "namespacegenerate__grid" ],
-    [ "inflated_astar", "namespaceinflated__astar.html", "namespaceinflated__astar" ],
     [ "jerk_per_meter", "namespacejerk__per__meter.html", "namespacejerk__per__meter" ],
     [ "logger", "namespacelogger.html", "namespacelogger" ],
     [ "minimum_clearance", "namespaceminimum__clearance.html", "namespaceminimum__clearance" ],
@@ -25,6 +24,7 @@ var namespaces_dup =
     [ "optisafe_index", "namespaceoptisafe__index.html", "namespaceoptisafe__index" ],
     [ "path_cost", "namespacepath__cost.html", "namespacepath__cost" ],
     [ "rrt", "namespacerrt.html", "namespacerrt" ],
+    [ "safe_astar", "namespacesafe__astar.html", "namespacesafe__astar" ],
     [ "safeplan", "namespacesafeplan.html", "namespacesafeplan" ],
     [ "sdf_astar", "namespacesdf__astar.html", "namespacesdf__astar" ],
     [ "stats", "namespacestats.html", "namespacestats" ],
@@ -33,12 +33,6 @@ var namespaces_dup =
       [ "prefer_plotly", "namespacetest.html#a4aa6b1530edeb157d2e112552f9aa50b", null ],
       [ "sf", "namespacetest.html#adee94c29df5f6a721531df05608c62fa", null ],
       [ "vs", "namespacetest.html#a77d49c4c1e788c6a702e40460633e939", null ]
-    ] ],
-    [ "test2", "namespacetest2.html", [
-      [ "sdfCost", "namespacetest2.html#a8ebc86a1111b946c237a89b19baf9c31", null ],
-      [ "sdfCost_sorted", "namespacetest2.html#a38e2b87b693856baabacf551272b0f5a", null ],
-      [ "sdfCosts", "namespacetest2.html#a14f07d4843f6b7be6330bd52c5b85e5a", null ],
-      [ "sorted_sdfCosts", "namespacetest2.html#a6d4d2037822793ec28805a163f129616", null ]
     ] ],
     [ "turning_angle", "namespaceturning__angle.html", "namespaceturning__angle" ],
     [ "upp", "namespaceupp.html", "namespaceupp" ],

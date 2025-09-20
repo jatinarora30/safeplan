@@ -12,5 +12,8 @@ sf.compute()
 
 vs=Visualize()
 vs = Visualize()
-vs.see("/home/jatinarora/safeplan/safeplan/runs/run1.json", iterNo=1, prefer_plotly=True)
+vs.see("/home/jatinarora/safeplan/safeplan/runs/run1.json", iterNo=30, prefer_plotly=True)
+
+
+
 

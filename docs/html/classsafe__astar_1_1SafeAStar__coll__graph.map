@@ -1,0 +1,5 @@
+<map id="safe_astar.SafeAStar" name="safe_astar.SafeAStar">
+<area shape="rect" id="node1" title="A* with EDT&#45;weighted safety costs (no hard inflation)." alt="" coords="20,155,177,181"/>
+<area shape="rect" id="node2" href="$classbaseplanner_1_1BasePlanner.html" title="Abstract base/registry for planning algorithms." alt="" coords="5,80,192,107"/>
+<area shape="rect" id="node3" title=" " alt="" coords="74,5,123,32"/>
+</map>

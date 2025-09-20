@@ -61,13 +61,13 @@ def \mbox{\hyperlink{classfs__planner_1_1FSPlanner_a0ed6b41a13ce67f3b1cdac1c387f
 \item 
 \mbox{\hyperlink{classfs__planner_1_1FSPlanner_a3ecb15f79a1e2676d49e39bb63a61ec7}{path}}
 \item 
+\mbox{\hyperlink{classfs__planner_1_1FSPlanner_ab70c691a174b9a2e38ed1b20d6f3d44a}{dimension}}
+\item 
 \mbox{\hyperlink{classfs__planner_1_1FSPlanner_afde21e0e6fb96552a62fd1fd93d22ae1}{start}}
 \item 
 \mbox{\hyperlink{classfs__planner_1_1FSPlanner_a5bb5ec7ca1dd7815c0466d3354f9ca79}{goal}}
 \item 
 \mbox{\hyperlink{classfs__planner_1_1FSPlanner_aecba7611a9fe2ecc1effe30441c9a538}{grid}}
-\item 
-\mbox{\hyperlink{classfs__planner_1_1FSPlanner_ab70c691a174b9a2e38ed1b20d6f3d44a}{dimension}}
 \item 
 \mbox{\hyperlink{classfs__planner_1_1FSPlanner_ac5b5820061d3879663575e3933edd0b2}{sizes}}
 \item 
@@ -103,13 +103,14 @@ Definition at line 71 of file fs\+\_\+planner.\+py.
 Construct an \mbox{\hyperlink{classfs__planner_1_1FSPlanner}{FSPlanner}} instance. 
 
 \begin{DoxyVerb}   @param pointSamples Number of interpolation samples for edge collision checks.
+                       (Kept for API compatibility; LOS now uses integer stepping.)
    @param cw Clearance weight in the edge cost.
    @param epsilon Small constant to avoid division by zero and improve stability.
    @param maxNeigh Maximum number of neighbors retained after pruning.
 \end{DoxyVerb}
  
 
-Definition at line 81 of file fs\+\_\+planner.\+py.
+Definition at line 82 of file fs\+\_\+planner.\+py.
 
 
 
@@ -124,13 +125,17 @@ Definition at line 81 of file fs\+\_\+planner.\+py.
 
 Enumerate all adjacent coordinates in N-\/D including diagonals. 
 
-\begin{DoxyVerb}   @param node Reference grid cell (tuple[int,...]).
-   @return List of neighbors without bounds or occupancy filtering.
-\end{DoxyVerb}
- 
 
-Definition at line 119 of file fs\+\_\+planner.\+py.
 
+Definition at line 120 of file fs\+\_\+planner.\+py.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classfs__planner_1_1FSPlanner_a4d0ac8768517a255928ea128f768dc41_cgraph}
+\end{center}
+\end{figure}
 \mbox{\Hypertarget{classfs__planner_1_1FSPlanner_a60b16e523a082bba0915e5466d1edeb1}\label{classfs__planner_1_1FSPlanner_a60b16e523a082bba0915e5466d1edeb1}} 
 \index{fs\_planner.FSPlanner@{fs\_planner.FSPlanner}!dist@{dist}}
 \index{dist@{dist}!fs\_planner.FSPlanner@{fs\_planner.FSPlanner}}
@@ -143,7 +148,7 @@ Euclidean distance between two N-\/D grid points.
 
 
 
-Definition at line 110 of file fs\+\_\+planner.\+py.
+Definition at line 112 of file fs\+\_\+planner.\+py.
 
 Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
@@ -162,13 +167,9 @@ Here is the caller graph for this function\+:\nopagebreak
 
 Clearance penalty for traversing from node1 to node2. 
 
-\begin{DoxyVerb}   @details
-   Uses average clearance along the step and scales the penalty with @p cw.
-   Larger penalty discourages steps through narrow regions.
-\end{DoxyVerb}
- 
 
-Definition at line 176 of file fs\+\_\+planner.\+py.
+
+Definition at line 230 of file fs\+\_\+planner.\+py.
 
 Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
@@ -194,13 +195,9 @@ Here is the caller graph for this function\+:\nopagebreak
 
 Directional clearance change from node1 to node2. 
 
-\begin{DoxyVerb}   @details
-   Approximates how clearance varies along the step. Lower values suggest
-   moving into safer space. Used for neighbor ordering.
-\end{DoxyVerb}
- 
 
-Definition at line 165 of file fs\+\_\+planner.\+py.
+
+Definition at line 225 of file fs\+\_\+planner.\+py.
 
 Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
@@ -219,13 +216,9 @@ Here is the call graph for this function\+:\nopagebreak
 
 Keep up to {\ttfamily max\+Neigh} neighbors best aligned with a target direction. 
 
-\begin{DoxyVerb}   @details
-   Scores each neighbor by the cosine with @p distVec (goal direction blended
-   with safest local direction), keeps the top @p maxNeigh.
-\end{DoxyVerb}
- 
+Uses precomputed neighbor unit vectors to avoid per-\/step allocations. 
 
-Definition at line 201 of file fs\+\_\+planner.\+py.
+Definition at line 252 of file fs\+\_\+planner.\+py.
 
 \mbox{\Hypertarget{classfs__planner_1_1FSPlanner_af6c1ddea4a67b7b442c8ac977074bd85}\label{classfs__planner_1_1FSPlanner_af6c1ddea4a67b7b442c8ac977074bd85}} 
 \index{fs\_planner.FSPlanner@{fs\_planner.FSPlanner}!isEdgeFree@{isEdgeFree}}
@@ -237,18 +230,9 @@ Definition at line 201 of file fs\+\_\+planner.\+py.
 
 Check if the straight segment between two points is collision-\/free. 
 
-\begin{DoxyVerb}   @details
-   Uniformly samples @p self.pointSamples points on the segment [pt1, pt2],
-   rounds each sample to the nearest grid index, and rejects the edge if any
-   index is out-of-bounds or occupied.
+Uses supercover Bresenham in 2-\/D; falls back to simple voxel stepping for N-\/D. 
 
-   @param pt1 Start point (tuple[int,...]).
-   @param pt2 End point   (tuple[int,...]).
-   @return True if all sampled indices are valid and free.
-\end{DoxyVerb}
- 
-
-Definition at line 146 of file fs\+\_\+planner.\+py.
+Definition at line 182 of file fs\+\_\+planner.\+py.
 
 Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
@@ -274,12 +258,9 @@ Here is the caller graph for this function\+:\nopagebreak
 
 Check whether a cell index lies within grid bounds. 
 
-\begin{DoxyVerb}   @param grid_cell N-D integer coordinate (tuple[int,...]).
-   @return True if inside bounds; False otherwise.
-\end{DoxyVerb}
- 
 
-Definition at line 101 of file fs\+\_\+planner.\+py.
+
+Definition at line 104 of file fs\+\_\+planner.\+py.
 
 Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
@@ -298,27 +279,11 @@ Here is the caller graph for this function\+:\nopagebreak
 
 Run FS-\/\+Planner on an N-\/D occupancy grid. 
 
-\begin{DoxyVerb}   @param start Start cell (tuple[int,...]).
-   @param goal  Goal cell  (tuple[int,...]).
-   @param grid  N-D occupancy array with values {0=free, 1=obstacle}.
-
-   @return (success, path, info)
-     - success: 1 on success, else 0
-     - path   : list of N-D cells from start to goal (inclusive) or empty
-     - info   : diagnostics list
-
-   @diagnostics
+\begin{DoxyVerb}   @return (success, path, info)
 \end{DoxyVerb}
  
-\begin{DoxyCode}{0}
-\DoxyCodeLine{\textcolor{stringliteral}{"{}Invalid start"{}}, \textcolor{stringliteral}{"{}Invalid goal"{}}, \textcolor{stringliteral}{"{}Start has obstacle"{}},}
-\DoxyCodeLine{\textcolor{stringliteral}{"{}Goal has obstacle"{}}, \textcolor{stringliteral}{"{}Start and goal are same"{}},}
-\DoxyCodeLine{\textcolor{stringliteral}{"{}Failed to reconstruct path."{}}}
 
-\end{DoxyCode}
- 
-
-Definition at line 236 of file fs\+\_\+planner.\+py.
+Definition at line 293 of file fs\+\_\+planner.\+py.
 
 
 
@@ -331,7 +296,7 @@ Definition at line 236 of file fs\+\_\+planner.\+py.
 
 
 
-Definition at line 84 of file fs\+\_\+planner.\+py.
+Definition at line 85 of file fs\+\_\+planner.\+py.
 
 \mbox{\Hypertarget{classfs__planner_1_1FSPlanner_ab70c691a174b9a2e38ed1b20d6f3d44a}\label{classfs__planner_1_1FSPlanner_ab70c691a174b9a2e38ed1b20d6f3d44a}} 
 \index{fs\_planner.FSPlanner@{fs\_planner.FSPlanner}!dimension@{dimension}}
@@ -341,7 +306,7 @@ Definition at line 84 of file fs\+\_\+planner.\+py.
 
 
 
-Definition at line 245 of file fs\+\_\+planner.\+py.
+Definition at line 189 of file fs\+\_\+planner.\+py.
 
 \mbox{\Hypertarget{classfs__planner_1_1FSPlanner_af3ac0c354d3ed1de522139be28576dbf}\label{classfs__planner_1_1FSPlanner_af3ac0c354d3ed1de522139be28576dbf}} 
 \index{fs\_planner.FSPlanner@{fs\_planner.FSPlanner}!distanceTransform@{distanceTransform}}
@@ -351,7 +316,7 @@ Definition at line 245 of file fs\+\_\+planner.\+py.
 
 
 
-Definition at line 273 of file fs\+\_\+planner.\+py.
+Definition at line 356 of file fs\+\_\+planner.\+py.
 
 \mbox{\Hypertarget{classfs__planner_1_1FSPlanner_a115dc16570aa5d9fd7e11e1dbd35ea45}\label{classfs__planner_1_1FSPlanner_a115dc16570aa5d9fd7e11e1dbd35ea45}} 
 \index{fs\_planner.FSPlanner@{fs\_planner.FSPlanner}!eps@{eps}}
@@ -361,7 +326,7 @@ Definition at line 273 of file fs\+\_\+planner.\+py.
 
 
 
-Definition at line 85 of file fs\+\_\+planner.\+py.
+Definition at line 86 of file fs\+\_\+planner.\+py.
 
 \mbox{\Hypertarget{classfs__planner_1_1FSPlanner_a5bb5ec7ca1dd7815c0466d3354f9ca79}\label{classfs__planner_1_1FSPlanner_a5bb5ec7ca1dd7815c0466d3354f9ca79}} 
 \index{fs\_planner.FSPlanner@{fs\_planner.FSPlanner}!goal@{goal}}
@@ -371,7 +336,7 @@ Definition at line 85 of file fs\+\_\+planner.\+py.
 
 
 
-Definition at line 239 of file fs\+\_\+planner.\+py.
+Definition at line 296 of file fs\+\_\+planner.\+py.
 
 \mbox{\Hypertarget{classfs__planner_1_1FSPlanner_aecba7611a9fe2ecc1effe30441c9a538}\label{classfs__planner_1_1FSPlanner_aecba7611a9fe2ecc1effe30441c9a538}} 
 \index{fs\_planner.FSPlanner@{fs\_planner.FSPlanner}!grid@{grid}}
@@ -381,7 +346,7 @@ Definition at line 239 of file fs\+\_\+planner.\+py.
 
 
 
-Definition at line 240 of file fs\+\_\+planner.\+py.
+Definition at line 297 of file fs\+\_\+planner.\+py.
 
 \mbox{\Hypertarget{classfs__planner_1_1FSPlanner_a4f07373ca99787b843c71d727f38d516}\label{classfs__planner_1_1FSPlanner_a4f07373ca99787b843c71d727f38d516}} 
 \index{fs\_planner.FSPlanner@{fs\_planner.FSPlanner}!info@{info}}
@@ -391,7 +356,7 @@ Definition at line 240 of file fs\+\_\+planner.\+py.
 
 
 
-Definition at line 88 of file fs\+\_\+planner.\+py.
+Definition at line 89 of file fs\+\_\+planner.\+py.
 
 \mbox{\Hypertarget{classfs__planner_1_1FSPlanner_a794510958722882e67fbd8b64df61eca}\label{classfs__planner_1_1FSPlanner_a794510958722882e67fbd8b64df61eca}} 
 \index{fs\_planner.FSPlanner@{fs\_planner.FSPlanner}!maxNeigh@{maxNeigh}}
@@ -401,7 +366,7 @@ Definition at line 88 of file fs\+\_\+planner.\+py.
 
 
 
-Definition at line 86 of file fs\+\_\+planner.\+py.
+Definition at line 87 of file fs\+\_\+planner.\+py.
 
 \mbox{\Hypertarget{classfs__planner_1_1FSPlanner_a25db73595026972d647febe6f14683a2}\label{classfs__planner_1_1FSPlanner_a25db73595026972d647febe6f14683a2}} 
 \index{fs\_planner.FSPlanner@{fs\_planner.FSPlanner}!node@{node}}
@@ -411,7 +376,7 @@ Definition at line 86 of file fs\+\_\+planner.\+py.
 
 
 
-Definition at line 285 of file fs\+\_\+planner.\+py.
+Definition at line 374 of file fs\+\_\+planner.\+py.
 
 \mbox{\Hypertarget{classfs__planner_1_1FSPlanner_a3ecb15f79a1e2676d49e39bb63a61ec7}\label{classfs__planner_1_1FSPlanner_a3ecb15f79a1e2676d49e39bb63a61ec7}} 
 \index{fs\_planner.FSPlanner@{fs\_planner.FSPlanner}!path@{path}}
@@ -421,7 +386,7 @@ Definition at line 285 of file fs\+\_\+planner.\+py.
 
 
 
-Definition at line 89 of file fs\+\_\+planner.\+py.
+Definition at line 90 of file fs\+\_\+planner.\+py.
 
 \mbox{\Hypertarget{classfs__planner_1_1FSPlanner_a46833e8eb03759a3f2b23c4556abae60}\label{classfs__planner_1_1FSPlanner_a46833e8eb03759a3f2b23c4556abae60}} 
 \index{fs\_planner.FSPlanner@{fs\_planner.FSPlanner}!pointSamples@{pointSamples}}
@@ -431,7 +396,7 @@ Definition at line 89 of file fs\+\_\+planner.\+py.
 
 
 
-Definition at line 83 of file fs\+\_\+planner.\+py.
+Definition at line 84 of file fs\+\_\+planner.\+py.
 
 \mbox{\Hypertarget{classfs__planner_1_1FSPlanner_ac5b5820061d3879663575e3933edd0b2}\label{classfs__planner_1_1FSPlanner_ac5b5820061d3879663575e3933edd0b2}} 
 \index{fs\_planner.FSPlanner@{fs\_planner.FSPlanner}!sizes@{sizes}}
@@ -441,7 +406,7 @@ Definition at line 83 of file fs\+\_\+planner.\+py.
 
 
 
-Definition at line 246 of file fs\+\_\+planner.\+py.
+Definition at line 303 of file fs\+\_\+planner.\+py.
 
 \mbox{\Hypertarget{classfs__planner_1_1FSPlanner_afde21e0e6fb96552a62fd1fd93d22ae1}\label{classfs__planner_1_1FSPlanner_afde21e0e6fb96552a62fd1fd93d22ae1}} 
 \index{fs\_planner.FSPlanner@{fs\_planner.FSPlanner}!start@{start}}
@@ -451,7 +416,7 @@ Definition at line 246 of file fs\+\_\+planner.\+py.
 
 
 
-Definition at line 238 of file fs\+\_\+planner.\+py.
+Definition at line 295 of file fs\+\_\+planner.\+py.
 
 \mbox{\Hypertarget{classfs__planner_1_1FSPlanner_a81146297d3b212c9c36c2b87da98e756}\label{classfs__planner_1_1FSPlanner_a81146297d3b212c9c36c2b87da98e756}} 
 \index{fs\_planner.FSPlanner@{fs\_planner.FSPlanner}!success@{success}}
@@ -461,7 +426,7 @@ Definition at line 238 of file fs\+\_\+planner.\+py.
 
 
 
-Definition at line 82 of file fs\+\_\+planner.\+py.
+Definition at line 83 of file fs\+\_\+planner.\+py.
 
 
 

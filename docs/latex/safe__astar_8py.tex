@@ -1,0 +1,77 @@
+\hypertarget{safe__astar_8py}{}\doxysection{safeplan/algos/safe\+\_\+astar.py File Reference}
+\label{safe__astar_8py}\index{safeplan/algos/safe\_astar.py@{safeplan/algos/safe\_astar.py}}
+
+
+Clearance-\/aware A$\ast$ on N-\/D occupancy grids using EDT-\/based safety costs.  
+
+
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classsafe__astar_1_1SafeAStar}{safe\+\_\+astar.\+Safe\+AStar}}
+\begin{DoxyCompactList}\small\item\em A$\ast$ with EDT-\/weighted safety costs (no hard inflation). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \mbox{\hyperlink{namespacesafe__astar}{safe\+\_\+astar}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Clearance-\/aware A$\ast$ on N-\/D occupancy grids using EDT-\/based safety costs. 
+
+This module implements an A$\ast$ planner on an N-\/D occupancy grid (0 = free, 1 = obstacle) that explicitly trades off path length and safety. Instead of inflating obstacles, it computes a Euclidean Distance Transform (EDT) over free space and adds a {\bfseries{soft safety penalty}} to each edge cost\+:
+
+g(u→v) = step\+\_\+cost(u, v) + safety\+Factor / (epsilon + 0.\+5$\ast$(EDT\mbox{[}u\mbox{]} + EDT\mbox{[}v\mbox{]}))
+
+This penalizes moves that pass close to obstacles while keeping the full free space available (no hard removal of narrow passages). It differs from “inflated A$\ast$” where near-\/obstacle cells are marked occupied.
+
+\begin{DoxyParagraph}{Conventions}
+
+\begin{DoxyItemize}
+\item Grid values\+: 0 = free, 1 = obstacle.
+\item Coordinates\+: integer grid indices in N dimensions.
+\item Neighborhood\+: all 3$^\wedge$N -\/ 1 offsets (axis-\/aligned + diagonals).
+\item Step costs\+: axis moves cost 1.\+0; diagonal/off-\/axis cost L2 magnitude.
+\item Heuristic\+: Manhattan (L1) by default. If you allow diagonal moves and want strict admissibility, prefer Chebyshev (L∞) or Euclidean (L2 with consistent step costs).
+\end{DoxyItemize}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Inputs (to plan())}
+
+\begin{DoxyItemize}
+\item {\ttfamily start} \+: tuple\mbox{[}int, ...\mbox{]} — start grid cell (e.\+g., (row, col\mbox{[}, ...\mbox{]}))
+\item {\ttfamily goal} \+: tuple\mbox{[}int, ...\mbox{]} — goal grid cell
+\item {\ttfamily grid} \+: numpy.\+ndarray (N-\/D), values \{0=free, 1=obstacle\}
+\end{DoxyItemize}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Constructor Args}
+
+\begin{DoxyItemize}
+\item {\ttfamily safety\+Factor} \+: float — weight on the EDT-\/based safety penalty (larger → more clearance-\/seeking)
+\item {\ttfamily epsilon} \+: float — small positive constant to avoid division by zero in the safety term
+\end{DoxyItemize}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Outputs (from plan())}
+
+\begin{DoxyItemize}
+\item {\ttfamily success} \+: int — 1 if a path is found, else 0
+\item {\ttfamily path} \+: list\mbox{[}tuple\mbox{[}int, ...\mbox{]}\mbox{]} — sequence of cells from start→goal (inclusive) or empty
+\item {\ttfamily info} \+: list\mbox{[}str\mbox{]} — diagnostics (e.\+g., \char`\"{}\+Invalid goal\char`\"{}, \char`\"{}\+Failed to reconstruct path\char`\"{})
+\end{DoxyItemize}
+\end{DoxyParagraph}
+\begin{DoxyNote}{Note}
+
+\begin{DoxyItemize}
+\item This “soft-\/constraint” approach keeps narrow passages feasible but discourages them unless necessary. Tune {\ttfamily safety\+Factor} and {\ttfamily epsilon} to balance optimality vs. clearance.
+\item With diagonal moves, Manhattan (L1) is not strictly admissible; use L∞ or L2 with consistent step costs if optimality guarantees are required.
+\end{DoxyItemize}
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+Base\+Planner, distance\+\_\+transform\+\_\+edt
+\end{DoxySeeAlso}
+@references
+\begin{DoxyItemize}
+\item A$\ast$ (Hart, Nilsson, Raphael)\+: \href{https://ieeexplore.ieee.org/document/4082128}{\texttt{ https\+://ieeexplore.\+ieee.\+org/document/4082128}}
+\item EDT (Sci\+Py)\+: \href{https://docs.scipy.org/doc/scipy/reference/generated/scipy.ndimage.distance_transform_edt.html}{\texttt{ https\+://docs.\+scipy.\+org/doc/scipy/reference/generated/scipy.\+ndimage.\+distance\+\_\+transform\+\_\+edt.\+html}}
+\item Clearance-\/aware costs (general idea appears in many navigation \& cost-\/inflation methods). 
+\end{DoxyItemize}

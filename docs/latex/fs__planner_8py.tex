@@ -35,7 +35,7 @@ Key behaviors\+:
 \item Neighborhood\+: full 3$^\wedge$N -\/ 1 offsets (axis-\/aligned and diagonals).
 \item Heuristic\+: Euclidean distance to the goal.
 \item Step cost\+: geometric distance, plus an SDF-\/based clearance penalty.
-\item Collision checking along edges via uniform samples.
+\item Collision checking along edges via fast N-\/D voxel traversal (grid DDA / Bresenham).
 \end{DoxyItemize}
 
 FS-\/\+Planner trades strict shortest-\/path optimality for higher clearance and smoother, lower-\/risk routes. Tuning {\ttfamily cw} adjusts this trade-\/off.
@@ -51,7 +51,7 @@ FS-\/\+Planner trades strict shortest-\/path optimality for higher clearance and
 \begin{DoxyParagraph}{Constructor Args}
 
 \begin{DoxyItemize}
-\item {\ttfamily point\+Samples} \+: int — samples per edge for collision checks
+\item {\ttfamily point\+Samples} \+: int — (kept for API-\/compat; not used by the DDA LOS)
 \item {\ttfamily cw} \+: float — clearance weight in edge cost
 \item {\ttfamily epsilon} \+: float — small constant for numerical stability
 \item {\ttfamily max\+Neigh} \+: int — cap on neighbors kept after adaptive pruning
@@ -69,7 +69,7 @@ FS-\/\+Planner trades strict shortest-\/path optimality for higher clearance and
 
 \begin{DoxyItemize}
 \item Heuristic optimality guarantees do not strictly hold with clearance penalties.
-\item Set cw=0 to approximate baseline A$\ast$ (still with LOS smoothing if unmodified).
+\item Set cw=0 to approximate baseline A$\ast$ (still with LOS smoothing).
 \item Distance transform is computed on (1 -\/ grid) so free cells have positive distance.
 \end{DoxyItemize}
 \end{DoxyNote}

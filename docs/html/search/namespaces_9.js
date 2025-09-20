@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['minimum_5fclearance_283',['minimum_clearance',['../namespaceminimum__clearance.html',1,'']]]
+  ['nodes_5fin_5fpath_276',['nodes_in_path',['../namespacenodes__in__path.html',1,'']]]
 ];

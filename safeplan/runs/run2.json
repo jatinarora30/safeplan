@@ -5,7 +5,7 @@
     {"name": "MinimumClearance","args": {"pointSamples":100}},
     {"name": "AverageMinimumClearance","args": {"pointSamples":100}},
     {"name": "ClearanceVariability","args": {"pointSamples":100}},
-    {"name": "DangerViolations","args": {"pointSamples":100,"dangerRadius":0.2}},
+    {"name": "DangerViolations","args": {"pointSamples":100,"dangerRadius":0.1}},
     {"name": "TurningAngle"},
     {"name": "JerkPerMeter"},
     {"name": "SuccessRate"},
@@ -25,7 +25,7 @@
     {"name": "FSPlanner" ,"args": {"pointSamples":100,"cw":1, "epsilon":0.01,"maxNeigh":5}},
     {"name": "SDFAStar" , "args": {"k1":5,"k2":5}},
     {"name": "OptimizedAStar" , "args": {"turnPenaltyCoefficients":0.5,"safetyDistGridRadius":100,"maxInflateIter":100,"pointSamples":100}},
-    {"name": "InflatedAStar" ,"args": {"radiusInflate":4}}
+    {"name": "SafeAStar" ,"args": {"safetyFactor":4,"epsilon":0.01}}
   ],
   "envDetails": [
     {

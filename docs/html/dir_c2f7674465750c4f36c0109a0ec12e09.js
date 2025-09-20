@@ -10,14 +10,14 @@ var dir_c2f7674465750c4f36c0109a0ec12e09 =
     [ "fs_planner.py", "fs__planner_8py.html", [
       [ "FSPlanner", "classfs__planner_1_1FSPlanner.html", "classfs__planner_1_1FSPlanner" ]
     ] ],
-    [ "inflated_astar.py", "inflated__astar_8py.html", [
-      [ "InflatedAStar", "classinflated__astar_1_1InflatedAStar.html", "classinflated__astar_1_1InflatedAStar" ]
-    ] ],
     [ "optimized_astar.py", "optimized__astar_8py.html", [
       [ "OptimizedAStar", "classoptimized__astar_1_1OptimizedAStar.html", "classoptimized__astar_1_1OptimizedAStar" ]
     ] ],
     [ "rrt.py", "rrt_8py.html", [
       [ "RRT", "classrrt_1_1RRT.html", "classrrt_1_1RRT" ]
+    ] ],
+    [ "safe_astar.py", "safe__astar_8py.html", [
+      [ "SafeAStar", "classsafe__astar_1_1SafeAStar.html", "classsafe__astar_1_1SafeAStar" ]
     ] ],
     [ "sdf_astar.py", "sdf__astar_8py.html", [
       [ "SDFAStar", "classsdf__astar_1_1SDFAStar.html", "classsdf__astar_1_1SDFAStar" ]

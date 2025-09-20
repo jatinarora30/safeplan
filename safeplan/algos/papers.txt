@@ -11,4 +11,6 @@ SDF A*: https://ieeexplore.ieee.org/document/10364842/
 Optimized A*: https://www.mdpi.com/1424-8220/24/10/3149
 CBF-RRT: https://arxiv.org/pdf/2011.06748 
 FS Planner-https://arxiv.org/pdf/2505.24024
-Inflated A*: https://arxiv.org/pdf/2003.00368 
+Safe A*: This approach is conceptually inspired by the inflation layer in the ROS Navigation framework
+     where traversal costs are increased in proportion to proximity to obstacles. Unlike Nav2, which uses an exponential decay function to inflate costs, 
+    we adopt a simplified inverse-distance formulation to achieve a similar safety bias.

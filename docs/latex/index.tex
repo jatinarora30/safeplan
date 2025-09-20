@@ -185,8 +185,8 @@ Safe\+Plan includes both {\bfseries{traditional planners}} and {\bfseries{safety
  Reference\+: (\href{https://arxiv.org/pdf/2011.06748}{\texttt{ https\+://arxiv.\+org/pdf/2011.\+06748}})
 \item {\bfseries{FS Planner}} ~\newline
  Uses an integrated inverse distance, on lazy theta AStar and also gives a limit on maximum neighbours explored in goal and safe direction Reference\+: (\href{https://arxiv.org/pdf/2505.24024}{\texttt{ https\+://arxiv.\+org/pdf/2505.\+24024}})
-\item {\bfseries{Inflated A$\ast$}} ~\newline
- Inflate the obstacles by certain safety radius as hard constraints, then run A$\ast$ Reference\+: (\href{https://arxiv.org/pdf/2003.00368}{\texttt{ https\+://arxiv.\+org/pdf/2003.\+00368}})
+\item {\bfseries{Safe A$\ast$}} ~\newline
+ Safe A$\ast$\+: This approach is conceptually inspired by the inflation layer in the ROS Navigation framework wher traversal costs are increased in proportion to proximity to obstacles. Unlike Nav2, which uses an exponential decay function to inflate costs, we adopt a simplified inverse-\/distance formulation to achieve a similar safety bias.
 \end{DoxyItemize}\hypertarget{index_autotoc_md22}{}\doxysection{Installation}\label{index_autotoc_md22}
 \hypertarget{index_autotoc_md23}{}\doxysubsection{Requirements}\label{index_autotoc_md23}
 
@@ -254,7 +254,7 @@ Safe\+Plan experiments are configured via a JSON file (e.\+g., {\ttfamily run1.\
 \DoxyCodeLine{    \{"{}name"{}: "{}FSPlanner"{} ,"{}args"{}: \{"{}pointSamples"{}:100,"{}cw"{}:1, "{}epsilon"{}:0.01,"{}maxNeigh"{}:5\}\},}
 \DoxyCodeLine{    \{"{}name"{}: "{}SDFAStar"{} , "{}args"{}: \{"{}k1"{}:5,"{}k2"{}:5\}\},}
 \DoxyCodeLine{    \{"{}name"{}: "{}OptimizedAStar"{} , "{}args"{}: \{"{}turnPenaltyCoefficients"{}:0.5,"{}safetyDistGridRadius"{}:100,"{}maxInflateIter"{}:100,"{}pointSamples"{}:100\}\},}
-\DoxyCodeLine{    \{"{}name"{}: "{}InflatedAStar"{} ,"{}args"{}: \{"{}radiusInflate"{}:4\}\}}
+\DoxyCodeLine{    \{"{}name"{}: "{}SafeAStar"{} ,"{}args"{}: \{"{}safetyFactor"{}:4,"{}epsilon"{}:0.01\}\}}
 \DoxyCodeLine{  ],}
 \DoxyCodeLine{  "{}envDetails"{}: [}
 \DoxyCodeLine{    \{}

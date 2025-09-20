@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['minimumclearance_254',['MinimumClearance',['../classminimum__clearance_1_1MinimumClearance.html',1,'minimum_clearance']]]
+  ['nodesinpath_247',['NodesInPath',['../classnodes__in__path_1_1NodesInPath.html',1,'nodes_in_path']]]
 ];

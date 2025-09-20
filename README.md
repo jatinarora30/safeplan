@@ -20,7 +20,7 @@ SafePlan also includes the proposed **OptiSafe** metric, designed to quantify th
 
 - **Reproducibility & logging**
   - Standardized JSON logs for each run with environment, path, and evaluation info.
-  - Aggregated statistics in CSV/JSON and optional visualization outputs.
+  - Aggregated statistics in JSON and optional visualization outputs.
 
 - **Visualization tools**
   - 2D plots of environments and paths.
@@ -146,9 +146,9 @@ SafePlan includes both **traditional planners** and **safety-aware planners**, a
   Uses an integrated inverse distance, on lazy theta AStar and also gives a limit on maximum neighbours explored in goal and safe direction
   Reference: (https://arxiv.org/pdf/2505.24024)
 
-- **Inflated A\***  
-  Inflate the obstacles by certain safety radius as hard constraints, then run A\*
-  Reference: (https://arxiv.org/pdf/2003.00368)
+- **Safe A\***  
+  Safe A*: This approach is conceptually inspired by the inflation layer in the ROS Navigation framework wher traversal costs are increased in proportion to proximity to obstacles. Unlike Nav2, which uses an exponential decay function to inflate costs, we adopt a simplified inverse-distance formulation to achieve a similar safety bias.
+
 
 ## Installation
 
@@ -212,7 +212,7 @@ Below is an example:
     {"name": "FSPlanner" ,"args": {"pointSamples":100,"cw":1, "epsilon":0.01,"maxNeigh":5}},
     {"name": "SDFAStar" , "args": {"k1":5,"k2":5}},
     {"name": "OptimizedAStar" , "args": {"turnPenaltyCoefficients":0.5,"safetyDistGridRadius":100,"maxInflateIter":100,"pointSamples":100}},
-    {"name": "InflatedAStar" ,"args": {"radiusInflate":4}}
+    {"name": "SafeAStar" ,"args": {"safetyFactor":4,"epsilon":0.01}}
   ],
   "envDetails": [
     {
@@ -222,6 +222,7 @@ Below is an example:
       ]    }
   ]
 }
+
 ```
 
 ##  Programmatic API

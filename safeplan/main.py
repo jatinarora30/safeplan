@@ -16,7 +16,7 @@ from .algos.sdf_astar import SDFAStar
 from .algos.cbf_rrt import CBFRRT
 from .algos.optimized_astar import OptimizedAStar
 from .algos.fs_planner import FSPlanner
-from .algos.inflated_astar import InflatedAStar
+from .algos.safe_astar import SafeAStar
 
 from .envs.generate_grid import GenerateGrid
 
@@ -274,8 +274,8 @@ class SafePlan:
                 self.algos.append(("SDFAStar", SDFAStar(k["args"]["k1"], k["args"]["k2"])))
             if k["name"] == "FSPlanner":
                 self.algos.append(("FSPlanner",FSPlanner(k["args"]["pointSamples"],k["args"]["cw"],k["args"]["epsilon"],k["args"]["maxNeigh"])))
-            if k["name"] == "InflatedAStar":
-                self.algos.append(("InflatedAStar", InflatedAStar(k["args"]["radiusInflate"])))
+            if k["name"] == "SafeAStar":
+                self.algos.append(("SafeAStar", SafeAStar(k["args"]["safetyFactor"],k["args"]["epsilon"])))
             if k["name"] == "RRT":
                 self.algos.append(
                     (

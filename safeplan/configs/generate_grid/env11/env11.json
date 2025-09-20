@@ -5,7 +5,7 @@
   "cellSize": 0.05,
   "dimensionOfGrid": 3,
   "randomStartGoal": true,
-  "numStartGoals": 1,
+  "numStartGoals": 10,
   "startGoalPairs": [],
   "polygons": []
 }
