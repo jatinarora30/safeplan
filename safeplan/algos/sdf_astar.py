@@ -46,8 +46,7 @@ moves and step costs.
 @see BasePlanner
 
 @references
-- SDF-guided A* 
-  https://ieeexplore.ieee.org/document/10364842/
+- SDF-guided A* : https://ieeexplore.ieee.org/document/10364842/
 """
 
 
