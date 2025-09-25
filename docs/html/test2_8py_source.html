@@ -85,23 +85,19 @@ $(document).ready(function(){initNavTree('test2_8py_source.html',''); initResiza
 <div class="title">test2.py</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="test2_8py.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno"><a class="line" href="namespacetest2.html">    1</a></span>&#160;<span class="comment"># Define the dictionary</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno"><a class="line" href="namespacetest2.html#a14f07d4843f6b7be6330bd52c5b85e5a">    2</a></span>&#160;sdfCosts = {<span class="stringliteral">&quot;12&quot;</span>: 2, <span class="stringliteral">&quot;aw&quot;</span>: 0}</div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"># Sort by value</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno"><a class="line" href="namespacetest2.html#a6d4d2037822793ec28805a163f129616">    5</a></span>&#160;sorted_sdfCosts = {k: v <span class="keywordflow">for</span> k, v <span class="keywordflow">in</span> sorted(sdfCosts.items(), key=<span class="keyword">lambda</span> item: item[1])}</div>
+<a href="test2_8py.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno"><a class="line" href="namespacetest2.html">    1</a></span>&#160;<span class="keyword">from</span> <a class="code" href="namespacesafeplan_1_1main.html">safeplan.main</a> <span class="keyword">import</span> SafePlan</div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="keyword">from</span> safeplan.core.stats <span class="keyword">import</span> Stats</div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="keyword">from</span> safeplan.core.visualize <span class="keyword">import</span> Visualize</div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160; </div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;        </div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160; </div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;print(<span class="stringliteral">&quot;Original:&quot;</span>, sdfCosts)</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;print(<span class="stringliteral">&quot;Sorted by values:&quot;</span>, sorted_sdfCosts)</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment"># Access the first key from the original dict</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno"><a class="line" href="namespacetest2.html#a8ebc86a1111b946c237a89b19baf9c31">   11</a></span>&#160;sdfCost = next(iter(sdfCosts))</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;print(<span class="stringliteral">&quot;First key in sdfCosts:&quot;</span>, sdfCost)</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment"># Access the first key from the sorted dict</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="namespacetest2.html#a38e2b87b693856baabacf551272b0f5a">   15</a></span>&#160;sdfCost_sorted = next(iter(sorted_sdfCosts))</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;print(<span class="stringliteral">&quot;First key in sorted_sdfCosts:&quot;</span>, sdfCost_sorted)</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
+<div class="line"><a name="l00007"></a><span class="lineno"><a class="line" href="namespacetest2.html#a94a974ae219a1860c7d53aa8fc995888">    7</a></span>&#160;vs=Visualize()</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;vs = Visualize()</div>
+<div class="line"><a name="l00009"></a><span class="lineno"><a class="line" href="namespacetest2.html#ab2e21004eee55cb2a081d092dfd57636">    9</a></span>&#160;vs.see(<span class="stringliteral">&quot;/home/jatinarora/safeplan/safeplan/runs/run1.json&quot;</span>, iterNo=1, prefer_plotly=<span class="keyword">True</span>)</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
+<div class="ttc" id="anamespacesafeplan_1_1main_html"><div class="ttname"><a href="namespacesafeplan_1_1main.html">safeplan.main</a></div><div class="ttdef"><b>Definition:</b> <a href="main_8py_source.html#l00001">main.py:1</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

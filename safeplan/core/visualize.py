@@ -8,18 +8,23 @@ with obstacles, start/goal markers, and optional path overlays. For 3D grids,
 writes an interactive Plotly HTML (isosurface + point cloud + paths), and can
 optionally save a Matplotlib 3D PNG snapshot when available.
 
-Expected input format per algorithm file:
+Expected per-iteration input (for each algorithm):
 - Located at `outputs/<runDetails>/<algo>/iter_<N>.json`
 - Contains:
-  - `envInfo.grid` : N-D list/array (0=free, >0=occupied)
+  - `envInfo.envName` : string name of the environment (e.g., "house_2d", "maze3d")
   - `startGoal.start` : start index tuple/list
   - `startGoal.goal`  : goal index tuple/list
   - `pathInfo.path`   : list of coordinates (tuples/lists)
 
+Environment grid source (single, shared across algos for the same iter):
+- Located at `configs/generate_grid/{envName}/{envName}_grid.json`
+- Contains:
+  - `grid` : N-D list/array (0=free, >0=occupied)
+
 Artifacts:
-- 2D PNG: `results/viz/grid2d_iter<N>.png`
-- 3D HTML: `results/viz/grid3d_iter<N>.html`
-- Optional 3D PNG: `results/viz/grid3d_iter<N>.png`
+- 2D PNG: `results/viz/{envName}_grid2d_iter<N>.png`
+- 3D HTML: `results/viz/{envName}_grid3d_iter<N>.html`
+- Optional 3D PNG (fallback snapshot): `results/viz/{envName}_grid3d_iter<N>.png`
 
 @note
 - Plotly is preferred for 3D (opens in a browser). If Plotly is unavailable,
@@ -27,12 +32,16 @@ Artifacts:
 - Obstacles are rendered as black (2D) or red (3D). Paths are colored and
   labeled by algorithm name.
 - The function auto-creates `results/viz/` if it does not exist.
+- Start/Goal are ALWAYS taken from the first algorithm's iter file.
+- The GRID is ALWAYS taken from `configs/generate_grid/{envName}/{envName}_grid.json`, where
+  `envName` is read from the first algorithm's iter file (`envInfo.envName`) and lowercased.
 
 @see plotly.graph_objects, matplotlib.pyplot
 """
 
 import os
 import json
+from pathlib import Path
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.colors as mcolors
@@ -113,7 +122,7 @@ def _plot_3d_plotly_combo(occ_bool, paths, start, goal, title, html_path,
     ))
 
     # Downsampled point cloud overlay (guaranteed visible)
-    coords = np.argwhere(occ_bool)  # (N,3) [x,y,z]
+    coords = np.argwhere(occ_bool)  # (N,3)
     if len(coords) > 0:
         step = max(1, len(coords) // max_points)
         coords = coords[::step]
@@ -174,12 +183,14 @@ class Visualize:
         @brief Render a specific iteration across one or more algorithms.
 
         @details
-        Loads run configuration, gathers the grid/start/goal from the first
-        selected algorithm’s file for the given iteration, and overlays paths
-        from all requested algorithms. Output format depends on grid dimension:
-        - 2D: writes `grid2d_iter<N>.png`
-        - 3D: writes `grid3d_iter<N>.html` (Plotly) and, if requested and supported,
-               also `grid3d_iter<N>.png`
+        Loads run configuration, gathers envName from the first selected algorithm’s
+        iter file for the given iteration, then loads the GRID from
+        `configs/generate_grid/{envName}/{envName}_grid.json` (envName lowercased).
+        Start/Goal and per-algorithm paths are loaded from the respective
+        `iter_<N>.json` files. Output format depends on grid dimension:
+        - 2D: writes `{envName}_grid2d_iter<N>.png`
+        - 3D: writes `{envName}_grid3d_iter<N>.html` (Plotly) and, if requested and supported,
+               also `{envName}_grid3d_iter<N>.png`
 
         @param runConfigPath str
                Path to the run configuration JSON.
@@ -212,22 +223,44 @@ class Visualize:
         self.algos = algos or algos_all
         runPath = os.path.join(self.outputDir, data["runDetails"])
 
-        # Load first grid/start/goal + all paths
+        # Load first algo iter file for envName/start/goal, and gather paths from all
         self.algoPaths, self.grid, self.start, self.goal = {}, None, None, None
+        first_meta = None
         for algo in self.algos:
             p = os.path.join(runPath, algo, self.iterFile)
             with open(p) as f:
                 j = json.load(f)
-            self.algoPaths[algo] = j["pathInfo"]["path"]
-            if self.grid is None:
-                self.grid  = np.array(j["envInfo"]["grid"])
-                self.start = j["startGoal"]["start"]
-                self.goal  = j["startGoal"]["goal"]
+            self.algoPaths[algo] = j.get("pathInfo", {}).get("path", [])
+            if first_meta is None:
+                first_meta = j
+
+        if first_meta is None:
+            raise RuntimeError("[viz] Could not read any algo iter file(s).")
+
+        # Start/Goal always from iter file
+        self.start = tuple(first_meta["startGoal"]["start"])
+        self.goal  = tuple(first_meta["startGoal"]["goal"])
+
+        # Grid: read envName from iter file, then load from configs/generate_grid/env/env_grid.json
+        env_raw = first_meta.get("envInfo", {}).get("envName")
+        if not env_raw:
+            raise KeyError("[viz] Missing envInfo.envName in iter file.")
+        env_name = env_raw.lower()
+
+        # Resolve repo root relative to runConfigPath: .../safeplan/safeplan/
+        repo_root = Path(runConfigPath).resolve().parent.parent
+        env_json = repo_root / "configs" / "generate_grid" / env_name / f"{env_name}_grid.json"
+        if not env_json.is_file():
+            raise FileNotFoundError(f"[viz] env grid file not found: {env_json}")
+
+        with open(env_json) as f:
+            env_data = json.load(f)
+        self.grid = np.array(env_data["Grid"])
 
         dim = self.grid.ndim
         occ_mask = (self.grid > 0)
         occ_count = int(occ_mask.sum())
-        print(f"[viz] grid shape={self.grid.shape}, occupied={occ_count}/{occ_mask.size}")
+        print(f"[viz] env={env_name}, grid shape={self.grid.shape}, occupied={occ_count}/{occ_mask.size}")
 
         out_dir = _ensure_outdir()
 
@@ -252,7 +285,7 @@ class Visualize:
             ax.set_aspect('equal')
             plt.tight_layout()
 
-            out_png = os.path.join(out_dir, f"grid2d_iter{iterNo}.png")
+            out_png = os.path.join(out_dir, f"{env_name}_grid2d_iter{iterNo}.png")
             plt.savefig(out_png, dpi=160)
             plt.close(fig)
             print(f"[viz] Wrote 2D PNG to: {out_png}")
@@ -261,10 +294,10 @@ class Visualize:
         # 3D
         if dim == 3:
             if occ_count == 0:
-                print("[viz] No occupied voxels detected. Check your 3D polygons/extrusion.")
+                print("[viz] No occupied voxels detected. Check your 3D grid content.")
                 return
 
-            out_html = os.path.join(out_dir, f"grid3d_iter{iterNo}.html")
+            out_html = os.path.join(out_dir, f"{env_name}_grid3d_iter{iterNo}.html")
 
             if prefer_plotly and HAS_PLOTLY:
                 _plot_3d_plotly_combo(
@@ -286,7 +319,7 @@ class Visualize:
                         step = max(1, len(coords) // 120_000)
                         coords = coords[::step]
                         ax.scatter(coords[:, 0], coords[:, 1], coords[:, 2],
-                            s=2, c='red', alpha=0.1, depthshade=False)
+                                   s=2, c='red', alpha=0.1, depthshade=False)
 
                         ax.scatter(self.start[0], self.start[1], self.start[2],
                                    c='yellow', s=60, edgecolors='black')
@@ -298,7 +331,7 @@ class Visualize:
                         except Exception: pass
                         ax.view_init(elev=25, azim=35)
                         ax.set_title(self.graphTitle)
-                        out_png = os.path.join(out_dir, f"grid3d_iter{iterNo}.png")
+                        out_png = os.path.join(out_dir, f"{env_name}_grid3d_iter{iterNo}.png")
                         plt.tight_layout(); plt.savefig(out_png, dpi=160); plt.close(fig)
                         print(f"[viz] Also wrote 3D PNG to: {out_png}")
                     except Exception as e:
@@ -309,7 +342,6 @@ class Visualize:
             if HAS_MPL_3D:
                 fig = plt.figure(figsize=(9, 9))
                 ax = fig.add_subplot(111, projection='3d')
-                # Draw a downsampled point cloud to ensure visibility
                 coords = np.argwhere(occ_mask)
                 step = max(1, len(coords) // 150_000)
                 coords = coords[::step]
@@ -325,7 +357,7 @@ class Visualize:
                 except Exception: pass
                 ax.view_init(elev=25, azim=35)
                 ax.set_title(self.graphTitle)
-                out_png = os.path.join(out_dir, f"grid3d_iter{iterNo}.png")
+                out_png = os.path.join(out_dir, f"{env_name}_grid3d_iter{iterNo}.png")
                 plt.tight_layout(); plt.savefig(out_png, dpi=160); plt.close(fig)
                 print(f"[viz] Wrote 3D PNG to: {out_png}")
                 return

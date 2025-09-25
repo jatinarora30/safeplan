@@ -34,6 +34,11 @@ var namespaces_dup =
       [ "sf", "namespacetest.html#adee94c29df5f6a721531df05608c62fa", null ],
       [ "vs", "namespacetest.html#a77d49c4c1e788c6a702e40460633e939", null ]
     ] ],
+    [ "test2", "namespacetest2.html", [
+      [ "iterNo", "namespacetest2.html#ab2e21004eee55cb2a081d092dfd57636", null ],
+      [ "prefer_plotly", "namespacetest2.html#a7fec0c7bb0ae5adc992e5ca58d510286", null ],
+      [ "vs", "namespacetest2.html#a94a974ae219a1860c7d53aa8fc995888", null ]
+    ] ],
     [ "turning_angle", "namespaceturning__angle.html", "namespaceturning__angle" ],
     [ "upp", "namespaceupp.html", "namespaceupp" ],
     [ "visualize", "namespacevisualize.html", "namespacevisualize" ],

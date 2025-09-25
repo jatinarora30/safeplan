@@ -118,24 +118,33 @@ Variables</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Render 2D/3D occupancy grids and algorithm paths from run outputs. </p>
 <p>Provides convenient plotting for benchmark runs. For 2D grids, writes a PNG with obstacles, start/goal markers, and optional path overlays. For 3D grids, writes an interactive Plotly HTML (isosurface + point cloud + paths), and can optionally save a Matplotlib 3D PNG snapshot when available.</p>
-<p>Expected input format per algorithm file:</p><ul>
+<p>Expected per-iteration input (for each algorithm):</p><ul>
 <li>Located at <code>outputs/&lt;runDetails&gt;/&lt;algo&gt;/iter_&lt;N&gt;.json</code></li>
-<li><p class="startli">Contains:</p><ul>
-<li><code>envInfo.grid</code> : N-D list/array (0=free, &gt;0=occupied)</li>
+<li>Contains:<ul>
+<li><code>envInfo.envName</code> : string name of the environment (e.g., "house_2d", "maze3d")</li>
 <li><code>startGoal.start</code> : start index tuple/list</li>
 <li><code>startGoal.goal</code> : goal index tuple/list</li>
 <li><code>pathInfo.path</code> : list of coordinates (tuples/lists)</li>
 </ul>
+</li>
+</ul>
+<p>Environment grid source (single, shared across algos for the same iter):</p><ul>
+<li>Located at <code>configs/generate_grid/{envName}/{envName}_grid.json</code></li>
+<li><p class="startli">Contains:</p><ul>
+<li><code>grid</code> : N-D list/array (0=free, &gt;0=occupied)</li>
+</ul>
 <dl class="section user"><dt>Artifacts</dt><dd></dd></dl>
 </li>
-<li>2D PNG: <code>results/viz/grid2d_iter&lt;N&gt;.png</code></li>
-<li>3D HTML: <code>results/viz/grid3d_iter&lt;N&gt;.html</code></li>
-<li>Optional 3D PNG: <code>results/viz/grid3d_iter&lt;N&gt;.png</code></li>
+<li>2D PNG: <code>results/viz/{envName}_grid2d_iter&lt;N&gt;.png</code></li>
+<li>3D HTML: <code>results/viz/{envName}_grid3d_iter&lt;N&gt;.html</code></li>
+<li>Optional 3D PNG (fallback snapshot): <code>results/viz/{envName}_grid3d_iter&lt;N&gt;.png</code></li>
 </ul>
 <dl class="section note"><dt>Note</dt><dd><ul>
 <li>Plotly is preferred for 3D (opens in a browser). If Plotly is unavailable, the code attempts a Matplotlib 3D fallback when possible.</li>
 <li>Obstacles are rendered as black (2D) or red (3D). Paths are colored and labeled by algorithm name.</li>
 <li>The function auto-creates <code>results/viz/</code> if it does not exist.</li>
+<li>Start/Goal are ALWAYS taken from the first algorithm's iter file.</li>
+<li>The GRID is ALWAYS taken from <code>configs/generate_grid/{envName}/{envName}_grid.json</code>, where <code>envName</code> is read from the first algorithm's iter file (<code>envInfo.envName</code>) and lowercased.</li>
 </ul>
 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd>plotly.graph_objects, matplotlib.pyplot </dd></dl>

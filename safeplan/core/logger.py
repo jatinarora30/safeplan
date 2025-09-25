@@ -144,7 +144,7 @@ class Logger:
 
         envInfo = {}
         scenerio = list(scenerio)
-        envInfo["grid"] = scenerio[0].tolist()
+       #  envInfo["grid"] = scenerio[0].tolist()
         envInfo["cellSize"] = scenerio[1]
         envInfo["envName"] = scenerio[2]
         envInfo["envDes"] = scenerio[3]

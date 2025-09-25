@@ -1,5 +1,0 @@
-<map id="weighted_astar.WeightedAStar.heuristics" name="weighted_astar.WeightedAStar.heuristics">
-<area shape="rect" id="node1" title="Heuristic distance between two nodes (Manhattan)." alt="" coords="264,42,551,69"/>
-<area shape="rect" id="node2" href="$classsdf__astar_1_1SDFAStar.html#a1e23d62a8095da44971978e455d278d2" title="Combined priority for A* that blends distance and SDF&#45;based safety." alt="" coords="5,5,216,47"/>
-<area shape="rect" id="node3" href="$classcbf__rrt_1_1CBFRRT.html#ad96fac860558f065fa1ab868dd89a0e7" title="Control Barrier Function (CBF) safety check for a candidate cell and velocity." alt="" coords="29,71,192,98"/>
-</map>

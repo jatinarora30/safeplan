@@ -1,7 +1,6 @@
 var test2_8py =
 [
-    [ "sdfCost", "test2_8py.html#a8ebc86a1111b946c237a89b19baf9c31", null ],
-    [ "sdfCost_sorted", "test2_8py.html#a38e2b87b693856baabacf551272b0f5a", null ],
-    [ "sdfCosts", "test2_8py.html#a14f07d4843f6b7be6330bd52c5b85e5a", null ],
-    [ "sorted_sdfCosts", "test2_8py.html#a6d4d2037822793ec28805a163f129616", null ]
+    [ "iterNo", "test2_8py.html#ab2e21004eee55cb2a081d092dfd57636", null ],
+    [ "prefer_plotly", "test2_8py.html#a7fec0c7bb0ae5adc992e5ca58d510286", null ],
+    [ "vs", "test2_8py.html#a94a974ae219a1860c7d53aa8fc995888", null ]
 ];

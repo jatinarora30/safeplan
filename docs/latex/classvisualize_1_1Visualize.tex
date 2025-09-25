@@ -25,9 +25,9 @@ def \mbox{\hyperlink{classvisualize_1_1Visualize_ab9f5cafbfeae36f0e35d7c3d8b7e39
 \item 
 \mbox{\hyperlink{classvisualize_1_1Visualize_af12134cc6e1603fbe8245bc99fd0e2d8}{goal}}
 \item 
-\mbox{\hyperlink{classvisualize_1_1Visualize_a4b684f7970e2d80b0a882a81c1e3ba15}{grid}}
-\item 
 \mbox{\hyperlink{classvisualize_1_1Visualize_afec26a07351dbf6f963f18ba4e4fd0c0}{start}}
+\item 
+\mbox{\hyperlink{classvisualize_1_1Visualize_a4b684f7970e2d80b0a882a81c1e3ba15}{grid}}
 \end{DoxyCompactItemize}
 
 
@@ -40,7 +40,7 @@ def \mbox{\hyperlink{classvisualize_1_1Visualize_ab9f5cafbfeae36f0e35d7c3d8b7e39
 \item 3D mode\+: writes a Plotly HTML (isosurface + point cloud + paths), optionally saves a Matplotlib 3D PNG snapshot. 
 \end{DoxyItemize}
 
-Definition at line 173 of file visualize.\+py.
+Definition at line 182 of file visualize.\+py.
 
 
 
@@ -56,12 +56,14 @@ Definition at line 173 of file visualize.\+py.
 Render a specific iteration across one or more algorithms. 
 
 \begin{DoxyVerb}   @details
-   Loads run configuration, gathers the grid/start/goal from the first
-   selected algorithm’s file for the given iteration, and overlays paths
-   from all requested algorithms. Output format depends on grid dimension:
-   - 2D: writes `grid2d_iter<N>.png`
-   - 3D: writes `grid3d_iter<N>.html` (Plotly) and, if requested and supported,
-          also `grid3d_iter<N>.png`
+   Loads run configuration, gathers envName from the first selected algorithm’s
+   iter file for the given iteration, then loads the GRID from
+   `configs/generate_grid/{envName}/{envName}_grid.json` (envName lowercased).
+   Start/Goal and per-algorithm paths are loaded from the respective
+   `iter_<N>.json` files. Output format depends on grid dimension:
+   - 2D: writes `{envName}_grid2d_iter<N>.png`
+   - 3D: writes `{envName}_grid3d_iter<N>.html` (Plotly) and, if requested and supported,
+          also `{envName}_grid3d_iter<N>.png`
 
    @param runConfigPath str
           Path to the run configuration JSON.
@@ -84,7 +86,7 @@ Render a specific iteration across one or more algorithms.
 \end{DoxyVerb}
  
 
-Definition at line 205 of file visualize.\+py.
+Definition at line 216 of file visualize.\+py.
 
 
 
@@ -97,7 +99,7 @@ Definition at line 205 of file visualize.\+py.
 
 
 
-Definition at line 216 of file visualize.\+py.
+Definition at line 227 of file visualize.\+py.
 
 \mbox{\Hypertarget{classvisualize_1_1Visualize_af12134cc6e1603fbe8245bc99fd0e2d8}\label{classvisualize_1_1Visualize_af12134cc6e1603fbe8245bc99fd0e2d8}} 
 \index{visualize.Visualize@{visualize.Visualize}!goal@{goal}}
@@ -107,7 +109,7 @@ Definition at line 216 of file visualize.\+py.
 
 
 
-Definition at line 220 of file visualize.\+py.
+Definition at line 231 of file visualize.\+py.
 
 \mbox{\Hypertarget{classvisualize_1_1Visualize_adaeff11b929d1579eec259db74469451}\label{classvisualize_1_1Visualize_adaeff11b929d1579eec259db74469451}} 
 \index{visualize.Visualize@{visualize.Visualize}!graphTitle@{graphTitle}}
@@ -117,7 +119,7 @@ Definition at line 220 of file visualize.\+py.
 
 
 
-Definition at line 209 of file visualize.\+py.
+Definition at line 220 of file visualize.\+py.
 
 \mbox{\Hypertarget{classvisualize_1_1Visualize_a4b684f7970e2d80b0a882a81c1e3ba15}\label{classvisualize_1_1Visualize_a4b684f7970e2d80b0a882a81c1e3ba15}} 
 \index{visualize.Visualize@{visualize.Visualize}!grid@{grid}}
@@ -127,7 +129,7 @@ Definition at line 209 of file visualize.\+py.
 
 
 
-Definition at line 227 of file visualize.\+py.
+Definition at line 262 of file visualize.\+py.
 
 \mbox{\Hypertarget{classvisualize_1_1Visualize_aa45424bf4111b1feac68b71cda56d20b}\label{classvisualize_1_1Visualize_aa45424bf4111b1feac68b71cda56d20b}} 
 \index{visualize.Visualize@{visualize.Visualize}!iterFile@{iterFile}}
@@ -137,7 +139,7 @@ Definition at line 227 of file visualize.\+py.
 
 
 
-Definition at line 208 of file visualize.\+py.
+Definition at line 219 of file visualize.\+py.
 
 \mbox{\Hypertarget{classvisualize_1_1Visualize_a100dac3347db5c29ce237a915a59233d}\label{classvisualize_1_1Visualize_a100dac3347db5c29ce237a915a59233d}} 
 \index{visualize.Visualize@{visualize.Visualize}!outputDir@{outputDir}}
@@ -147,7 +149,7 @@ Definition at line 208 of file visualize.\+py.
 
 
 
-Definition at line 207 of file visualize.\+py.
+Definition at line 218 of file visualize.\+py.
 
 \mbox{\Hypertarget{classvisualize_1_1Visualize_aee30852e6aebd701a618b74e419afb74}\label{classvisualize_1_1Visualize_aee30852e6aebd701a618b74e419afb74}} 
 \index{visualize.Visualize@{visualize.Visualize}!show\_paths@{show\_paths}}
@@ -157,7 +159,7 @@ Definition at line 207 of file visualize.\+py.
 
 
 
-Definition at line 210 of file visualize.\+py.
+Definition at line 221 of file visualize.\+py.
 
 \mbox{\Hypertarget{classvisualize_1_1Visualize_afec26a07351dbf6f963f18ba4e4fd0c0}\label{classvisualize_1_1Visualize_afec26a07351dbf6f963f18ba4e4fd0c0}} 
 \index{visualize.Visualize@{visualize.Visualize}!start@{start}}
@@ -167,7 +169,7 @@ Definition at line 210 of file visualize.\+py.
 
 
 
-Definition at line 228 of file visualize.\+py.
+Definition at line 245 of file visualize.\+py.
 
 
 

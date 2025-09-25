@@ -7,12 +7,12 @@ from safeplan.core.visualize import Visualize
 # sf.benchmark()
 
 
-# sf=Stats("/home/jatinarora/safeplan/safeplan/runs/run1.json")
-# sf.compute()
+sf=Stats("/home/jatinarora/safeplan/safeplan/runs/run1.json")
+sf.compute()
 
-vs=Visualize()
-vs = Visualize()
-vs.see("/home/jatinarora/safeplan/safeplan/runs/run1.json", iterNo=40, prefer_plotly=True)
+# vs=Visualize()
+# vs = Visualize()
+# vs.see("/home/jatinarora/safeplan/safeplan/runs/run1.json", iterNo=1, prefer_plotly=True)
 
 
 

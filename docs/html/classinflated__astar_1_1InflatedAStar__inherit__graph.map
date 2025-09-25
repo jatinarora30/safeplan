@@ -1,5 +1,0 @@
-<map id="inflated_astar.InflatedAStar" name="inflated_astar.InflatedAStar">
-<area shape="rect" id="node1" title="A* planner that runs on an EDT&#45;inflated occupancy grid." alt="" coords="5,155,204,181"/>
-<area shape="rect" id="node2" href="$classbaseplanner_1_1BasePlanner.html" title="Abstract base/registry for planning algorithms." alt="" coords="11,80,198,107"/>
-<area shape="rect" id="node3" title=" " alt="" coords="80,5,129,32"/>
-</map>
