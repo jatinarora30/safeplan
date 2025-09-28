@@ -1,0 +1,18 @@
+{
+  "runDetails": "run3",
+  "evalDetails": [
+    {"name": "PlanningTime"}
+  ],
+  "algoDetails": [
+
+    {"name": "AStar"}
+
+  ],
+  "envDetails": [
+    {
+      "generateGrid": [
+       {"name": "env11" },{"name": "env12" }
+      ]    }
+  ]
+}
+

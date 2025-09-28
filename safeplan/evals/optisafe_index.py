@@ -21,6 +21,7 @@ Implements OptiSafe Index evaluation based upon the path provided on the grid.
 from .baseeval import BaseEval
 from ..algos.a_star import AStar
 from ..algos.voronoi_planner import VoronoiPlanner
+from ..algos.upp import UPP
 from ..evals.path_cost import PathCost
 from ..evals.minimum_clearance import MinimumClearance
 import numpy as np
@@ -32,6 +33,7 @@ class OptiSafeIndex(BaseEval):
         @post Instance is initialized.
         """
         self.value=0
+        self.upp=UPP(beta=10,radius=30,epsilon=0.01,alpha=0.5)
         self.aStar=AStar()
         self.vornoiPlanner=VoronoiPlanner(pointSamples=pointSamples,knn=knn)
         self.pathCost=PathCost()
@@ -52,7 +54,12 @@ class OptiSafeIndex(BaseEval):
         optimalPath=self.aStar.plan(start,goal,grid)
         optimalCost=self.pathCost.eval(None,None,None,cellSize,optimalPath[1])
         originalCost=self.pathCost.eval(None,None,None,cellSize,path)
-        safePath=self.vornoiPlanner.plan(start,goal,grid)
+        safeVornoiPath=self.vornoiPlanner.plan(start,goal,grid)
+        if safeVornoiPath[0]==0:
+            safePath=self.upp.plan(start,goal,grid)
+        else:
+            safePath=safeVornoiPath
+            
 
         if safePath[0]==1:
             minimumSafe=self.minimumClearance.eval(start,goal,grid,cellSize,safePath[1])

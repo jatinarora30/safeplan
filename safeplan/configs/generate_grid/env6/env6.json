@@ -1,17 +1,17 @@
 {
   "envName": "Env6",
-  "envDes": "Cluttered Env",
-  "gridSize": 1000,
+  "envDes": "Warehouse-style environment",
+  "gridSize": 100,
   "cellSize": 0.05,
   "dimensionOfGrid": 2,
   "randomStartGoal": true,
-  "numStartGoals": 10,
+  "numStartGoals": 1,
   "startGoalPairs": [],
-  "polygons": [                    
-    { "polygon": [[200,200],[200,400],[400,400],[400,200]] },               
-    { "polygon": [[600,100],[650,300],[700,100]] },                         
-    { "polygon": [[750,750],[750,850],[850,850],[850,750]] },               
-    { "polygon": [[300,700],[300,900],[350,900],[350,700]] },                
-    { "polygon": [[500,500],[520,520],[540,500],[520,480]] }                
+  "polygons": [
+    { "polygon": [[10,20],[10,80],[15,80],[15,20]] },
+    { "polygon": [[30,0],[30,60],[35,60],[35,0]] },
+    { "polygon": [[50,40],[50,99],[55,99],[55,40]] },
+    { "polygon": [[70,10],[70,70],[75,70],[75,10]] },
+    { "polygon": [[90,30],[90,90],[95,90],[95,30]] }
   ]
 }

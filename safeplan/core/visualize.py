@@ -367,3 +367,142 @@ class Visualize:
 
         # If we reach here, dimension > 3
         print("Can't plot above 3 dimensions")
+
+    def plotGrid(self, runConfigPath, prefer_plotly=True):
+        """
+        Plot all grids (2D/3D) for the environments listed in run config (generateGrid).
+
+        @param runConfigPath str
+            Path to the run configuration JSON (e.g., run1.json).
+        @param prefer_plotly bool
+            Prefer Plotly for 3D visualization (default: True).
+        """
+        self.outputDir = "outputs"
+        with open(runConfigPath) as f:
+            data = json.load(f)
+
+        repo_root = Path(runConfigPath).resolve().parent.parent
+
+        # Get env names from envDetails.generateGrid
+        env_names = [e["name"].lower() for e in data.get("envDetails", [])[0].get("generateGrid", [])]
+
+        if not env_names:
+            print("[viz] No environments found in run config.")
+            return
+
+        out_dir = _ensure_outdir()
+
+        for env_name in sorted(env_names):
+            env_json = repo_root / "configs" / "generate_grid" / env_name / f"{env_name}_grid.json"
+            if not env_json.is_file():
+                print(f"[viz] Skipping {env_name}: grid file not found")
+                continue
+
+            with open(env_json) as f:
+                env_data = json.load(f)
+            grid = np.array(env_data["Grid"])
+            dim = grid.ndim
+            occ_mask = (grid > 0)
+            occ_count = int(occ_mask.sum())
+            print(f"[viz] env={env_name}, shape={grid.shape}, occupied={occ_count}/{occ_mask.size}")
+
+            # --- 2D grid plotting ---
+            if dim == 2:
+                fig, ax = plt.subplots(figsize=(12, 12))
+                cmap = mcolors.ListedColormap(["white", "black"])
+                norm = mcolors.BoundaryNorm([-0.5, 0.5, 1.5], cmap.N)
+                ax.imshow(grid, cmap=cmap, norm=norm, origin="upper")
+                ax.set_title(f"Grid: {env_name}")
+                ax.set_aspect("equal")
+                plt.tight_layout()
+
+                out_png = os.path.join(out_dir, f"{env_name}_grid2d.png")
+                plt.savefig(out_png, dpi=160)
+                plt.close(fig)
+                print(f"[viz] Wrote 2D PNG to: {out_png}")
+
+            # --- 3D grid plotting ---
+                    # --- 3D grid plotting ---
+            elif dim == 3:
+                # Obstacles = 1, Free = 0
+                occ_mask = (grid == 1)
+                occ_count = int(occ_mask.sum())
+
+                out_html = os.path.join(out_dir, f"{env_name}_grid3d.html")
+                out_png  = os.path.join(out_dir, f"{env_name}_grid3d.png")
+
+                # --- Empty grid ---
+                if occ_count == 0:
+                    print(f"[viz] {env_name}: empty grid (no obstacles).")
+
+                    if prefer_plotly and HAS_PLOTLY:
+                        import plotly.graph_objects as go
+                        X, Y, Z = grid.shape
+                        fig = go.Figure()
+                        fig.update_layout(
+                            scene=dict(
+                                xaxis=dict(range=[0, X], title="X"),
+                                yaxis=dict(range=[0, Y], title="Y"),
+                                zaxis=dict(range=[0, Z], title="Z"),
+                                aspectmode="data"
+                            ),
+                            title=f"Grid: {env_name} (empty)"
+                        )
+                        fig.write_html(out_html)
+                        print(f"[viz] Wrote EMPTY 3D HTML to: {out_html}")
+
+                    elif HAS_MPL_3D:
+                        fig = plt.figure(figsize=(9, 9))
+                        ax = fig.add_subplot(111, projection="3d")
+                        X, Y, Z = grid.shape
+                        ax.set_xlim(0, X); ax.set_ylim(0, Y); ax.set_zlim(0, Z)
+                        try: ax.set_box_aspect((X, Y, Z))
+                        except Exception: pass
+                        ax.view_init(elev=25, azim=35)
+                        ax.set_title(f"Grid: {env_name} (empty)")
+                        plt.tight_layout(); plt.savefig(out_png, dpi=160); plt.close(fig)
+                        print(f"[viz] Wrote EMPTY 3D PNG to: {out_png}")
+                    continue
+
+                # --- Non-empty grid ---
+                if prefer_plotly and HAS_PLOTLY:
+                    import plotly.graph_objects as go
+                    x, y, z = np.nonzero(occ_mask)
+
+                    # Use Scatter3d to draw cubes as points
+                    fig = go.Figure(data=go.Scatter3d(
+                        x=x, y=y, z=z,
+                        mode="markers",
+                        marker=dict(size=2, color="red", opacity=0.8)
+                    ))
+                    X, Y, Z = grid.shape
+                    fig.update_layout(
+                        scene=dict(
+                            xaxis=dict(range=[0, X], title="X"),
+                            yaxis=dict(range=[0, Y], title="Y"),
+                            zaxis=dict(range=[0, Z], title="Z"),
+                            aspectmode="data"
+                        ),
+                        title=f"Grid: {env_name}"
+                    )
+                    fig.write_html(out_html)
+                    print(f"[viz] Wrote 3D HTML to: {out_html}")
+                    continue
+
+                if HAS_MPL_3D:
+                    fig = plt.figure(figsize=(9, 9))
+                    ax = fig.add_subplot(111, projection="3d")
+
+                    ax.voxels(occ_mask, facecolors="red", edgecolor="k", alpha=0.3)
+
+                    X, Y, Z = occ_mask.shape
+                    ax.set_xlim(0, X); ax.set_ylim(0, Y); ax.set_zlim(0, Z)
+                    try: ax.set_box_aspect((X, Y, Z))
+                    except Exception: pass
+                    ax.view_init(elev=25, azim=35)
+                    ax.set_title(f"Grid: {env_name}")
+
+                    plt.tight_layout(); plt.savefig(out_png, dpi=160); plt.close(fig)
+                    print(f"[viz] Wrote 3D PNG to: {out_png}")
+                else:
+                    print(f"[viz] {env_name}: no 3D backend available, skipped.")
