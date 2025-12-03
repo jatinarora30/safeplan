@@ -1,11 +1,11 @@
 {
 "envName": "Env9",
-"envDes": "Chessboard Env (wider gaps)",
+"envDes": "Highly structured industrial workspace or warehouse aisle layout.",
 "gridSize": 100,
 "cellSize": 0.05,
 "dimensionOfGrid": 2,
 "randomStartGoal": true,
-"numStartGoals": 1000,
+"numStartGoals": 2,
 "startGoalPairs": [],
 "polygons": [
 { "polygon": [[3,3],[3,11],[11,11],[11,3]] },

@@ -1,11 +1,11 @@
 {
 "envName": "Env10",
-"envDes": "Alternating vertical corridors",
+"envDes": "Office or research-facility interior with interconnected corridors",
 "gridSize": 100,
 "cellSize": 0.05,
 "dimensionOfGrid": 2,
 "randomStartGoal": true,
-"numStartGoals": 590,
+"numStartGoals": 2,
 "startGoalPairs": [],
 "polygons": [
 { "polygon": [[0,0],[0,4],[99,4],[99,0]] },

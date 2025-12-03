@@ -1,11 +1,11 @@
 {
   "envName": "Env11",
-  "envDes": "3D warehouse-like scenario with shelves and pillars, no outer boundaries",
+  "envDes": "Structured 3D urban canyon environment simulating navigation between regularly spaced buildings in city-like layouts.",
   "gridSize": 100,
   "cellSize": 0.05,
   "dimensionOfGrid": 3,
   "randomStartGoal": true,
-  "numStartGoals": 550,
+  "numStartGoals": 1,
   "startGoalPairs": [],
   "polygons": [
     { "polygon": [[10,10,0],[20,10,0],[20,20,0],[10,20,0],[10,10,50],[20,10,50],[20,20,50],[10,20,50]] },

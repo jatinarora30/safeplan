@@ -110,6 +110,7 @@ class GenerateGrid(BaseEnv):
         self.randomStartGoal = data["randomStartGoal"]
         self.polygons_data = data["polygons"]
         self.numStartGoals = data["numStartGoals"]
+        self.timesEachGoal = data["timesEachGoal"]
         self.startGoalPairs = data["startGoalPairs"]
 
     def makeConvexHull(self, vertices) -> tuple:
@@ -176,6 +177,7 @@ class GenerateGrid(BaseEnv):
             self.cellSize = load["cellSize"]
             self.startGoalPairs = load["startGoalPairs"]
             self.numStartGoals = load["numStartGoals"]
+            self.timesEachGoal = load["timesEachGoal"]
 
         else:
             print("Either file is missing or is not readable, creating file...")
@@ -203,6 +205,7 @@ class GenerateGrid(BaseEnv):
                     self.grid[tuple(coord)] = 1
 
             # 5) Random start/goal pairs, if requested
+            
             if self.randomStartGoal:
                 self.startGoalPairs = []
                 k = 0
@@ -215,6 +218,12 @@ class GenerateGrid(BaseEnv):
                         pair["start"] = start
                         pair["goal"] = goal
                         self.startGoalPairs.append(pair)
+
+            original_pairs = list(self.startGoalPairs)  # snapshot
+            self.startGoalPairs = []
+            for pair in original_pairs:
+                for _ in range(self.timesEachGoal):
+                    self.startGoalPairs.append(pair)
             writeJson["startGoalPairs"] = self.startGoalPairs
 
             # 6) Write cache JSON
@@ -224,6 +233,7 @@ class GenerateGrid(BaseEnv):
             writeJson["dimensionOfGrid"] = self.dimension
             writeJson["cellSize"] = self.cellSize
             writeJson["numStartGoals"] = self.numStartGoals
+            writeJson["timesEachGoal"] = self.timesEachGoal
             jsonStr = json.dumps(writeJson, indent=4)
             with open(self.finalGrid, "w") as f:
                 f.write(jsonStr)

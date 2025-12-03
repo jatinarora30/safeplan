@@ -45,6 +45,7 @@ import pandas as pd
 from pandas.plotting import table
 import json
 import os
+import numpy as np
 
 class Stats:
     """
@@ -161,21 +162,22 @@ class Stats:
 
         @details
         For each algorithm directory under the run path, all JSON result files are
-        loaded and their @c evaluation blocks are accumulated. The final per-algo
-        metrics are computed as follows:
+        loaded and their @c evaluation blocks are accumulated.
+
         - For keys deemed “success rate” (case/format variations accepted),
-          the sum is divided by the global maximum iteration count observed across
-          algorithms (@c self.max_iterations).
-        - For all other metrics, the sum is divided by the number of files found
-          for that algorithm.
+          we treat each iteration as a 0/1 success indicator, pad missing
+          iterations with zeros up to @c self.max_iterations, and compute:
+              mean = total_successes / max_iterations
+              std  = std dev over max_iterations 0/1 samples.
+        - For all other metrics, mean and std are computed over the per-file
+          values available for that algorithm.
 
-        A pandas DataFrame is printed to stdout. If @c saveStatsImage was set in
-        the constructor, a PNG table is saved under @c results/<runDetails>.png.
-        A JSON summary is always written to
-        @c results/<runDetails>Stats.json.
+        Two DataFrames are printed: means and standard deviations.
+        A JSON summary is written to results/<runDetails>Stats.json with
+        structure:
+            { algo: { metric: { "mean": ..., "std": ... }, ... }, ... }
 
-        @return None
-                Side effects: prints a DataFrame, writes JSON (and optionally PNG).
+        If @c saveStatsImage is True, a PNG table of "mean±std" is also saved.
         """
         def is_success_key(k: str) -> bool:
             # match SuccessRate / success_rate / success
@@ -183,10 +185,12 @@ class Stats:
             return norm in {"successrate", "success"}
 
         meanAlgoData = {}
+        stdAlgoData = {}
+
         for algo in self.algos:
             path = os.path.join(self.runPath, algo)
-            sums = {k: 0.0 for k in self.evals}
-            n = 0
+            # store all per-file values for each metric
+            values = {k: [] for k in self.evals}
 
             for _, _, files in os.walk(path):
                 for fname in files:
@@ -196,42 +200,108 @@ class Stats:
                     try:
                         with open(fpath, "r") as f:
                             data = json.load(f)
+                        eval_block = data.get("evaluation", {})
                     except Exception as e:
                         print(f"Skipping '{fpath}': {e}")
                         continue
 
-                    eval_block = data.get("evaluation", {})
                     for k in self.evals:
-                        sums[k] += float(eval_block.get(k, 0.0))
-                    n += 1
+                        values[k].append(float(eval_block.get(k, 0.0)))
 
-            if n == 0:
+            # If no files found for this algo
+            any_vals = any(len(v) > 0 for v in values.values())
+            if not any_vals:
                 print(f"No result files found for algo '{algo}' at {path}")
                 meanAlgoData[algo] = {k: float("nan") for k in self.evals}
-            else:
-                out = {}
-                for k in self.evals:
-                    if is_success_key(k):
-                        denom = self.max_iterations
-                        out[k] = (sums[k] / denom) if denom > 0 else float("nan")
+                stdAlgoData[algo] = {k: float("nan") for k in self.evals}
+                continue
+
+            algo_means = {}
+            algo_stds = {}
+
+            for k in self.evals:
+                arr_raw = np.array(values[k], dtype=float)
+
+                if arr_raw.size == 0:
+                    algo_means[k] = float("nan")
+                    algo_stds[k] = float("nan")
+                    continue
+
+                if is_success_key(k):
+                    # Treat each value as success count/indicator per iteration.
+                    # Pad with zeros up to max_iterations so that:
+                    #   mean = total_successes / max_iterations (as before),
+                    #   std  = std dev across all iterations (0/1 style).
+                    if self.max_iterations > 0:
+                        num_iter = arr_raw.size
+                        if self.max_iterations > num_iter:
+                            pad = np.zeros(self.max_iterations - num_iter, dtype=float)
+                            arr_all = np.concatenate([arr_raw, pad])
+                        else:
+                            arr_all = arr_raw  # already at max_iterations
+
+                        mean_k = arr_all.mean()            # sum / max_iterations
+                        std_k = arr_all.std(ddof=0)        # population std
                     else:
-                        out[k] = sums[k] / n
-                meanAlgoData[algo] = out
+                        mean_k = float("nan")
+                        std_k = float("nan")
+                else:
+                    # Regular metric: mean/std over available runs
+                    mean_k = arr_raw.mean()
+                    std_k = arr_raw.std(ddof=0)
 
-        df = pd.DataFrame.from_dict(meanAlgoData, orient="index")[self.evals]
-        print(df)
+                algo_means[k] = float(mean_k)
+                algo_stds[k] = float(std_k)
 
+            meanAlgoData[algo] = algo_means
+            stdAlgoData[algo] = algo_stds
+
+        # DataFrames for convenience
+        df_mean = pd.DataFrame.from_dict(meanAlgoData, orient="index")[self.evals]
+        df_std = pd.DataFrame.from_dict(stdAlgoData, orient="index")[self.evals]
+
+        print("=== Mean metrics ===")
+        print(df_mean)
+        print("\n=== Std dev over iterations (per algo, per metric) ===")
+        print(df_std)
+
+        # Optional image: show "mean±std" as in papers
         if self.saveStatsImage:
-            fig = plt.figure(figsize=(max(6, len(self.evals) * 1.2), max(3, len(self.algos) * 0.6)))
+            df_disp = df_mean.copy().astype(str)
+            for algo in self.algos:
+                for k in self.evals:
+                    m = df_mean.loc[algo, k]
+                    s = df_std.loc[algo, k]
+                    if pd.isna(m) or pd.isna(s):
+                        df_disp.loc[algo, k] = "nan"
+                    else:
+                        df_disp.loc[algo, k] = f"{m:.3f}±{s:.3f}"
+
+            fig = plt.figure(
+                figsize=(
+                    max(6, len(self.evals) * 1.2),
+                    max(3, len(self.algos) * 0.6),
+                )
+            )
             ax = plt.subplot(111, frame_on=False)
             ax.xaxis.set_visible(False)
             ax.yaxis.set_visible(False)
-            table(ax, df.round(4), loc="center")
+            table(ax, df_disp, loc="center")
             plt.tight_layout()
             out_png = os.path.join(self.resultsDir, f"{self.runDetails}.png")
             plt.savefig(out_png, dpi=200)
             plt.close(fig)
 
+        # JSON summary: algo -> metric -> {mean, std}
+        summary = {}
+        for algo in self.algos:
+            summary[algo] = {}
+            for k in self.evals:
+                summary[algo][k] = {
+                    "mean": meanAlgoData[algo].get(k, float("nan")),
+                    "std": stdAlgoData[algo].get(k, float("nan")),
+                }
+
         out_json = os.path.join(self.resultsDir, f"{self.runDetails}Stats.json")
         with open(out_json, "w") as f:
-            json.dump(meanAlgoData, f, indent=4)
+            json.dump(summary, f, indent=4)

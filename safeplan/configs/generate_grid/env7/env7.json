@@ -1,11 +1,11 @@
 {
 "envName": "Env7",
-"envDes": "Sparse Env",
+"envDes": "Construction-site or disaster-response zone with scattered obstacles.",
 "gridSize": 100,
 "cellSize": 0.05,
 "dimensionOfGrid": 2,
 "randomStartGoal": true,
-"numStartGoals": 1,
+"numStartGoals": 2,
 "startGoalPairs": [],
 "polygons": [
 { "polygon": [[10,10],[10,20],[20,20],[20,10]] },

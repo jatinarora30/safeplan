@@ -10,8 +10,8 @@ sf.benchmark()
 sf=Stats("/home/jatinarora/safeplan/safeplan/runs/run1.json")
 sf.compute()
 
-# vs=Visualize()
-# vs = Visualize()
-# # vs.see("/home/jatinarora/safeplan/safeplan/runs/run1.json", iterNo=1, prefer_plotly=True)
+vs=Visualize()
+vs = Visualize()
+vs.see("/home/jatinarora/safeplan/safeplan/runs/run1.json", iterNo=1, prefer_plotly=True)
 
-# vs.plotGrid("/home/jatinarora/safeplan/safeplan/runs/run1.json", prefer_plotly=True)
+#vs.plotGrid("/home/jatinarora/safeplan/safeplan/runs/run1.json", prefer_plotly=True)

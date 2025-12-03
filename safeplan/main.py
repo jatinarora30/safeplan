@@ -17,6 +17,7 @@ from .algos.cbf_rrt import CBFRRT
 from .algos.optimized_astar import OptimizedAStar
 from .algos.fs_planner import FSPlanner
 from .algos.safe_astar import SafeAStar
+from .algos.upp2 import UPP2
 
 from .envs.generate_grid import GenerateGrid
 
@@ -301,6 +302,8 @@ class SafePlan:
                 self.algos.append(("VoronoiPlanner", VoronoiPlanner(k["args"]["pointSamples"], k["args"]["knn"])))
             if k["name"] == "UPP":
                 self.algos.append(("UPP", UPP(k["args"]["alpha"], k["args"]["beta"], k["args"]["radius"], k["args"]["epsilon"])))
+            if k["name"] == "UPP2":
+                self.algos.append(("UPP2", UPP2(k["args"]["alpha"], k["args"]["beta"], k["args"]["radius"], k["args"]["epsilon"])))
 
     def setUpEvals(self):
         for k in self.evalsDetails:

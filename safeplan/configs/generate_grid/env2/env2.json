@@ -1,12 +1,13 @@
 {
   "envName": "Env2",
-  "envDes": "Office corridor with rooms and warehouse aisles",
+  "envDes": "Indoor warehouse or factory floor with shelving aisles",
   "gridSize": 1000,
   "cellSize": 0.05,
   "dimensionOfGrid": 2,
-  "randomStartGoal": true,
-  "numStartGoals": 5,
-  "startGoalPairs": [],
+  "randomStartGoal": false,
+  "timesEachGoal": 510,
+  "numStartGoals": 1,
+  "startGoalPairs": [{ "start": [100, 100], "goal": [900, 900] }],
   "polygons": [
     { "polygon": [[100,150],[220,150],[220,300],[100,300]] },
     { "polygon": [[100,350],[220,350],[220,500],[100,500]] },

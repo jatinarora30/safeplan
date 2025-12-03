@@ -1,11 +1,11 @@
 {
   "envName": "Env5",
-  "envDes": "Highly cluttered with convex obstacles",
+  "envDes": "Outdoor park or off-road terrain with irregularly placed natural obstacles (trees, rocks, or debris)",
   "gridSize": 1000,
   "cellSize": 0.05,
   "dimensionOfGrid": 2,
   "randomStartGoal": true,
-  "numStartGoals": 1,
+  "numStartGoals": 2,
   "startGoalPairs": [],
   "polygons": [
     { "polygon": [[120,120],[180,140],[160,200],[100,180]] },

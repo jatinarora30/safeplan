@@ -16,22 +16,18 @@
     {"name": "NodesInPath", "args": {"type":"RDP","epsilon":0.01}}
   ],
   "algoDetails": [
-    {"name": "VoronoiPlanner","args": {"pointSamples":100,"knn":100}},
-    {"name": "AStar"},
-    {"name": "RRT","args": {"maxIter":10000,"goalSampleRate":0.05,"stepSize":7,"pointSamples":100}},
+    {"name": "UPP2","args": {"alpha":0.5,"beta":10,"radius":1,"epsilon":0.01}},
+     {"name": "UPP","args": {"alpha":0.5,"beta":2,"radius":5,"epsilon":0.01}}
 
-    {"name": "UPP","args": {"alpha":0.5,"beta":2,"radius":5,"epsilon":0.01}},
-    {"name": "CBFRRT","args": {"maxIter":10000,"goalSampleRate":0.05,"stepSize":7,"pointSamples":100,"gamma1":2,"gamma2":2}},
-    {"name": "FSPlanner" ,"args": {"pointSamples":100,"cw":1, "epsilon":0.01,"maxNeigh":5}},
-    {"name": "SDFAStar" , "args": {"k1":5,"k2":5}},
-    {"name": "OptimizedAStar" , "args": {"turnPenaltyCoefficients":0.5,"safetyDistGridRadius":100,"maxInflateIter":100,"pointSamples":100}},
-    {"name": "SafeAStar" ,"args": {"safetyFactor":4,"epsilon":0.01}}
+
+  
   ],
   "envDetails": [
     {
       "generateGrid": [
        
-        {"name": "env12" }
+      {"name": "env2"}
+       
       ]    }
   ]
 }

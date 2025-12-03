@@ -1,11 +1,11 @@
 {
   "envName": "Env8",
-  "envDes": "House Layout with Rooms and Doors ",
+  "envDes": "Indoor household multi-room floor plan environment",
   "gridSize": 100,
   "cellSize": 0.05,
   "dimensionOfGrid": 2,
   "randomStartGoal": true,
-  "numStartGoals": 300,
+  "numStartGoals": 2,
   "startGoalPairs": [],
   "polygons": [
     { "polygon": [[0,0],[0,99],[2,99],[2,0]] },
