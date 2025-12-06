@@ -16,15 +16,14 @@ from .algos.sdf_astar import SDFAStar
 from .algos.cbf_rrt import CBFRRT
 from .algos.optimized_astar import OptimizedAStar
 from .algos.fs_planner import FSPlanner
-from .algos.safe_astar import SafeAStar
-from .algos.upp2 import UPP2
+
+from .algos.upp import UPP
 
 from .envs.generate_grid import GenerateGrid
 
 from .evals.path_cost import PathCost
 from .evals.nodes_in_path import NodesInPath
 from .evals.optimal_deviation import OptimalDeviation
-from .evals.distance_to_goal import DistanceToGoal
 from .evals.jerk_per_meter import JerkPerMeter
 from .evals.turning_angle import TurningAngle
 from .evals.minimum_clearance import MinimumClearance
@@ -275,8 +274,6 @@ class SafePlan:
                 self.algos.append(("SDFAStar", SDFAStar(k["args"]["k1"], k["args"]["k2"])))
             if k["name"] == "FSPlanner":
                 self.algos.append(("FSPlanner",FSPlanner(k["args"]["pointSamples"],k["args"]["cw"],k["args"]["epsilon"],k["args"]["maxNeigh"])))
-            if k["name"] == "SafeAStar":
-                self.algos.append(("SafeAStar", SafeAStar(k["args"]["safetyFactor"],k["args"]["epsilon"])))
             if k["name"] == "RRT":
                 self.algos.append(
                     (
@@ -301,9 +298,32 @@ class SafePlan:
             if k["name"] == "VoronoiPlanner":
                 self.algos.append(("VoronoiPlanner", VoronoiPlanner(k["args"]["pointSamples"], k["args"]["knn"])))
             if k["name"] == "UPP":
-                self.algos.append(("UPP", UPP(k["args"]["alpha"], k["args"]["beta"], k["args"]["radius"], k["args"]["epsilon"])))
-            if k["name"] == "UPP2":
-                self.algos.append(("UPP2", UPP2(k["args"]["alpha"], k["args"]["beta"], k["args"]["radius"], k["args"]["epsilon"])))
+                a = k["args"]
+                self.algos.append((
+                    "UPP",
+                    UPP(
+                        a["alphaBase"],
+                        a["betaBase"],
+                        a["radiusBase"],
+                        a["epsilon"],
+                        a["betaMin"],
+                        a["betaMax"],
+                        a["betaDecay"],
+                        a["betaRecovery"],
+                        a["betaPatience"],
+                        a["goalTol"],
+                        a["alphaMin"],
+                        a["alphaMax"],
+                        a["alphaDecay"],
+                        a["alphaRecovery"],
+                        a["tolAngular"],
+                        a["turnTarget"],
+                        a["turnWindow"],
+                        a["radiusMin"],
+                        a["radiusMax"],
+                    )
+                ))
+
 
     def setUpEvals(self):
         for k in self.evalsDetails:
@@ -317,8 +337,6 @@ class SafePlan:
                 self.evals.append(("NodesInPath", NodesInPath(k["args"]["type"], k["args"]["epsilon"])))
             if k["name"] == "OptimalDeviation":
                 self.evals.append(("OptimalDeviation", OptimalDeviation()))
-            if k["name"] == "DistanceToGoal":
-                self.evals.append(("DistanceToGoal", DistanceToGoal()))
             if k["name"] == "JerkPerMeter":
                 self.evals.append(("JerkPerMeter", JerkPerMeter()))
             if k["name"] == "TurningAngle":

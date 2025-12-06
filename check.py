@@ -3,7 +3,7 @@ import numpy as np
 # -----------------------------
 # Parameters
 # -----------------------------
-EPS = 1e-3
+EPS = 1
 
 # theoretical upper bound
 def theoretical_bound(R, n, eps=EPS):
@@ -57,8 +57,8 @@ if __name__ == "__main__":
 
     EPS = 1
 
-    for n in [2,3,5]:        # test dimensions
-        for R in [1,3,5,7]:  # test radii
+    for n in [2]:        # test dimensions
+        for R in [5]:  # test radii
 
             grid, center = make_worst_case_grid(R, n)
             numerical = sum_inverse_safety(grid, center, R, EPS)

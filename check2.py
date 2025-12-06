@@ -103,14 +103,25 @@ if __name__ == "__main__":
 
     # Plot preSafety heatmap (mask obstacles for clarity)
     ax1 = axes[1]
-    ax1.set_title("preSafety Field (sum of 1/(d+eps))")
-    # Set obstacle cells to NaN so they show as blank
+    ax1.set_title("Safety Field", fontsize=16)
+
+    # Prepare safety field: hide obstacle cells
     safety_to_plot = preSafety.copy().astype(float)
     safety_to_plot[grid == 1] = np.nan
+
+    # Plot
     im1 = ax1.imshow(safety_to_plot, origin="lower")
-    ax1.set_xlabel("x")
-    ax1.set_ylabel("y")
-    fig.colorbar(im1, ax=ax1, fraction=0.046, pad=0.04, label="preSafety value")
+
+  
+
+    # Tick label sizes
+    ax1.tick_params(axis='both', which='major', labelsize=14)
+
+    # Colorbar with larger label
+    cbar = fig.colorbar(im1, ax=ax1, fraction=0.046, pad=0.04)
+    cbar.set_label("Safety Field Value", fontsize=12)
+    cbar.ax.tick_params(labelsize=14)
+
 
     plt.tight_layout()
     plt.show()

@@ -33,7 +33,36 @@ class OptiSafeIndex(BaseEval):
         @post Instance is initialized.
         """
         self.value=0
-        self.upp=UPP(beta=10,radius=30,epsilon=0.01,alpha=0.5)
+        import numpy as np
+
+        self.upp = UPP(
+            alphaBase=0.5,
+            betaBase=10,
+            radiusBase=30,
+            epsilon=0.01,
+
+            # β adaptivity parameters
+            betaMin=0.1,
+            betaMax=2.0,
+            betaDecay=0.97,
+            betaRecovery=1.05,
+            betaPatience=20,
+            goalTol=0.1,
+
+            # α adaptivity parameters
+            alphaMin=0.05,
+            alphaMax=0.95,
+            alphaDecay=0.97,
+            alphaRecovery=1.05,
+            tolAngular=np.deg2rad(180),
+            turnTarget=np.deg2rad(15),
+            turnWindow=10,
+
+            # radius adaptivity parameters
+            radiusMin=1,
+            radiusMax=5
+        )
+
         self.aStar=AStar()
         self.vornoiPlanner=VoronoiPlanner(pointSamples=pointSamples,knn=knn)
         self.pathCost=PathCost()

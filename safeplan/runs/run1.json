@@ -16,9 +16,8 @@
     {"name": "NodesInPath", "args": {"type":"RDP","epsilon":0.01}}
   ],
   "algoDetails": [
-    {"name": "UPP2","args": {"alpha":0.5,"beta":10,"radius":1,"epsilon":0.01}},
-     {"name": "UPP","args": {"alpha":0.5,"beta":2,"radius":5,"epsilon":0.01}}
-
+    {"name": "UPP","args": {"alphaBase": 0.5,"betaBase": 10.0,"radiusBase": 1, "epsilon": 0.01,"betaMin": 0.1,"betaMax": 2.0,"betaDecay": 0.97,"betaRecovery": 1.05,"betaPatience": 20,"goalTol": 0.1,"alphaMin": 0.05,"alphaMax": 0.95,"alphaDecay": 0.97,"alphaRecovery": 1.05,"tolAngular": 180.0,"turnTarget": 15.0,"turnWindow": 10,"radiusMin": 1,"radiusMax": 5}
+}
 
   
   ],
