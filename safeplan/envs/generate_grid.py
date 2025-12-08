@@ -71,6 +71,79 @@ class GenerateGrid(BaseEnv):
             A, b = self.makeConvexHull(vertices)
             self.A.append(A)
             self.b.append(b)
+    def is_trivial_straight_line(
+        self,
+        start: tuple,
+        goal: tuple,
+        num_samples: int = 100,
+        min_manhattan_dist: int = 5,
+        border_margin: int = 0,
+    ) -> bool:
+        """
+        @brief Check if a start/goal pair should be rejected as "trivial" or uninteresting.
+        @details
+          This function encodes several heuristics to improve start/goal selection:
+            1) Reject pairs that are too close in grid space (min Manhattan distance).
+            2) Optionally reject pairs whose start or goal lies too close to the map border.
+            3) Reject pairs whose straight-line path in index space is entirely collision-free.
+          If any of these conditions is met, the pair is considered "trivial" and this
+          function returns True.
+
+        @param start Tuple of integer indices for the start cell.
+        @param goal Tuple of integer indices for the goal cell.
+        @param num_samples Number of samples along the line (including endpoints).
+        @param min_manhattan_dist Minimum Manhattan distance between start and goal
+               for the pair to be considered non-trivial.
+        @param border_margin Margin (in cells) from the grid border within which
+               start/goal are considered trivial. Set to 0 to disable this check.
+        @return True if the pair is considered trivial/uninteresting; False otherwise.
+        """
+        if self.grid is None:
+            raise RuntimeError("Grid not initialized. Call getmap() after loadJson().")
+
+        # 1) Reject pairs that are too close (including identical cells)
+        manhattan_dist = sum(abs(int(a) - int(b)) for a, b in zip(start, goal))
+        if manhattan_dist < min_manhattan_dist:
+            return True  # trivial: start and goal are too close
+
+        # 2) Optionally reject pairs that are too close to the border
+        if border_margin > 0:
+            def is_near_border(p: tuple) -> bool:
+                for d in range(self.dimension):
+                    if p[d] <= border_margin or p[d] >= self.gridSize - 1 - border_margin:
+                        return True
+                return False
+
+            if is_near_border(start) or is_near_border(goal):
+                return True  # trivial: hugging the boundaries
+
+        # 3) Check straight-line collision along the segment start -> goal
+        start_arr = np.asarray(start, dtype=float)
+        goal_arr = np.asarray(goal, dtype=float)
+        direction = goal_arr - start_arr
+
+        # Degenerate case: already covered by the distance check, but keep safe
+        if np.allclose(direction, 0):
+            return True
+
+        for i in range(num_samples + 1):
+            t = i / num_samples
+            pt = start_arr + t * direction
+            # Round to nearest grid index in each dimension
+            idx = tuple(int(round(p)) for p in pt)
+
+            # Safety clamp
+            idx = tuple(
+                max(0, min(self.gridSize - 1, idx[d])) for d in range(self.dimension)
+            )
+
+            if self.grid[idx] == 1:
+                # We hit an obstacle ⇒ path not straight-line feasible ⇒ keep this pair
+                return False
+
+        # All along the line is free ⇒ trivial
+        return True
+
 
     def getRandomFreeCell(self) -> tuple:
         """
@@ -206,18 +279,44 @@ class GenerateGrid(BaseEnv):
 
             # 5) Random start/goal pairs, if requested
             
+                        # 5) Random start/goal pairs, if requested
+            #
+            #    We additionally reject "trivial" pairs where the straight line
+            #    between start and goal is entirely collision-free, so that
+            #    benchmarks focus on non-trivial planning instances.
+
             if self.randomStartGoal:
                 self.startGoalPairs = []
                 k = 0
-                while k < self.numStartGoals:
+                max_trials = self.numStartGoals * 100  # safety limit to avoid infinite loops
+                trials = 0
+
+                while k < self.numStartGoals and trials < max_trials:
+                    trials += 1
                     pair = {}
                     start = self.getRandomFreeCell()
                     goal = self.getRandomFreeCell()
-                    if start != goal:
-                        k = k + 1
-                        pair["start"] = start
-                        pair["goal"] = goal
-                        self.startGoalPairs.append(pair)
+
+                    # Reject identical cells
+                    if start == goal:
+                        continue
+
+                    # Reject trivial straight-line pairs
+                    if self.is_trivial_straight_line(start, goal):
+                        continue
+
+                    # Accept the pair
+                    pair["start"] = start
+                    pair["goal"] = goal
+                    self.startGoalPairs.append(pair)
+                    k += 1
+
+                if k < self.numStartGoals:
+                    print(
+                        f"Warning: only generated {k} non-trivial start/goal pairs "
+                        f"out of requested {self.numStartGoals} (map may be too simple/dense)."
+                    )
+
 
             original_pairs = list(self.startGoalPairs)  # snapshot
             self.startGoalPairs = []

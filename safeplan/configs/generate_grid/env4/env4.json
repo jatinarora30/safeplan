@@ -4,6 +4,7 @@
   "gridSize": 1000,
   "cellSize": 0.05,
   "dimensionOfGrid": 2,
+  "timesEachGoal": 2,
   "randomStartGoal": true,
   "numStartGoals": 2,
   "startGoalPairs": [],

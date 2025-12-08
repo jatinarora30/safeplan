@@ -2,22 +2,102 @@
     "startGoalPairs": [
         {
             "start": [
-                39,
-                25
+                1,
+                1
             ],
             "goal": [
-                79,
-                14
+                99,
+                99
             ]
         },
         {
             "start": [
-                93,
-                11
+                1,
+                1
             ],
             "goal": [
-                16,
-                64
+                99,
+                99
+            ]
+        },
+        {
+            "start": [
+                1,
+                1
+            ],
+            "goal": [
+                99,
+                99
+            ]
+        },
+        {
+            "start": [
+                1,
+                1
+            ],
+            "goal": [
+                99,
+                99
+            ]
+        },
+        {
+            "start": [
+                1,
+                1
+            ],
+            "goal": [
+                99,
+                99
+            ]
+        },
+        {
+            "start": [
+                1,
+                1
+            ],
+            "goal": [
+                99,
+                99
+            ]
+        },
+        {
+            "start": [
+                1,
+                1
+            ],
+            "goal": [
+                99,
+                99
+            ]
+        },
+        {
+            "start": [
+                1,
+                1
+            ],
+            "goal": [
+                99,
+                99
+            ]
+        },
+        {
+            "start": [
+                1,
+                1
+            ],
+            "goal": [
+                99,
+                99
+            ]
+        },
+        {
+            "start": [
+                1,
+                1
+            ],
+            "goal": [
+                99,
+                99
             ]
         }
     ],
@@ -10227,5 +10307,6 @@
     "envDes": "Indoor office in corridor environment with offset walls.",
     "dimensionOfGrid": 2,
     "cellSize": 0.05,
-    "numStartGoals": 2
+    "numStartGoals": 2,
+    "timesEachGoal": 10
 }
