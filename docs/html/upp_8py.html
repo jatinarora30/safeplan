@@ -89,7 +89,7 @@ $(document).ready(function(){initNavTree('upp_8py.html',''); initResizable(); })
 </div><!--header-->
 <div class="contents">
 
-<p>Universal Path Planner (UPP) for N-dimensional occupancy grids.  
+<p>Universal Path Planner (UPP) with direction-based adaptive safety.  
 <a href="#details">More...</a></p>
 
 <p><a href="upp_8py_source.html">Go to the source code of this file.</a></p>
@@ -97,7 +97,7 @@ $(document).ready(function(){initNavTree('upp_8py.html',''); initResizable(); })
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classupp_1_1UPP.html">upp.UPP</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Universal Path Planner blending distance and safety costs.  <a href="classupp_1_1UPP.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Universal Path Planner blending distance and adaptive safety weighting (β), with windowed hysteresis-based adaptive α (turn-aware).  <a href="classupp_1_1UPP.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
@@ -106,42 +106,15 @@ Namespaces</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Universal Path Planner (UPP) for N-dimensional occupancy grids. </p>
-<p>Implements a heuristic-guided grid planner that blends two distance measures and a precomputed safety potential. The environment is an N-D NumPy occupancy grid where value 0 denotes free space and value 1 denotes an obstacle.</p>
+<div class="textblock"><p>Universal Path Planner (UPP) with direction-based adaptive safety. </p>
+<p>This planner blends geometric distance and safety potential for N-D occupancy grids. It adaptively adjusts the safety weighting β based on <em>signed progress</em> toward the goal.</p>
 <p>Key ideas:</p><ul>
 <li>Combined distance heuristic: mix of Manhattan and Chebyshev distances.</li>
-<li>Safety potential: fast convolution-based map that increases cost near obstacles.</li>
-<li>Standard open-set search using a priority queue with cumulative path cost.</li>
+<li>Safety potential: convolution-based obstacle cost field.</li>
+<li>Adaptive β: increases when the planner moves closer to the goal, decreases when moving away or stalling.</li>
+<li>Priority queue A* search accumulating total path cost.</li>
 </ul>
-<dl class="section user"><dt>Constructor Arguments</dt><dd><ul>
-<li><code>alpha</code> : float — blend coefficient between Manhattan and Chebyshev distances</li>
-<li><code>beta</code> : float — weight on the safety potential</li>
-<li><code>radius</code> : int — Chebyshev radius for safety kernel support</li>
-<li><code>epsilon</code> : float — small constant to avoid division by zero in the kernel</li>
-</ul>
-</dd></dl>
-<dl class="section user"><dt>Inputs (to @ref plan())</dt><dd><ul>
-<li><code>start</code> : tuple[int, ...] — start grid cell (for example, (row, col))</li>
-<li><code>goal</code> : tuple[int, ...] — goal grid cell</li>
-<li><code>grid</code> : numpy.ndarray (N-D), values {0=free, 1=obstacle}</li>
-</ul>
-</dd></dl>
-<dl class="section user"><dt>Outputs</dt><dd><ul>
-<li><code>success</code> : int — 1 if a path is found, else 0</li>
-<li><code>path</code> : list[tuple[int, ...]] — sequence of cells from start to goal (inclusive)</li>
-<li><code>info</code> : list[str] — diagnostics (for example, "Invalid goal")</li>
-</ul>
-</dd></dl>
-<dl class="section note"><dt>Note</dt><dd><ul>
-<li>Coordinates are handled in grid index space.</li>
-<li>The safety potential is precomputed once per planning call.</li>
-<li>Neighborhood generation includes all immediate offsets except the zero vector.</li>
-</ul>
-</dd></dl>
-<dl class="section see"><dt>See also</dt><dd>BasePlanner</dd></dl>
-<p>@references</p><ul>
-<li>UPP concept overview (preprint): <a href="https://arxiv.org/pdf/2505.23197">https://arxiv.org/pdf/2505.23197</a> </li>
-</ul>
+<dl class="section see"><dt>See also</dt><dd>BasePlanner </dd></dl>
 
 <p class="definition">Definition in file <a class="el" href="upp_8py_source.html">upp.py</a>.</p>
 </div></div><!-- contents -->

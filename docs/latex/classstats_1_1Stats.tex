@@ -52,7 +52,7 @@ Compute, compare, and visualize evaluation statistics across algorithms.
 
 Given a run configuration describing algorithms and evaluation metrics, this class scans the corresponding output folders, aggregates metrics per algorithm, and produces a tabular summary (printed, saved to JSON, and optionally saved as a PNG table image). 
 
-Definition at line 59 of file stats.\+py.
+Definition at line 60 of file stats.\+py.
 
 
 
@@ -80,7 +80,7 @@ Initialize the statistics pipeline from a run configuration.
 \end{DoxyVerb}
  
 
-Definition at line 74 of file stats.\+py.
+Definition at line 75 of file stats.\+py.
 
 
 
@@ -107,7 +107,7 @@ Check if all algorithms share the same iteration count.
 \end{DoxyVerb}
  
 
-Definition at line 147 of file stats.\+py.
+Definition at line 148 of file stats.\+py.
 
 \mbox{\Hypertarget{classstats_1_1Stats_ab4106ca0715d10d8046a79d2151a9285}\label{classstats_1_1Stats_ab4106ca0715d10d8046a79d2151a9285}} 
 \index{stats.Stats@{stats.Stats}!compute@{compute}}
@@ -121,24 +121,27 @@ Aggregate metrics per algorithm and write summary artifacts.
 
 \begin{DoxyVerb}   @details
    For each algorithm directory under the run path, all JSON result files are
-   loaded and their @c evaluation blocks are accumulated. The final per-algo
-   metrics are computed as follows:
+   loaded and their @c evaluation blocks are accumulated.
+
    - For keys deemed “success rate” (case/format variations accepted),
-     the sum is divided by the global maximum iteration count observed across
-     algorithms (@c self.max_iterations).
-   - For all other metrics, the sum is divided by the number of files found
-     for that algorithm.
-
-   A pandas DataFrame is printed to stdout. If @c saveStatsImage was set in
-   the constructor, a PNG table is saved under @c results/<runDetails>.png.
-   A JSON summary is always written to
-   @c results/<runDetails>Stats.json.
-
-   @return None
+     we treat each iteration as a 0/1 success indicator, pad missing
+     iterations with zeros up to @c self.max_iterations, and compute:
 \end{DoxyVerb}
- Side prints a Data\+Frame, writes JSON (and optionally PNG). 
+ 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{mean = total\_successes / max\_iterations}
 
-Definition at line 179 of file stats.\+py.
+\end{DoxyCode}
+ std = std dev over max\+\_\+iterations 0/1 samples.
+\begin{DoxyItemize}
+\item For all other metrics, mean and std are computed over the per-\/file values available for that algorithm.
+\end{DoxyItemize}
+
+Two Data\+Frames are printed\+: means and standard deviations. A JSON summary is written to results/$<$run\+Details$>$Stats.\+json with structure\+: \{ algo\+: \{ metric\+: \{ \char`\"{}mean\char`\"{}\+: ..., \char`\"{}std\char`\"{}\+: ... \}, ... \}, ... \}
+
+If {\ttfamily save\+Stats\+Image} is True, a PNG table of \char`\"{}mean±std\char`\"{} is also saved. 
+
+Definition at line 183 of file stats.\+py.
 
 \mbox{\Hypertarget{classstats_1_1Stats_af6a903e176641e5db2e71bc471c9c4f3}\label{classstats_1_1Stats_af6a903e176641e5db2e71bc471c9c4f3}} 
 \index{stats.Stats@{stats.Stats}!createDir@{createDir}}
@@ -158,7 +161,7 @@ Create a directory if it does not exist.
 \end{DoxyVerb}
  
 
-Definition at line 123 of file stats.\+py.
+Definition at line 124 of file stats.\+py.
 
 
 
@@ -171,7 +174,7 @@ Definition at line 123 of file stats.\+py.
 
 
 
-Definition at line 90 of file stats.\+py.
+Definition at line 91 of file stats.\+py.
 
 \mbox{\Hypertarget{classstats_1_1Stats_aa6b071c64c878c541933e32cb061592e}\label{classstats_1_1Stats_aa6b071c64c878c541933e32cb061592e}} 
 \index{stats.Stats@{stats.Stats}!algosDetails@{algosDetails}}
@@ -181,7 +184,7 @@ Definition at line 90 of file stats.\+py.
 
 
 
-Definition at line 85 of file stats.\+py.
+Definition at line 86 of file stats.\+py.
 
 \mbox{\Hypertarget{classstats_1_1Stats_a50ba380a82060e9dda896d7bbce6bc0a}\label{classstats_1_1Stats_a50ba380a82060e9dda896d7bbce6bc0a}} 
 \index{stats.Stats@{stats.Stats}!evals@{evals}}
@@ -191,7 +194,7 @@ Definition at line 85 of file stats.\+py.
 
 
 
-Definition at line 93 of file stats.\+py.
+Definition at line 94 of file stats.\+py.
 
 \mbox{\Hypertarget{classstats_1_1Stats_abed07b5d7336c056bbc668797888bda5}\label{classstats_1_1Stats_abed07b5d7336c056bbc668797888bda5}} 
 \index{stats.Stats@{stats.Stats}!evalsDetails@{evalsDetails}}
@@ -201,7 +204,7 @@ Definition at line 93 of file stats.\+py.
 
 
 
-Definition at line 86 of file stats.\+py.
+Definition at line 87 of file stats.\+py.
 
 \mbox{\Hypertarget{classstats_1_1Stats_a813f7009ce6b4ae1aeb442b5108ab62f}\label{classstats_1_1Stats_a813f7009ce6b4ae1aeb442b5108ab62f}} 
 \index{stats.Stats@{stats.Stats}!iterations@{iterations}}
@@ -211,7 +214,7 @@ Definition at line 86 of file stats.\+py.
 
 
 
-Definition at line 104 of file stats.\+py.
+Definition at line 105 of file stats.\+py.
 
 \mbox{\Hypertarget{classstats_1_1Stats_a39125c796721b6b98ca5bde02e215b2b}\label{classstats_1_1Stats_a39125c796721b6b98ca5bde02e215b2b}} 
 \index{stats.Stats@{stats.Stats}!max\_iterations@{max\_iterations}}
@@ -221,7 +224,7 @@ Definition at line 104 of file stats.\+py.
 
 
 
-Definition at line 112 of file stats.\+py.
+Definition at line 113 of file stats.\+py.
 
 \mbox{\Hypertarget{classstats_1_1Stats_a51e8ebb272e09a501e00a593da37ad58}\label{classstats_1_1Stats_a51e8ebb272e09a501e00a593da37ad58}} 
 \index{stats.Stats@{stats.Stats}!outputDir@{outputDir}}
@@ -231,7 +234,7 @@ Definition at line 112 of file stats.\+py.
 
 
 
-Definition at line 100 of file stats.\+py.
+Definition at line 101 of file stats.\+py.
 
 \mbox{\Hypertarget{classstats_1_1Stats_abb4205283622b0541138811b2a87cabf}\label{classstats_1_1Stats_abb4205283622b0541138811b2a87cabf}} 
 \index{stats.Stats@{stats.Stats}!resultsDir@{resultsDir}}
@@ -241,7 +244,7 @@ Definition at line 100 of file stats.\+py.
 
 
 
-Definition at line 81 of file stats.\+py.
+Definition at line 82 of file stats.\+py.
 
 \mbox{\Hypertarget{classstats_1_1Stats_a43d983d58fb47897194329ad1c3e204e}\label{classstats_1_1Stats_a43d983d58fb47897194329ad1c3e204e}} 
 \index{stats.Stats@{stats.Stats}!runConfigPath@{runConfigPath}}
@@ -251,7 +254,7 @@ Definition at line 81 of file stats.\+py.
 
 
 
-Definition at line 75 of file stats.\+py.
+Definition at line 76 of file stats.\+py.
 
 \mbox{\Hypertarget{classstats_1_1Stats_abafff1542203f7bc48a887c2ff2fbb80}\label{classstats_1_1Stats_abafff1542203f7bc48a887c2ff2fbb80}} 
 \index{stats.Stats@{stats.Stats}!runDetails@{runDetails}}
@@ -261,7 +264,7 @@ Definition at line 75 of file stats.\+py.
 
 
 
-Definition at line 87 of file stats.\+py.
+Definition at line 88 of file stats.\+py.
 
 \mbox{\Hypertarget{classstats_1_1Stats_a8fca9d611f4283ef0377da3872cc5a24}\label{classstats_1_1Stats_a8fca9d611f4283ef0377da3872cc5a24}} 
 \index{stats.Stats@{stats.Stats}!runPath@{runPath}}
@@ -271,7 +274,7 @@ Definition at line 87 of file stats.\+py.
 
 
 
-Definition at line 101 of file stats.\+py.
+Definition at line 102 of file stats.\+py.
 
 \mbox{\Hypertarget{classstats_1_1Stats_a66327072aa5b07d47c4680a12b30ac14}\label{classstats_1_1Stats_a66327072aa5b07d47c4680a12b30ac14}} 
 \index{stats.Stats@{stats.Stats}!saveStatsImage@{saveStatsImage}}
@@ -281,7 +284,7 @@ Definition at line 101 of file stats.\+py.
 
 
 
-Definition at line 76 of file stats.\+py.
+Definition at line 77 of file stats.\+py.
 
 \mbox{\Hypertarget{classstats_1_1Stats_a00c6f21c8d4ca682b526673722a8f2cb}\label{classstats_1_1Stats_a00c6f21c8d4ca682b526673722a8f2cb}} 
 \index{stats.Stats@{stats.Stats}!totalFiles@{totalFiles}}
@@ -291,7 +294,7 @@ Definition at line 76 of file stats.\+py.
 
 
 
-Definition at line 155 of file stats.\+py.
+Definition at line 156 of file stats.\+py.
 
 
 

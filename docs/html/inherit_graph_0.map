@@ -1,27 +1,25 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" title=" " alt="" coords="5,377,55,404"/>
-<area shape="rect" id="node2" href="$classbaseenv_1_1BaseEnv.html" title="Abstract base for environment generation." alt="" coords="128,167,264,193"/>
-<area shape="rect" id="node4" href="$classbaseeval_1_1BaseEval.html" title="Abstract base/registry for evaluating planning algorithms." alt="" coords="123,377,269,404"/>
-<area shape="rect" id="node16" href="$classbaseplanner_1_1BasePlanner.html" title="Abstract base/registry for planning algorithms." alt="" coords="103,895,289,921"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,341,55,368"/>
+<area shape="rect" id="node2" href="$classbaseenv_1_1BaseEnv.html" title="Abstract base for environment generation." alt="" coords="128,133,264,160"/>
+<area shape="rect" id="node4" href="$classbaseeval_1_1BaseEval.html" title="Abstract base/registry for evaluating planning algorithms." alt="" coords="123,341,269,368"/>
+<area shape="rect" id="node15" href="$classbaseplanner_1_1BasePlanner.html" title="Abstract base/registry for planning algorithms." alt="" coords="103,800,289,827"/>
 <area shape="rect" id="node3" href="$classgenerate__grid_1_1GenerateGrid.html" title="Generates and caches a discrete occupancy grid with polygonal obstacles." alt="" coords="350,5,553,32"/>
 <area shape="rect" id="node5" href="$classaverage__minimum__clearance_1_1AverageMinimumClearance.html" title=" " alt="" coords="342,57,561,98"/>
 <area shape="rect" id="node6" href="$classclearance__variability_1_1ClearanceVariability.html" title=" " alt="" coords="339,122,564,163"/>
 <area shape="rect" id="node7" href="$classdanger__violations_1_1DangerViolations.html" title=" " alt="" coords="357,187,546,229"/>
-<area shape="rect" id="node8" href="$classdistance__to__goal_1_1DistanceToGoal.html" title=" " alt="" coords="355,253,548,294"/>
-<area shape="rect" id="node9" href="$classjerk__per__meter_1_1JerkPerMeter.html" title=" " alt="" coords="347,319,555,345"/>
-<area shape="rect" id="node10" href="$classminimum__clearance_1_1MinimumClearance.html" title=" " alt="" coords="341,370,562,411"/>
-<area shape="rect" id="node11" href="$classnodes__in__path_1_1NodesInPath.html" title=" " alt="" coords="351,436,552,463"/>
-<area shape="rect" id="node12" href="$classoptimal__deviation_1_1OptimalDeviation.html" title=" " alt="" coords="353,487,549,529"/>
-<area shape="rect" id="node13" href="$classoptisafe__index_1_1OptiSafeIndex.html" title=" " alt="" coords="344,553,559,580"/>
-<area shape="rect" id="node14" href="$classpath__cost_1_1PathCost.html" title=" " alt="" coords="378,604,525,631"/>
-<area shape="rect" id="node15" href="$classturning__angle_1_1TurningAngle.html" title=" " alt="" coords="352,655,551,681"/>
-<area shape="rect" id="node17" href="$classa__star_1_1AStar.html" title="A* planner operating on N&#45;D occupancy grids." alt="" coords="401,705,501,732"/>
-<area shape="rect" id="node18" href="$classcbf__rrt_1_1CBFRRT.html" title="RRT planner with Control Barrier Function (CBF) safety checks." alt="" coords="392,756,511,783"/>
-<area shape="rect" id="node19" href="$classfs__planner_1_1FSPlanner.html" title="Fast and Safe planner with SDF&#45;guided costs and Lazy Theta*." alt="" coords="373,807,530,833"/>
-<area shape="rect" id="node20" href="$classoptimized__astar_1_1OptimizedAStar.html" title=" " alt="" coords="353,858,550,899"/>
-<area shape="rect" id="node21" href="$classrrt_1_1RRT.html" title="RRT planner operating on N&#45;D occupancy grids." alt="" coords="418,924,485,951"/>
-<area shape="rect" id="node22" href="$classsafe__astar_1_1SafeAStar.html" title="A* with EDT&#45;weighted safety costs (no hard inflation)." alt="" coords="373,975,530,1001"/>
-<area shape="rect" id="node23" href="$classsdf__astar_1_1SDFAStar.html" title=" " alt="" coords="379,1025,523,1052"/>
-<area shape="rect" id="node24" href="$classupp_1_1UPP.html" title="Universal Path Planner blending distance and safety costs." alt="" coords="413,1076,489,1103"/>
-<area shape="rect" id="node25" href="$classvoronoi__planner_1_1VoronoiPlanner.html" title="Path planner using a Voronoi roadmap with A* search." alt="" coords="337,1127,565,1153"/>
+<area shape="rect" id="node8" href="$classjerk__per__meter_1_1JerkPerMeter.html" title=" " alt="" coords="347,253,555,280"/>
+<area shape="rect" id="node9" href="$classminimum__clearance_1_1MinimumClearance.html" title=" " alt="" coords="341,305,562,346"/>
+<area shape="rect" id="node10" href="$classnodes__in__path_1_1NodesInPath.html" title=" " alt="" coords="351,371,552,397"/>
+<area shape="rect" id="node11" href="$classoptimal__deviation_1_1OptimalDeviation.html" title=" " alt="" coords="353,422,549,463"/>
+<area shape="rect" id="node12" href="$classoptisafe__index_1_1OptiSafeIndex.html" title=" " alt="" coords="344,488,559,515"/>
+<area shape="rect" id="node13" href="$classpath__cost_1_1PathCost.html" title=" " alt="" coords="378,539,525,565"/>
+<area shape="rect" id="node14" href="$classturning__angle_1_1TurningAngle.html" title=" " alt="" coords="352,589,551,616"/>
+<area shape="rect" id="node16" href="$classa__star_1_1AStar.html" title="A* planner operating on N&#45;D occupancy grids." alt="" coords="401,640,501,667"/>
+<area shape="rect" id="node17" href="$classcbf__rrt_1_1CBFRRT.html" title="RRT planner with Control Barrier Function (CBF) safety checks." alt="" coords="392,691,511,717"/>
+<area shape="rect" id="node18" href="$classfs__planner_1_1FSPlanner.html" title="Fast and Safe planner with SDF&#45;guided costs and Lazy Theta*." alt="" coords="373,741,530,768"/>
+<area shape="rect" id="node19" href="$classoptimized__astar_1_1OptimizedAStar.html" title=" " alt="" coords="353,793,550,834"/>
+<area shape="rect" id="node20" href="$classrrt_1_1RRT.html" title="RRT planner operating on N&#45;D occupancy grids." alt="" coords="418,859,485,885"/>
+<area shape="rect" id="node21" href="$classsdf__astar_1_1SDFAStar.html" title=" " alt="" coords="379,909,523,936"/>
+<area shape="rect" id="node22" href="$classupp_1_1UPP.html" title="Universal Path Planner blending distance and adaptive safety weighting (β), with windowed hysteresis&#45;..." alt="" coords="413,960,489,987"/>
+<area shape="rect" id="node23" href="$classvoronoi__planner_1_1VoronoiPlanner.html" title="Path planner using a Voronoi roadmap with A* search." alt="" coords="337,1011,565,1037"/>
 </map>

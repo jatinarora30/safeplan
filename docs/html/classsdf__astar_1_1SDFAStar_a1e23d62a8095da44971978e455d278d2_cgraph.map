@@ -1,9 +1,8 @@
 <map id="sdf_astar.SDFAStar.combinedHeuristics" name="sdf_astar.SDFAStar.combinedHeuristics">
-<area shape="rect" id="node1" title="Combined priority for A* that blends distance and SDF&#45;based safety." alt="" coords="5,137,216,178"/>
-<area shape="rect" id="node2" href="$classa__star_1_1AStar.html#ad067114e66c7d06d0a59d3a90e2a26c2" title="Compute the heuristic distance between two nodes (Manhattan / L1)." alt="" coords="292,5,459,32"/>
-<area shape="rect" id="node3" href="$classcbf__rrt_1_1CBFRRT.html#a35ff8d0a68b82a5919947bd521e621f1" title="Squared Euclidean proxy between two nodes." alt="" coords="283,56,468,83"/>
-<area shape="rect" id="node4" href="$classoptimized__astar_1_1OptimizedAStar.html#a459963ca43f7006d271c1c0aa50ab2c3" title="Heuristic distance between two nodes (Manhattan)." alt="" coords="277,107,474,149"/>
-<area shape="rect" id="node5" href="$classsafe__astar_1_1SafeAStar.html#a035f4e2770a922203a5b94b76121fa3e" title="Manhattan (L1) heuristic between two nodes." alt="" coords="264,173,487,200"/>
-<area shape="rect" id="node6" href="$classsdf__astar_1_1SDFAStar.html#a9b0debabdcc2e356e1a1d9ff01e67326" title="Heuristic distance between two nodes (Manhattan)." alt="" coords="270,224,481,251"/>
-<area shape="rect" id="node7" href="$classsdf__astar_1_1SDFAStar.html#afeb769108e5fce3bcd56e3fd29cdb509" title="Local SDF&#45;based safety measure at a node, relative to the motion direction." alt="" coords="281,275,469,317"/>
+<area shape="rect" id="node1" title="Combined priority for A* that blends distance and SDF&#45;based safety." alt="" coords="5,107,216,149"/>
+<area shape="rect" id="node2" href="$classa__star_1_1AStar.html#ad067114e66c7d06d0a59d3a90e2a26c2" title="Compute the heuristic distance between two nodes (Manhattan / L1)." alt="" coords="286,5,453,32"/>
+<area shape="rect" id="node3" href="$classcbf__rrt_1_1CBFRRT.html#a35ff8d0a68b82a5919947bd521e621f1" title="Squared Euclidean proxy between two nodes." alt="" coords="277,56,462,83"/>
+<area shape="rect" id="node4" href="$classoptimized__astar_1_1OptimizedAStar.html#a459963ca43f7006d271c1c0aa50ab2c3" title="Heuristic distance between two nodes (Manhattan)." alt="" coords="271,107,468,149"/>
+<area shape="rect" id="node5" href="$classsdf__astar_1_1SDFAStar.html#a9b0debabdcc2e356e1a1d9ff01e67326" title="Heuristic distance between two nodes (Manhattan)." alt="" coords="264,173,475,200"/>
+<area shape="rect" id="node6" href="$classsdf__astar_1_1SDFAStar.html#afeb769108e5fce3bcd56e3fd29cdb509" title="Local SDF&#45;based safety measure at a node, relative to the motion direction." alt="" coords="275,225,463,266"/>
 </map>

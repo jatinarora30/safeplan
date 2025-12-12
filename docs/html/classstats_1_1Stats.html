@@ -141,7 +141,7 @@ Public Attributes</h2></td></tr>
 <div class="textblock"><p>Compute, compare, and visualize evaluation statistics across algorithms. </p>
 <p>Given a run configuration describing algorithms and evaluation metrics, this class scans the corresponding output folders, aggregates metrics per algorithm, and produces a tabular summary (printed, saved to JSON, and optionally saved as a PNG table image). </p>
 
-<p class="definition">Definition at line <a class="el" href="stats_8py_source.html#l00059">59</a> of file <a class="el" href="stats_8py_source.html">stats.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="stats_8py_source.html#l00060">60</a> of file <a class="el" href="stats_8py_source.html">stats.py</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ac76aebd543530e070576fb655829c2c3"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ac76aebd543530e070576fb655829c2c3">&#9670;&nbsp;</a></span>__init__()</h2>
@@ -187,7 +187,7 @@ Public Attributes</h2></td></tr>
    - Builds the algorithm list and unique evaluation key list.
    - Counts per-algorithm result files and records the global maximum count.
 </pre> 
-<p class="definition">Definition at line <a class="el" href="stats_8py_source.html#l00074">74</a> of file <a class="el" href="stats_8py_source.html">stats.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="stats_8py_source.html#l00075">75</a> of file <a class="el" href="stats_8py_source.html">stats.py</a>.</p>
 
 </div>
 </div>
@@ -229,7 +229,7 @@ Public Attributes</h2></td></tr>
    @return bool
            True if all counts match and the dict is non-empty; otherwise False.
 </pre> 
-<p class="definition">Definition at line <a class="el" href="stats_8py_source.html#l00147">147</a> of file <a class="el" href="stats_8py_source.html">stats.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="stats_8py_source.html#l00148">148</a> of file <a class="el" href="stats_8py_source.html">stats.py</a>.</p>
 
 </div>
 </div>
@@ -252,23 +252,19 @@ Public Attributes</h2></td></tr>
 <p>Aggregate metrics per algorithm and write summary artifacts. </p>
 <pre class="fragment">   @details
    For each algorithm directory under the run path, all JSON result files are
-   loaded and their @c evaluation blocks are accumulated. The final per-algo
-   metrics are computed as follows:
+   loaded and their @c evaluation blocks are accumulated.
+
    - For keys deemed “success rate” (case/format variations accepted),
-     the sum is divided by the global maximum iteration count observed across
-     algorithms (@c self.max_iterations).
-   - For all other metrics, the sum is divided by the number of files found
-     for that algorithm.
+     we treat each iteration as a 0/1 success indicator, pad missing
+     iterations with zeros up to @c self.max_iterations, and compute:
+</pre> <div class="fragment"><div class="line">mean = total_successes / max_iterations</div>
+</div><!-- fragment --><p> std = std dev over max_iterations 0/1 samples.</p><ul>
+<li>For all other metrics, mean and std are computed over the per-file values available for that algorithm.</li>
+</ul>
+<p>Two DataFrames are printed: means and standard deviations. A JSON summary is written to results/&lt;runDetails&gt;Stats.json with structure: { algo: { metric: { "mean": ..., "std": ... }, ... }, ... }</p>
+<p>If <code>saveStatsImage</code> is True, a PNG table of "mean±std" is also saved. </p>
 
-   A pandas DataFrame is printed to stdout. If @c saveStatsImage was set in
-   the constructor, a PNG table is saved under @c results/&lt;runDetails&gt;.png.
-   A JSON summary is always written to
-   @c results/&lt;runDetails&gt;Stats.json.
-
-   @return None
-</pre><p> Side prints a DataFrame, writes JSON (and optionally PNG). </p>
-
-<p class="definition">Definition at line <a class="el" href="stats_8py_source.html#l00179">179</a> of file <a class="el" href="stats_8py_source.html">stats.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="stats_8py_source.html#l00183">183</a> of file <a class="el" href="stats_8py_source.html">stats.py</a>.</p>
 
 </div>
 </div>
@@ -305,7 +301,7 @@ Public Attributes</h2></td></tr>
    @return None
            Prints a message about creation, existence, or any error.
 </pre> 
-<p class="definition">Definition at line <a class="el" href="stats_8py_source.html#l00123">123</a> of file <a class="el" href="stats_8py_source.html">stats.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="stats_8py_source.html#l00124">124</a> of file <a class="el" href="stats_8py_source.html">stats.py</a>.</p>
 
 </div>
 </div>
@@ -322,7 +318,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="stats_8py_source.html#l00090">90</a> of file <a class="el" href="stats_8py_source.html">stats.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="stats_8py_source.html#l00091">91</a> of file <a class="el" href="stats_8py_source.html">stats.py</a>.</p>
 
 </div>
 </div>
@@ -338,7 +334,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="stats_8py_source.html#l00085">85</a> of file <a class="el" href="stats_8py_source.html">stats.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="stats_8py_source.html#l00086">86</a> of file <a class="el" href="stats_8py_source.html">stats.py</a>.</p>
 
 </div>
 </div>
@@ -354,7 +350,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="stats_8py_source.html#l00093">93</a> of file <a class="el" href="stats_8py_source.html">stats.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="stats_8py_source.html#l00094">94</a> of file <a class="el" href="stats_8py_source.html">stats.py</a>.</p>
 
 </div>
 </div>
@@ -370,7 +366,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="stats_8py_source.html#l00086">86</a> of file <a class="el" href="stats_8py_source.html">stats.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="stats_8py_source.html#l00087">87</a> of file <a class="el" href="stats_8py_source.html">stats.py</a>.</p>
 
 </div>
 </div>
@@ -386,7 +382,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="stats_8py_source.html#l00104">104</a> of file <a class="el" href="stats_8py_source.html">stats.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="stats_8py_source.html#l00105">105</a> of file <a class="el" href="stats_8py_source.html">stats.py</a>.</p>
 
 </div>
 </div>
@@ -402,7 +398,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="stats_8py_source.html#l00112">112</a> of file <a class="el" href="stats_8py_source.html">stats.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="stats_8py_source.html#l00113">113</a> of file <a class="el" href="stats_8py_source.html">stats.py</a>.</p>
 
 </div>
 </div>
@@ -418,7 +414,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="stats_8py_source.html#l00100">100</a> of file <a class="el" href="stats_8py_source.html">stats.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="stats_8py_source.html#l00101">101</a> of file <a class="el" href="stats_8py_source.html">stats.py</a>.</p>
 
 </div>
 </div>
@@ -434,7 +430,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="stats_8py_source.html#l00081">81</a> of file <a class="el" href="stats_8py_source.html">stats.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="stats_8py_source.html#l00082">82</a> of file <a class="el" href="stats_8py_source.html">stats.py</a>.</p>
 
 </div>
 </div>
@@ -450,7 +446,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="stats_8py_source.html#l00075">75</a> of file <a class="el" href="stats_8py_source.html">stats.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="stats_8py_source.html#l00076">76</a> of file <a class="el" href="stats_8py_source.html">stats.py</a>.</p>
 
 </div>
 </div>
@@ -466,7 +462,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="stats_8py_source.html#l00087">87</a> of file <a class="el" href="stats_8py_source.html">stats.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="stats_8py_source.html#l00088">88</a> of file <a class="el" href="stats_8py_source.html">stats.py</a>.</p>
 
 </div>
 </div>
@@ -482,7 +478,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="stats_8py_source.html#l00101">101</a> of file <a class="el" href="stats_8py_source.html">stats.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="stats_8py_source.html#l00102">102</a> of file <a class="el" href="stats_8py_source.html">stats.py</a>.</p>
 
 </div>
 </div>
@@ -498,7 +494,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="stats_8py_source.html#l00076">76</a> of file <a class="el" href="stats_8py_source.html">stats.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="stats_8py_source.html#l00077">77</a> of file <a class="el" href="stats_8py_source.html">stats.py</a>.</p>
 
 </div>
 </div>
@@ -514,7 +510,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="stats_8py_source.html#l00155">155</a> of file <a class="el" href="stats_8py_source.html">stats.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="stats_8py_source.html#l00156">156</a> of file <a class="el" href="stats_8py_source.html">stats.py</a>.</p>
 
 </div>
 </div>

@@ -2,7 +2,7 @@
 \label{classupp_1_1UPP}\index{upp.UPP@{upp.UPP}}
 
 
-Universal Path Planner blending distance and safety costs.  
+Universal Path Planner blending distance and adaptive safety weighting (β), with windowed hysteresis-\/based adaptive α (turn-\/aware).  
 
 
 
@@ -28,22 +28,22 @@ Collaboration diagram for upp.\+UPP\+:
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-def \mbox{\hyperlink{classupp_1_1UPP_a9cc15cab947a6e643a2f6e850458af31}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, \mbox{\hyperlink{classupp_1_1UPP_ad14eb4f2248beeba78c798c0c46044ab}{alpha}}, \mbox{\hyperlink{classupp_1_1UPP_a935eb5dd9ce70d92ca31b12773e4507c}{beta}}, radius, \mbox{\hyperlink{classupp_1_1UPP_a764bd1c608c08702f10be77248141582}{epsilon}})
-\begin{DoxyCompactList}\small\item\em Construct the \mbox{\hyperlink{classupp_1_1UPP}{UPP}} planner. \end{DoxyCompactList}\item 
-def \mbox{\hyperlink{classupp_1_1UPP_a3ecacb3783e49764516828b56fc8e365}{is\+Valid}} (self, grid\+\_\+cell)
-\begin{DoxyCompactList}\small\item\em Check whether a cell lies within grid bounds. \end{DoxyCompactList}\item 
-def \mbox{\hyperlink{classupp_1_1UPP_a56c48da1156f363d463bd50e4fd51b75}{manhattan\+Heuristics}} (self, node1, node2)
-\begin{DoxyCompactList}\small\item\em Manhattan (L1) distance heuristic. \end{DoxyCompactList}\item 
-def \mbox{\hyperlink{classupp_1_1UPP_a9b3bb205a60fe5029daf84b2f4c5d17b}{chebyshev\+Heuristics}} (self, node1, node2)
-\begin{DoxyCompactList}\small\item\em Chebyshev distance heuristic. \end{DoxyCompactList}\item 
-def \mbox{\hyperlink{classupp_1_1UPP_a84b524558707498ac999bb2333fc9834}{adjacent\+Coordinates}} (self, \mbox{\hyperlink{classupp_1_1UPP_a7da4fb54753e038b6e61a264a5b42667}{node}}, offsets=\mbox{[}-\/1, 0, 1\mbox{]})
-\begin{DoxyCompactList}\small\item\em Generate adjacent coordinates around a node. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classupp_1_1UPP_a9f01e3cb6bb25720217503fe8d55c5e9}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, alpha\+Base, beta\+Base, radius\+Base, \mbox{\hyperlink{classupp_1_1UPP_a764bd1c608c08702f10be77248141582}{epsilon}}, \mbox{\hyperlink{classupp_1_1UPP_a4277fe65e2e4e2dc13cf5e73cf2a4831}{beta\+Min}}, \mbox{\hyperlink{classupp_1_1UPP_a4f67b66b1f6aad8d05e9ff72e15bf458}{beta\+Max}}, beta\+Decay, beta\+Recovery, beta\+Patience, goal\+Tol, \mbox{\hyperlink{classupp_1_1UPP_ade3962f6e4442c878697940b695e9096}{alpha\+Min}}, \mbox{\hyperlink{classupp_1_1UPP_aaedf6c5c560c3f60963b5797a5c6d6e5}{alpha\+Max}}, alpha\+Decay, alpha\+Recovery, \mbox{\hyperlink{classupp_1_1UPP_a007f2422e1967f84d72907595e88c4c0}{tol\+Angular}}, turn\+Target, turn\+Window, \mbox{\hyperlink{classupp_1_1UPP_a33e007f9767d9010ded1302be26257a1}{radius\+Min}}, \mbox{\hyperlink{classupp_1_1UPP_a870665f03ed7e0951e8080b9a5b6ce8b}{radius\+Max}})
+\item 
+def \mbox{\hyperlink{classupp_1_1UPP_a61657d14947d05dea0edccd8662c67be}{is\+Valid}} (self, cell)
+\item 
+def \mbox{\hyperlink{classupp_1_1UPP_abd198e52b781ff205e48feb3c803d574}{manhattan}} (self, a, b)
+\item 
+def \mbox{\hyperlink{classupp_1_1UPP_a586fd3f354e41b8dc45e177a486e43fe}{chebyshev}} (self, a, b)
+\item 
+def \mbox{\hyperlink{classupp_1_1UPP_a5afe00e8a31c3212e32f0b3088b34508}{adjacent}} (self, node, offsets=\mbox{[}-\/1, 0, 1\mbox{]})
+\item 
 def \mbox{\hyperlink{classupp_1_1UPP_a7897d08ab9fb1ec5a39ef49e6d1f809d}{precompute\+Safety}} (self)
-\begin{DoxyCompactList}\small\item\em Build the safety potential map via FFT convolution. \end{DoxyCompactList}\item 
-def \mbox{\hyperlink{classupp_1_1UPP_a5aa9c9c3d935e0c04c7e932128f5e22d}{combined\+Heuristics}} (self, node1, node2)
-\begin{DoxyCompactList}\small\item\em Combined cost\+: blended distance plus safety potential. \end{DoxyCompactList}\item 
-def \mbox{\hyperlink{classupp_1_1UPP_a594f93c00f5c628b453a0ff0ccf140f3}{plan}} (self, \mbox{\hyperlink{classupp_1_1UPP_a54a83f456e6d2a0caca4d39cde0c2a2d}{start}}, \mbox{\hyperlink{classupp_1_1UPP_a1efbf3058e727dfae35a6e6f7b26e97d}{goal}}, \mbox{\hyperlink{classupp_1_1UPP_a060751c5c90e6efce3795047e7dd1b53}{grid}})
-\begin{DoxyCompactList}\small\item\em Plan with \mbox{\hyperlink{classupp_1_1UPP}{UPP}} on the provided grid from start to goal. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{classupp_1_1UPP_aa5987457627faa123b896a32a57113b8}{heuristic}} (self, n1, n2)
+\item 
+def \mbox{\hyperlink{classupp_1_1UPP_a594f93c00f5c628b453a0ff0ccf140f3}{plan}} (self, \mbox{\hyperlink{classupp_1_1UPP_a54a83f456e6d2a0caca4d39cde0c2a2d}{start}}, goal, \mbox{\hyperlink{classupp_1_1UPP_a060751c5c90e6efce3795047e7dd1b53}{grid}})
+\begin{DoxyCompactList}\small\item\em Plan a path from start to goal on the given occupancy grid. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -55,223 +55,163 @@ def \mbox{\hyperlink{classupp_1_1UPP_a594f93c00f5c628b453a0ff0ccf140f3}{plan}} (
 \item 
 \mbox{\hyperlink{classupp_1_1UPP_a764bd1c608c08702f10be77248141582}{epsilon}}
 \item 
+\mbox{\hyperlink{classupp_1_1UPP_a4277fe65e2e4e2dc13cf5e73cf2a4831}{beta\+Min}}
+\item 
+\mbox{\hyperlink{classupp_1_1UPP_a4f67b66b1f6aad8d05e9ff72e15bf458}{beta\+Max}}
+\item 
+\mbox{\hyperlink{classupp_1_1UPP_a3ba31b91582b0833cbc555b6e376473b}{decay}}
+\item 
+\mbox{\hyperlink{classupp_1_1UPP_abc692c75f525fd0a57f95fd3cfb2c279}{recovery}}
+\item 
+\mbox{\hyperlink{classupp_1_1UPP_a4debe1facc4f68b9053d0312c3b2be0d}{patience}}
+\item 
+\mbox{\hyperlink{classupp_1_1UPP_a45c2111f12e3b27878d4789bcd669ca2}{tol}}
+\item 
+\mbox{\hyperlink{classupp_1_1UPP_a33e007f9767d9010ded1302be26257a1}{radius\+Min}}
+\item 
+\mbox{\hyperlink{classupp_1_1UPP_a870665f03ed7e0951e8080b9a5b6ce8b}{radius\+Max}}
+\item 
+\mbox{\hyperlink{classupp_1_1UPP_ade3962f6e4442c878697940b695e9096}{alpha\+Min}}
+\item 
+\mbox{\hyperlink{classupp_1_1UPP_aaedf6c5c560c3f60963b5797a5c6d6e5}{alpha\+Max}}
+\item 
+\mbox{\hyperlink{classupp_1_1UPP_abb7ddf76491663022e108dd76bb3ce0d}{alpha\+\_\+decay}}
+\item 
+\mbox{\hyperlink{classupp_1_1UPP_a154d7a3a8b8e0c93664625daeae385af}{alpha\+\_\+recovery}}
+\item 
+\mbox{\hyperlink{classupp_1_1UPP_a007f2422e1967f84d72907595e88c4c0}{tol\+Angular}}
+\item 
+\mbox{\hyperlink{classupp_1_1UPP_a95ad9b6473796e962a7ae87c8f5f3739}{turn\+\_\+target}}
+\item 
+\mbox{\hyperlink{classupp_1_1UPP_a94f975bda51112744ecaae6b55a1447d}{turn\+\_\+window\+\_\+K}}
+\item 
+\mbox{\hyperlink{classupp_1_1UPP_a2f65c00881b36cbc8e0d9c285a2715c1}{turn\+\_\+sum}}
+\item 
+\mbox{\hyperlink{classupp_1_1UPP_a2ef782b1addd5678d3943bd64a57426d}{turn\+\_\+iter}}
+\item 
+\mbox{\hyperlink{classupp_1_1UPP_aabe10e9859735a5bef9b1347cb52d13d}{adaptive\+\_\+beta}}
+\item 
+\mbox{\hyperlink{classupp_1_1UPP_af52bdeec630e79c0498c9caafb81c8c8}{adaptive\+\_\+alpha}}
+\item 
 \mbox{\hyperlink{classupp_1_1UPP_abc82976dda343d002c0aec9bd712b952}{success}}
 \item 
 \mbox{\hyperlink{classupp_1_1UPP_a95672d347ad23cdba4f1c64eb40e88da}{info}}
 \item 
 \mbox{\hyperlink{classupp_1_1UPP_a2ec3db4afe2e38522b6ed38936a8e73f}{path}}
 \item 
-\mbox{\hyperlink{classupp_1_1UPP_a060751c5c90e6efce3795047e7dd1b53}{grid}}
-\item 
 \mbox{\hyperlink{classupp_1_1UPP_a568c09afe77e7c46f23ebebe7c0c7de8}{pre\+Safety}}
 \item 
-\mbox{\hyperlink{classupp_1_1UPP_a54a83f456e6d2a0caca4d39cde0c2a2d}{start}}
-\item 
-\mbox{\hyperlink{classupp_1_1UPP_a1efbf3058e727dfae35a6e6f7b26e97d}{goal}}
+\mbox{\hyperlink{classupp_1_1UPP_a060751c5c90e6efce3795047e7dd1b53}{grid}}
 \item 
 \mbox{\hyperlink{classupp_1_1UPP_a3bd877584fec784d8d3c837ad89ee0c2}{dimension}}
 \item 
-\mbox{\hyperlink{classupp_1_1UPP_a0d0d6cd77bda3a2f5306a5f64082b3ef}{sizes}}
+\mbox{\hyperlink{classupp_1_1UPP_a54a83f456e6d2a0caca4d39cde0c2a2d}{start}}
 \item 
-\mbox{\hyperlink{classupp_1_1UPP_a75af96742df76703f122ee94be5dd7b4}{parent}}
-\item 
-\mbox{\hyperlink{classupp_1_1UPP_a7da4fb54753e038b6e61a264a5b42667}{node}}
+\mbox{\hyperlink{classupp_1_1UPP_a19770c8fac95958ba24f2665d0e90db7}{D}}
 \end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
-Universal Path Planner blending distance and safety costs. 
+Universal Path Planner blending distance and adaptive safety weighting (β), with windowed hysteresis-\/based adaptive α (turn-\/aware). 
 
-The planner builds a safety potential via convolution, then runs a grid search that prefers shorter and safer routes. The total priority combines\+:
-\begin{DoxyItemize}
-\item a weighted sum of Manhattan and Chebyshev distances, and
-\item a safety cost that rises near obstacles. 
-\end{DoxyItemize}
-
-Definition at line 57 of file upp.\+py.
+Definition at line 30 of file upp.\+py.
 
 
 
 \doxysubsection{Constructor \& Destructor Documentation}
-\mbox{\Hypertarget{classupp_1_1UPP_a9cc15cab947a6e643a2f6e850458af31}\label{classupp_1_1UPP_a9cc15cab947a6e643a2f6e850458af31}} 
+\mbox{\Hypertarget{classupp_1_1UPP_a9f01e3cb6bb25720217503fe8d55c5e9}\label{classupp_1_1UPP_a9f01e3cb6bb25720217503fe8d55c5e9}} 
 \index{upp.UPP@{upp.UPP}!\_\_init\_\_@{\_\_init\_\_}}
 \index{\_\_init\_\_@{\_\_init\_\_}!upp.UPP@{upp.UPP}}
 \doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
-{\footnotesize\ttfamily def upp.\+UPP.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{alpha,  }\item[{}]{beta,  }\item[{}]{radius,  }\item[{}]{epsilon }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily def upp.\+UPP.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{alpha\+Base,  }\item[{}]{beta\+Base,  }\item[{}]{radius\+Base,  }\item[{}]{epsilon,  }\item[{}]{beta\+Min,  }\item[{}]{beta\+Max,  }\item[{}]{beta\+Decay,  }\item[{}]{beta\+Recovery,  }\item[{}]{beta\+Patience,  }\item[{}]{goal\+Tol,  }\item[{}]{alpha\+Min,  }\item[{}]{alpha\+Max,  }\item[{}]{alpha\+Decay,  }\item[{}]{alpha\+Recovery,  }\item[{}]{tol\+Angular,  }\item[{}]{turn\+Target,  }\item[{}]{turn\+Window,  }\item[{}]{radius\+Min,  }\item[{}]{radius\+Max }\end{DoxyParamCaption})}
 
 
 
-Construct the \mbox{\hyperlink{classupp_1_1UPP}{UPP}} planner. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em alpha} & float Blend between Manhattan and Chebyshev distances. \\
-\hline
-{\em beta} & float Weight applied to the safety potential. \\
-\hline
-{\em radius} & int Chebyshev radius for the safety kernel. \\
-\hline
-{\em epsilon} & float Small constant for numerical stability in the kernel. \\
-\hline
-\end{DoxyParams}
-\begin{DoxyPostcond}{Postcondition}
-Instance is initialized; outputs are cleared. 
-\end{DoxyPostcond}
-
-
-Definition at line 67 of file upp.\+py.
+Definition at line 32 of file upp.\+py.
 
 
 
 \doxysubsection{Member Function Documentation}
-\mbox{\Hypertarget{classupp_1_1UPP_a84b524558707498ac999bb2333fc9834}\label{classupp_1_1UPP_a84b524558707498ac999bb2333fc9834}} 
-\index{upp.UPP@{upp.UPP}!adjacentCoordinates@{adjacentCoordinates}}
-\index{adjacentCoordinates@{adjacentCoordinates}!upp.UPP@{upp.UPP}}
-\doxysubsubsection{\texorpdfstring{adjacentCoordinates()}{adjacentCoordinates()}}
-{\footnotesize\ttfamily def upp.\+UPP.\+adjacent\+Coordinates (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{node,  }\item[{}]{offsets = {\ttfamily \mbox{[}-\/1,0,1\mbox{]}} }\end{DoxyParamCaption})}
+\mbox{\Hypertarget{classupp_1_1UPP_a5afe00e8a31c3212e32f0b3088b34508}\label{classupp_1_1UPP_a5afe00e8a31c3212e32f0b3088b34508}} 
+\index{upp.UPP@{upp.UPP}!adjacent@{adjacent}}
+\index{adjacent@{adjacent}!upp.UPP@{upp.UPP}}
+\doxysubsubsection{\texorpdfstring{adjacent()}{adjacent()}}
+{\footnotesize\ttfamily def upp.\+UPP.\+adjacent (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{node,  }\item[{}]{offsets = {\ttfamily \mbox{[}-\/1,~0,~1\mbox{]}} }\end{DoxyParamCaption})}
 
 
 
-Generate adjacent coordinates around a node. 
+Definition at line 84 of file upp.\+py.
 
-Produces all neighbors using per-\/axis offsets in the provided set, excluding the all-\/zero offset. Bounds and occupancy are checked by the caller. 
-\begin{DoxyParams}{Parameters}
-{\em node} & tuple\mbox{[}int, ...\mbox{]} Center grid index whose neighbors are requested. \\
-\hline
-{\em offsets} & list\mbox{[}int\mbox{]} Set of per-\/axis offsets (default\+: \mbox{[}-\/1, 0, 1\mbox{]}). \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-list\mbox{[}tuple\mbox{[}int, ...\mbox{]}\mbox{]} Neighbor coordinates (not filtered). 
-\end{DoxyReturn}
-
-
-Definition at line 120 of file upp.\+py.
-
-\mbox{\Hypertarget{classupp_1_1UPP_a9b3bb205a60fe5029daf84b2f4c5d17b}\label{classupp_1_1UPP_a9b3bb205a60fe5029daf84b2f4c5d17b}} 
-\index{upp.UPP@{upp.UPP}!chebyshevHeuristics@{chebyshevHeuristics}}
-\index{chebyshevHeuristics@{chebyshevHeuristics}!upp.UPP@{upp.UPP}}
-\doxysubsubsection{\texorpdfstring{chebyshevHeuristics()}{chebyshevHeuristics()}}
-{\footnotesize\ttfamily def upp.\+UPP.\+chebyshev\+Heuristics (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{node1,  }\item[{}]{node2 }\end{DoxyParamCaption})}
+\mbox{\Hypertarget{classupp_1_1UPP_a586fd3f354e41b8dc45e177a486e43fe}\label{classupp_1_1UPP_a586fd3f354e41b8dc45e177a486e43fe}} 
+\index{upp.UPP@{upp.UPP}!chebyshev@{chebyshev}}
+\index{chebyshev@{chebyshev}!upp.UPP@{upp.UPP}}
+\doxysubsubsection{\texorpdfstring{chebyshev()}{chebyshev()}}
+{\footnotesize\ttfamily def upp.\+UPP.\+chebyshev (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{a,  }\item[{}]{b }\end{DoxyParamCaption})}
 
 
 
-Chebyshev distance heuristic. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em node1} & tuple\mbox{[}int, ...\mbox{]} First grid index. \\
-\hline
-{\em node2} & tuple\mbox{[}int, ...\mbox{]} Second grid index. \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-float Maximum absolute per-\/axis difference. 
-\end{DoxyReturn}
-
-
-Definition at line 108 of file upp.\+py.
+Definition at line 78 of file upp.\+py.
 
 Here is the caller graph for this function\+:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{classupp_1_1UPP_a9b3bb205a60fe5029daf84b2f4c5d17b_icgraph}
+\includegraphics[width=328pt]{classupp_1_1UPP_a586fd3f354e41b8dc45e177a486e43fe_icgraph}
 \end{center}
 \end{figure}
-\mbox{\Hypertarget{classupp_1_1UPP_a5aa9c9c3d935e0c04c7e932128f5e22d}\label{classupp_1_1UPP_a5aa9c9c3d935e0c04c7e932128f5e22d}} 
-\index{upp.UPP@{upp.UPP}!combinedHeuristics@{combinedHeuristics}}
-\index{combinedHeuristics@{combinedHeuristics}!upp.UPP@{upp.UPP}}
-\doxysubsubsection{\texorpdfstring{combinedHeuristics()}{combinedHeuristics()}}
-{\footnotesize\ttfamily def upp.\+UPP.\+combined\+Heuristics (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{node1,  }\item[{}]{node2 }\end{DoxyParamCaption})}
+\mbox{\Hypertarget{classupp_1_1UPP_aa5987457627faa123b896a32a57113b8}\label{classupp_1_1UPP_aa5987457627faa123b896a32a57113b8}} 
+\index{upp.UPP@{upp.UPP}!heuristic@{heuristic}}
+\index{heuristic@{heuristic}!upp.UPP@{upp.UPP}}
+\doxysubsubsection{\texorpdfstring{heuristic()}{heuristic()}}
+{\footnotesize\ttfamily def upp.\+UPP.\+heuristic (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{n1,  }\item[{}]{n2 }\end{DoxyParamCaption})}
 
 
 
-Combined cost\+: blended distance plus safety potential. 
-
-Computes a weighted sum of Manhattan and Chebyshev distances between the node and the goal, then adds a safety cost from the precomputed map. 
-\begin{DoxyParams}{Parameters}
-{\em node1} & tuple\mbox{[}int, ...\mbox{]} Current node. \\
-\hline
-{\em node2} & tuple\mbox{[}int, ...\mbox{]} Goal node. \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-float Combined priority used in the open set. 
-\end{DoxyReturn}
-
-
-Definition at line 188 of file upp.\+py.
+Definition at line 124 of file upp.\+py.
 
 Here is the call graph for this function\+:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{classupp_1_1UPP_a5aa9c9c3d935e0c04c7e932128f5e22d_cgraph}
+\includegraphics[width=329pt]{classupp_1_1UPP_aa5987457627faa123b896a32a57113b8_cgraph}
 \end{center}
 \end{figure}
-\mbox{\Hypertarget{classupp_1_1UPP_a3ecacb3783e49764516828b56fc8e365}\label{classupp_1_1UPP_a3ecacb3783e49764516828b56fc8e365}} 
+\mbox{\Hypertarget{classupp_1_1UPP_a61657d14947d05dea0edccd8662c67be}\label{classupp_1_1UPP_a61657d14947d05dea0edccd8662c67be}} 
 \index{upp.UPP@{upp.UPP}!isValid@{isValid}}
 \index{isValid@{isValid}!upp.UPP@{upp.UPP}}
 \doxysubsubsection{\texorpdfstring{isValid()}{isValid()}}
-{\footnotesize\ttfamily def upp.\+UPP.\+is\+Valid (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{grid\+\_\+cell }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily def upp.\+UPP.\+is\+Valid (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{cell }\end{DoxyParamCaption})}
 
 
 
-Check whether a cell lies within grid bounds. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em grid\+\_\+cell} & tuple\mbox{[}int, ...\mbox{]} Cell index to validate. \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-bool True if inside grid extent; otherwise False. 
-\end{DoxyReturn}
-
-
-Definition at line 84 of file upp.\+py.
+Definition at line 69 of file upp.\+py.
 
 Here is the caller graph for this function\+:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{classupp_1_1UPP_a3ecacb3783e49764516828b56fc8e365_icgraph}
+\includegraphics[width=350pt]{classupp_1_1UPP_a61657d14947d05dea0edccd8662c67be_icgraph}
 \end{center}
 \end{figure}
-\mbox{\Hypertarget{classupp_1_1UPP_a56c48da1156f363d463bd50e4fd51b75}\label{classupp_1_1UPP_a56c48da1156f363d463bd50e4fd51b75}} 
-\index{upp.UPP@{upp.UPP}!manhattanHeuristics@{manhattanHeuristics}}
-\index{manhattanHeuristics@{manhattanHeuristics}!upp.UPP@{upp.UPP}}
-\doxysubsubsection{\texorpdfstring{manhattanHeuristics()}{manhattanHeuristics()}}
-{\footnotesize\ttfamily def upp.\+UPP.\+manhattan\+Heuristics (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{node1,  }\item[{}]{node2 }\end{DoxyParamCaption})}
+\mbox{\Hypertarget{classupp_1_1UPP_abd198e52b781ff205e48feb3c803d574}\label{classupp_1_1UPP_abd198e52b781ff205e48feb3c803d574}} 
+\index{upp.UPP@{upp.UPP}!manhattan@{manhattan}}
+\index{manhattan@{manhattan}!upp.UPP@{upp.UPP}}
+\doxysubsubsection{\texorpdfstring{manhattan()}{manhattan()}}
+{\footnotesize\ttfamily def upp.\+UPP.\+manhattan (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{a,  }\item[{}]{b }\end{DoxyParamCaption})}
 
 
 
-Manhattan (L1) distance heuristic. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em node1} & tuple\mbox{[}int, ...\mbox{]} First grid index. \\
-\hline
-{\em node2} & tuple\mbox{[}int, ...\mbox{]} Second grid index. \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-float Sum of absolute differences across coordinates. 
-\end{DoxyReturn}
-
-
-Definition at line 96 of file upp.\+py.
+Definition at line 75 of file upp.\+py.
 
 Here is the caller graph for this function\+:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{classupp_1_1UPP_a56c48da1156f363d463bd50e4fd51b75_icgraph}
+\includegraphics[width=329pt]{classupp_1_1UPP_abd198e52b781ff205e48feb3c803d574_icgraph}
 \end{center}
 \end{figure}
 \mbox{\Hypertarget{classupp_1_1UPP_a594f93c00f5c628b453a0ff0ccf140f3}\label{classupp_1_1UPP_a594f93c00f5c628b453a0ff0ccf140f3}} 
@@ -282,42 +222,11 @@ Here is the caller graph for this function\+:
 
 
 
-Plan with \mbox{\hyperlink{classupp_1_1UPP}{UPP}} on the provided grid from start to goal. 
+Plan a path from start to goal on the given occupancy grid. 
 
+adaptive\+\_\+beta bool If True, enables direction-\/aware adaptive β updates. If False, β remains constant throughout planning. 
 
-\begin{DoxyParams}{Parameters}
-{\em start} & tuple\mbox{[}int, ...\mbox{]} Start index in the N-\/D grid. \\
-\hline
-{\em goal} & tuple\mbox{[}int, ...\mbox{]} Goal index in the N-\/D grid. \\
-\hline
-{\em grid} & numpy.\+ndarray Occupancy grid (0=free, 1=obstacle). \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-tuple
-\begin{DoxyItemize}
-\item {\ttfamily success} (int) \+: 1 if a path is found, else 0
-\item {\ttfamily path} (list\mbox{[}tuple\mbox{[}int, ...\mbox{]}\mbox{]}) \+: sequence from start to goal (inclusive)
-\item {\ttfamily info} (list\mbox{[}str\mbox{]}) \+: diagnostics or failure reasons 
-\end{DoxyItemize}
-\end{DoxyReturn}
-\begin{DoxyParagraph}{Diagnostics}
-
-\begin{DoxyCode}{0}
-\DoxyCodeLine{-\/ \textcolor{stringliteral}{"{}Invalid start"{}}, \textcolor{stringliteral}{"{}Invalid  goal"{}}}
-\DoxyCodeLine{-\/ \textcolor{stringliteral}{"{}Start has obstacle"{}}, \textcolor{stringliteral}{"{}Goal has obstacle"{}}}
-\DoxyCodeLine{-\/ \textcolor{stringliteral}{"{}Start and goal are same"{}}}
-\DoxyCodeLine{-\/ \textcolor{stringliteral}{"{}Failed to reconstruct path."{}}}
-
-\end{DoxyCode}
- 
-\end{DoxyParagraph}
-\begin{DoxyNote}{Note}
-Precomputes the safety potential, then runs a priority-\/queue search with the combined cost in \mbox{\hyperlink{classupp_1_1UPP_a5aa9c9c3d935e0c04c7e932128f5e22d}{combined\+Heuristics()}}. 
-\end{DoxyNote}
-
-
-Definition at line 212 of file upp.\+py.
+Definition at line 135 of file upp.\+py.
 
 \mbox{\Hypertarget{classupp_1_1UPP_a7897d08ab9fb1ec5a39ef49e6d1f809d}\label{classupp_1_1UPP_a7897d08ab9fb1ec5a39ef49e6d1f809d}} 
 \index{upp.UPP@{upp.UPP}!precomputeSafety@{precomputeSafety}}
@@ -327,21 +236,31 @@ Definition at line 212 of file upp.\+py.
 
 
 
-Build the safety potential map via FFT convolution. 
-
-Creates a kernel whose weight at each offset is the inverse of the Chebyshev distance plus a small constant, within a given radius. The obstacle mask is convolved with this kernel to produce a safety map that increases near obstacles. The result is stored in {\ttfamily self.\+pre\+Safety} with the same shape as the grid. \begin{DoxyPostcond}{Postcondition}
-{\ttfamily self.\+pre\+Safety} is allocated as float32.
-\end{DoxyPostcond}
-\begin{DoxyVerb}Compute safety = sum over obstacles within Chebyshev radius R of 1/(d_inf + epsilon)
-using FFT convolution. Stores float32 map in self.preSafety with same shape as self.grid.
-\end{DoxyVerb}
- 
-
-Definition at line 140 of file upp.\+py.
+Definition at line 91 of file upp.\+py.
 
 
 
 \doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classupp_1_1UPP_af52bdeec630e79c0498c9caafb81c8c8}\label{classupp_1_1UPP_af52bdeec630e79c0498c9caafb81c8c8}} 
+\index{upp.UPP@{upp.UPP}!adaptive\_alpha@{adaptive\_alpha}}
+\index{adaptive\_alpha@{adaptive\_alpha}!upp.UPP@{upp.UPP}}
+\doxysubsubsection{\texorpdfstring{adaptive\_alpha}{adaptive\_alpha}}
+{\footnotesize\ttfamily upp.\+UPP.\+adaptive\+\_\+alpha}
+
+
+
+Definition at line 63 of file upp.\+py.
+
+\mbox{\Hypertarget{classupp_1_1UPP_aabe10e9859735a5bef9b1347cb52d13d}\label{classupp_1_1UPP_aabe10e9859735a5bef9b1347cb52d13d}} 
+\index{upp.UPP@{upp.UPP}!adaptive\_beta@{adaptive\_beta}}
+\index{adaptive\_beta@{adaptive\_beta}!upp.UPP@{upp.UPP}}
+\doxysubsubsection{\texorpdfstring{adaptive\_beta}{adaptive\_beta}}
+{\footnotesize\ttfamily upp.\+UPP.\+adaptive\+\_\+beta}
+
+
+
+Definition at line 62 of file upp.\+py.
+
 \mbox{\Hypertarget{classupp_1_1UPP_ad14eb4f2248beeba78c798c0c46044ab}\label{classupp_1_1UPP_ad14eb4f2248beeba78c798c0c46044ab}} 
 \index{upp.UPP@{upp.UPP}!alpha@{alpha}}
 \index{alpha@{alpha}!upp.UPP@{upp.UPP}}
@@ -350,7 +269,47 @@ Definition at line 140 of file upp.\+py.
 
 
 
-Definition at line 69 of file upp.\+py.
+Definition at line 37 of file upp.\+py.
+
+\mbox{\Hypertarget{classupp_1_1UPP_abb7ddf76491663022e108dd76bb3ce0d}\label{classupp_1_1UPP_abb7ddf76491663022e108dd76bb3ce0d}} 
+\index{upp.UPP@{upp.UPP}!alpha\_decay@{alpha\_decay}}
+\index{alpha\_decay@{alpha\_decay}!upp.UPP@{upp.UPP}}
+\doxysubsubsection{\texorpdfstring{alpha\_decay}{alpha\_decay}}
+{\footnotesize\ttfamily upp.\+UPP.\+alpha\+\_\+decay}
+
+
+
+Definition at line 54 of file upp.\+py.
+
+\mbox{\Hypertarget{classupp_1_1UPP_a154d7a3a8b8e0c93664625daeae385af}\label{classupp_1_1UPP_a154d7a3a8b8e0c93664625daeae385af}} 
+\index{upp.UPP@{upp.UPP}!alpha\_recovery@{alpha\_recovery}}
+\index{alpha\_recovery@{alpha\_recovery}!upp.UPP@{upp.UPP}}
+\doxysubsubsection{\texorpdfstring{alpha\_recovery}{alpha\_recovery}}
+{\footnotesize\ttfamily upp.\+UPP.\+alpha\+\_\+recovery}
+
+
+
+Definition at line 55 of file upp.\+py.
+
+\mbox{\Hypertarget{classupp_1_1UPP_aaedf6c5c560c3f60963b5797a5c6d6e5}\label{classupp_1_1UPP_aaedf6c5c560c3f60963b5797a5c6d6e5}} 
+\index{upp.UPP@{upp.UPP}!alphaMax@{alphaMax}}
+\index{alphaMax@{alphaMax}!upp.UPP@{upp.UPP}}
+\doxysubsubsection{\texorpdfstring{alphaMax}{alphaMax}}
+{\footnotesize\ttfamily upp.\+UPP.\+alpha\+Max}
+
+
+
+Definition at line 53 of file upp.\+py.
+
+\mbox{\Hypertarget{classupp_1_1UPP_ade3962f6e4442c878697940b695e9096}\label{classupp_1_1UPP_ade3962f6e4442c878697940b695e9096}} 
+\index{upp.UPP@{upp.UPP}!alphaMin@{alphaMin}}
+\index{alphaMin@{alphaMin}!upp.UPP@{upp.UPP}}
+\doxysubsubsection{\texorpdfstring{alphaMin}{alphaMin}}
+{\footnotesize\ttfamily upp.\+UPP.\+alpha\+Min}
+
+
+
+Definition at line 52 of file upp.\+py.
 
 \mbox{\Hypertarget{classupp_1_1UPP_a935eb5dd9ce70d92ca31b12773e4507c}\label{classupp_1_1UPP_a935eb5dd9ce70d92ca31b12773e4507c}} 
 \index{upp.UPP@{upp.UPP}!beta@{beta}}
@@ -360,7 +319,47 @@ Definition at line 69 of file upp.\+py.
 
 
 
-Definition at line 70 of file upp.\+py.
+Definition at line 38 of file upp.\+py.
+
+\mbox{\Hypertarget{classupp_1_1UPP_a4f67b66b1f6aad8d05e9ff72e15bf458}\label{classupp_1_1UPP_a4f67b66b1f6aad8d05e9ff72e15bf458}} 
+\index{upp.UPP@{upp.UPP}!betaMax@{betaMax}}
+\index{betaMax@{betaMax}!upp.UPP@{upp.UPP}}
+\doxysubsubsection{\texorpdfstring{betaMax}{betaMax}}
+{\footnotesize\ttfamily upp.\+UPP.\+beta\+Max}
+
+
+
+Definition at line 43 of file upp.\+py.
+
+\mbox{\Hypertarget{classupp_1_1UPP_a4277fe65e2e4e2dc13cf5e73cf2a4831}\label{classupp_1_1UPP_a4277fe65e2e4e2dc13cf5e73cf2a4831}} 
+\index{upp.UPP@{upp.UPP}!betaMin@{betaMin}}
+\index{betaMin@{betaMin}!upp.UPP@{upp.UPP}}
+\doxysubsubsection{\texorpdfstring{betaMin}{betaMin}}
+{\footnotesize\ttfamily upp.\+UPP.\+beta\+Min}
+
+
+
+Definition at line 42 of file upp.\+py.
+
+\mbox{\Hypertarget{classupp_1_1UPP_a19770c8fac95958ba24f2665d0e90db7}\label{classupp_1_1UPP_a19770c8fac95958ba24f2665d0e90db7}} 
+\index{upp.UPP@{upp.UPP}!D@{D}}
+\index{D@{D}!upp.UPP@{upp.UPP}}
+\doxysubsubsection{\texorpdfstring{D}{D}}
+{\footnotesize\ttfamily upp.\+UPP.\+D}
+
+
+
+Definition at line 159 of file upp.\+py.
+
+\mbox{\Hypertarget{classupp_1_1UPP_a3ba31b91582b0833cbc555b6e376473b}\label{classupp_1_1UPP_a3ba31b91582b0833cbc555b6e376473b}} 
+\index{upp.UPP@{upp.UPP}!decay@{decay}}
+\index{decay@{decay}!upp.UPP@{upp.UPP}}
+\doxysubsubsection{\texorpdfstring{decay}{decay}}
+{\footnotesize\ttfamily upp.\+UPP.\+decay}
+
+
+
+Definition at line 44 of file upp.\+py.
 
 \mbox{\Hypertarget{classupp_1_1UPP_a3bd877584fec784d8d3c837ad89ee0c2}\label{classupp_1_1UPP_a3bd877584fec784d8d3c837ad89ee0c2}} 
 \index{upp.UPP@{upp.UPP}!dimension@{dimension}}
@@ -370,7 +369,7 @@ Definition at line 70 of file upp.\+py.
 
 
 
-Definition at line 219 of file upp.\+py.
+Definition at line 138 of file upp.\+py.
 
 \mbox{\Hypertarget{classupp_1_1UPP_a764bd1c608c08702f10be77248141582}\label{classupp_1_1UPP_a764bd1c608c08702f10be77248141582}} 
 \index{upp.UPP@{upp.UPP}!epsilon@{epsilon}}
@@ -380,17 +379,7 @@ Definition at line 219 of file upp.\+py.
 
 
 
-Definition at line 72 of file upp.\+py.
-
-\mbox{\Hypertarget{classupp_1_1UPP_a1efbf3058e727dfae35a6e6f7b26e97d}\label{classupp_1_1UPP_a1efbf3058e727dfae35a6e6f7b26e97d}} 
-\index{upp.UPP@{upp.UPP}!goal@{goal}}
-\index{goal@{goal}!upp.UPP@{upp.UPP}}
-\doxysubsubsection{\texorpdfstring{goal}{goal}}
-{\footnotesize\ttfamily upp.\+UPP.\+goal}
-
-
-
-Definition at line 214 of file upp.\+py.
+Definition at line 40 of file upp.\+py.
 
 \mbox{\Hypertarget{classupp_1_1UPP_a060751c5c90e6efce3795047e7dd1b53}\label{classupp_1_1UPP_a060751c5c90e6efce3795047e7dd1b53}} 
 \index{upp.UPP@{upp.UPP}!grid@{grid}}
@@ -400,7 +389,7 @@ Definition at line 214 of file upp.\+py.
 
 
 
-Definition at line 149 of file upp.\+py.
+Definition at line 136 of file upp.\+py.
 
 \mbox{\Hypertarget{classupp_1_1UPP_a95672d347ad23cdba4f1c64eb40e88da}\label{classupp_1_1UPP_a95672d347ad23cdba4f1c64eb40e88da}} 
 \index{upp.UPP@{upp.UPP}!info@{info}}
@@ -410,27 +399,7 @@ Definition at line 149 of file upp.\+py.
 
 
 
-Definition at line 75 of file upp.\+py.
-
-\mbox{\Hypertarget{classupp_1_1UPP_a7da4fb54753e038b6e61a264a5b42667}\label{classupp_1_1UPP_a7da4fb54753e038b6e61a264a5b42667}} 
-\index{upp.UPP@{upp.UPP}!node@{node}}
-\index{node@{node}!upp.UPP@{upp.UPP}}
-\doxysubsubsection{\texorpdfstring{node}{node}}
-{\footnotesize\ttfamily upp.\+UPP.\+node}
-
-
-
-Definition at line 255 of file upp.\+py.
-
-\mbox{\Hypertarget{classupp_1_1UPP_a75af96742df76703f122ee94be5dd7b4}\label{classupp_1_1UPP_a75af96742df76703f122ee94be5dd7b4}} 
-\index{upp.UPP@{upp.UPP}!parent@{parent}}
-\index{parent@{parent}!upp.UPP@{upp.UPP}}
-\doxysubsubsection{\texorpdfstring{parent}{parent}}
-{\footnotesize\ttfamily upp.\+UPP.\+parent}
-
-
-
-Definition at line 254 of file upp.\+py.
+Definition at line 65 of file upp.\+py.
 
 \mbox{\Hypertarget{classupp_1_1UPP_a2ec3db4afe2e38522b6ed38936a8e73f}\label{classupp_1_1UPP_a2ec3db4afe2e38522b6ed38936a8e73f}} 
 \index{upp.UPP@{upp.UPP}!path@{path}}
@@ -440,7 +409,17 @@ Definition at line 254 of file upp.\+py.
 
 
 
-Definition at line 77 of file upp.\+py.
+Definition at line 66 of file upp.\+py.
+
+\mbox{\Hypertarget{classupp_1_1UPP_a4debe1facc4f68b9053d0312c3b2be0d}\label{classupp_1_1UPP_a4debe1facc4f68b9053d0312c3b2be0d}} 
+\index{upp.UPP@{upp.UPP}!patience@{patience}}
+\index{patience@{patience}!upp.UPP@{upp.UPP}}
+\doxysubsubsection{\texorpdfstring{patience}{patience}}
+{\footnotesize\ttfamily upp.\+UPP.\+patience}
+
+
+
+Definition at line 46 of file upp.\+py.
 
 \mbox{\Hypertarget{classupp_1_1UPP_a568c09afe77e7c46f23ebebe7c0c7de8}\label{classupp_1_1UPP_a568c09afe77e7c46f23ebebe7c0c7de8}} 
 \index{upp.UPP@{upp.UPP}!preSafety@{preSafety}}
@@ -450,7 +429,7 @@ Definition at line 77 of file upp.\+py.
 
 
 
-Definition at line 152 of file upp.\+py.
+Definition at line 100 of file upp.\+py.
 
 \mbox{\Hypertarget{classupp_1_1UPP_af4a10615fedee6cdee0009fccdbbe39d}\label{classupp_1_1UPP_af4a10615fedee6cdee0009fccdbbe39d}} 
 \index{upp.UPP@{upp.UPP}!R@{R}}
@@ -460,17 +439,37 @@ Definition at line 152 of file upp.\+py.
 
 
 
-Definition at line 71 of file upp.\+py.
+Definition at line 39 of file upp.\+py.
 
-\mbox{\Hypertarget{classupp_1_1UPP_a0d0d6cd77bda3a2f5306a5f64082b3ef}\label{classupp_1_1UPP_a0d0d6cd77bda3a2f5306a5f64082b3ef}} 
-\index{upp.UPP@{upp.UPP}!sizes@{sizes}}
-\index{sizes@{sizes}!upp.UPP@{upp.UPP}}
-\doxysubsubsection{\texorpdfstring{sizes}{sizes}}
-{\footnotesize\ttfamily upp.\+UPP.\+sizes}
+\mbox{\Hypertarget{classupp_1_1UPP_a870665f03ed7e0951e8080b9a5b6ce8b}\label{classupp_1_1UPP_a870665f03ed7e0951e8080b9a5b6ce8b}} 
+\index{upp.UPP@{upp.UPP}!radiusMax@{radiusMax}}
+\index{radiusMax@{radiusMax}!upp.UPP@{upp.UPP}}
+\doxysubsubsection{\texorpdfstring{radiusMax}{radiusMax}}
+{\footnotesize\ttfamily upp.\+UPP.\+radius\+Max}
 
 
 
-Definition at line 220 of file upp.\+py.
+Definition at line 50 of file upp.\+py.
+
+\mbox{\Hypertarget{classupp_1_1UPP_a33e007f9767d9010ded1302be26257a1}\label{classupp_1_1UPP_a33e007f9767d9010ded1302be26257a1}} 
+\index{upp.UPP@{upp.UPP}!radiusMin@{radiusMin}}
+\index{radiusMin@{radiusMin}!upp.UPP@{upp.UPP}}
+\doxysubsubsection{\texorpdfstring{radiusMin}{radiusMin}}
+{\footnotesize\ttfamily upp.\+UPP.\+radius\+Min}
+
+
+
+Definition at line 49 of file upp.\+py.
+
+\mbox{\Hypertarget{classupp_1_1UPP_abc692c75f525fd0a57f95fd3cfb2c279}\label{classupp_1_1UPP_abc692c75f525fd0a57f95fd3cfb2c279}} 
+\index{upp.UPP@{upp.UPP}!recovery@{recovery}}
+\index{recovery@{recovery}!upp.UPP@{upp.UPP}}
+\doxysubsubsection{\texorpdfstring{recovery}{recovery}}
+{\footnotesize\ttfamily upp.\+UPP.\+recovery}
+
+
+
+Definition at line 45 of file upp.\+py.
 
 \mbox{\Hypertarget{classupp_1_1UPP_a54a83f456e6d2a0caca4d39cde0c2a2d}\label{classupp_1_1UPP_a54a83f456e6d2a0caca4d39cde0c2a2d}} 
 \index{upp.UPP@{upp.UPP}!start@{start}}
@@ -480,7 +479,7 @@ Definition at line 220 of file upp.\+py.
 
 
 
-Definition at line 213 of file upp.\+py.
+Definition at line 155 of file upp.\+py.
 
 \mbox{\Hypertarget{classupp_1_1UPP_abc82976dda343d002c0aec9bd712b952}\label{classupp_1_1UPP_abc82976dda343d002c0aec9bd712b952}} 
 \index{upp.UPP@{upp.UPP}!success@{success}}
@@ -490,7 +489,67 @@ Definition at line 213 of file upp.\+py.
 
 
 
-Definition at line 74 of file upp.\+py.
+Definition at line 64 of file upp.\+py.
+
+\mbox{\Hypertarget{classupp_1_1UPP_a45c2111f12e3b27878d4789bcd669ca2}\label{classupp_1_1UPP_a45c2111f12e3b27878d4789bcd669ca2}} 
+\index{upp.UPP@{upp.UPP}!tol@{tol}}
+\index{tol@{tol}!upp.UPP@{upp.UPP}}
+\doxysubsubsection{\texorpdfstring{tol}{tol}}
+{\footnotesize\ttfamily upp.\+UPP.\+tol}
+
+
+
+Definition at line 47 of file upp.\+py.
+
+\mbox{\Hypertarget{classupp_1_1UPP_a007f2422e1967f84d72907595e88c4c0}\label{classupp_1_1UPP_a007f2422e1967f84d72907595e88c4c0}} 
+\index{upp.UPP@{upp.UPP}!tolAngular@{tolAngular}}
+\index{tolAngular@{tolAngular}!upp.UPP@{upp.UPP}}
+\doxysubsubsection{\texorpdfstring{tolAngular}{tolAngular}}
+{\footnotesize\ttfamily upp.\+UPP.\+tol\+Angular}
+
+
+
+Definition at line 56 of file upp.\+py.
+
+\mbox{\Hypertarget{classupp_1_1UPP_a2ef782b1addd5678d3943bd64a57426d}\label{classupp_1_1UPP_a2ef782b1addd5678d3943bd64a57426d}} 
+\index{upp.UPP@{upp.UPP}!turn\_iter@{turn\_iter}}
+\index{turn\_iter@{turn\_iter}!upp.UPP@{upp.UPP}}
+\doxysubsubsection{\texorpdfstring{turn\_iter}{turn\_iter}}
+{\footnotesize\ttfamily upp.\+UPP.\+turn\+\_\+iter}
+
+
+
+Definition at line 61 of file upp.\+py.
+
+\mbox{\Hypertarget{classupp_1_1UPP_a2f65c00881b36cbc8e0d9c285a2715c1}\label{classupp_1_1UPP_a2f65c00881b36cbc8e0d9c285a2715c1}} 
+\index{upp.UPP@{upp.UPP}!turn\_sum@{turn\_sum}}
+\index{turn\_sum@{turn\_sum}!upp.UPP@{upp.UPP}}
+\doxysubsubsection{\texorpdfstring{turn\_sum}{turn\_sum}}
+{\footnotesize\ttfamily upp.\+UPP.\+turn\+\_\+sum}
+
+
+
+Definition at line 60 of file upp.\+py.
+
+\mbox{\Hypertarget{classupp_1_1UPP_a95ad9b6473796e962a7ae87c8f5f3739}\label{classupp_1_1UPP_a95ad9b6473796e962a7ae87c8f5f3739}} 
+\index{upp.UPP@{upp.UPP}!turn\_target@{turn\_target}}
+\index{turn\_target@{turn\_target}!upp.UPP@{upp.UPP}}
+\doxysubsubsection{\texorpdfstring{turn\_target}{turn\_target}}
+{\footnotesize\ttfamily upp.\+UPP.\+turn\+\_\+target}
+
+
+
+Definition at line 57 of file upp.\+py.
+
+\mbox{\Hypertarget{classupp_1_1UPP_a94f975bda51112744ecaae6b55a1447d}\label{classupp_1_1UPP_a94f975bda51112744ecaae6b55a1447d}} 
+\index{upp.UPP@{upp.UPP}!turn\_window\_K@{turn\_window\_K}}
+\index{turn\_window\_K@{turn\_window\_K}!upp.UPP@{upp.UPP}}
+\doxysubsubsection{\texorpdfstring{turn\_window\_K}{turn\_window\_K}}
+{\footnotesize\ttfamily upp.\+UPP.\+turn\+\_\+window\+\_\+K}
+
+
+
+Definition at line 58 of file upp.\+py.
 
 
 

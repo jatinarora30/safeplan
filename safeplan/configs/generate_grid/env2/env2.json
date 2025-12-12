@@ -6,7 +6,7 @@
   "dimensionOfGrid": 2,
   "randomStartGoal": true,
   "timesEachGoal": 1,
-  "numStartGoals": 1000,
+  "numStartGoals": 1,
   "startGoalPairs": [{ "start": [100, 100], "goal": [900, 900] }],
   "polygons": [
     { "polygon": [[100,150],[220,150],[220,300],[100,300]] },

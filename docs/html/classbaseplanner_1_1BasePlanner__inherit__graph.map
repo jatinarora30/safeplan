@@ -1,13 +1,12 @@
 <map id="baseplanner.BasePlanner" name="baseplanner.BasePlanner">
-<area shape="rect" id="node1" title="Abstract base/registry for planning algorithms." alt="" coords="103,224,289,251"/>
+<area shape="rect" id="node1" title="Abstract base/registry for planning algorithms." alt="" coords="103,195,289,221"/>
 <area shape="rect" id="node3" href="$classa__star_1_1AStar.html" title="A* planner operating on N&#45;D occupancy grids." alt="" coords="401,5,501,32"/>
 <area shape="rect" id="node4" href="$classcbf__rrt_1_1CBFRRT.html" title="RRT planner with Control Barrier Function (CBF) safety checks." alt="" coords="392,56,511,83"/>
 <area shape="rect" id="node5" href="$classfs__planner_1_1FSPlanner.html" title="Fast and Safe planner with SDF&#45;guided costs and Lazy Theta*." alt="" coords="373,107,530,133"/>
 <area shape="rect" id="node6" href="$classoptimized__astar_1_1OptimizedAStar.html" title=" " alt="" coords="353,158,550,199"/>
 <area shape="rect" id="node7" href="$classrrt_1_1RRT.html" title="RRT planner operating on N&#45;D occupancy grids." alt="" coords="418,224,485,251"/>
-<area shape="rect" id="node8" href="$classsafe__astar_1_1SafeAStar.html" title="A* with EDT&#45;weighted safety costs (no hard inflation)." alt="" coords="373,275,530,301"/>
-<area shape="rect" id="node9" href="$classsdf__astar_1_1SDFAStar.html" title=" " alt="" coords="379,325,523,352"/>
-<area shape="rect" id="node10" href="$classupp_1_1UPP.html" title="Universal Path Planner blending distance and safety costs." alt="" coords="413,376,489,403"/>
-<area shape="rect" id="node11" href="$classvoronoi__planner_1_1VoronoiPlanner.html" title="Path planner using a Voronoi roadmap with A* search." alt="" coords="337,427,565,453"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,224,55,251"/>
+<area shape="rect" id="node8" href="$classsdf__astar_1_1SDFAStar.html" title=" " alt="" coords="379,275,523,301"/>
+<area shape="rect" id="node9" href="$classupp_1_1UPP.html" title="Universal Path Planner blending distance and adaptive safety weighting (β), with windowed hysteresis&#45;..." alt="" coords="413,325,489,352"/>
+<area shape="rect" id="node10" href="$classvoronoi__planner_1_1VoronoiPlanner.html" title="Path planner using a Voronoi roadmap with A* search." alt="" coords="337,376,565,403"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,195,55,221"/>
 </map>

@@ -1,4 +1,4 @@
-# Measuring Balance: The OptiSafe Index and SafePlan Benchmark for Safe Navigation
+# Unified Path Planner for Adaptive Safe and Near Optimal Paths with Normalized OptiSafe Index and SafePlan Benchmarking
 
 ## Overview
 
@@ -56,49 +56,45 @@ They capture not only **efficiency**, but also **safety** and **smoothness** —
 - **Computation:** (#successful plans ÷ #total attempts) × 100.  
 - **Unit:** percentage (%).  
 
-### 4. Distance to Goal (m, failures only)
-- **Definition:** Remaining distance between the last explored path node and the goal when planning fails.  
-- **Computation:** Euclidean distance between last path node and goal.  
-- **Unit:** meters (m).  
 
-### 5. Number of Nodes in Path
+### 4. Number of Nodes in Path
 - **Definition:** Count of waypoints in the final path.  
 - **Unit:** count (integer).  
 
-### 6. Turning Angle (°)
+### 5. Turning Angle (°)
 - **Definition:** Sum of angular deviations between consecutive path segments.  
 - **Computation:** Angles via dot product between vectors, summed across path.  
 - **Unit:** degrees (°).  
 
-### 7. Jerk per Meter
+### 6. Jerk per Meter
 - **Definition:** Rate of change of acceleration along the path, normalized per unit distance.  
 - **Computation:** Third derivative of position along discretized path.  
 - **Unit:** dimensionless (jerk/m).  
 
-### 8. Optimal Deviation (%)
+### 7. Optimal Deviation (%)
 - **Definition:** Difference between path cost and known optimal path cost.  
 - **Computation:** ((path_cost − optimal_cost) ÷ optimal_cost) × 100.  
 - **Unit:** percentage (%).  
 
-### 9. Minimum Clearance (m)
+### 8. Minimum Clearance (m)
 - **Definition:** Smallest distance from path to nearest obstacle.  
 - **Computation:** Distance transform (EDT) at sampled points.  
 - **Unit:** meters (m).  
 
-### 10. Average Minimum Clearance (m)
+### 9. Average Minimum Clearance (m)
 - **Definition:** Mean clearance across path points.  
 - **Unit:** meters (m).  
 
-### 11. Clearance Variability
+### 10. Clearance Variability
 - **Definition:** Variance of clearance values along the path.  
 - **Unit:** meters².  
 
-### 12. Danger Zone Violations
+### 11. Danger Zone Violations
 - **Definition:** Number of times path enters a predefined danger radius around obstacles.  
 - **Computation:** Count of path points with clearance < danger radius.  
 - **Unit:** count (integer).  
 
-### 13. OptiSafe Index (Proposed)
+### 12. OptiSafe Index (Proposed)
 - **Definition:** An index to measure balance between safety and optimality 
 - **Unit:** float between 0 and 1.  
 
@@ -126,9 +122,9 @@ SafePlan includes both **traditional planners** and **safety-aware planners**, a
 ---
 
 ### 🔹 Safety-Aware Planners
-- **Unified Path Planner**  
+- **Unified Path Planner (Ours)**  
   A safety-aware planner integrating safety heuristics  
-  Reference: (https://arxiv.org/pdf/2505.23197)
+  
 
 - **SDF A\***  
   A\* variant augmented with Signed Distance Fields for safety margin enforcement.  
@@ -146,8 +142,6 @@ SafePlan includes both **traditional planners** and **safety-aware planners**, a
   Uses an integrated inverse distance, on lazy theta AStar and also gives a limit on maximum neighbours explored in goal and safe direction
   Reference: (https://arxiv.org/pdf/2505.24024)
 
-- **Safe A\***  
-  Safe A*: This approach is conceptually inspired by the inflation layer in the ROS Navigation framework wher traversal costs are increased in proportion to proximity to obstacles. Unlike Nav2, which uses an exponential decay function to inflate costs, we adopt a simplified inverse-distance formulation to achieve a similar safety bias.
 
 
 ## Installation
@@ -186,19 +180,18 @@ Below is an example:
 
 ```json
 {
-  "runDetails": "run2",
+  "runDetails": "run1",
   "evalDetails": [
-    {"name": "PlanningTime"},
+     {"name": "PlanningTime"},
     {"name": "MinimumClearance","args": {"pointSamples":100}},
     {"name": "AverageMinimumClearance","args": {"pointSamples":100}},
     {"name": "ClearanceVariability","args": {"pointSamples":100}},
-    {"name": "DangerViolations","args": {"pointSamples":100,"dangerRadius":0.2}},
+    {"name": "DangerViolations","args": {"pointSamples":100,"dangerRadius":0.1}},
     {"name": "TurningAngle"},
     {"name": "JerkPerMeter"},
     {"name": "SuccessRate"},
     {"name": "OptimalDeviation"},
     {"name": "PathCost"},
-    {"name": "DistanceToGoal"},
     {"name": "OptiSafeIndex","args": {"pointSamples":100,"knn":1000}},
     {"name": "NodesInPath", "args": {"type":"RDP","epsilon":0.01}}
   ],
@@ -206,22 +199,25 @@ Below is an example:
     {"name": "VoronoiPlanner","args": {"pointSamples":100,"knn":100}},
     {"name": "AStar"},
     {"name": "RRT","args": {"maxIter":10000,"goalSampleRate":0.05,"stepSize":7,"pointSamples":100}},
-
-    {"name": "UPP","args": {"alpha":0.5,"beta":2,"radius":5,"epsilon":0.01}},
     {"name": "CBFRRT","args": {"maxIter":10000,"goalSampleRate":0.05,"stepSize":7,"pointSamples":100,"gamma1":2,"gamma2":2}},
     {"name": "FSPlanner" ,"args": {"pointSamples":100,"cw":1, "epsilon":0.01,"maxNeigh":5}},
     {"name": "SDFAStar" , "args": {"k1":5,"k2":5}},
     {"name": "OptimizedAStar" , "args": {"turnPenaltyCoefficients":0.5,"safetyDistGridRadius":100,"maxInflateIter":100,"pointSamples":100}},
-    {"name": "SafeAStar" ,"args": {"safetyFactor":4,"epsilon":0.01}}
+    {"name": "UPP","args": {"alphaBase": 0.5,"betaBase": 10.0,"radiusBase": 1, "epsilon": 0.01,"betaMin": 0.1,"betaMax": 2.0,"betaDecay": 0.97,"betaRecovery": 1.05,"betaPatience": 20,"goalTol": 0.1,"alphaMin": 0.05,"alphaMax": 0.95,"alphaDecay": 0.97,"alphaRecovery": 1.05,"tolAngular": 180.0,"turnTarget": 15.0,"turnWindow": 10,"radiusMin": 1,"radiusMax": 5}
+}
+
+  
   ],
   "envDetails": [
     {
       "generateGrid": [
        
-        {"name": "env1" }
+      {"name": "env1"}
+       
       ]    }
   ]
 }
+
 
 ```
 
@@ -246,20 +242,6 @@ st.compute()
 viz = Visualize()
 viz.see("/home/run1.json", iterNo=1, prefer_plotly=True)
 ```
-
-SafePlan simulation results  for 12000 iteration 1000 random start and goal for each planner.
-| Algorithm        | Planning Time | Min Clearance | Avg Min Clearance | Clearance Var | Danger Violations | Turning Angle | Jerk / m | Success Rate | Opt Dev  | Path Cost | Dist to Goal | OptiSafe Index | Nodes in Path |
-|------------------|---------------|----------------|--------------------|----------------|--------------------|----------------|------------|---------------|-----------|------------|----------------|----------------|----------------|
-| AStar            | 165.05        | 0.49           | 1.49               | 32.25          | 11269.93           | 213.39         | 0.080     | 1.000         | 0.0000    | 14.36      | 0.00           | 0.642          | 6.75           |
-| CBFRRT           | 1919.27       | 0.39           | 1.43               | 28.24          | 218.33             | 1515.21        | 0.911     | 0.749         | 0.3139    | 16.72      | 0.57           | 0.454          | 42.89          |
-| FSPlanner        | 1183.95       | 0.58           | 1.71               | 29.69          | 369.68             | 256.30         | 0.091     | 1.0       | -0.0107   | 14.20      | 0.00           | 0.754          | 7.63           |
-| OptimizedAStar   | 414.01        | 0.55           | 1.81               | 31.76          | 24.27              | 110.75         | 0.411     | 1.0        | 0.1131    | 15.79      | 0.00           | 0.608          | 3.37           |
-| RRT              | 1765.69       | 0.39           | 1.44               | 28.39          | 217.88             | 1512.48        | 0.916     | 0.757         | 0.3154    | 16.70      | 0.56           | 0.454          | 42.80          |
-| SDFAStar         | 2103.93       | 0.95           | 1.78               | 21.15          | 1006.36            | 1372.81        | 0.290     | 1.0        | 0.1034    | 16.08      | 0.00           | 0.775          | 24.73          |
-| SafeAStar        | 479.59        | 0.58           | 1.69               | 28.82          | 184.99             | 824.06         | 0.197     | 1.0        | 0.0344    | 14.63      | 0.00           | 0.794          | 20.34          |
-| UPP              | 1157.21       | 0.58           | 1.53               | 31.24          | 352.43             | 401.36         | 0.147     | 1.000         | 0.0369    | 14.49      | 0.00           | 0.773          | 10.90          |
-| VoronoiPlanner   | 30.01         | 0.62           | 1.61               | 25.84          | 4.83               | 37.63          | 0.104     | 0.614         | -0.0707   | 13.49      | 2.59           | 0.689          | 2.08           |
-
 
 ## Environments
 

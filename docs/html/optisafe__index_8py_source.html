@@ -108,77 +108,114 @@ $(document).ready(function(){initNavTree('optisafe__index_8py_source.html',''); 
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="keyword">from</span> .baseeval <span class="keyword">import</span> BaseEval</div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="keyword">from</span> ..algos.a_star <span class="keyword">import</span> AStar</div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="keyword">from</span> ..algos.voronoi_planner <span class="keyword">import</span> VoronoiPlanner</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="keyword">from</span> ..evals.path_cost <span class="keyword">import</span> PathCost</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="keyword">from</span> ..evals.minimum_clearance <span class="keyword">import</span> MinimumClearance</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="keyword">import</span> numpy <span class="keyword">as</span> np</div>
-<div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="classoptisafe__index_1_1OptiSafeIndex.html">   27</a></span>&#160;<span class="keyword">class </span><a class="code" href="classoptisafe__index_1_1OptiSafeIndex.html">OptiSafeIndex</a>(<a class="code" href="classbaseeval_1_1BaseEval.html">BaseEval</a>):</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keyword">def </span><a class="code" href="classoptisafe__index_1_1OptiSafeIndex.html#a4ce5a4219fc2e0c46ebb5355a625847e">__init__</a>(self,pointSamples,knn):</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        <span class="stringliteral">&quot;&quot;&quot;</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="stringliteral">        @brief Construct the class for OptiSafe Index evaluator</span></div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="stringliteral"></span> </div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="stringliteral">        @post Instance is initialized.</span></div>
-<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="classoptisafe__index_1_1OptiSafeIndex.html#a4ce5a4219fc2e0c46ebb5355a625847e">   33</a></span>&#160;<span class="stringliteral">        &quot;&quot;&quot;</span></div>
-<div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="classoptisafe__index_1_1OptiSafeIndex.html#aa7cc05a2f5f1906057bd8973ba9fe61c">   34</a></span>&#160;        self.<a class="code" href="classoptisafe__index_1_1OptiSafeIndex.html#aa7cc05a2f5f1906057bd8973ba9fe61c">value</a>value=0</div>
-<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="classoptisafe__index_1_1OptiSafeIndex.html#a4decf2f1ac1a00fab12bc65144ab1e9f">   35</a></span>&#160;        self.<a class="code" href="classoptisafe__index_1_1OptiSafeIndex.html#a4decf2f1ac1a00fab12bc65144ab1e9f">aStar</a>aStar=AStar()</div>
-<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="classoptisafe__index_1_1OptiSafeIndex.html#a7425b8a3eacdbed56d4fb5b5aab08d3f">   36</a></span>&#160;        self.<a class="code" href="classoptisafe__index_1_1OptiSafeIndex.html#a7425b8a3eacdbed56d4fb5b5aab08d3f">vornoiPlanner</a>vornoiPlanner=VoronoiPlanner(pointSamples=pointSamples,knn=knn)</div>
-<div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="classoptisafe__index_1_1OptiSafeIndex.html#a63561c19bc940e121437b83bb80b92f9">   37</a></span>&#160;        self.<a class="code" href="classoptisafe__index_1_1OptiSafeIndex.html#a63561c19bc940e121437b83bb80b92f9">pathCost</a>pathCost=PathCost()</div>
-<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="classoptisafe__index_1_1OptiSafeIndex.html#af3be5093e784c538c3cd32362abff6a5">   38</a></span>&#160;        self.<a class="code" href="classoptisafe__index_1_1OptiSafeIndex.html#af3be5093e784c538c3cd32362abff6a5">minimumClearance</a>minimumClearance=MinimumClearance(pointSamples=pointSamples)</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        </div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keyword">def </span><a class="code" href="classoptisafe__index_1_1OptiSafeIndex.html#a594372750c07bddcda6150a0a88eec8a">eval</a>(self,start,goal,grid,cellSize,path):</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        <span class="stringliteral">&quot;&quot;&quot;</span></div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="stringliteral">        A eval function  for OptiSafe Index evaluation, which evaluates on given start, goal, grid, cellSize, and Path returns path cost value</span></div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="stringliteral">        @param start Takes the n-dimensional start input</span></div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="stringliteral">        @param goal Takes the n-dimension goal input</span></div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="stringliteral">        @param grid Takes the N x N dimensional grid</span></div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="stringliteral">        @param cellSize Takes input as cell size for computation</span></div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="stringliteral">        @param Path Takes the path from star to goal in the form of a tuple</span></div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="stringliteral">        @return value Returns the OptiSafe Index </span></div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="stringliteral">        </span></div>
-<div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="classoptisafe__index_1_1OptiSafeIndex.html#a594372750c07bddcda6150a0a88eec8a">   50</a></span>&#160;<span class="stringliteral">        &quot;&quot;&quot;</span></div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        self.<a class="code" href="classoptisafe__index_1_1OptiSafeIndex.html#aa7cc05a2f5f1906057bd8973ba9fe61c">value</a>value=0</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        optimalPath=self.<a class="code" href="classoptisafe__index_1_1OptiSafeIndex.html#a4decf2f1ac1a00fab12bc65144ab1e9f">aStar</a>aStar.plan(start,goal,grid)</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        optimalCost=self.<a class="code" href="classoptisafe__index_1_1OptiSafeIndex.html#a63561c19bc940e121437b83bb80b92f9">pathCost</a>pathCost.<a class="code" href="classoptisafe__index_1_1OptiSafeIndex.html#a594372750c07bddcda6150a0a88eec8a">eval</a>(<span class="keywordtype">None</span>,<span class="keywordtype">None</span>,<span class="keywordtype">None</span>,cellSize,optimalPath[1])</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        originalCost=self.<a class="code" href="classoptisafe__index_1_1OptiSafeIndex.html#a63561c19bc940e121437b83bb80b92f9">pathCost</a>pathCost.<a class="code" href="classoptisafe__index_1_1OptiSafeIndex.html#a594372750c07bddcda6150a0a88eec8a">eval</a>(<span class="keywordtype">None</span>,<span class="keywordtype">None</span>,<span class="keywordtype">None</span>,cellSize,path)</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        safePath=self.<a class="code" href="classoptisafe__index_1_1OptiSafeIndex.html#a7425b8a3eacdbed56d4fb5b5aab08d3f">vornoiPlanner</a>vornoiPlanner.plan(start,goal,grid)</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        <span class="keywordflow">if</span> safePath[0]==1:</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;            minimumSafe=self.<a class="code" href="classoptisafe__index_1_1OptiSafeIndex.html#af3be5093e784c538c3cd32362abff6a5">minimumClearance</a>minimumClearance.<a class="code" href="classoptisafe__index_1_1OptiSafeIndex.html#a594372750c07bddcda6150a0a88eec8a">eval</a>(start,goal,grid,cellSize,safePath[1])</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;            originalSafe=self.<a class="code" href="classoptisafe__index_1_1OptiSafeIndex.html#af3be5093e784c538c3cd32362abff6a5">minimumClearance</a>minimumClearance.<a class="code" href="classoptisafe__index_1_1OptiSafeIndex.html#a594372750c07bddcda6150a0a88eec8a">eval</a>(start,goal,grid,cellSize,path)</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        </div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        </div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;            <span class="keywordflow">if</span> minimumSafe&gt;0:</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;                if(originalSafe&gt;minimumSafe):</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;                    sd=0</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;                <span class="keywordflow">else</span>:</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;                    sd=(minimumSafe-originalSafe)/minimumSafe</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;                    </div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;            <span class="keywordflow">else</span>:</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;                sd=1</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        <span class="keywordflow">else</span>:</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;            sd=1</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;            </div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        <span class="keywordflow">if</span> optimalCost&gt;0:</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;            </div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;                od=min(1,max(((originalCost-optimalCost)/optimalCost),0))</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;                </div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        <span class="keywordflow">else</span>:</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;            od=1</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        </div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        o=1-od</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        s=1-sd</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        self.<a class="code" href="classoptisafe__index_1_1OptiSafeIndex.html#aa7cc05a2f5f1906057bd8973ba9fe61c">value</a>value=((1-abs(o-s))*np.sqrt(o*o+s*s))/np.sqrt(2)</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        </div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        </div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        <span class="keywordflow">return</span> self.<a class="code" href="classoptisafe__index_1_1OptiSafeIndex.html#aa7cc05a2f5f1906057bd8973ba9fe61c">value</a>value</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="keyword">from</span> ..algos.upp <span class="keyword">import</span> UPP</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="keyword">from</span> ..evals.path_cost <span class="keyword">import</span> PathCost</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="keyword">from</span> ..evals.minimum_clearance <span class="keyword">import</span> MinimumClearance</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="keyword">import</span> numpy <span class="keyword">as</span> np</div>
+<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="classoptisafe__index_1_1OptiSafeIndex.html">   28</a></span>&#160;<span class="keyword">class </span><a class="code" href="classoptisafe__index_1_1OptiSafeIndex.html">OptiSafeIndex</a>(<a class="code" href="classbaseeval_1_1BaseEval.html">BaseEval</a>):</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keyword">def </span><a class="code" href="classoptisafe__index_1_1OptiSafeIndex.html#a4ce5a4219fc2e0c46ebb5355a625847e">__init__</a>(self,pointSamples,knn):</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="stringliteral">        @brief Construct the class for OptiSafe Index evaluator</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="stringliteral"></span> </div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="stringliteral">        @post Instance is initialized.</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="classoptisafe__index_1_1OptiSafeIndex.html#a4ce5a4219fc2e0c46ebb5355a625847e">   34</a></span>&#160;<span class="stringliteral">        &quot;&quot;&quot;</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="classoptisafe__index_1_1OptiSafeIndex.html#aa7cc05a2f5f1906057bd8973ba9fe61c">   35</a></span>&#160;        self.<a class="code" href="classoptisafe__index_1_1OptiSafeIndex.html#aa7cc05a2f5f1906057bd8973ba9fe61c">value</a>value=0</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        <span class="keyword">import</span> numpy <span class="keyword">as</span> np</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="classoptisafe__index_1_1OptiSafeIndex.html#a115c0f07768dc37ec814660096265da8">   38</a></span>&#160;        self.<a class="code" href="classoptisafe__index_1_1OptiSafeIndex.html#a115c0f07768dc37ec814660096265da8">upp</a>upp = UPP(</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;            alphaBase=0.5,</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;            betaBase=10,</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;            radiusBase=30,</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;            epsilon=0.01,</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;            <span class="comment"># β adaptivity parameters</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;            betaMin=0.1,</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;            betaMax=2.0,</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;            betaDecay=0.97,</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;            betaRecovery=1.05,</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;            betaPatience=20,</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;            goalTol=0.1,</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;            <span class="comment"># α adaptivity parameters</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;            alphaMin=0.05,</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;            alphaMax=0.95,</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;            alphaDecay=0.97,</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;            alphaRecovery=1.05,</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;            tolAngular=np.deg2rad(180),</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;            turnTarget=np.deg2rad(15),</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;            turnWindow=10,</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; </div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;            <span class="comment"># radius adaptivity parameters</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;            radiusMin=1,</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;            radiusMax=5</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        )</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160; </div>
+<div class="line"><a name="l00066"></a><span class="lineno"><a class="line" href="classoptisafe__index_1_1OptiSafeIndex.html#a4decf2f1ac1a00fab12bc65144ab1e9f">   66</a></span>&#160;        self.<a class="code" href="classoptisafe__index_1_1OptiSafeIndex.html#a4decf2f1ac1a00fab12bc65144ab1e9f">aStar</a>aStar=AStar()</div>
+<div class="line"><a name="l00067"></a><span class="lineno"><a class="line" href="classoptisafe__index_1_1OptiSafeIndex.html#a7425b8a3eacdbed56d4fb5b5aab08d3f">   67</a></span>&#160;        self.<a class="code" href="classoptisafe__index_1_1OptiSafeIndex.html#a7425b8a3eacdbed56d4fb5b5aab08d3f">vornoiPlanner</a>vornoiPlanner=VoronoiPlanner(pointSamples=pointSamples,knn=knn)</div>
+<div class="line"><a name="l00068"></a><span class="lineno"><a class="line" href="classoptisafe__index_1_1OptiSafeIndex.html#a63561c19bc940e121437b83bb80b92f9">   68</a></span>&#160;        self.<a class="code" href="classoptisafe__index_1_1OptiSafeIndex.html#a63561c19bc940e121437b83bb80b92f9">pathCost</a>pathCost=PathCost()</div>
+<div class="line"><a name="l00069"></a><span class="lineno"><a class="line" href="classoptisafe__index_1_1OptiSafeIndex.html#af3be5093e784c538c3cd32362abff6a5">   69</a></span>&#160;        self.<a class="code" href="classoptisafe__index_1_1OptiSafeIndex.html#af3be5093e784c538c3cd32362abff6a5">minimumClearance</a>minimumClearance=MinimumClearance(pointSamples=pointSamples)</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        </div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="keyword">def </span><a class="code" href="classoptisafe__index_1_1OptiSafeIndex.html#a594372750c07bddcda6150a0a88eec8a">eval</a>(self,start,goal,grid,cellSize,path):</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="stringliteral">        A eval function  for OptiSafe Index evaluation, which evaluates on given start, goal, grid, cellSize, and Path returns path cost value</span></div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="stringliteral">        @param start Takes the n-dimensional start input</span></div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="stringliteral">        @param goal Takes the n-dimension goal input</span></div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="stringliteral">        @param grid Takes the N x N dimensional grid</span></div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="stringliteral">        @param cellSize Takes input as cell size for computation</span></div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="stringliteral">        @param Path Takes the path from star to goal in the form of a tuple</span></div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="stringliteral">        @return value Returns the OptiSafe Index </span></div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="stringliteral">        </span></div>
+<div class="line"><a name="l00081"></a><span class="lineno"><a class="line" href="classoptisafe__index_1_1OptiSafeIndex.html#a594372750c07bddcda6150a0a88eec8a">   81</a></span>&#160;<span class="stringliteral">        &quot;&quot;&quot;</span></div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        self.<a class="code" href="classoptisafe__index_1_1OptiSafeIndex.html#aa7cc05a2f5f1906057bd8973ba9fe61c">value</a>value=0</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        optimalPath=self.<a class="code" href="classoptisafe__index_1_1OptiSafeIndex.html#a4decf2f1ac1a00fab12bc65144ab1e9f">aStar</a>aStar.plan(start,goal,grid)</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        optimalCost=self.<a class="code" href="classoptisafe__index_1_1OptiSafeIndex.html#a63561c19bc940e121437b83bb80b92f9">pathCost</a>pathCost.<a class="code" href="classoptisafe__index_1_1OptiSafeIndex.html#a594372750c07bddcda6150a0a88eec8a">eval</a>(<span class="keywordtype">None</span>,<span class="keywordtype">None</span>,<span class="keywordtype">None</span>,cellSize,optimalPath[1])</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        originalCost=self.<a class="code" href="classoptisafe__index_1_1OptiSafeIndex.html#a63561c19bc940e121437b83bb80b92f9">pathCost</a>pathCost.<a class="code" href="classoptisafe__index_1_1OptiSafeIndex.html#a594372750c07bddcda6150a0a88eec8a">eval</a>(<span class="keywordtype">None</span>,<span class="keywordtype">None</span>,<span class="keywordtype">None</span>,cellSize,path)</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        safeVornoiPath=self.<a class="code" href="classoptisafe__index_1_1OptiSafeIndex.html#a7425b8a3eacdbed56d4fb5b5aab08d3f">vornoiPlanner</a>vornoiPlanner.plan(start,goal,grid)</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        <span class="keywordflow">if</span> safeVornoiPath[0]==0:</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;            safePath=self.<a class="code" href="classoptisafe__index_1_1OptiSafeIndex.html#a115c0f07768dc37ec814660096265da8">upp</a>upp.plan(start,goal,grid)</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        <span class="keywordflow">else</span>:</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;            safePath=safeVornoiPath</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;            </div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160; </div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        <span class="keywordflow">if</span> safePath[0]==1:</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;            minimumSafe=self.<a class="code" href="classoptisafe__index_1_1OptiSafeIndex.html#af3be5093e784c538c3cd32362abff6a5">minimumClearance</a>minimumClearance.<a class="code" href="classoptisafe__index_1_1OptiSafeIndex.html#a594372750c07bddcda6150a0a88eec8a">eval</a>(start,goal,grid,cellSize,safePath[1])</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;            originalSafe=self.<a class="code" href="classoptisafe__index_1_1OptiSafeIndex.html#af3be5093e784c538c3cd32362abff6a5">minimumClearance</a>minimumClearance.<a class="code" href="classoptisafe__index_1_1OptiSafeIndex.html#a594372750c07bddcda6150a0a88eec8a">eval</a>(start,goal,grid,cellSize,path)</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        </div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        </div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;            <span class="keywordflow">if</span> minimumSafe&gt;0:</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;                if(originalSafe&gt;minimumSafe):</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;                    sd=0</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;                <span class="keywordflow">else</span>:</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;                    sd=(minimumSafe-originalSafe)/minimumSafe</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;                    </div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;            <span class="keywordflow">else</span>:</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;                sd=1</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;        <span class="keywordflow">else</span>:</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;            sd=1</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;            </div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;        <span class="keywordflow">if</span> optimalCost&gt;0:</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;            </div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;                od=min(1,max(((originalCost-optimalCost)/optimalCost),0))</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;                </div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;        <span class="keywordflow">else</span>:</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;            od=1</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;        </div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;        o=1-od</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;        s=1-sd</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;        self.<a class="code" href="classoptisafe__index_1_1OptiSafeIndex.html#aa7cc05a2f5f1906057bd8973ba9fe61c">value</a>value=((1-abs(o-s))*np.sqrt(o*o+s*s))/np.sqrt(2)</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;        </div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;        </div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;        <span class="keywordflow">return</span> self.<a class="code" href="classoptisafe__index_1_1OptiSafeIndex.html#aa7cc05a2f5f1906057bd8973ba9fe61c">value</a>value</div>
 <div class="ttc" id="aclassbaseeval_1_1BaseEval_html"><div class="ttname"><a href="classbaseeval_1_1BaseEval.html">baseeval.BaseEval</a></div><div class="ttdoc">Abstract base/registry for evaluating planning algorithms.</div><div class="ttdef"><b>Definition:</b> <a href="baseeval_8py_source.html#l00026">baseeval.py:26</a></div></div>
-<div class="ttc" id="aclassoptisafe__index_1_1OptiSafeIndex_html"><div class="ttname"><a href="classoptisafe__index_1_1OptiSafeIndex.html">optisafe_index.OptiSafeIndex</a></div><div class="ttdef"><b>Definition:</b> <a href="optisafe__index_8py_source.html#l00027">optisafe_index.py:27</a></div></div>
-<div class="ttc" id="aclassoptisafe__index_1_1OptiSafeIndex_html_a4ce5a4219fc2e0c46ebb5355a625847e"><div class="ttname"><a href="classoptisafe__index_1_1OptiSafeIndex.html#a4ce5a4219fc2e0c46ebb5355a625847e">optisafe_index.OptiSafeIndex.__init__</a></div><div class="ttdeci">def __init__(self, pointSamples, knn)</div><div class="ttdoc">Construct the class for OptiSafe Index evaluator.</div><div class="ttdef"><b>Definition:</b> <a href="optisafe__index_8py_source.html#l00033">optisafe_index.py:33</a></div></div>
-<div class="ttc" id="aclassoptisafe__index_1_1OptiSafeIndex_html_a4decf2f1ac1a00fab12bc65144ab1e9f"><div class="ttname"><a href="classoptisafe__index_1_1OptiSafeIndex.html#a4decf2f1ac1a00fab12bc65144ab1e9f">optisafe_index.OptiSafeIndex.aStar</a></div><div class="ttdeci">aStar</div><div class="ttdef"><b>Definition:</b> <a href="optisafe__index_8py_source.html#l00035">optisafe_index.py:35</a></div></div>
-<div class="ttc" id="aclassoptisafe__index_1_1OptiSafeIndex_html_a594372750c07bddcda6150a0a88eec8a"><div class="ttname"><a href="classoptisafe__index_1_1OptiSafeIndex.html#a594372750c07bddcda6150a0a88eec8a">optisafe_index.OptiSafeIndex.eval</a></div><div class="ttdeci">def eval(self, start, goal, grid, cellSize, path)</div><div class="ttdoc">A eval function for OptiSafe Index evaluation, which evaluates on given start, goal,...</div><div class="ttdef"><b>Definition:</b> <a href="optisafe__index_8py_source.html#l00050">optisafe_index.py:50</a></div></div>
-<div class="ttc" id="aclassoptisafe__index_1_1OptiSafeIndex_html_a63561c19bc940e121437b83bb80b92f9"><div class="ttname"><a href="classoptisafe__index_1_1OptiSafeIndex.html#a63561c19bc940e121437b83bb80b92f9">optisafe_index.OptiSafeIndex.pathCost</a></div><div class="ttdeci">pathCost</div><div class="ttdef"><b>Definition:</b> <a href="optisafe__index_8py_source.html#l00037">optisafe_index.py:37</a></div></div>
-<div class="ttc" id="aclassoptisafe__index_1_1OptiSafeIndex_html_a7425b8a3eacdbed56d4fb5b5aab08d3f"><div class="ttname"><a href="classoptisafe__index_1_1OptiSafeIndex.html#a7425b8a3eacdbed56d4fb5b5aab08d3f">optisafe_index.OptiSafeIndex.vornoiPlanner</a></div><div class="ttdeci">vornoiPlanner</div><div class="ttdef"><b>Definition:</b> <a href="optisafe__index_8py_source.html#l00036">optisafe_index.py:36</a></div></div>
-<div class="ttc" id="aclassoptisafe__index_1_1OptiSafeIndex_html_aa7cc05a2f5f1906057bd8973ba9fe61c"><div class="ttname"><a href="classoptisafe__index_1_1OptiSafeIndex.html#aa7cc05a2f5f1906057bd8973ba9fe61c">optisafe_index.OptiSafeIndex.value</a></div><div class="ttdeci">value</div><div class="ttdef"><b>Definition:</b> <a href="optisafe__index_8py_source.html#l00034">optisafe_index.py:34</a></div></div>
-<div class="ttc" id="aclassoptisafe__index_1_1OptiSafeIndex_html_af3be5093e784c538c3cd32362abff6a5"><div class="ttname"><a href="classoptisafe__index_1_1OptiSafeIndex.html#af3be5093e784c538c3cd32362abff6a5">optisafe_index.OptiSafeIndex.minimumClearance</a></div><div class="ttdeci">minimumClearance</div><div class="ttdef"><b>Definition:</b> <a href="optisafe__index_8py_source.html#l00038">optisafe_index.py:38</a></div></div>
+<div class="ttc" id="aclassoptisafe__index_1_1OptiSafeIndex_html"><div class="ttname"><a href="classoptisafe__index_1_1OptiSafeIndex.html">optisafe_index.OptiSafeIndex</a></div><div class="ttdef"><b>Definition:</b> <a href="optisafe__index_8py_source.html#l00028">optisafe_index.py:28</a></div></div>
+<div class="ttc" id="aclassoptisafe__index_1_1OptiSafeIndex_html_a115c0f07768dc37ec814660096265da8"><div class="ttname"><a href="classoptisafe__index_1_1OptiSafeIndex.html#a115c0f07768dc37ec814660096265da8">optisafe_index.OptiSafeIndex.upp</a></div><div class="ttdeci">upp</div><div class="ttdef"><b>Definition:</b> <a href="optisafe__index_8py_source.html#l00038">optisafe_index.py:38</a></div></div>
+<div class="ttc" id="aclassoptisafe__index_1_1OptiSafeIndex_html_a4ce5a4219fc2e0c46ebb5355a625847e"><div class="ttname"><a href="classoptisafe__index_1_1OptiSafeIndex.html#a4ce5a4219fc2e0c46ebb5355a625847e">optisafe_index.OptiSafeIndex.__init__</a></div><div class="ttdeci">def __init__(self, pointSamples, knn)</div><div class="ttdoc">Construct the class for OptiSafe Index evaluator.</div><div class="ttdef"><b>Definition:</b> <a href="optisafe__index_8py_source.html#l00034">optisafe_index.py:34</a></div></div>
+<div class="ttc" id="aclassoptisafe__index_1_1OptiSafeIndex_html_a4decf2f1ac1a00fab12bc65144ab1e9f"><div class="ttname"><a href="classoptisafe__index_1_1OptiSafeIndex.html#a4decf2f1ac1a00fab12bc65144ab1e9f">optisafe_index.OptiSafeIndex.aStar</a></div><div class="ttdeci">aStar</div><div class="ttdef"><b>Definition:</b> <a href="optisafe__index_8py_source.html#l00066">optisafe_index.py:66</a></div></div>
+<div class="ttc" id="aclassoptisafe__index_1_1OptiSafeIndex_html_a594372750c07bddcda6150a0a88eec8a"><div class="ttname"><a href="classoptisafe__index_1_1OptiSafeIndex.html#a594372750c07bddcda6150a0a88eec8a">optisafe_index.OptiSafeIndex.eval</a></div><div class="ttdeci">def eval(self, start, goal, grid, cellSize, path)</div><div class="ttdoc">A eval function for OptiSafe Index evaluation, which evaluates on given start, goal,...</div><div class="ttdef"><b>Definition:</b> <a href="optisafe__index_8py_source.html#l00081">optisafe_index.py:81</a></div></div>
+<div class="ttc" id="aclassoptisafe__index_1_1OptiSafeIndex_html_a63561c19bc940e121437b83bb80b92f9"><div class="ttname"><a href="classoptisafe__index_1_1OptiSafeIndex.html#a63561c19bc940e121437b83bb80b92f9">optisafe_index.OptiSafeIndex.pathCost</a></div><div class="ttdeci">pathCost</div><div class="ttdef"><b>Definition:</b> <a href="optisafe__index_8py_source.html#l00068">optisafe_index.py:68</a></div></div>
+<div class="ttc" id="aclassoptisafe__index_1_1OptiSafeIndex_html_a7425b8a3eacdbed56d4fb5b5aab08d3f"><div class="ttname"><a href="classoptisafe__index_1_1OptiSafeIndex.html#a7425b8a3eacdbed56d4fb5b5aab08d3f">optisafe_index.OptiSafeIndex.vornoiPlanner</a></div><div class="ttdeci">vornoiPlanner</div><div class="ttdef"><b>Definition:</b> <a href="optisafe__index_8py_source.html#l00067">optisafe_index.py:67</a></div></div>
+<div class="ttc" id="aclassoptisafe__index_1_1OptiSafeIndex_html_aa7cc05a2f5f1906057bd8973ba9fe61c"><div class="ttname"><a href="classoptisafe__index_1_1OptiSafeIndex.html#aa7cc05a2f5f1906057bd8973ba9fe61c">optisafe_index.OptiSafeIndex.value</a></div><div class="ttdeci">value</div><div class="ttdef"><b>Definition:</b> <a href="optisafe__index_8py_source.html#l00035">optisafe_index.py:35</a></div></div>
+<div class="ttc" id="aclassoptisafe__index_1_1OptiSafeIndex_html_af3be5093e784c538c3cd32362abff6a5"><div class="ttname"><a href="classoptisafe__index_1_1OptiSafeIndex.html#af3be5093e784c538c3cd32362abff6a5">optisafe_index.OptiSafeIndex.minimumClearance</a></div><div class="ttdeci">minimumClearance</div><div class="ttdef"><b>Definition:</b> <a href="optisafe__index_8py_source.html#l00069">optisafe_index.py:69</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

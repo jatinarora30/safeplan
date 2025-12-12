@@ -10,9 +10,6 @@ var dir_987b8361dc5375ed62802ebed0b7b3dc =
     [ "danger_violations.py", "danger__violations_8py.html", [
       [ "DangerViolations", "classdanger__violations_1_1DangerViolations.html", "classdanger__violations_1_1DangerViolations" ]
     ] ],
-    [ "distance_to_goal.py", "distance__to__goal_8py.html", [
-      [ "DistanceToGoal", "classdistance__to__goal_1_1DistanceToGoal.html", "classdistance__to__goal_1_1DistanceToGoal" ]
-    ] ],
     [ "jerk_per_meter.py", "jerk__per__meter_8py.html", [
       [ "JerkPerMeter", "classjerk__per__meter_1_1JerkPerMeter.html", "classjerk__per__meter_1_1JerkPerMeter" ]
     ] ],

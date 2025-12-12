@@ -16,9 +16,6 @@ var dir_c2f7674465750c4f36c0109a0ec12e09 =
     [ "rrt.py", "rrt_8py.html", [
       [ "RRT", "classrrt_1_1RRT.html", "classrrt_1_1RRT" ]
     ] ],
-    [ "safe_astar.py", "safe__astar_8py.html", [
-      [ "SafeAStar", "classsafe__astar_1_1SafeAStar.html", "classsafe__astar_1_1SafeAStar" ]
-    ] ],
     [ "sdf_astar.py", "sdf__astar_8py.html", [
       [ "SDFAStar", "classsdf__astar_1_1SDFAStar.html", "classsdf__astar_1_1SDFAStar" ]
     ] ],

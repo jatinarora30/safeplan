@@ -5,6 +5,7 @@ var classgenerate__grid_1_1GenerateGrid =
     [ "getmap", "classgenerate__grid_1_1GenerateGrid.html#aa81e730d8e0c684eb75f6babec81812d", null ],
     [ "getRandomFreeCell", "classgenerate__grid_1_1GenerateGrid.html#a38d62e784539eeeafbaedb68807be142", null ],
     [ "inPolygons", "classgenerate__grid_1_1GenerateGrid.html#a8316efd8088c990a7c99274b639ac284", null ],
+    [ "is_trivial_straight_line", "classgenerate__grid_1_1GenerateGrid.html#ad7969a52141e778d7a466fe905facbe9", null ],
     [ "loadJson", "classgenerate__grid_1_1GenerateGrid.html#a8ab651b22973e984dd5faa621f1a9c51", null ],
     [ "makeConvexHull", "classgenerate__grid_1_1GenerateGrid.html#a30b352ce2bebbb3b1d63606331859be2", null ],
     [ "A", "classgenerate__grid_1_1GenerateGrid.html#a88a264fe84722cae8459a5a0136ca7db", null ],
@@ -23,5 +24,6 @@ var classgenerate__grid_1_1GenerateGrid =
     [ "path", "classgenerate__grid_1_1GenerateGrid.html#ade2ff0acffce88145bdf40f9d269a7da", null ],
     [ "polygons_data", "classgenerate__grid_1_1GenerateGrid.html#a952a2fde3c6b3226841534e386cac33e", null ],
     [ "randomStartGoal", "classgenerate__grid_1_1GenerateGrid.html#ad3c8c9be7890a7b3709f6cb557e431d0", null ],
-    [ "startGoalPairs", "classgenerate__grid_1_1GenerateGrid.html#a6b93796ae039f29722b92272247d1a29", null ]
+    [ "startGoalPairs", "classgenerate__grid_1_1GenerateGrid.html#a6b93796ae039f29722b92272247d1a29", null ],
+    [ "timesEachGoal", "classgenerate__grid_1_1GenerateGrid.html#aa5782ea7430df3baebe1e939965c5bdb", null ]
 ];

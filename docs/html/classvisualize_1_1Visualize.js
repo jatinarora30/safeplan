@@ -1,5 +1,6 @@
 var classvisualize_1_1Visualize =
 [
+    [ "plotGrid", "classvisualize_1_1Visualize.html#a12954888db334351e6e1c4da9a8f3370", null ],
     [ "see", "classvisualize_1_1Visualize.html#ab9f5cafbfeae36f0e35d7c3d8b7e39cb", null ],
     [ "algos", "classvisualize_1_1Visualize.html#ac3197f6d907436089c6076879a8805dd", null ],
     [ "goal", "classvisualize_1_1Visualize.html#af12134cc6e1603fbe8245bc99fd0e2d8", null ],

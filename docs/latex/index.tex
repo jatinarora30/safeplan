@@ -71,23 +71,14 @@ Safe\+Plan introduces a rich set of metrics that go {\bfseries{beyond path lengt
 
 \item {\bfseries{Unit\+:}} percentage (\%). ~\newline
 
-\end{DoxyItemize}\hypertarget{index_autotoc_md8}{}\doxysubsection{4. Distance to Goal (m, failures only)}\label{index_autotoc_md8}
-
-\begin{DoxyItemize}
-\item {\bfseries{Definition\+:}} Remaining distance between the last explored path node and the goal when planning fails. ~\newline
-
-\item {\bfseries{Computation\+:}} Euclidean distance between last path node and goal. ~\newline
-
-\item {\bfseries{Unit\+:}} meters (m). ~\newline
-
-\end{DoxyItemize}\hypertarget{index_autotoc_md9}{}\doxysubsection{5. Number of Nodes in Path}\label{index_autotoc_md9}
+\end{DoxyItemize}\hypertarget{index_autotoc_md8}{}\doxysubsection{4. Number of Nodes in Path}\label{index_autotoc_md8}
 
 \begin{DoxyItemize}
 \item {\bfseries{Definition\+:}} Count of waypoints in the final path. ~\newline
 
 \item {\bfseries{Unit\+:}} count (integer). ~\newline
 
-\end{DoxyItemize}\hypertarget{index_autotoc_md10}{}\doxysubsection{6. Turning Angle (°)}\label{index_autotoc_md10}
+\end{DoxyItemize}\hypertarget{index_autotoc_md9}{}\doxysubsection{5. Turning Angle (°)}\label{index_autotoc_md9}
 
 \begin{DoxyItemize}
 \item {\bfseries{Definition\+:}} Sum of angular deviations between consecutive path segments. ~\newline
@@ -96,7 +87,7 @@ Safe\+Plan introduces a rich set of metrics that go {\bfseries{beyond path lengt
 
 \item {\bfseries{Unit\+:}} degrees (°). ~\newline
 
-\end{DoxyItemize}\hypertarget{index_autotoc_md11}{}\doxysubsection{7. Jerk per Meter}\label{index_autotoc_md11}
+\end{DoxyItemize}\hypertarget{index_autotoc_md10}{}\doxysubsection{6. Jerk per Meter}\label{index_autotoc_md10}
 
 \begin{DoxyItemize}
 \item {\bfseries{Definition\+:}} Rate of change of acceleration along the path, normalized per unit distance. ~\newline
@@ -105,7 +96,7 @@ Safe\+Plan introduces a rich set of metrics that go {\bfseries{beyond path lengt
 
 \item {\bfseries{Unit\+:}} dimensionless (jerk/m). ~\newline
 
-\end{DoxyItemize}\hypertarget{index_autotoc_md12}{}\doxysubsection{8. Optimal Deviation (\%)}\label{index_autotoc_md12}
+\end{DoxyItemize}\hypertarget{index_autotoc_md11}{}\doxysubsection{7. Optimal Deviation (\%)}\label{index_autotoc_md11}
 
 \begin{DoxyItemize}
 \item {\bfseries{Definition\+:}} Difference between path cost and known optimal path cost. ~\newline
@@ -114,7 +105,7 @@ Safe\+Plan introduces a rich set of metrics that go {\bfseries{beyond path lengt
 
 \item {\bfseries{Unit\+:}} percentage (\%). ~\newline
 
-\end{DoxyItemize}\hypertarget{index_autotoc_md13}{}\doxysubsection{9. Minimum Clearance (m)}\label{index_autotoc_md13}
+\end{DoxyItemize}\hypertarget{index_autotoc_md12}{}\doxysubsection{8. Minimum Clearance (m)}\label{index_autotoc_md12}
 
 \begin{DoxyItemize}
 \item {\bfseries{Definition\+:}} Smallest distance from path to nearest obstacle. ~\newline
@@ -123,21 +114,21 @@ Safe\+Plan introduces a rich set of metrics that go {\bfseries{beyond path lengt
 
 \item {\bfseries{Unit\+:}} meters (m). ~\newline
 
-\end{DoxyItemize}\hypertarget{index_autotoc_md14}{}\doxysubsection{10. Average Minimum Clearance (m)}\label{index_autotoc_md14}
+\end{DoxyItemize}\hypertarget{index_autotoc_md13}{}\doxysubsection{9. Average Minimum Clearance (m)}\label{index_autotoc_md13}
 
 \begin{DoxyItemize}
 \item {\bfseries{Definition\+:}} Mean clearance across path points. ~\newline
 
 \item {\bfseries{Unit\+:}} meters (m). ~\newline
 
-\end{DoxyItemize}\hypertarget{index_autotoc_md15}{}\doxysubsection{11. Clearance Variability}\label{index_autotoc_md15}
+\end{DoxyItemize}\hypertarget{index_autotoc_md14}{}\doxysubsection{10. Clearance Variability}\label{index_autotoc_md14}
 
 \begin{DoxyItemize}
 \item {\bfseries{Definition\+:}} Variance of clearance values along the path. ~\newline
 
 \item {\bfseries{Unit\+:}} meters². ~\newline
 
-\end{DoxyItemize}\hypertarget{index_autotoc_md16}{}\doxysubsection{12. Danger Zone Violations}\label{index_autotoc_md16}
+\end{DoxyItemize}\hypertarget{index_autotoc_md15}{}\doxysubsection{11. Danger Zone Violations}\label{index_autotoc_md15}
 
 \begin{DoxyItemize}
 \item {\bfseries{Definition\+:}} Number of times path enters a predefined danger radius around obstacles. ~\newline
@@ -146,14 +137,14 @@ Safe\+Plan introduces a rich set of metrics that go {\bfseries{beyond path lengt
 
 \item {\bfseries{Unit\+:}} count (integer). ~\newline
 
-\end{DoxyItemize}\hypertarget{index_autotoc_md17}{}\doxysubsection{13. Opti\+Safe Index (\+Proposed)}\label{index_autotoc_md17}
+\end{DoxyItemize}\hypertarget{index_autotoc_md16}{}\doxysubsection{12. Opti\+Safe Index (\+Proposed)}\label{index_autotoc_md16}
 
 \begin{DoxyItemize}
 \item {\bfseries{Definition\+:}} An index to measure balance between safety and optimality
 \item {\bfseries{Unit\+:}} float between 0 and 1. ~\newline
 
-\end{DoxyItemize}\hypertarget{index_autotoc_md18}{}\doxysection{Algorithms in Safe\+Plan}\label{index_autotoc_md18}
-Safe\+Plan includes both {\bfseries{traditional planners}} and {\bfseries{safety-\/aware planners}}, allowing direct benchmarking on {\bfseries{safety vs. optimality}} tradeoffs.\hypertarget{index_autotoc_md19}{}\doxysubsection{🔹 Traditional Planners}\label{index_autotoc_md19}
+\end{DoxyItemize}\hypertarget{index_autotoc_md17}{}\doxysection{Algorithms in Safe\+Plan}\label{index_autotoc_md17}
+Safe\+Plan includes both {\bfseries{traditional planners}} and {\bfseries{safety-\/aware planners}}, allowing direct benchmarking on {\bfseries{safety vs. optimality}} tradeoffs.\hypertarget{index_autotoc_md18}{}\doxysubsection{🔹 Traditional Planners}\label{index_autotoc_md18}
 
 \begin{DoxyItemize}
 \item {\bfseries{A$\ast$}} ~\newline
@@ -168,12 +159,12 @@ Safe\+Plan includes both {\bfseries{traditional planners}} and {\bfseries{safety
 \end{DoxyItemize}
 
 \DoxyHorRuler{0}
-\hypertarget{index_autotoc_md21}{}\doxysubsection{🔹 Safety-\/\+Aware Planners}\label{index_autotoc_md21}
+\hypertarget{index_autotoc_md20}{}\doxysubsection{🔹 Safety-\/\+Aware Planners}\label{index_autotoc_md20}
 
 \begin{DoxyItemize}
-\item {\bfseries{Unified Path Planner}} ~\newline
+\item {\bfseries{Unified Path Planner (Ours)}} ~\newline
  A safety-\/aware planner integrating safety heuristics ~\newline
- Reference\+: (\href{https://arxiv.org/pdf/2505.23197}{\texttt{ https\+://arxiv.\+org/pdf/2505.\+23197}})
+
 \item {\bfseries{SDF A$\ast$}} ~\newline
  A$\ast$ variant augmented with Signed Distance Fields for safety margin enforcement. ~\newline
  Reference\+: (\href{https://ieeexplore.ieee.org/document/10364842/}{\texttt{ https\+://ieeexplore.\+ieee.\+org/document/10364842/}})
@@ -185,10 +176,8 @@ Safe\+Plan includes both {\bfseries{traditional planners}} and {\bfseries{safety
  Reference\+: (\href{https://arxiv.org/pdf/2011.06748}{\texttt{ https\+://arxiv.\+org/pdf/2011.\+06748}})
 \item {\bfseries{FS Planner}} ~\newline
  Uses an integrated inverse distance, on lazy theta AStar and also gives a limit on maximum neighbours explored in goal and safe direction Reference\+: (\href{https://arxiv.org/pdf/2505.24024}{\texttt{ https\+://arxiv.\+org/pdf/2505.\+24024}})
-\item {\bfseries{Safe A$\ast$}} ~\newline
- Safe A$\ast$\+: This approach is conceptually inspired by the inflation layer in the ROS Navigation framework wher traversal costs are increased in proportion to proximity to obstacles. Unlike Nav2, which uses an exponential decay function to inflate costs, we adopt a simplified inverse-\/distance formulation to achieve a similar safety bias.
-\end{DoxyItemize}\hypertarget{index_autotoc_md22}{}\doxysection{Installation}\label{index_autotoc_md22}
-\hypertarget{index_autotoc_md23}{}\doxysubsection{Requirements}\label{index_autotoc_md23}
+\end{DoxyItemize}\hypertarget{index_autotoc_md21}{}\doxysection{Installation}\label{index_autotoc_md21}
+\hypertarget{index_autotoc_md22}{}\doxysubsection{Requirements}\label{index_autotoc_md22}
 
 \begin{DoxyItemize}
 \item {\bfseries{Python}}\+: 3.\+9 or newer ~\newline
@@ -210,7 +199,7 @@ Safe\+Plan includes both {\bfseries{traditional planners}} and {\bfseries{safety
 All dependencies are listed in {\ttfamily requirements.\+txt}.
 
 \DoxyHorRuler{0}
-\hypertarget{index_autotoc_md25}{}\doxysubsection{Install from source}\label{index_autotoc_md25}
+\hypertarget{index_autotoc_md24}{}\doxysubsection{Install from source}\label{index_autotoc_md24}
 Clone the repository and install in editable mode\+:
 
 
@@ -221,26 +210,25 @@ Clone the repository and install in editable mode\+:
 \DoxyCodeLine{pip install -\/e .}
 
 \end{DoxyCode}
- \hypertarget{index_autotoc_md26}{}\doxysection{Usage}\label{index_autotoc_md26}
+ \hypertarget{index_autotoc_md25}{}\doxysection{Usage}\label{index_autotoc_md25}
 Safe\+Plan experiments are configured via a JSON file (e.\+g., {\ttfamily run1.\+json}). ~\newline
  Below is an example\+:
 
 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{\{}
-\DoxyCodeLine{  "{}runDetails"{}: "{}run2"{},}
+\DoxyCodeLine{  "{}runDetails"{}: "{}run1"{},}
 \DoxyCodeLine{  "{}evalDetails"{}: [}
-\DoxyCodeLine{    \{"{}name"{}: "{}PlanningTime"{}\},}
+\DoxyCodeLine{     \{"{}name"{}: "{}PlanningTime"{}\},}
 \DoxyCodeLine{    \{"{}name"{}: "{}MinimumClearance"{},"{}args"{}: \{"{}pointSamples"{}:100\}\},}
 \DoxyCodeLine{    \{"{}name"{}: "{}AverageMinimumClearance"{},"{}args"{}: \{"{}pointSamples"{}:100\}\},}
 \DoxyCodeLine{    \{"{}name"{}: "{}ClearanceVariability"{},"{}args"{}: \{"{}pointSamples"{}:100\}\},}
-\DoxyCodeLine{    \{"{}name"{}: "{}DangerViolations"{},"{}args"{}: \{"{}pointSamples"{}:100,"{}dangerRadius"{}:0.2\}\},}
+\DoxyCodeLine{    \{"{}name"{}: "{}DangerViolations"{},"{}args"{}: \{"{}pointSamples"{}:100,"{}dangerRadius"{}:0.1\}\},}
 \DoxyCodeLine{    \{"{}name"{}: "{}TurningAngle"{}\},}
 \DoxyCodeLine{    \{"{}name"{}: "{}JerkPerMeter"{}\},}
 \DoxyCodeLine{    \{"{}name"{}: "{}SuccessRate"{}\},}
 \DoxyCodeLine{    \{"{}name"{}: "{}OptimalDeviation"{}\},}
 \DoxyCodeLine{    \{"{}name"{}: "{}PathCost"{}\},}
-\DoxyCodeLine{    \{"{}name"{}: "{}DistanceToGoal"{}\},}
 \DoxyCodeLine{    \{"{}name"{}: "{}OptiSafeIndex"{},"{}args"{}: \{"{}pointSamples"{}:100,"{}knn"{}:1000\}\},}
 \DoxyCodeLine{    \{"{}name"{}: "{}NodesInPath"{}, "{}args"{}: \{"{}type"{}:"{}RDP"{},"{}epsilon"{}:0.01\}\}}
 \DoxyCodeLine{  ],}
@@ -248,25 +236,27 @@ Safe\+Plan experiments are configured via a JSON file (e.\+g., {\ttfamily run1.\
 \DoxyCodeLine{    \{"{}name"{}: "{}VoronoiPlanner"{},"{}args"{}: \{"{}pointSamples"{}:100,"{}knn"{}:100\}\},}
 \DoxyCodeLine{    \{"{}name"{}: "{}AStar"{}\},}
 \DoxyCodeLine{    \{"{}name"{}: "{}RRT"{},"{}args"{}: \{"{}maxIter"{}:10000,"{}goalSampleRate"{}:0.05,"{}stepSize"{}:7,"{}pointSamples"{}:100\}\},}
-\DoxyCodeLine{}
-\DoxyCodeLine{    \{"{}name"{}: "{}UPP"{},"{}args"{}: \{"{}alpha"{}:0.5,"{}beta"{}:2,"{}radius"{}:5,"{}epsilon"{}:0.01\}\},}
 \DoxyCodeLine{    \{"{}name"{}: "{}CBFRRT"{},"{}args"{}: \{"{}maxIter"{}:10000,"{}goalSampleRate"{}:0.05,"{}stepSize"{}:7,"{}pointSamples"{}:100,"{}gamma1"{}:2,"{}gamma2"{}:2\}\},}
 \DoxyCodeLine{    \{"{}name"{}: "{}FSPlanner"{} ,"{}args"{}: \{"{}pointSamples"{}:100,"{}cw"{}:1, "{}epsilon"{}:0.01,"{}maxNeigh"{}:5\}\},}
 \DoxyCodeLine{    \{"{}name"{}: "{}SDFAStar"{} , "{}args"{}: \{"{}k1"{}:5,"{}k2"{}:5\}\},}
 \DoxyCodeLine{    \{"{}name"{}: "{}OptimizedAStar"{} , "{}args"{}: \{"{}turnPenaltyCoefficients"{}:0.5,"{}safetyDistGridRadius"{}:100,"{}maxInflateIter"{}:100,"{}pointSamples"{}:100\}\},}
-\DoxyCodeLine{    \{"{}name"{}: "{}SafeAStar"{} ,"{}args"{}: \{"{}safetyFactor"{}:4,"{}epsilon"{}:0.01\}\}}
+\DoxyCodeLine{    \{"{}name"{}: "{}UPP"{},"{}args"{}: \{"{}alphaBase"{}: 0.5,"{}betaBase"{}: 10.0,"{}radiusBase"{}: 1, "{}epsilon"{}: 0.01,"{}betaMin"{}: 0.1,"{}betaMax"{}: 2.0,"{}betaDecay"{}: 0.97,"{}betaRecovery"{}: 1.05,"{}betaPatience"{}: 20,"{}goalTol"{}: 0.1,"{}alphaMin"{}: 0.05,"{}alphaMax"{}: 0.95,"{}alphaDecay"{}: 0.97,"{}alphaRecovery"{}: 1.05,"{}tolAngular"{}: 180.0,"{}turnTarget"{}: 15.0,"{}turnWindow"{}: 10,"{}radiusMin"{}: 1,"{}radiusMax"{}: 5\}}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{  }
 \DoxyCodeLine{  ],}
 \DoxyCodeLine{  "{}envDetails"{}: [}
 \DoxyCodeLine{    \{}
 \DoxyCodeLine{      "{}generateGrid"{}: [}
 \DoxyCodeLine{       }
-\DoxyCodeLine{        \{"{}name"{}: "{}env1"{} \}}
+\DoxyCodeLine{      \{"{}name"{}: "{}env1"{}\}}
+\DoxyCodeLine{       }
 \DoxyCodeLine{      ]    \}}
 \DoxyCodeLine{  ]}
 \DoxyCodeLine{\}}
 
 \end{DoxyCode}
-\hypertarget{index_autotoc_md27}{}\doxysection{Programmatic API}\label{index_autotoc_md27}
+\hypertarget{index_autotoc_md26}{}\doxysection{Programmatic API}\label{index_autotoc_md26}
 You can run Safe\+Plan directly from Python by importing the main API and passing a path to your run config JSON.
 
 
@@ -288,23 +278,7 @@ You can run Safe\+Plan directly from Python by importing the main API and passin
 \DoxyCodeLine{viz.see("{}/home/run1.json"{}, iterNo=1, prefer\_plotly=True)}
 
 \end{DoxyCode}
-
-
-Safe\+Plan experimental results in results folder on calling stats for planners for various metrices are shown in json form as follows\+: \tabulinesep=1mm
-\begin{longtabu}spread 0pt [c]{*{14}{|X[-1]}|}
-\hline
-\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Algorithm   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Planning Time   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Min Clearance   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Avg Min Clearance   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Clearance Var   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Danger Violations   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Turning Angle   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Jerk / m   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Success Rate   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Opt Dev   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Path Cost   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Dist to Goal   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Opti\+Safe Index   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Nodes in Path    }\\\cline{1-14}
-\endfirsthead
-\hline
-\endfoot
-\hline
-\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Algorithm   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Planning Time   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Min Clearance   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Avg Min Clearance   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Clearance Var   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Danger Violations   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Turning Angle   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Jerk / m   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Success Rate   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Opt Dev   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Path Cost   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Dist to Goal   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Opti\+Safe Index   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Nodes in Path    }\\\cline{1-14}
-\endhead
-Safe\+AStar   &374.\+96   &2.\+08   &3.\+86   &47.\+18   &159.\+62   &313.\+67   &0.\+108   &1.\+0   &0.\+0208   &13.\+77   &0.\+0   &0.\+887   &9.\+04    \\\cline{1-14}
-AStar   &38.\+09   &2.\+02   &3.\+84   &49.\+88   &2317.\+31   &90.\+41   &0.\+0447   &1.\+0   &0.\+0   &13.\+71   &0.\+0   &0.\+842   &4.\+08    \\\cline{1-14}
-FSPlanner   &712.\+05   &2.\+05   &3.\+82   &47.\+66   &48.\+08   &30.\+41   &0.\+00735   &1.\+0   &-\/0.\+0539   &13.\+29   &0.\+0   &0.\+934   &2.\+69   \\\cline{1-14}
-\end{longtabu}
-\hypertarget{index_autotoc_md28}{}\doxysection{Environments}\label{index_autotoc_md28}
+\hypertarget{index_autotoc_md27}{}\doxysection{Environments}\label{index_autotoc_md27}
 Safe\+Plan currently provides {\bfseries{12 benchmark environments}}\+:
 
 
@@ -325,9 +299,9 @@ These cover a diverse range of planning challenges\+:
 
 \item Full 3D voxel maps for UAV and mobile robot planning ~\newline
 
-\end{DoxyItemize}\hypertarget{index_autotoc_md29}{}\doxysection{Extending Safe\+Plan}\label{index_autotoc_md29}
+\end{DoxyItemize}\hypertarget{index_autotoc_md28}{}\doxysection{Extending Safe\+Plan}\label{index_autotoc_md28}
 Safe\+Plan is designed to be {\bfseries{modular and extensible}}, so you can easily add your own planners, evaluation metrics, or environments. ~\newline
- This makes it straightforward for researchers and developers to benchmark {\bfseries{new ideas}} while reusing the existing infrastructure.\hypertarget{index_autotoc_md30}{}\doxysubsection{Adding a New Planner}\label{index_autotoc_md30}
+ This makes it straightforward for researchers and developers to benchmark {\bfseries{new ideas}} while reusing the existing infrastructure.\hypertarget{index_autotoc_md29}{}\doxysubsection{Adding a New Planner}\label{index_autotoc_md29}
 To add a new planner\+:
 \begin{DoxyEnumerate}
 \item Create a new file inside {\ttfamily safeplan/algos/} (e.\+g., {\ttfamily my\+\_\+planner.\+py}).
@@ -357,7 +331,7 @@ To add a new planner\+:
 \DoxyCodeLine{]}
 
 \end{DoxyCode}
-\hypertarget{index_autotoc_md31}{}\doxysubsection{Adding a New Metric}\label{index_autotoc_md31}
+\hypertarget{index_autotoc_md30}{}\doxysubsection{Adding a New Metric}\label{index_autotoc_md30}
 To add a new metric\+:
 \begin{DoxyEnumerate}
 \item Create a new file inside {\ttfamily safeplan/evals/} (e.\+g., {\ttfamily my\+\_\+metric.\+py}).
@@ -386,7 +360,7 @@ To add a new metric\+:
 \DoxyCodeLine{]}
 
 \end{DoxyCode}
-\hypertarget{index_autotoc_md32}{}\doxysubsection{Adding a New Environment}\label{index_autotoc_md32}
+\hypertarget{index_autotoc_md31}{}\doxysubsection{Adding a New Environment}\label{index_autotoc_md31}
 Safe\+Plan lets you plug in new environment generators that return occupancy grids and start/goal pairs in a consistent format. You can either {\bfseries{use the built-\/in {\ttfamily Generate\+Grid}}} (loads polygons from JSON, rasterizes to a grid, caches a {\ttfamily \+\_\+grid.\+json}) or {\bfseries{create your own environment}} by subclassing {\ttfamily Base\+Env}.
 
 \DoxyHorRuler{0}
@@ -500,22 +474,22 @@ env\+Name \+: str
 
 env\+Des \+: str
 
-start\+Goal\+Pairs \+: list of objects like\+:\hypertarget{index_autotoc_md34}{}\doxysection{Caching \& Reloading (\+Generate\+Grid)}\label{index_autotoc_md34}
+start\+Goal\+Pairs \+: list of objects like\+:\hypertarget{index_autotoc_md33}{}\doxysection{Caching \& Reloading (\+Generate\+Grid)}\label{index_autotoc_md33}
 First run\+: Generate\+Grid loads $<$name$>$.json, rasterizes polygons, optionally samples random pairs, and writes $<$name$>$\+\_\+grid.\+json.
 
 Subsequent runs\+: If $<$name$>$\+\_\+grid.\+json is present and readable, it skips generation and loads from cache.
 
-Tip\+: Delete the \+\_\+grid.\+json cache to force regeneration after changes to the base scene JSON.\hypertarget{index_autotoc_md35}{}\doxysection{Random Start/\+Goal Pairs (\+Generate\+Grid)}\label{index_autotoc_md35}
+Tip\+: Delete the \+\_\+grid.\+json cache to force regeneration after changes to the base scene JSON.\hypertarget{index_autotoc_md34}{}\doxysection{Random Start/\+Goal Pairs (\+Generate\+Grid)}\label{index_autotoc_md34}
 If \char`\"{}random\+Start\+Goal\char`\"{}\+: true, Safe\+Plan will sample num\+Start\+Goals distinct pairs in free cells.
 
-If \char`\"{}random\+Start\+Goal\char`\"{}\+: false, Safe\+Plan uses the provided \char`\"{}start\+Goal\+Pairs\char`\"{} array as-\/is.\hypertarget{index_autotoc_md36}{}\doxysection{Troubleshooting}\label{index_autotoc_md36}
+If \char`\"{}random\+Start\+Goal\char`\"{}\+: false, Safe\+Plan uses the provided \char`\"{}start\+Goal\+Pairs\char`\"{} array as-\/is.\hypertarget{index_autotoc_md35}{}\doxysection{Troubleshooting}\label{index_autotoc_md35}
 “\+File exists and is readable” but scene didn’t change\+: Delete the cached \+\_\+grid.\+json to regenerate.
 
 No obstacles appear\+: Check your polygons are convex and have valid vertex order; Convex\+Hull requires non-\/degenerate input.
 
 Invalid pairs\+: Ensure start/goal lie within grid bounds and on free cells (grid\mbox{[}...\mbox{]} == 0).
 
-3D grids\+: Use dimension\+Of\+Grid\+: 3 and provide 3D polygons (polyhedra faces) that form valid convex hulls.\hypertarget{index_autotoc_md37}{}\doxysubsection{Cite Safe\+Plan}\label{index_autotoc_md37}
+3D grids\+: Use dimension\+Of\+Grid\+: 3 and provide 3D polygons (polyhedra faces) that form valid convex hulls.\hypertarget{index_autotoc_md36}{}\doxysubsection{Cite Safe\+Plan}\label{index_autotoc_md36}
 If you use {\bfseries{Safe\+Plan}} in your research, please cite\+:
 
 

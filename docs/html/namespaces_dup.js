@@ -1,10 +1,6 @@
 var namespaces_dup =
 [
     [ "a_star", "namespacea__star.html", "namespacea__star" ],
-    [ "aggregate", "namespaceaggregate.html", [
-      [ "aggregate_results", "namespaceaggregate.html#ab954912a87d04a4265fe06df31a3b474", null ],
-      [ "mean", "namespaceaggregate.html#a8f496e7b07293f6ea758156b6b172e28", null ]
-    ] ],
     [ "average_minimum_clearance", "namespaceaverage__minimum__clearance.html", "namespaceaverage__minimum__clearance" ],
     [ "baseenv", "namespacebaseenv.html", "namespacebaseenv" ],
     [ "baseeval", "namespacebaseeval.html", "namespacebaseeval" ],
@@ -12,7 +8,6 @@ var namespaces_dup =
     [ "cbf_rrt", "namespacecbf__rrt.html", "namespacecbf__rrt" ],
     [ "clearance_variability", "namespaceclearance__variability.html", "namespaceclearance__variability" ],
     [ "danger_violations", "namespacedanger__violations.html", "namespacedanger__violations" ],
-    [ "distance_to_goal", "namespacedistance__to__goal.html", "namespacedistance__to__goal" ],
     [ "fs_planner", "namespacefs__planner.html", "namespacefs__planner" ],
     [ "generate_grid", "namespacegenerate__grid.html", "namespacegenerate__grid" ],
     [ "jerk_per_meter", "namespacejerk__per__meter.html", "namespacejerk__per__meter" ],
@@ -24,7 +19,6 @@ var namespaces_dup =
     [ "optisafe_index", "namespaceoptisafe__index.html", "namespaceoptisafe__index" ],
     [ "path_cost", "namespacepath__cost.html", "namespacepath__cost" ],
     [ "rrt", "namespacerrt.html", "namespacerrt" ],
-    [ "safe_astar", "namespacesafe__astar.html", "namespacesafe__astar" ],
     [ "safeplan", "namespacesafeplan.html", "namespacesafeplan" ],
     [ "sdf_astar", "namespacesdf__astar.html", "namespacesdf__astar" ],
     [ "stats", "namespacestats.html", "namespacestats" ],
@@ -33,11 +27,6 @@ var namespaces_dup =
       [ "prefer_plotly", "namespacetest.html#a4aa6b1530edeb157d2e112552f9aa50b", null ],
       [ "sf", "namespacetest.html#adee94c29df5f6a721531df05608c62fa", null ],
       [ "vs", "namespacetest.html#a77d49c4c1e788c6a702e40460633e939", null ]
-    ] ],
-    [ "test2", "namespacetest2.html", [
-      [ "iterNo", "namespacetest2.html#ab2e21004eee55cb2a081d092dfd57636", null ],
-      [ "prefer_plotly", "namespacetest2.html#a7fec0c7bb0ae5adc992e5ca58d510286", null ],
-      [ "vs", "namespacetest2.html#a94a974ae219a1860c7d53aa8fc995888", null ]
     ] ],
     [ "turning_angle", "namespaceturning__angle.html", "namespaceturning__angle" ],
     [ "upp", "namespaceupp.html", "namespaceupp" ],

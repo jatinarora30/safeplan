@@ -1,8 +1,9 @@
 <map id="generate_grid.GenerateGrid.getmap" name="generate_grid.GenerateGrid.getmap">
-<area shape="rect" id="node1" title="Build or load the occupancy grid and associated metadata." alt="" coords="5,111,263,138"/>
+<area shape="rect" id="node1" title="Build or load the occupancy grid and associated metadata." alt="" coords="5,143,263,170"/>
 <area shape="rect" id="node2" href="$classgenerate__grid_1_1GenerateGrid.html#abd580d9be287751fb210b50be01d7c27" title="Compute half&#45;space representations (A, b) for all polygons." alt="" coords="311,5,575,47"/>
 <area shape="rect" id="node4" href="$classgenerate__grid_1_1GenerateGrid.html#a38d62e784539eeeafbaedb68807be142" title="Sample a random free cell uniformly from the grid." alt="" coords="329,71,557,112"/>
 <area shape="rect" id="node5" href="$classgenerate__grid_1_1GenerateGrid.html#a8316efd8088c990a7c99274b639ac284" title="Test if a point lies inside any polygon (inclusive, with tolerance)." alt="" coords="333,136,552,177"/>
-<area shape="rect" id="node6" href="$classgenerate__grid_1_1GenerateGrid.html#a8ab651b22973e984dd5faa621f1a9c51" title="Load the base environment configuration." alt="" coords="311,202,574,229"/>
+<area shape="rect" id="node6" href="$classgenerate__grid_1_1GenerateGrid.html#ad7969a52141e778d7a466fe905facbe9" title="Check if a start/goal pair should be rejected as &quot;trivial&quot; or uninteresting." alt="" coords="333,201,552,243"/>
+<area shape="rect" id="node7" href="$classgenerate__grid_1_1GenerateGrid.html#a8ab651b22973e984dd5faa621f1a9c51" title="Load the base environment configuration." alt="" coords="311,267,574,294"/>
 <area shape="rect" id="node3" href="$classgenerate__grid_1_1GenerateGrid.html#a30b352ce2bebbb3b1d63606331859be2" title="Convert a set of polygon vertices to half&#45;space form." alt="" coords="623,5,865,47"/>
 </map>

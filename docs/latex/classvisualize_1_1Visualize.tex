@@ -9,7 +9,9 @@
 \begin{DoxyCompactItemize}
 \item 
 def \mbox{\hyperlink{classvisualize_1_1Visualize_ab9f5cafbfeae36f0e35d7c3d8b7e39cb}{see}} (self, run\+Config\+Path, iter\+No, \mbox{\hyperlink{classvisualize_1_1Visualize_ac3197f6d907436089c6076879a8805dd}{algos}}=None, \mbox{\hyperlink{classvisualize_1_1Visualize_adaeff11b929d1579eec259db74469451}{graph\+Title}}=None, \mbox{\hyperlink{classvisualize_1_1Visualize_aee30852e6aebd701a618b74e419afb74}{show\+\_\+paths}}=True, prefer\+\_\+plotly=True, also\+\_\+save\+\_\+png\+\_\+3d=False)
-\begin{DoxyCompactList}\small\item\em Render a specific iteration across one or more algorithms. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Render a specific iteration across one or more algorithms. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classvisualize_1_1Visualize_a12954888db334351e6e1c4da9a8f3370}{plot\+Grid}} (self, run\+Config\+Path, prefer\+\_\+plotly=True)
+\begin{DoxyCompactList}\small\item\em Plot all grids (2D/3D) for the environments listed in run config (generate\+Grid). \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -45,6 +47,25 @@ Definition at line 182 of file visualize.\+py.
 
 
 \doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classvisualize_1_1Visualize_a12954888db334351e6e1c4da9a8f3370}\label{classvisualize_1_1Visualize_a12954888db334351e6e1c4da9a8f3370}} 
+\index{visualize.Visualize@{visualize.Visualize}!plotGrid@{plotGrid}}
+\index{plotGrid@{plotGrid}!visualize.Visualize@{visualize.Visualize}}
+\doxysubsubsection{\texorpdfstring{plotGrid()}{plotGrid()}}
+{\footnotesize\ttfamily def visualize.\+Visualize.\+plot\+Grid (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{run\+Config\+Path,  }\item[{}]{prefer\+\_\+plotly = {\ttfamily True} }\end{DoxyParamCaption})}
+
+
+
+Plot all grids (2D/3D) for the environments listed in run config (generate\+Grid). 
+
+\begin{DoxyVerb}   @param runConfigPath str
+       Path to the run configuration JSON (e.g., run1.json).
+   @param prefer_plotly bool
+       Prefer Plotly for 3D visualization (default: True).
+\end{DoxyVerb}
+ 
+
+Definition at line 383 of file visualize.\+py.
+
 \mbox{\Hypertarget{classvisualize_1_1Visualize_ab9f5cafbfeae36f0e35d7c3d8b7e39cb}\label{classvisualize_1_1Visualize_ab9f5cafbfeae36f0e35d7c3d8b7e39cb}} 
 \index{visualize.Visualize@{visualize.Visualize}!see@{see}}
 \index{see@{see}!visualize.Visualize@{visualize.Visualize}}

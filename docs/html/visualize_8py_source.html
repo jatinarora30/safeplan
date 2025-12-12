@@ -454,8 +454,148 @@ $(document).ready(function(){initNavTree('visualize_8py_source.html',''); initRe
 <div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160; </div>
 <div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160;        <span class="comment"># If we reach here, dimension &gt; 3</span></div>
 <div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160;        print(<span class="stringliteral">&quot;Can&#39;t plot above 3 dimensions&quot;</span>)</div>
+<div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160; </div>
+<div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;    <span class="keyword">def </span><a class="code" href="classvisualize_1_1Visualize.html#a12954888db334351e6e1c4da9a8f3370">plotGrid</a>(self, runConfigPath, prefer_plotly=True):</div>
+<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;        <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;<span class="stringliteral">        Plot all grids (2D/3D) for the environments listed in run config (generateGrid).</span></div>
+<div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;<span class="stringliteral"></span> </div>
+<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;<span class="stringliteral">        @param runConfigPath str</span></div>
+<div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;<span class="stringliteral">            Path to the run configuration JSON (e.g., run1.json).</span></div>
+<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;<span class="stringliteral">        @param prefer_plotly bool</span></div>
+<div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;<span class="stringliteral">            Prefer Plotly for 3D visualization (default: True).</span></div>
+<div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;<span class="stringliteral">        &quot;&quot;&quot;</span></div>
+<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;        self.<a class="code" href="classvisualize_1_1Visualize.html#a100dac3347db5c29ce237a915a59233d">outputDir</a>outputDir = <span class="stringliteral">&quot;outputs&quot;</span></div>
+<div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;        <span class="keyword">with</span> open(runConfigPath) <span class="keyword">as</span> f:</div>
+<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;            data = json.load(f)</div>
+<div class="line"><a name="l00383"></a><span class="lineno"><a class="line" href="classvisualize_1_1Visualize.html#a12954888db334351e6e1c4da9a8f3370">  383</a></span>&#160; </div>
+<div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160;        repo_root = <a class="code" href="namespacebaseplanner.html#a3253efa4d43da6ff2038a7363a342565">Path</a>(runConfigPath).resolve().parent.parent</div>
+<div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160; </div>
+<div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160;        <span class="comment"># Get env names from envDetails.generateGrid</span></div>
+<div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160;        env_names = [e[<span class="stringliteral">&quot;name&quot;</span>].lower() <span class="keywordflow">for</span> e <span class="keywordflow">in</span> data.get(<span class="stringliteral">&quot;envDetails&quot;</span>, [])[0].get(<span class="stringliteral">&quot;generateGrid&quot;</span>, [])]</div>
+<div class="line"><a name="l00388"></a><span class="lineno">  388</span>&#160; </div>
+<div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160;        <span class="keywordflow">if</span> <span class="keywordflow">not</span> env_names:</div>
+<div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160;            print(<span class="stringliteral">&quot;[viz] No environments found in run config.&quot;</span>)</div>
+<div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160;            <span class="keywordflow">return</span></div>
+<div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160; </div>
+<div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;        out_dir = _ensure_outdir()</div>
+<div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160; </div>
+<div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;        <span class="keywordflow">for</span> env_name <span class="keywordflow">in</span> sorted(env_names):</div>
+<div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160;            env_json = repo_root / <span class="stringliteral">&quot;configs&quot;</span> / <span class="stringliteral">&quot;generate_grid&quot;</span> / env_name / f<span class="stringliteral">&quot;{env_name}_grid.json&quot;</span></div>
+<div class="line"><a name="l00397"></a><span class="lineno">  397</span>&#160;            <span class="keywordflow">if</span> <span class="keywordflow">not</span> env_json.is_file():</div>
+<div class="line"><a name="l00398"></a><span class="lineno">  398</span>&#160;                print(f<span class="stringliteral">&quot;[viz] Skipping {env_name}: grid file not found&quot;</span>)</div>
+<div class="line"><a name="l00399"></a><span class="lineno">  399</span>&#160;                <span class="keywordflow">continue</span></div>
+<div class="line"><a name="l00400"></a><span class="lineno">  400</span>&#160; </div>
+<div class="line"><a name="l00401"></a><span class="lineno">  401</span>&#160;            <span class="keyword">with</span> open(env_json) <span class="keyword">as</span> f:</div>
+<div class="line"><a name="l00402"></a><span class="lineno">  402</span>&#160;                env_data = json.load(f)</div>
+<div class="line"><a name="l00403"></a><span class="lineno">  403</span>&#160;            grid = np.array(env_data[<span class="stringliteral">&quot;Grid&quot;</span>])</div>
+<div class="line"><a name="l00404"></a><span class="lineno">  404</span>&#160;            dim = grid.ndim</div>
+<div class="line"><a name="l00405"></a><span class="lineno">  405</span>&#160;            occ_mask = (grid &gt; 0)</div>
+<div class="line"><a name="l00406"></a><span class="lineno">  406</span>&#160;            occ_count = int(occ_mask.sum())</div>
+<div class="line"><a name="l00407"></a><span class="lineno">  407</span>&#160;            print(f<span class="stringliteral">&quot;[viz] env={env_name}, shape={grid.shape}, occupied={occ_count}/{occ_mask.size}&quot;</span>)</div>
+<div class="line"><a name="l00408"></a><span class="lineno">  408</span>&#160; </div>
+<div class="line"><a name="l00409"></a><span class="lineno">  409</span>&#160;            <span class="comment"># --- 2D grid plotting ---</span></div>
+<div class="line"><a name="l00410"></a><span class="lineno">  410</span>&#160;            <span class="keywordflow">if</span> dim == 2:</div>
+<div class="line"><a name="l00411"></a><span class="lineno">  411</span>&#160;                fig, ax = plt.subplots(figsize=(12, 12))</div>
+<div class="line"><a name="l00412"></a><span class="lineno">  412</span>&#160;                cmap = mcolors.ListedColormap([<span class="stringliteral">&quot;white&quot;</span>, <span class="stringliteral">&quot;black&quot;</span>])</div>
+<div class="line"><a name="l00413"></a><span class="lineno">  413</span>&#160;                norm = mcolors.BoundaryNorm([-0.5, 0.5, 1.5], cmap.N)</div>
+<div class="line"><a name="l00414"></a><span class="lineno">  414</span>&#160;                ax.imshow(grid, cmap=cmap, norm=norm, origin=<span class="stringliteral">&quot;upper&quot;</span>)</div>
+<div class="line"><a name="l00415"></a><span class="lineno">  415</span>&#160;                ax.set_title(f<span class="stringliteral">&quot;Grid: {env_name}&quot;</span>)</div>
+<div class="line"><a name="l00416"></a><span class="lineno">  416</span>&#160;                ax.set_aspect(<span class="stringliteral">&quot;equal&quot;</span>)</div>
+<div class="line"><a name="l00417"></a><span class="lineno">  417</span>&#160;                plt.tight_layout()</div>
+<div class="line"><a name="l00418"></a><span class="lineno">  418</span>&#160; </div>
+<div class="line"><a name="l00419"></a><span class="lineno">  419</span>&#160;                out_png = os.path.join(out_dir, f<span class="stringliteral">&quot;{env_name}_grid2d.png&quot;</span>)</div>
+<div class="line"><a name="l00420"></a><span class="lineno">  420</span>&#160;                plt.savefig(out_png, dpi=160)</div>
+<div class="line"><a name="l00421"></a><span class="lineno">  421</span>&#160;                plt.close(fig)</div>
+<div class="line"><a name="l00422"></a><span class="lineno">  422</span>&#160;                print(f<span class="stringliteral">&quot;[viz] Wrote 2D PNG to: {out_png}&quot;</span>)</div>
+<div class="line"><a name="l00423"></a><span class="lineno">  423</span>&#160; </div>
+<div class="line"><a name="l00424"></a><span class="lineno">  424</span>&#160;            <span class="comment"># --- 3D grid plotting ---</span></div>
+<div class="line"><a name="l00425"></a><span class="lineno">  425</span>&#160;                    <span class="comment"># --- 3D grid plotting ---</span></div>
+<div class="line"><a name="l00426"></a><span class="lineno">  426</span>&#160;            <span class="keywordflow">elif</span> dim == 3:</div>
+<div class="line"><a name="l00427"></a><span class="lineno">  427</span>&#160;                <span class="comment"># Obstacles = 1, Free = 0</span></div>
+<div class="line"><a name="l00428"></a><span class="lineno">  428</span>&#160;                occ_mask = (grid == 1)</div>
+<div class="line"><a name="l00429"></a><span class="lineno">  429</span>&#160;                occ_count = int(occ_mask.sum())</div>
+<div class="line"><a name="l00430"></a><span class="lineno">  430</span>&#160; </div>
+<div class="line"><a name="l00431"></a><span class="lineno">  431</span>&#160;                out_html = os.path.join(out_dir, f<span class="stringliteral">&quot;{env_name}_grid3d.html&quot;</span>)</div>
+<div class="line"><a name="l00432"></a><span class="lineno">  432</span>&#160;                out_png  = os.path.join(out_dir, f<span class="stringliteral">&quot;{env_name}_grid3d.png&quot;</span>)</div>
+<div class="line"><a name="l00433"></a><span class="lineno">  433</span>&#160; </div>
+<div class="line"><a name="l00434"></a><span class="lineno">  434</span>&#160;                <span class="comment"># --- Empty grid ---</span></div>
+<div class="line"><a name="l00435"></a><span class="lineno">  435</span>&#160;                <span class="keywordflow">if</span> occ_count == 0:</div>
+<div class="line"><a name="l00436"></a><span class="lineno">  436</span>&#160;                    print(f<span class="stringliteral">&quot;[viz] {env_name}: empty grid (no obstacles).&quot;</span>)</div>
+<div class="line"><a name="l00437"></a><span class="lineno">  437</span>&#160; </div>
+<div class="line"><a name="l00438"></a><span class="lineno">  438</span>&#160;                    <span class="keywordflow">if</span> prefer_plotly <span class="keywordflow">and</span> HAS_PLOTLY:</div>
+<div class="line"><a name="l00439"></a><span class="lineno">  439</span>&#160;                        <span class="keyword">import</span> plotly.graph_objects <span class="keyword">as</span> go</div>
+<div class="line"><a name="l00440"></a><span class="lineno">  440</span>&#160;                        X, Y, Z = grid.shape</div>
+<div class="line"><a name="l00441"></a><span class="lineno">  441</span>&#160;                        fig = go.Figure()</div>
+<div class="line"><a name="l00442"></a><span class="lineno">  442</span>&#160;                        fig.update_layout(</div>
+<div class="line"><a name="l00443"></a><span class="lineno">  443</span>&#160;                            scene=dict(</div>
+<div class="line"><a name="l00444"></a><span class="lineno">  444</span>&#160;                                xaxis=dict(range=[0, X], title=<span class="stringliteral">&quot;X&quot;</span>),</div>
+<div class="line"><a name="l00445"></a><span class="lineno">  445</span>&#160;                                yaxis=dict(range=[0, Y], title=<span class="stringliteral">&quot;Y&quot;</span>),</div>
+<div class="line"><a name="l00446"></a><span class="lineno">  446</span>&#160;                                zaxis=dict(range=[0, Z], title=<span class="stringliteral">&quot;Z&quot;</span>),</div>
+<div class="line"><a name="l00447"></a><span class="lineno">  447</span>&#160;                                aspectmode=<span class="stringliteral">&quot;data&quot;</span></div>
+<div class="line"><a name="l00448"></a><span class="lineno">  448</span>&#160;                            ),</div>
+<div class="line"><a name="l00449"></a><span class="lineno">  449</span>&#160;                            title=f<span class="stringliteral">&quot;Grid: {env_name} (empty)&quot;</span></div>
+<div class="line"><a name="l00450"></a><span class="lineno">  450</span>&#160;                        )</div>
+<div class="line"><a name="l00451"></a><span class="lineno">  451</span>&#160;                        fig.write_html(out_html)</div>
+<div class="line"><a name="l00452"></a><span class="lineno">  452</span>&#160;                        print(f<span class="stringliteral">&quot;[viz] Wrote EMPTY 3D HTML to: {out_html}&quot;</span>)</div>
+<div class="line"><a name="l00453"></a><span class="lineno">  453</span>&#160; </div>
+<div class="line"><a name="l00454"></a><span class="lineno">  454</span>&#160;                    <span class="keywordflow">elif</span> HAS_MPL_3D:</div>
+<div class="line"><a name="l00455"></a><span class="lineno">  455</span>&#160;                        fig = plt.figure(figsize=(9, 9))</div>
+<div class="line"><a name="l00456"></a><span class="lineno">  456</span>&#160;                        ax = fig.add_subplot(111, projection=<span class="stringliteral">&quot;3d&quot;</span>)</div>
+<div class="line"><a name="l00457"></a><span class="lineno">  457</span>&#160;                        X, Y, Z = grid.shape</div>
+<div class="line"><a name="l00458"></a><span class="lineno">  458</span>&#160;                        ax.set_xlim(0, X); ax.set_ylim(0, Y); ax.set_zlim(0, Z)</div>
+<div class="line"><a name="l00459"></a><span class="lineno">  459</span>&#160;                        <span class="keywordflow">try</span>: ax.set_box_aspect((X, Y, Z))</div>
+<div class="line"><a name="l00460"></a><span class="lineno">  460</span>&#160;                        <span class="keywordflow">except</span> Exception: <span class="keywordflow">pass</span></div>
+<div class="line"><a name="l00461"></a><span class="lineno">  461</span>&#160;                        ax.view_init(elev=25, azim=35)</div>
+<div class="line"><a name="l00462"></a><span class="lineno">  462</span>&#160;                        ax.set_title(f<span class="stringliteral">&quot;Grid: {env_name} (empty)&quot;</span>)</div>
+<div class="line"><a name="l00463"></a><span class="lineno">  463</span>&#160;                        plt.tight_layout(); plt.savefig(out_png, dpi=160); plt.close(fig)</div>
+<div class="line"><a name="l00464"></a><span class="lineno">  464</span>&#160;                        print(f<span class="stringliteral">&quot;[viz] Wrote EMPTY 3D PNG to: {out_png}&quot;</span>)</div>
+<div class="line"><a name="l00465"></a><span class="lineno">  465</span>&#160;                    <span class="keywordflow">continue</span></div>
+<div class="line"><a name="l00466"></a><span class="lineno">  466</span>&#160; </div>
+<div class="line"><a name="l00467"></a><span class="lineno">  467</span>&#160;                <span class="comment"># --- Non-empty grid ---</span></div>
+<div class="line"><a name="l00468"></a><span class="lineno">  468</span>&#160;                <span class="keywordflow">if</span> prefer_plotly <span class="keywordflow">and</span> HAS_PLOTLY:</div>
+<div class="line"><a name="l00469"></a><span class="lineno">  469</span>&#160;                    <span class="keyword">import</span> plotly.graph_objects <span class="keyword">as</span> go</div>
+<div class="line"><a name="l00470"></a><span class="lineno">  470</span>&#160;                    x, y, z = np.nonzero(occ_mask)</div>
+<div class="line"><a name="l00471"></a><span class="lineno">  471</span>&#160; </div>
+<div class="line"><a name="l00472"></a><span class="lineno">  472</span>&#160;                    <span class="comment"># Use Scatter3d to draw cubes as points</span></div>
+<div class="line"><a name="l00473"></a><span class="lineno">  473</span>&#160;                    fig = go.Figure(data=go.Scatter3d(</div>
+<div class="line"><a name="l00474"></a><span class="lineno">  474</span>&#160;                        x=x, y=y, z=z,</div>
+<div class="line"><a name="l00475"></a><span class="lineno">  475</span>&#160;                        mode=<span class="stringliteral">&quot;markers&quot;</span>,</div>
+<div class="line"><a name="l00476"></a><span class="lineno">  476</span>&#160;                        marker=dict(size=2, color=<span class="stringliteral">&quot;red&quot;</span>, opacity=0.8)</div>
+<div class="line"><a name="l00477"></a><span class="lineno">  477</span>&#160;                    ))</div>
+<div class="line"><a name="l00478"></a><span class="lineno">  478</span>&#160;                    X, Y, Z = grid.shape</div>
+<div class="line"><a name="l00479"></a><span class="lineno">  479</span>&#160;                    fig.update_layout(</div>
+<div class="line"><a name="l00480"></a><span class="lineno">  480</span>&#160;                        scene=dict(</div>
+<div class="line"><a name="l00481"></a><span class="lineno">  481</span>&#160;                            xaxis=dict(range=[0, X], title=<span class="stringliteral">&quot;X&quot;</span>),</div>
+<div class="line"><a name="l00482"></a><span class="lineno">  482</span>&#160;                            yaxis=dict(range=[0, Y], title=<span class="stringliteral">&quot;Y&quot;</span>),</div>
+<div class="line"><a name="l00483"></a><span class="lineno">  483</span>&#160;                            zaxis=dict(range=[0, Z], title=<span class="stringliteral">&quot;Z&quot;</span>),</div>
+<div class="line"><a name="l00484"></a><span class="lineno">  484</span>&#160;                            aspectmode=<span class="stringliteral">&quot;data&quot;</span></div>
+<div class="line"><a name="l00485"></a><span class="lineno">  485</span>&#160;                        ),</div>
+<div class="line"><a name="l00486"></a><span class="lineno">  486</span>&#160;                        title=f<span class="stringliteral">&quot;Grid: {env_name}&quot;</span></div>
+<div class="line"><a name="l00487"></a><span class="lineno">  487</span>&#160;                    )</div>
+<div class="line"><a name="l00488"></a><span class="lineno">  488</span>&#160;                    fig.write_html(out_html)</div>
+<div class="line"><a name="l00489"></a><span class="lineno">  489</span>&#160;                    print(f<span class="stringliteral">&quot;[viz] Wrote 3D HTML to: {out_html}&quot;</span>)</div>
+<div class="line"><a name="l00490"></a><span class="lineno">  490</span>&#160;                    <span class="keywordflow">continue</span></div>
+<div class="line"><a name="l00491"></a><span class="lineno">  491</span>&#160; </div>
+<div class="line"><a name="l00492"></a><span class="lineno">  492</span>&#160;                <span class="keywordflow">if</span> HAS_MPL_3D:</div>
+<div class="line"><a name="l00493"></a><span class="lineno">  493</span>&#160;                    fig = plt.figure(figsize=(9, 9))</div>
+<div class="line"><a name="l00494"></a><span class="lineno">  494</span>&#160;                    ax = fig.add_subplot(111, projection=<span class="stringliteral">&quot;3d&quot;</span>)</div>
+<div class="line"><a name="l00495"></a><span class="lineno">  495</span>&#160; </div>
+<div class="line"><a name="l00496"></a><span class="lineno">  496</span>&#160;                    ax.voxels(occ_mask, facecolors=<span class="stringliteral">&quot;red&quot;</span>, edgecolor=<span class="stringliteral">&quot;k&quot;</span>, alpha=0.3)</div>
+<div class="line"><a name="l00497"></a><span class="lineno">  497</span>&#160; </div>
+<div class="line"><a name="l00498"></a><span class="lineno">  498</span>&#160;                    X, Y, Z = occ_mask.shape</div>
+<div class="line"><a name="l00499"></a><span class="lineno">  499</span>&#160;                    ax.set_xlim(0, X); ax.set_ylim(0, Y); ax.set_zlim(0, Z)</div>
+<div class="line"><a name="l00500"></a><span class="lineno">  500</span>&#160;                    <span class="keywordflow">try</span>: ax.set_box_aspect((X, Y, Z))</div>
+<div class="line"><a name="l00501"></a><span class="lineno">  501</span>&#160;                    <span class="keywordflow">except</span> Exception: <span class="keywordflow">pass</span></div>
+<div class="line"><a name="l00502"></a><span class="lineno">  502</span>&#160;                    ax.view_init(elev=25, azim=35)</div>
+<div class="line"><a name="l00503"></a><span class="lineno">  503</span>&#160;                    ax.set_title(f<span class="stringliteral">&quot;Grid: {env_name}&quot;</span>)</div>
+<div class="line"><a name="l00504"></a><span class="lineno">  504</span>&#160; </div>
+<div class="line"><a name="l00505"></a><span class="lineno">  505</span>&#160;                    plt.tight_layout(); plt.savefig(out_png, dpi=160); plt.close(fig)</div>
+<div class="line"><a name="l00506"></a><span class="lineno">  506</span>&#160;                    print(f<span class="stringliteral">&quot;[viz] Wrote 3D PNG to: {out_png}&quot;</span>)</div>
+<div class="line"><a name="l00507"></a><span class="lineno">  507</span>&#160;                <span class="keywordflow">else</span>:</div>
+<div class="line"><a name="l00508"></a><span class="lineno">  508</span>&#160;                    print(f<span class="stringliteral">&quot;[viz] {env_name}: no 3D backend available, skipped.&quot;</span>)</div>
 <div class="ttc" id="aclassvisualize_1_1Visualize_html"><div class="ttname"><a href="classvisualize_1_1Visualize.html">visualize.Visualize</a></div><div class="ttdoc">Visualize 2D and 3D environments and algorithm paths.</div><div class="ttdef"><b>Definition:</b> <a href="visualize_8py_source.html#l00182">visualize.py:182</a></div></div>
 <div class="ttc" id="aclassvisualize_1_1Visualize_html_a100dac3347db5c29ce237a915a59233d"><div class="ttname"><a href="classvisualize_1_1Visualize.html#a100dac3347db5c29ce237a915a59233d">visualize.Visualize.outputDir</a></div><div class="ttdeci">outputDir</div><div class="ttdef"><b>Definition:</b> <a href="visualize_8py_source.html#l00218">visualize.py:218</a></div></div>
+<div class="ttc" id="aclassvisualize_1_1Visualize_html_a12954888db334351e6e1c4da9a8f3370"><div class="ttname"><a href="classvisualize_1_1Visualize.html#a12954888db334351e6e1c4da9a8f3370">visualize.Visualize.plotGrid</a></div><div class="ttdeci">def plotGrid(self, runConfigPath, prefer_plotly=True)</div><div class="ttdoc">Plot all grids (2D/3D) for the environments listed in run config (generateGrid).</div><div class="ttdef"><b>Definition:</b> <a href="visualize_8py_source.html#l00383">visualize.py:383</a></div></div>
 <div class="ttc" id="aclassvisualize_1_1Visualize_html_a4b684f7970e2d80b0a882a81c1e3ba15"><div class="ttname"><a href="classvisualize_1_1Visualize.html#a4b684f7970e2d80b0a882a81c1e3ba15">visualize.Visualize.grid</a></div><div class="ttdeci">grid</div><div class="ttdef"><b>Definition:</b> <a href="visualize_8py_source.html#l00262">visualize.py:262</a></div></div>
 <div class="ttc" id="aclassvisualize_1_1Visualize_html_aa45424bf4111b1feac68b71cda56d20b"><div class="ttname"><a href="classvisualize_1_1Visualize.html#aa45424bf4111b1feac68b71cda56d20b">visualize.Visualize.iterFile</a></div><div class="ttdeci">iterFile</div><div class="ttdef"><b>Definition:</b> <a href="visualize_8py_source.html#l00219">visualize.py:219</a></div></div>
 <div class="ttc" id="aclassvisualize_1_1Visualize_html_ac3197f6d907436089c6076879a8805dd"><div class="ttname"><a href="classvisualize_1_1Visualize.html#ac3197f6d907436089c6076879a8805dd">visualize.Visualize.algos</a></div><div class="ttdeci">algos</div><div class="ttdef"><b>Definition:</b> <a href="visualize_8py_source.html#l00227">visualize.py:227</a></div></div>

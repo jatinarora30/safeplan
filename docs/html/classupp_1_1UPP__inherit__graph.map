@@ -1,5 +1,5 @@
 <map id="upp.UPP" name="upp.UPP">
-<area shape="rect" id="node1" title="Universal Path Planner blending distance and safety costs." alt="" coords="61,155,137,181"/>
+<area shape="rect" id="node1" title="Universal Path Planner blending distance and adaptive safety weighting (β), with windowed hysteresis&#45;..." alt="" coords="61,155,137,181"/>
 <area shape="rect" id="node2" href="$classbaseplanner_1_1BasePlanner.html" title="Abstract base/registry for planning algorithms." alt="" coords="5,80,192,107"/>
 <area shape="rect" id="node3" title=" " alt="" coords="74,5,123,32"/>
 </map>

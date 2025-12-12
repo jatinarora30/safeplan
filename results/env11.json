@@ -1,0 +1,402 @@
+{
+    "VoronoiPlanner": {
+        "PlanningTime": {
+            "mean": 33.73866557041765,
+            "std": 2.3543437509016587
+        },
+        "MinimumClearance": {
+            "mean": 0.09373792264426102,
+            "std": 0.12015906898082451
+        },
+        "AverageMinimumClearance": {
+            "mean": 0.36821537619544087,
+            "std": 0.3491520819276041
+        },
+        "ClearanceVariability": {
+            "mean": 1.2276277083773919,
+            "std": 1.770405674266528
+        },
+        "DangerViolations": {
+            "mean": 3.51,
+            "std": 10.453224382935632
+        },
+        "TurningAngle": {
+            "mean": 53.8527762735084,
+            "std": 51.64341134371526
+        },
+        "JerkPerMeter": {
+            "mean": 0.0,
+            "std": 0.0
+        },
+        "SuccessRate": {
+            "mean": 0.58,
+            "std": 0.49355850717012273
+        },
+        "OptimalDeviation": {
+            "mean": -0.20582017516211087,
+            "std": 0.7318096181834081
+        },
+        "PathCost": {
+            "mean": 2.9921842226254576,
+            "std": 2.6674428770826646
+        },
+        "OptiSafeIndex": {
+            "mean": 0.3381706329041043,
+            "std": 0.38163731289792585
+        },
+        "NodesInPath": {
+            "mean": 1.74,
+            "std": 1.4806755215103682
+        }
+    },
+    "AStar": {
+        "PlanningTime": {
+            "mean": 36.415744160476606,
+            "std": 58.14062593462917
+        },
+        "MinimumClearance": {
+            "mean": 0.08463889120196123,
+            "std": 0.0865231650837079
+        },
+        "AverageMinimumClearance": {
+            "mean": 0.45263332891684827,
+            "std": 0.22865808148268557
+        },
+        "ClearanceVariability": {
+            "mean": 2.1080388954627374,
+            "std": 2.512671948905652
+        },
+        "DangerViolations": {
+            "mean": 3088.5,
+            "std": 2961.966027826788
+        },
+        "TurningAngle": {
+            "mean": 162.6435394862155,
+            "std": 83.40771028087126
+        },
+        "JerkPerMeter": {
+            "mean": 0.10354913499339727,
+            "std": 0.060275901455771955
+        },
+        "SuccessRate": {
+            "mean": 1.0,
+            "std": 0.0
+        },
+        "OptimalDeviation": {
+            "mean": 0.0,
+            "std": 0.0
+        },
+        "PathCost": {
+            "mean": 4.164024903809554,
+            "std": 1.3116844032877975
+        },
+        "OptiSafeIndex": {
+            "mean": 0.47786905166739496,
+            "std": 0.3486467722764878
+        },
+        "NodesInPath": {
+            "mean": 5.94,
+            "std": 1.8645106596638163
+        }
+    },
+    "RRT": {
+        "PlanningTime": {
+            "mean": 284.83154028706736,
+            "std": 866.9858642675358
+        },
+        "MinimumClearance": {
+            "mean": 0.11534636956838541,
+            "std": 0.10413525434552041
+        },
+        "AverageMinimumClearance": {
+            "mean": 0.5264229430685844,
+            "std": 0.22214223417863502
+        },
+        "ClearanceVariability": {
+            "mean": 1.8736544514987388,
+            "std": 2.125844600324508
+        },
+        "DangerViolations": {
+            "mean": 125.36170212765957,
+            "std": 147.39603989193932
+        },
+        "TurningAngle": {
+            "mean": 785.518426838478,
+            "std": 300.63059959456353
+        },
+        "JerkPerMeter": {
+            "mean": 1.1953233427131766,
+            "std": 0.21898217059128267
+        },
+        "SuccessRate": {
+            "mean": 0.94,
+            "std": 0.23748684174075835
+        },
+        "OptimalDeviation": {
+            "mean": 0.4838791813754669,
+            "std": 0.3630994732909131
+        },
+        "PathCost": {
+            "mean": 6.084135096139646,
+            "std": 1.9370655479591221
+        },
+        "OptiSafeIndex": {
+            "mean": 0.3799272268854239,
+            "std": 0.1824509935135953
+        },
+        "NodesInPath": {
+            "mean": 18.0531914893617,
+            "std": 5.405605879157177
+        }
+    },
+    "CBFRRT": {
+        "PlanningTime": {
+            "mean": 397.3690489030403,
+            "std": 1931.0898681912888
+        },
+        "MinimumClearance": {
+            "mean": 0.10477035980709476,
+            "std": 0.07891433824825955
+        },
+        "AverageMinimumClearance": {
+            "mean": 0.5347041606499839,
+            "std": 0.1920993521777265
+        },
+        "ClearanceVariability": {
+            "mean": 1.953559017293129,
+            "std": 2.1988263824783907
+        },
+        "DangerViolations": {
+            "mean": 105.29032258064517,
+            "std": 150.57314020604352
+        },
+        "TurningAngle": {
+            "mean": 777.3233042401412,
+            "std": 286.67555451466694
+        },
+        "JerkPerMeter": {
+            "mean": 1.217101470396913,
+            "std": 0.21481032493291186
+        },
+        "SuccessRate": {
+            "mean": 0.93,
+            "std": 0.2551470164434615
+        },
+        "OptimalDeviation": {
+            "mean": 0.47371860659241405,
+            "std": 0.4048536616957636
+        },
+        "PathCost": {
+            "mean": 6.0369349836689,
+            "std": 1.9072322300889546
+        },
+        "OptiSafeIndex": {
+            "mean": 0.3934884081502858,
+            "std": 0.20299319604809918
+        },
+        "NodesInPath": {
+            "mean": 17.946236559139784,
+            "std": 5.3165709528537235
+        }
+    },
+    "FSPlanner": {
+        "PlanningTime": {
+            "mean": 3448.010057139909,
+            "std": 4208.256259973099
+        },
+        "MinimumClearance": {
+            "mean": 0.12402317827465482,
+            "std": 0.11616045476259634
+        },
+        "AverageMinimumClearance": {
+            "mean": 0.5241461186739371,
+            "std": 0.23734989848761462
+        },
+        "ClearanceVariability": {
+            "mean": 2.1030199074340867,
+            "std": 2.9576909974474694
+        },
+        "DangerViolations": {
+            "mean": 108.3,
+            "std": 191.92428194472947
+        },
+        "TurningAngle": {
+            "mean": 552.9515182575607,
+            "std": 487.68392998499326
+        },
+        "JerkPerMeter": {
+            "mean": 0.28931384558719725,
+            "std": 0.2031431375192767
+        },
+        "SuccessRate": {
+            "mean": 1.0,
+            "std": 0.0
+        },
+        "OptimalDeviation": {
+            "mean": -4.438121141440987e-05,
+            "std": 0.06688200062249915
+        },
+        "PathCost": {
+            "mean": 4.164512971746194,
+            "std": 1.3568296330457508
+        },
+        "OptiSafeIndex": {
+            "mean": 0.5467401016192465,
+            "std": 0.3904623891318263
+        },
+        "NodesInPath": {
+            "mean": 13.78,
+            "std": 9.98757227758578
+        }
+    },
+    "SDFAStar": {
+        "PlanningTime": {
+            "mean": 3401.6689315700205,
+            "std": 3993.9660105258404
+        },
+        "MinimumClearance": {
+            "mean": 0.2658270503344246,
+            "std": 0.19852198696995582
+        },
+        "AverageMinimumClearance": {
+            "mean": 0.5797497115896253,
+            "std": 0.290238519856833
+        },
+        "ClearanceVariability": {
+            "mean": 1.7919876057092938,
+            "std": 2.8035256407846467
+        },
+        "DangerViolations": {
+            "mean": 463.5,
+            "std": 1204.5093399388816
+        },
+        "TurningAngle": {
+            "mean": 1226.6499449131286,
+            "std": 648.0979337991768
+        },
+        "JerkPerMeter": {
+            "mean": 0.5730726873441973,
+            "std": 0.196885638129608
+        },
+        "SuccessRate": {
+            "mean": 1.0,
+            "std": 0.0
+        },
+        "OptimalDeviation": {
+            "mean": 0.15410094668027446,
+            "std": 0.08383111398781458
+        },
+        "PathCost": {
+            "mean": 4.865620268061404,
+            "std": 1.7353581757713221
+        },
+        "OptiSafeIndex": {
+            "mean": 0.7179012075455753,
+            "std": 0.16416545377640127
+        },
+        "NodesInPath": {
+            "mean": 25.73,
+            "std": 11.528100450637996
+        }
+    },
+    "OptimizedAStar": {
+        "PlanningTime": {
+            "mean": 393.8817855596426,
+            "std": 111.90140446205521
+        },
+        "MinimumClearance": {
+            "mean": 0.16352283765583578,
+            "std": 0.13194802599881209
+        },
+        "AverageMinimumClearance": {
+            "mean": 0.8734295346250718,
+            "std": 0.46748079603541387
+        },
+        "ClearanceVariability": {
+            "mean": 5.474948567654532,
+            "std": 5.56363948201372
+        },
+        "DangerViolations": {
+            "mean": 7.47,
+            "std": 15.877314004578984
+        },
+        "TurningAngle": {
+            "mean": 115.60168924485157,
+            "std": 35.93418545108327
+        },
+        "JerkPerMeter": {
+            "mean": 0.053264023225773685,
+            "std": 0.2423680449575029
+        },
+        "SuccessRate": {
+            "mean": 1.0,
+            "std": 0.0
+        },
+        "OptimalDeviation": {
+            "mean": 0.49623871074023795,
+            "std": 0.47217772349616005
+        },
+        "PathCost": {
+            "mean": 5.99457492569938,
+            "std": 2.0010128939197367
+        },
+        "OptiSafeIndex": {
+            "mean": 0.3986230565981254,
+            "std": 0.2716821343436611
+        },
+        "NodesInPath": {
+            "mean": 3.05,
+            "std": 0.2179449471770337
+        }
+    },
+    "UPP": {
+        "PlanningTime": {
+            "mean": 7623.636828329763,
+            "std": 21038.838015121397
+        },
+        "MinimumClearance": {
+            "mean": 0.2347225803662341,
+            "std": 0.09515939399878898
+        },
+        "AverageMinimumClearance": {
+            "mean": 0.5291589566688919,
+            "std": 0.19528013593747676
+        },
+        "ClearanceVariability": {
+            "mean": 1.5208494981569816,
+            "std": 2.2452569206692448
+        },
+        "DangerViolations": {
+            "mean": 13.5,
+            "std": 56.50442460551209
+        },
+        "TurningAngle": {
+            "mean": 293.54908562999015,
+            "std": 164.2863051675753
+        },
+        "JerkPerMeter": {
+            "mean": 0.16357118120219977,
+            "std": 0.09934917672683893
+        },
+        "SuccessRate": {
+            "mean": 1.0,
+            "std": 0.0
+        },
+        "OptimalDeviation": {
+            "mean": 0.0883679790808796,
+            "std": 0.09962590093815604
+        },
+        "PathCost": {
+            "mean": 4.472856939007171,
+            "std": 1.3115316709112634
+        },
+        "OptiSafeIndex": {
+            "mean": 0.8607271373561014,
+            "std": 0.12879539956535035
+        },
+        "NodesInPath": {
+            "mean": 9.01,
+            "std": 3.60137473751344
+        }
+    }
+}

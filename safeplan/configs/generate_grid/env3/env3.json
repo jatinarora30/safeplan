@@ -4,9 +4,9 @@
   "gridSize": 1000,
   "cellSize": 0.05,
   "dimensionOfGrid": 2,
-  "randomStartGoal": false,
-  "timesEachGoal": 100,
-  "numStartGoals": 2,
+  "randomStartGoal": true,
+  "timesEachGoal": 1,
+  "numStartGoals": 100,
   "startGoalPairs": [{ "start": [10, 10], "goal": [990, 990] }],
   "polygons": [
     { "polygon": [[100,200],[160,200],[160,260],[100,260]] },

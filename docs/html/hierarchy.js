@@ -12,7 +12,6 @@ var hierarchy =
         [ "average_minimum_clearance.AverageMinimumClearance", "classaverage__minimum__clearance_1_1AverageMinimumClearance.html", null ],
         [ "clearance_variability.ClearanceVariability", "classclearance__variability_1_1ClearanceVariability.html", null ],
         [ "danger_violations.DangerViolations", "classdanger__violations_1_1DangerViolations.html", null ],
-        [ "distance_to_goal.DistanceToGoal", "classdistance__to__goal_1_1DistanceToGoal.html", null ],
         [ "jerk_per_meter.JerkPerMeter", "classjerk__per__meter_1_1JerkPerMeter.html", null ],
         [ "minimum_clearance.MinimumClearance", "classminimum__clearance_1_1MinimumClearance.html", null ],
         [ "nodes_in_path.NodesInPath", "classnodes__in__path_1_1NodesInPath.html", null ],
@@ -27,7 +26,6 @@ var hierarchy =
         [ "fs_planner.FSPlanner", "classfs__planner_1_1FSPlanner.html", null ],
         [ "optimized_astar.OptimizedAStar", "classoptimized__astar_1_1OptimizedAStar.html", null ],
         [ "rrt.RRT", "classrrt_1_1RRT.html", null ],
-        [ "safe_astar.SafeAStar", "classsafe__astar_1_1SafeAStar.html", null ],
         [ "sdf_astar.SDFAStar", "classsdf__astar_1_1SDFAStar.html", null ],
         [ "upp.UPP", "classupp_1_1UPP.html", null ],
         [ "voronoi_planner.VoronoiPlanner", "classvoronoi__planner_1_1VoronoiPlanner.html", null ]

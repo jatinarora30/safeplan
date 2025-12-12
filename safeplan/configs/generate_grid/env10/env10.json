@@ -5,8 +5,8 @@
 "cellSize": 0.05,
 "dimensionOfGrid": 2,
 "randomStartGoal": true,
-"timesEachGoal": 2,
-"numStartGoals": 2,
+"timesEachGoal": 1,
+"numStartGoals": 100,
 "startGoalPairs": [],
 "polygons": [
 { "polygon": [[0,0],[0,4],[99,4],[99,0]] },

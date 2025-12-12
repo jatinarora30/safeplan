@@ -24,9 +24,6 @@ var annotated_dup =
     [ "danger_violations", "namespacedanger__violations.html", [
       [ "DangerViolations", "classdanger__violations_1_1DangerViolations.html", "classdanger__violations_1_1DangerViolations" ]
     ] ],
-    [ "distance_to_goal", "namespacedistance__to__goal.html", [
-      [ "DistanceToGoal", "classdistance__to__goal_1_1DistanceToGoal.html", "classdistance__to__goal_1_1DistanceToGoal" ]
-    ] ],
     [ "fs_planner", "namespacefs__planner.html", [
       [ "FSPlanner", "classfs__planner_1_1FSPlanner.html", "classfs__planner_1_1FSPlanner" ]
     ] ],
@@ -59,9 +56,6 @@ var annotated_dup =
     ] ],
     [ "rrt", "namespacerrt.html", [
       [ "RRT", "classrrt_1_1RRT.html", "classrrt_1_1RRT" ]
-    ] ],
-    [ "safe_astar", "namespacesafe__astar.html", [
-      [ "SafeAStar", "classsafe__astar_1_1SafeAStar.html", "classsafe__astar_1_1SafeAStar" ]
     ] ],
     [ "safeplan", "namespacesafeplan.html", [
       [ "main", "namespacesafeplan_1_1main.html", [

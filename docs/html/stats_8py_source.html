@@ -132,214 +132,284 @@ $(document).ready(function(){initNavTree('stats_8py_source.html',''); initResiza
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="keyword">from</span> pandas.plotting <span class="keyword">import</span> table</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="keyword">import</span> json</div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="keyword">import</span> os</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="keyword">class </span><a class="code" href="classstats_1_1Stats.html">Stats</a>:</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="stringliteral">&quot;&quot;&quot;</span></div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="stringliteral">    @class Stats</span></div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="stringliteral">    @brief Compute, compare, and visualize evaluation statistics across algorithms.</span></div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="stringliteral"></span> </div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="stringliteral">    @details</span></div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="stringliteral">    Given a run configuration describing algorithms and evaluation metrics, this</span></div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="stringliteral">    class scans the corresponding output folders, aggregates metrics per algorithm,</span></div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="stringliteral">    and produces a tabular summary (printed, saved to JSON, and optionally saved</span></div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="stringliteral">    as a PNG table image).</span></div>
-<div class="line"><a name="l00059"></a><span class="lineno"><a class="line" href="classstats_1_1Stats.html">   59</a></span>&#160;<span class="stringliteral">    &quot;&quot;&quot;</span></div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="keyword">def </span><a class="code" href="classstats_1_1Stats.html#ac76aebd543530e070576fb655829c2c3">__init__</a>(self, runConfigPath, saveStatsImage=False):</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        <span class="stringliteral">&quot;&quot;&quot;</span></div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="stringliteral">        @brief Initialize the statistics pipeline from a run configuration.</span></div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="stringliteral"></span> </div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="stringliteral">        @param runConfigPath str</span></div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="stringliteral">               Path to the run configuration JSON file.</span></div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="stringliteral">        @param saveStatsImage bool</span></div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="stringliteral">               Whether to save a table image of the aggregated statistics.</span></div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="stringliteral"></span> </div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="stringliteral">        @post</span></div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="stringliteral">        - Loads config and sets up internal fields.</span></div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="stringliteral">        - Ensures the @c results/ directory exists.</span></div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="stringliteral">        - Builds the algorithm list and unique evaluation key list.</span></div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="stringliteral">        - Counts per-algorithm result files and records the global maximum count.</span></div>
-<div class="line"><a name="l00074"></a><span class="lineno"><a class="line" href="classstats_1_1Stats.html#ac76aebd543530e070576fb655829c2c3">   74</a></span>&#160;<span class="stringliteral">        &quot;&quot;&quot;</span></div>
-<div class="line"><a name="l00075"></a><span class="lineno"><a class="line" href="classstats_1_1Stats.html#a43d983d58fb47897194329ad1c3e204e">   75</a></span>&#160;        self.<a class="code" href="classstats_1_1Stats.html#a43d983d58fb47897194329ad1c3e204e">runConfigPath</a>runConfigPath = runConfigPath</div>
-<div class="line"><a name="l00076"></a><span class="lineno"><a class="line" href="classstats_1_1Stats.html#a66327072aa5b07d47c4680a12b30ac14">   76</a></span>&#160;        self.<a class="code" href="classstats_1_1Stats.html#a66327072aa5b07d47c4680a12b30ac14">saveStatsImage</a>saveStatsImage = saveStatsImage</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; </div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        <span class="keyword">with</span> open(self.<a class="code" href="classstats_1_1Stats.html#a43d983d58fb47897194329ad1c3e204e">runConfigPath</a>runConfigPath) <span class="keyword">as</span> file:</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;            data = json.load(file)</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160; </div>
-<div class="line"><a name="l00081"></a><span class="lineno"><a class="line" href="classstats_1_1Stats.html#abb4205283622b0541138811b2a87cabf">   81</a></span>&#160;        self.<a class="code" href="classstats_1_1Stats.html#abb4205283622b0541138811b2a87cabf">resultsDir</a>resultsDir = <span class="stringliteral">&quot;results&quot;</span></div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        self.<a class="code" href="classstats_1_1Stats.html#af6a903e176641e5db2e71bc471c9c4f3">createDir</a>createDir(self.<a class="code" href="classstats_1_1Stats.html#abb4205283622b0541138811b2a87cabf">resultsDir</a>resultsDir)</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; </div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        <span class="comment"># Expecting these keys in the config JSON</span></div>
-<div class="line"><a name="l00085"></a><span class="lineno"><a class="line" href="classstats_1_1Stats.html#aa6b071c64c878c541933e32cb061592e">   85</a></span>&#160;        self.<a class="code" href="classstats_1_1Stats.html#aa6b071c64c878c541933e32cb061592e">algosDetails</a>algosDetails = data[<span class="stringliteral">&quot;algoDetails&quot;</span>]</div>
-<div class="line"><a name="l00086"></a><span class="lineno"><a class="line" href="classstats_1_1Stats.html#abed07b5d7336c056bbc668797888bda5">   86</a></span>&#160;        self.<a class="code" href="classstats_1_1Stats.html#abed07b5d7336c056bbc668797888bda5">evalsDetails</a>evalsDetails = data[<span class="stringliteral">&quot;evalDetails&quot;</span>]</div>
-<div class="line"><a name="l00087"></a><span class="lineno"><a class="line" href="classstats_1_1Stats.html#abafff1542203f7bc48a887c2ff2fbb80">   87</a></span>&#160;        self.<a class="code" href="classstats_1_1Stats.html#abafff1542203f7bc48a887c2ff2fbb80">runDetails</a>runDetails = data[<span class="stringliteral">&quot;runDetails&quot;</span>]  <span class="comment"># e.g., a run name like &quot;exp_01&quot;</span></div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160; </div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        <span class="comment"># Prepare names</span></div>
-<div class="line"><a name="l00090"></a><span class="lineno"><a class="line" href="classstats_1_1Stats.html#a8d0a677f2c389b7d1871341fe9bff966">   90</a></span>&#160;        self.<a class="code" href="classstats_1_1Stats.html#a8d0a677f2c389b7d1871341fe9bff966">algos</a>algos = [k[<span class="stringliteral">&quot;name&quot;</span>] <span class="keywordflow">for</span> k <span class="keywordflow">in</span> self.<a class="code" href="classstats_1_1Stats.html#aa6b071c64c878c541933e32cb061592e">algosDetails</a>algosDetails]</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160; </div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        <span class="comment"># Avoid duplicates in eval names</span></div>
-<div class="line"><a name="l00093"></a><span class="lineno"><a class="line" href="classstats_1_1Stats.html#a50ba380a82060e9dda896d7bbce6bc0a">   93</a></span>&#160;        self.<a class="code" href="classstats_1_1Stats.html#a50ba380a82060e9dda896d7bbce6bc0a">evals</a>evals = []</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        <span class="keywordflow">for</span> k <span class="keywordflow">in</span> self.<a class="code" href="classstats_1_1Stats.html#abed07b5d7336c056bbc668797888bda5">evalsDetails</a>evalsDetails:</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;            name = k[<span class="stringliteral">&quot;name&quot;</span>]</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;            <span class="keywordflow">if</span> name <span class="keywordflow">not</span> <span class="keywordflow">in</span> self.<a class="code" href="classstats_1_1Stats.html#a50ba380a82060e9dda896d7bbce6bc0a">evals</a>evals:</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;                self.<a class="code" href="classstats_1_1Stats.html#a50ba380a82060e9dda896d7bbce6bc0a">evals</a>evals.append(name)</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160; </div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        <span class="comment"># Where outputs live: outputs/&lt;runDetails&gt;/&lt;algo&gt;/*.json</span></div>
-<div class="line"><a name="l00100"></a><span class="lineno"><a class="line" href="classstats_1_1Stats.html#a51e8ebb272e09a501e00a593da37ad58">  100</a></span>&#160;        self.<a class="code" href="classstats_1_1Stats.html#a51e8ebb272e09a501e00a593da37ad58">outputDir</a>outputDir = <span class="stringliteral">&quot;outputs&quot;</span></div>
-<div class="line"><a name="l00101"></a><span class="lineno"><a class="line" href="classstats_1_1Stats.html#a8fca9d611f4283ef0377da3872cc5a24">  101</a></span>&#160;        self.<a class="code" href="classstats_1_1Stats.html#a8fca9d611f4283ef0377da3872cc5a24">runPath</a>runPath = os.path.join(self.<a class="code" href="classstats_1_1Stats.html#a51e8ebb272e09a501e00a593da37ad58">outputDir</a>outputDir, self.<a class="code" href="classstats_1_1Stats.html#abafff1542203f7bc48a887c2ff2fbb80">runDetails</a>runDetails)</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160; </div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        <span class="comment"># Count iterations per algo</span></div>
-<div class="line"><a name="l00104"></a><span class="lineno"><a class="line" href="classstats_1_1Stats.html#a813f7009ce6b4ae1aeb442b5108ab62f">  104</a></span>&#160;        self.<a class="code" href="classstats_1_1Stats.html#a813f7009ce6b4ae1aeb442b5108ab62f">iterations</a>iterations = {}</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;        <span class="keywordflow">for</span> algo <span class="keywordflow">in</span> self.<a class="code" href="classstats_1_1Stats.html#a8d0a677f2c389b7d1871341fe9bff966">algos</a>algos:</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;            path = os.path.join(self.<a class="code" href="classstats_1_1Stats.html#a8fca9d611f4283ef0377da3872cc5a24">runPath</a>runPath, algo)</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;            count = 0</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;            <span class="keywordflow">for</span> _, _, files <span class="keywordflow">in</span> os.walk(path):</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;                count += len([f <span class="keywordflow">for</span> f <span class="keywordflow">in</span> files <span class="keywordflow">if</span> f.lower().endswith(<span class="stringliteral">&quot;.json&quot;</span>)])</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;            self.<a class="code" href="classstats_1_1Stats.html#a813f7009ce6b4ae1aeb442b5108ab62f">iterations</a>iterations[algo] = count</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;        <span class="comment"># after you finish populating self.iterations in __init__</span></div>
-<div class="line"><a name="l00112"></a><span class="lineno"><a class="line" href="classstats_1_1Stats.html#a39125c796721b6b98ca5bde02e215b2b">  112</a></span>&#160;        self.<a class="code" href="classstats_1_1Stats.html#a39125c796721b6b98ca5bde02e215b2b">max_iterations</a>max_iterations = max(self.<a class="code" href="classstats_1_1Stats.html#a813f7009ce6b4ae1aeb442b5108ab62f">iterations</a>iterations.values()) <span class="keywordflow">if</span> self.<a class="code" href="classstats_1_1Stats.html#a813f7009ce6b4ae1aeb442b5108ab62f">iterations</a>iterations <span class="keywordflow">else</span> 0</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160; </div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    <span class="keyword">def </span><a class="code" href="classstats_1_1Stats.html#af6a903e176641e5db2e71bc471c9c4f3">createDir</a>(self, path):</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;        <span class="stringliteral">&quot;&quot;&quot;</span></div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;<span class="stringliteral">        @brief Create a directory if it does not exist.</span></div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;<span class="stringliteral"></span> </div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;<span class="stringliteral">        @param path str</span></div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;<span class="stringliteral">               Directory path to create.</span></div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;<span class="stringliteral"></span> </div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;<span class="stringliteral">        @return None</span></div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;<span class="stringliteral">                Prints a message about creation, existence, or any error.</span></div>
-<div class="line"><a name="l00123"></a><span class="lineno"><a class="line" href="classstats_1_1Stats.html#af6a903e176641e5db2e71bc471c9c4f3">  123</a></span>&#160;<span class="stringliteral">        &quot;&quot;&quot;</span></div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;        <span class="keywordflow">try</span>:</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;            os.mkdir(path)</div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;            print(f<span class="stringliteral">&quot;Directory &#39;{path}&#39; created successfully.&quot;</span>)</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;        <span class="keywordflow">except</span> FileExistsError:</div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;            print(f<span class="stringliteral">&quot;Directory &#39;{path}&#39; already exists.&quot;</span>)</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;        <span class="keywordflow">except</span> PermissionError:</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;            print(f<span class="stringliteral">&quot;Permission denied: Unable to create &#39;{path}&#39;.&quot;</span>)</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;        <span class="keywordflow">except</span> Exception <span class="keyword">as</span> e:</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;            print(f<span class="stringliteral">&quot;An error occurred: {e}&quot;</span>)</div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160; </div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;    <span class="keyword">def </span><a class="code" href="classstats_1_1Stats.html#a970cf044a2cdd8d7fe85d9ec87b67e8e">checkValuesSame</a>(self, iterations):</div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;        <span class="stringliteral">&quot;&quot;&quot;</span></div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;<span class="stringliteral">        @brief Check if all algorithms share the same iteration count.</span></div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;<span class="stringliteral"></span> </div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;<span class="stringliteral">        @details</span></div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;<span class="stringliteral">        Returns True only if all values in the provided dict are identical. When</span></div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;<span class="stringliteral">        True, @c self.totalFiles is set to that common value.</span></div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;<span class="stringliteral"></span> </div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;<span class="stringliteral">        @param iterations dict[str, int]</span></div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;<span class="stringliteral">               Mapping from algorithm name to number of found result files.</span></div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;<span class="stringliteral"></span> </div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;<span class="stringliteral">        @return bool</span></div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;<span class="stringliteral">                True if all counts match and the dict is non-empty; otherwise False.</span></div>
-<div class="line"><a name="l00147"></a><span class="lineno"><a class="line" href="classstats_1_1Stats.html#a970cf044a2cdd8d7fe85d9ec87b67e8e">  147</a></span>&#160;<span class="stringliteral">        &quot;&quot;&quot;</span></div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;        vals = list(iterations.values())</div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;        <span class="keywordflow">if</span> <span class="keywordflow">not</span> vals:</div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">False</span></div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;        test = vals[0]</div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;        <span class="keywordflow">for</span> v <span class="keywordflow">in</span> vals:</div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;            <span class="keywordflow">if</span> v != test:</div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;                <span class="keywordflow">return</span> <span class="keyword">False</span></div>
-<div class="line"><a name="l00155"></a><span class="lineno"><a class="line" href="classstats_1_1Stats.html#a00c6f21c8d4ca682b526673722a8f2cb">  155</a></span>&#160;        self.<a class="code" href="classstats_1_1Stats.html#a00c6f21c8d4ca682b526673722a8f2cb">totalFiles</a>totalFiles = test</div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">True</span></div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160; </div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;    <span class="keyword">def </span><a class="code" href="classstats_1_1Stats.html#ab4106ca0715d10d8046a79d2151a9285">compute</a>(self):</div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;        <span class="stringliteral">&quot;&quot;&quot;</span></div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;<span class="stringliteral">        @brief Aggregate metrics per algorithm and write summary artifacts.</span></div>
-<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;<span class="stringliteral"></span> </div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;<span class="stringliteral">        @details</span></div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;<span class="stringliteral">        For each algorithm directory under the run path, all JSON result files are</span></div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;<span class="stringliteral">        loaded and their @c evaluation blocks are accumulated. The final per-algo</span></div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;<span class="stringliteral">        metrics are computed as follows:</span></div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;<span class="stringliteral">        - For keys deemed “success rate” (case/format variations accepted),</span></div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;<span class="stringliteral">          the sum is divided by the global maximum iteration count observed across</span></div>
-<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;<span class="stringliteral">          algorithms (@c self.max_iterations).</span></div>
-<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;<span class="stringliteral">        - For all other metrics, the sum is divided by the number of files found</span></div>
-<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;<span class="stringliteral">          for that algorithm.</span></div>
-<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;<span class="stringliteral"></span> </div>
-<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;<span class="stringliteral">        A pandas DataFrame is printed to stdout. If @c saveStatsImage was set in</span></div>
-<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;<span class="stringliteral">        the constructor, a PNG table is saved under @c results/&lt;runDetails&gt;.png.</span></div>
-<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;<span class="stringliteral">        A JSON summary is always written to</span></div>
-<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;<span class="stringliteral">        @c results/&lt;runDetails&gt;Stats.json.</span></div>
-<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;<span class="stringliteral"></span> </div>
-<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;<span class="stringliteral">        @return None</span></div>
-<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;<span class="stringliteral">                Side effects: prints a DataFrame, writes JSON (and optionally PNG).</span></div>
-<div class="line"><a name="l00179"></a><span class="lineno"><a class="line" href="classstats_1_1Stats.html#ab4106ca0715d10d8046a79d2151a9285">  179</a></span>&#160;<span class="stringliteral">        &quot;&quot;&quot;</span></div>
-<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;        <span class="keyword">def </span>is_success_key(k: str) -&gt; bool:</div>
-<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;            <span class="comment"># match SuccessRate / success_rate / success</span></div>
-<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;            norm = k.replace(<span class="stringliteral">&quot;_&quot;</span>, <span class="stringliteral">&quot;&quot;</span>).replace(<span class="stringliteral">&quot; &quot;</span>, <span class="stringliteral">&quot;&quot;</span>).lower()</div>
-<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;            <span class="keywordflow">return</span> norm <span class="keywordflow">in</span> {<span class="stringliteral">&quot;successrate&quot;</span>, <span class="stringliteral">&quot;success&quot;</span>}</div>
-<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160; </div>
-<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;        meanAlgoData = {}</div>
-<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;        <span class="keywordflow">for</span> algo <span class="keywordflow">in</span> self.<a class="code" href="classstats_1_1Stats.html#a8d0a677f2c389b7d1871341fe9bff966">algos</a>algos:</div>
-<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;            path = os.path.join(self.<a class="code" href="classstats_1_1Stats.html#a8fca9d611f4283ef0377da3872cc5a24">runPath</a>runPath, algo)</div>
-<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;            sums = {k: 0.0 <span class="keywordflow">for</span> k <span class="keywordflow">in</span> self.<a class="code" href="classstats_1_1Stats.html#a50ba380a82060e9dda896d7bbce6bc0a">evals</a>evals}</div>
-<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;            n = 0</div>
-<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160; </div>
-<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;            <span class="keywordflow">for</span> _, _, files <span class="keywordflow">in</span> os.walk(path):</div>
-<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;                <span class="keywordflow">for</span> fname <span class="keywordflow">in</span> files:</div>
-<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;                    <span class="keywordflow">if</span> <span class="keywordflow">not</span> fname.lower().endswith(<span class="stringliteral">&quot;.json&quot;</span>):</div>
-<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;                        <span class="keywordflow">continue</span></div>
-<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;                    fpath = os.path.join(path, fname)</div>
-<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;                    <span class="keywordflow">try</span>:</div>
-<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;                        <span class="keyword">with</span> open(fpath, <span class="stringliteral">&quot;r&quot;</span>) <span class="keyword">as</span> f:</div>
-<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;                            data = json.load(f)</div>
-<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;                    <span class="keywordflow">except</span> Exception <span class="keyword">as</span> e:</div>
-<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;                        print(f<span class="stringliteral">&quot;Skipping &#39;{fpath}&#39;: {e}&quot;</span>)</div>
-<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;                        <span class="keywordflow">continue</span></div>
-<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160; </div>
-<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;                    eval_block = data.get(<span class="stringliteral">&quot;evaluation&quot;</span>, {})</div>
-<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;                    <span class="keywordflow">for</span> k <span class="keywordflow">in</span> self.<a class="code" href="classstats_1_1Stats.html#a50ba380a82060e9dda896d7bbce6bc0a">evals</a>evals:</div>
-<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;                        sums[k] += float(eval_block.get(k, 0.0))</div>
-<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;                    n += 1</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="keyword">import</span> numpy <span class="keyword">as</span> np</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="keyword">class </span><a class="code" href="classstats_1_1Stats.html">Stats</a>:</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="stringliteral">    @class Stats</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="stringliteral">    @brief Compute, compare, and visualize evaluation statistics across algorithms.</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="stringliteral"></span> </div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="stringliteral">    @details</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="stringliteral">    Given a run configuration describing algorithms and evaluation metrics, this</span></div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="stringliteral">    class scans the corresponding output folders, aggregates metrics per algorithm,</span></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="stringliteral">    and produces a tabular summary (printed, saved to JSON, and optionally saved</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="stringliteral">    as a PNG table image).</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno"><a class="line" href="classstats_1_1Stats.html">   60</a></span>&#160;<span class="stringliteral">    &quot;&quot;&quot;</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="keyword">def </span><a class="code" href="classstats_1_1Stats.html#ac76aebd543530e070576fb655829c2c3">__init__</a>(self, runConfigPath, saveStatsImage=False):</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="stringliteral">        @brief Initialize the statistics pipeline from a run configuration.</span></div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="stringliteral"></span> </div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="stringliteral">        @param runConfigPath str</span></div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="stringliteral">               Path to the run configuration JSON file.</span></div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="stringliteral">        @param saveStatsImage bool</span></div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="stringliteral">               Whether to save a table image of the aggregated statistics.</span></div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="stringliteral"></span> </div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="stringliteral">        @post</span></div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="stringliteral">        - Loads config and sets up internal fields.</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="stringliteral">        - Ensures the @c results/ directory exists.</span></div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="stringliteral">        - Builds the algorithm list and unique evaluation key list.</span></div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="stringliteral">        - Counts per-algorithm result files and records the global maximum count.</span></div>
+<div class="line"><a name="l00075"></a><span class="lineno"><a class="line" href="classstats_1_1Stats.html#ac76aebd543530e070576fb655829c2c3">   75</a></span>&#160;<span class="stringliteral">        &quot;&quot;&quot;</span></div>
+<div class="line"><a name="l00076"></a><span class="lineno"><a class="line" href="classstats_1_1Stats.html#a43d983d58fb47897194329ad1c3e204e">   76</a></span>&#160;        self.<a class="code" href="classstats_1_1Stats.html#a43d983d58fb47897194329ad1c3e204e">runConfigPath</a>runConfigPath = runConfigPath</div>
+<div class="line"><a name="l00077"></a><span class="lineno"><a class="line" href="classstats_1_1Stats.html#a66327072aa5b07d47c4680a12b30ac14">   77</a></span>&#160;        self.<a class="code" href="classstats_1_1Stats.html#a66327072aa5b07d47c4680a12b30ac14">saveStatsImage</a>saveStatsImage = saveStatsImage</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160; </div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        <span class="keyword">with</span> open(self.<a class="code" href="classstats_1_1Stats.html#a43d983d58fb47897194329ad1c3e204e">runConfigPath</a>runConfigPath) <span class="keyword">as</span> file:</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;            data = json.load(file)</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160; </div>
+<div class="line"><a name="l00082"></a><span class="lineno"><a class="line" href="classstats_1_1Stats.html#abb4205283622b0541138811b2a87cabf">   82</a></span>&#160;        self.<a class="code" href="classstats_1_1Stats.html#abb4205283622b0541138811b2a87cabf">resultsDir</a>resultsDir = <span class="stringliteral">&quot;results&quot;</span></div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        self.<a class="code" href="classstats_1_1Stats.html#af6a903e176641e5db2e71bc471c9c4f3">createDir</a>createDir(self.<a class="code" href="classstats_1_1Stats.html#abb4205283622b0541138811b2a87cabf">resultsDir</a>resultsDir)</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160; </div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        <span class="comment"># Expecting these keys in the config JSON</span></div>
+<div class="line"><a name="l00086"></a><span class="lineno"><a class="line" href="classstats_1_1Stats.html#aa6b071c64c878c541933e32cb061592e">   86</a></span>&#160;        self.<a class="code" href="classstats_1_1Stats.html#aa6b071c64c878c541933e32cb061592e">algosDetails</a>algosDetails = data[<span class="stringliteral">&quot;algoDetails&quot;</span>]</div>
+<div class="line"><a name="l00087"></a><span class="lineno"><a class="line" href="classstats_1_1Stats.html#abed07b5d7336c056bbc668797888bda5">   87</a></span>&#160;        self.<a class="code" href="classstats_1_1Stats.html#abed07b5d7336c056bbc668797888bda5">evalsDetails</a>evalsDetails = data[<span class="stringliteral">&quot;evalDetails&quot;</span>]</div>
+<div class="line"><a name="l00088"></a><span class="lineno"><a class="line" href="classstats_1_1Stats.html#abafff1542203f7bc48a887c2ff2fbb80">   88</a></span>&#160;        self.<a class="code" href="classstats_1_1Stats.html#abafff1542203f7bc48a887c2ff2fbb80">runDetails</a>runDetails = data[<span class="stringliteral">&quot;runDetails&quot;</span>]  <span class="comment"># e.g., a run name like &quot;exp_01&quot;</span></div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160; </div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        <span class="comment"># Prepare names</span></div>
+<div class="line"><a name="l00091"></a><span class="lineno"><a class="line" href="classstats_1_1Stats.html#a8d0a677f2c389b7d1871341fe9bff966">   91</a></span>&#160;        self.<a class="code" href="classstats_1_1Stats.html#a8d0a677f2c389b7d1871341fe9bff966">algos</a>algos = [k[<span class="stringliteral">&quot;name&quot;</span>] <span class="keywordflow">for</span> k <span class="keywordflow">in</span> self.<a class="code" href="classstats_1_1Stats.html#aa6b071c64c878c541933e32cb061592e">algosDetails</a>algosDetails]</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160; </div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        <span class="comment"># Avoid duplicates in eval names</span></div>
+<div class="line"><a name="l00094"></a><span class="lineno"><a class="line" href="classstats_1_1Stats.html#a50ba380a82060e9dda896d7bbce6bc0a">   94</a></span>&#160;        self.<a class="code" href="classstats_1_1Stats.html#a50ba380a82060e9dda896d7bbce6bc0a">evals</a>evals = []</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        <span class="keywordflow">for</span> k <span class="keywordflow">in</span> self.<a class="code" href="classstats_1_1Stats.html#abed07b5d7336c056bbc668797888bda5">evalsDetails</a>evalsDetails:</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;            name = k[<span class="stringliteral">&quot;name&quot;</span>]</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;            <span class="keywordflow">if</span> name <span class="keywordflow">not</span> <span class="keywordflow">in</span> self.<a class="code" href="classstats_1_1Stats.html#a50ba380a82060e9dda896d7bbce6bc0a">evals</a>evals:</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;                self.<a class="code" href="classstats_1_1Stats.html#a50ba380a82060e9dda896d7bbce6bc0a">evals</a>evals.append(name)</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160; </div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        <span class="comment"># Where outputs live: outputs/&lt;runDetails&gt;/&lt;algo&gt;/*.json</span></div>
+<div class="line"><a name="l00101"></a><span class="lineno"><a class="line" href="classstats_1_1Stats.html#a51e8ebb272e09a501e00a593da37ad58">  101</a></span>&#160;        self.<a class="code" href="classstats_1_1Stats.html#a51e8ebb272e09a501e00a593da37ad58">outputDir</a>outputDir = <span class="stringliteral">&quot;outputs&quot;</span></div>
+<div class="line"><a name="l00102"></a><span class="lineno"><a class="line" href="classstats_1_1Stats.html#a8fca9d611f4283ef0377da3872cc5a24">  102</a></span>&#160;        self.<a class="code" href="classstats_1_1Stats.html#a8fca9d611f4283ef0377da3872cc5a24">runPath</a>runPath = os.path.join(self.<a class="code" href="classstats_1_1Stats.html#a51e8ebb272e09a501e00a593da37ad58">outputDir</a>outputDir, self.<a class="code" href="classstats_1_1Stats.html#abafff1542203f7bc48a887c2ff2fbb80">runDetails</a>runDetails)</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160; </div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;        <span class="comment"># Count iterations per algo</span></div>
+<div class="line"><a name="l00105"></a><span class="lineno"><a class="line" href="classstats_1_1Stats.html#a813f7009ce6b4ae1aeb442b5108ab62f">  105</a></span>&#160;        self.<a class="code" href="classstats_1_1Stats.html#a813f7009ce6b4ae1aeb442b5108ab62f">iterations</a>iterations = {}</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;        <span class="keywordflow">for</span> algo <span class="keywordflow">in</span> self.<a class="code" href="classstats_1_1Stats.html#a8d0a677f2c389b7d1871341fe9bff966">algos</a>algos:</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;            path = os.path.join(self.<a class="code" href="classstats_1_1Stats.html#a8fca9d611f4283ef0377da3872cc5a24">runPath</a>runPath, algo)</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;            count = 0</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;            <span class="keywordflow">for</span> _, _, files <span class="keywordflow">in</span> os.walk(path):</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;                count += len([f <span class="keywordflow">for</span> f <span class="keywordflow">in</span> files <span class="keywordflow">if</span> f.lower().endswith(<span class="stringliteral">&quot;.json&quot;</span>)])</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;            self.<a class="code" href="classstats_1_1Stats.html#a813f7009ce6b4ae1aeb442b5108ab62f">iterations</a>iterations[algo] = count</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;        <span class="comment"># after you finish populating self.iterations in __init__</span></div>
+<div class="line"><a name="l00113"></a><span class="lineno"><a class="line" href="classstats_1_1Stats.html#a39125c796721b6b98ca5bde02e215b2b">  113</a></span>&#160;        self.<a class="code" href="classstats_1_1Stats.html#a39125c796721b6b98ca5bde02e215b2b">max_iterations</a>max_iterations = max(self.<a class="code" href="classstats_1_1Stats.html#a813f7009ce6b4ae1aeb442b5108ab62f">iterations</a>iterations.values()) <span class="keywordflow">if</span> self.<a class="code" href="classstats_1_1Stats.html#a813f7009ce6b4ae1aeb442b5108ab62f">iterations</a>iterations <span class="keywordflow">else</span> 0</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160; </div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    <span class="keyword">def </span><a class="code" href="classstats_1_1Stats.html#af6a903e176641e5db2e71bc471c9c4f3">createDir</a>(self, path):</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;        <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;<span class="stringliteral">        @brief Create a directory if it does not exist.</span></div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;<span class="stringliteral"></span> </div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;<span class="stringliteral">        @param path str</span></div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;<span class="stringliteral">               Directory path to create.</span></div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;<span class="stringliteral"></span> </div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;<span class="stringliteral">        @return None</span></div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;<span class="stringliteral">                Prints a message about creation, existence, or any error.</span></div>
+<div class="line"><a name="l00124"></a><span class="lineno"><a class="line" href="classstats_1_1Stats.html#af6a903e176641e5db2e71bc471c9c4f3">  124</a></span>&#160;<span class="stringliteral">        &quot;&quot;&quot;</span></div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;        <span class="keywordflow">try</span>:</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;            os.mkdir(path)</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;            print(f<span class="stringliteral">&quot;Directory &#39;{path}&#39; created successfully.&quot;</span>)</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;        <span class="keywordflow">except</span> FileExistsError:</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;            print(f<span class="stringliteral">&quot;Directory &#39;{path}&#39; already exists.&quot;</span>)</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;        <span class="keywordflow">except</span> PermissionError:</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;            print(f<span class="stringliteral">&quot;Permission denied: Unable to create &#39;{path}&#39;.&quot;</span>)</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;        <span class="keywordflow">except</span> Exception <span class="keyword">as</span> e:</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;            print(f<span class="stringliteral">&quot;An error occurred: {e}&quot;</span>)</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160; </div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;    <span class="keyword">def </span><a class="code" href="classstats_1_1Stats.html#a970cf044a2cdd8d7fe85d9ec87b67e8e">checkValuesSame</a>(self, iterations):</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;        <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;<span class="stringliteral">        @brief Check if all algorithms share the same iteration count.</span></div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;<span class="stringliteral"></span> </div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;<span class="stringliteral">        @details</span></div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;<span class="stringliteral">        Returns True only if all values in the provided dict are identical. When</span></div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;<span class="stringliteral">        True, @c self.totalFiles is set to that common value.</span></div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;<span class="stringliteral"></span> </div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;<span class="stringliteral">        @param iterations dict[str, int]</span></div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;<span class="stringliteral">               Mapping from algorithm name to number of found result files.</span></div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;<span class="stringliteral"></span> </div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;<span class="stringliteral">        @return bool</span></div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;<span class="stringliteral">                True if all counts match and the dict is non-empty; otherwise False.</span></div>
+<div class="line"><a name="l00148"></a><span class="lineno"><a class="line" href="classstats_1_1Stats.html#a970cf044a2cdd8d7fe85d9ec87b67e8e">  148</a></span>&#160;<span class="stringliteral">        &quot;&quot;&quot;</span></div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;        vals = list(iterations.values())</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;        <span class="keywordflow">if</span> <span class="keywordflow">not</span> vals:</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">False</span></div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;        test = vals[0]</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;        <span class="keywordflow">for</span> v <span class="keywordflow">in</span> vals:</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;            <span class="keywordflow">if</span> v != test:</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;                <span class="keywordflow">return</span> <span class="keyword">False</span></div>
+<div class="line"><a name="l00156"></a><span class="lineno"><a class="line" href="classstats_1_1Stats.html#a00c6f21c8d4ca682b526673722a8f2cb">  156</a></span>&#160;        self.<a class="code" href="classstats_1_1Stats.html#a00c6f21c8d4ca682b526673722a8f2cb">totalFiles</a>totalFiles = test</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">True</span></div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160; </div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;    <span class="keyword">def </span><a class="code" href="classstats_1_1Stats.html#ab4106ca0715d10d8046a79d2151a9285">compute</a>(self):</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;        <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;<span class="stringliteral">        @brief Aggregate metrics per algorithm and write summary artifacts.</span></div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;<span class="stringliteral"></span> </div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;<span class="stringliteral">        @details</span></div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;<span class="stringliteral">        For each algorithm directory under the run path, all JSON result files are</span></div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;<span class="stringliteral">        loaded and their @c evaluation blocks are accumulated.</span></div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;<span class="stringliteral"></span> </div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;<span class="stringliteral">        - For keys deemed “success rate” (case/format variations accepted),</span></div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;<span class="stringliteral">          we treat each iteration as a 0/1 success indicator, pad missing</span></div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;<span class="stringliteral">          iterations with zeros up to @c self.max_iterations, and compute:</span></div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;<span class="stringliteral">              mean = total_successes / max_iterations</span></div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;<span class="stringliteral">              std  = std dev over max_iterations 0/1 samples.</span></div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;<span class="stringliteral">        - For all other metrics, mean and std are computed over the per-file</span></div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;<span class="stringliteral">          values available for that algorithm.</span></div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;<span class="stringliteral"></span> </div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;<span class="stringliteral">        Two DataFrames are printed: means and standard deviations.</span></div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;<span class="stringliteral">        A JSON summary is written to results/&lt;runDetails&gt;Stats.json with</span></div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;<span class="stringliteral">        structure:</span></div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;<span class="stringliteral">            { algo: { metric: { &quot;mean&quot;: ..., &quot;std&quot;: ... }, ... }, ... }</span></div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;<span class="stringliteral"></span> </div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;<span class="stringliteral">        If @c saveStatsImage is True, a PNG table of &quot;mean±std&quot; is also saved.</span></div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;<span class="stringliteral">        &quot;&quot;&quot;</span></div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;        <span class="keyword">def </span>is_success_key(k: str) -&gt; bool:</div>
+<div class="line"><a name="l00183"></a><span class="lineno"><a class="line" href="classstats_1_1Stats.html#ab4106ca0715d10d8046a79d2151a9285">  183</a></span>&#160;            <span class="comment"># match SuccessRate / success_rate / success</span></div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;            norm = k.replace(<span class="stringliteral">&quot;_&quot;</span>, <span class="stringliteral">&quot;&quot;</span>).replace(<span class="stringliteral">&quot; &quot;</span>, <span class="stringliteral">&quot;&quot;</span>).lower()</div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;            <span class="keywordflow">return</span> norm <span class="keywordflow">in</span> {<span class="stringliteral">&quot;successrate&quot;</span>, <span class="stringliteral">&quot;success&quot;</span>}</div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160; </div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;        meanAlgoData = {}</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;        stdAlgoData = {}</div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160; </div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;        <span class="keywordflow">for</span> algo <span class="keywordflow">in</span> self.<a class="code" href="classstats_1_1Stats.html#a8d0a677f2c389b7d1871341fe9bff966">algos</a>algos:</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;            path = os.path.join(self.<a class="code" href="classstats_1_1Stats.html#a8fca9d611f4283ef0377da3872cc5a24">runPath</a>runPath, algo)</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;            <span class="comment"># store all per-file values for each metric</span></div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;            values = {k: [] <span class="keywordflow">for</span> k <span class="keywordflow">in</span> self.<a class="code" href="classstats_1_1Stats.html#a50ba380a82060e9dda896d7bbce6bc0a">evals</a>evals}</div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160; </div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;            <span class="keywordflow">for</span> _, _, files <span class="keywordflow">in</span> os.walk(path):</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;                <span class="keywordflow">for</span> fname <span class="keywordflow">in</span> files:</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;                    <span class="keywordflow">if</span> <span class="keywordflow">not</span> fname.lower().endswith(<span class="stringliteral">&quot;.json&quot;</span>):</div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;                        <span class="keywordflow">continue</span></div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;                    fpath = os.path.join(path, fname)</div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;                    <span class="keywordflow">try</span>:</div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;                        <span class="keyword">with</span> open(fpath, <span class="stringliteral">&quot;r&quot;</span>) <span class="keyword">as</span> f:</div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;                            data = json.load(f)</div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;                        eval_block = data.get(<span class="stringliteral">&quot;evaluation&quot;</span>, {})</div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;                    <span class="keywordflow">except</span> Exception <span class="keyword">as</span> e:</div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;                        print(f<span class="stringliteral">&quot;Skipping &#39;{fpath}&#39;: {e}&quot;</span>)</div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;                        <span class="keywordflow">continue</span></div>
 <div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160; </div>
-<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;            <span class="keywordflow">if</span> n == 0:</div>
-<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;                print(f<span class="stringliteral">&quot;No result files found for algo &#39;{algo}&#39; at {path}&quot;</span>)</div>
-<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;                meanAlgoData[algo] = {k: float(<span class="stringliteral">&quot;nan&quot;</span>) <span class="keywordflow">for</span> k <span class="keywordflow">in</span> self.<a class="code" href="classstats_1_1Stats.html#a50ba380a82060e9dda896d7bbce6bc0a">evals</a>evals}</div>
-<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;            <span class="keywordflow">else</span>:</div>
-<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;                out = {}</div>
-<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;                <span class="keywordflow">for</span> k <span class="keywordflow">in</span> self.<a class="code" href="classstats_1_1Stats.html#a50ba380a82060e9dda896d7bbce6bc0a">evals</a>evals:</div>
-<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;                    <span class="keywordflow">if</span> is_success_key(k):</div>
-<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;                        denom = self.<a class="code" href="classstats_1_1Stats.html#a39125c796721b6b98ca5bde02e215b2b">max_iterations</a>max_iterations</div>
-<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;                        out[k] = (sums[k] / denom) <span class="keywordflow">if</span> denom &gt; 0 <span class="keywordflow">else</span> float(<span class="stringliteral">&quot;nan&quot;</span>)</div>
-<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;                    <span class="keywordflow">else</span>:</div>
-<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;                        out[k] = sums[k] / n</div>
-<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;                meanAlgoData[algo] = out</div>
-<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160; </div>
-<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;        df = pd.DataFrame.from_dict(meanAlgoData, orient=<span class="stringliteral">&quot;index&quot;</span>)[self.<a class="code" href="classstats_1_1Stats.html#a50ba380a82060e9dda896d7bbce6bc0a">evals</a>evals]</div>
-<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;        print(df)</div>
-<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160; </div>
-<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;        <span class="keywordflow">if</span> self.<a class="code" href="classstats_1_1Stats.html#a66327072aa5b07d47c4680a12b30ac14">saveStatsImage</a>saveStatsImage:</div>
-<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;            fig = plt.figure(figsize=(max(6, len(self.<a class="code" href="classstats_1_1Stats.html#a50ba380a82060e9dda896d7bbce6bc0a">evals</a>evals) * 1.2), max(3, len(self.<a class="code" href="classstats_1_1Stats.html#a8d0a677f2c389b7d1871341fe9bff966">algos</a>algos) * 0.6)))</div>
-<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;            ax = plt.subplot(111, frame_on=<span class="keyword">False</span>)</div>
-<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;            ax.xaxis.set_visible(<span class="keyword">False</span>)</div>
-<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;            ax.yaxis.set_visible(<span class="keyword">False</span>)</div>
-<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;            table(ax, df.round(4), loc=<span class="stringliteral">&quot;center&quot;</span>)</div>
-<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;            plt.tight_layout()</div>
-<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;            out_png = os.path.join(self.<a class="code" href="classstats_1_1Stats.html#abb4205283622b0541138811b2a87cabf">resultsDir</a>resultsDir, f<span class="stringliteral">&quot;{self.runDetails}.png&quot;</span>)</div>
-<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;            plt.savefig(out_png, dpi=200)</div>
-<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;            plt.close(fig)</div>
-<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160; </div>
-<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;        out_json = os.path.join(self.<a class="code" href="classstats_1_1Stats.html#abb4205283622b0541138811b2a87cabf">resultsDir</a>resultsDir, f<span class="stringliteral">&quot;{self.runDetails}Stats.json&quot;</span>)</div>
-<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;        <span class="keyword">with</span> open(out_json, <span class="stringliteral">&quot;w&quot;</span>) <span class="keyword">as</span> f:</div>
-<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;            json.dump(meanAlgoData, f, indent=4)</div>
-<div class="ttc" id="aclassstats_1_1Stats_html"><div class="ttname"><a href="classstats_1_1Stats.html">stats.Stats</a></div><div class="ttdoc">Compute, compare, and visualize evaluation statistics across algorithms.</div><div class="ttdef"><b>Definition:</b> <a href="stats_8py_source.html#l00059">stats.py:59</a></div></div>
-<div class="ttc" id="aclassstats_1_1Stats_html_a00c6f21c8d4ca682b526673722a8f2cb"><div class="ttname"><a href="classstats_1_1Stats.html#a00c6f21c8d4ca682b526673722a8f2cb">stats.Stats.totalFiles</a></div><div class="ttdeci">totalFiles</div><div class="ttdef"><b>Definition:</b> <a href="stats_8py_source.html#l00155">stats.py:155</a></div></div>
-<div class="ttc" id="aclassstats_1_1Stats_html_a39125c796721b6b98ca5bde02e215b2b"><div class="ttname"><a href="classstats_1_1Stats.html#a39125c796721b6b98ca5bde02e215b2b">stats.Stats.max_iterations</a></div><div class="ttdeci">max_iterations</div><div class="ttdef"><b>Definition:</b> <a href="stats_8py_source.html#l00112">stats.py:112</a></div></div>
-<div class="ttc" id="aclassstats_1_1Stats_html_a43d983d58fb47897194329ad1c3e204e"><div class="ttname"><a href="classstats_1_1Stats.html#a43d983d58fb47897194329ad1c3e204e">stats.Stats.runConfigPath</a></div><div class="ttdeci">runConfigPath</div><div class="ttdef"><b>Definition:</b> <a href="stats_8py_source.html#l00075">stats.py:75</a></div></div>
-<div class="ttc" id="aclassstats_1_1Stats_html_a50ba380a82060e9dda896d7bbce6bc0a"><div class="ttname"><a href="classstats_1_1Stats.html#a50ba380a82060e9dda896d7bbce6bc0a">stats.Stats.evals</a></div><div class="ttdeci">evals</div><div class="ttdef"><b>Definition:</b> <a href="stats_8py_source.html#l00093">stats.py:93</a></div></div>
-<div class="ttc" id="aclassstats_1_1Stats_html_a51e8ebb272e09a501e00a593da37ad58"><div class="ttname"><a href="classstats_1_1Stats.html#a51e8ebb272e09a501e00a593da37ad58">stats.Stats.outputDir</a></div><div class="ttdeci">outputDir</div><div class="ttdef"><b>Definition:</b> <a href="stats_8py_source.html#l00100">stats.py:100</a></div></div>
-<div class="ttc" id="aclassstats_1_1Stats_html_a66327072aa5b07d47c4680a12b30ac14"><div class="ttname"><a href="classstats_1_1Stats.html#a66327072aa5b07d47c4680a12b30ac14">stats.Stats.saveStatsImage</a></div><div class="ttdeci">saveStatsImage</div><div class="ttdef"><b>Definition:</b> <a href="stats_8py_source.html#l00076">stats.py:76</a></div></div>
-<div class="ttc" id="aclassstats_1_1Stats_html_a813f7009ce6b4ae1aeb442b5108ab62f"><div class="ttname"><a href="classstats_1_1Stats.html#a813f7009ce6b4ae1aeb442b5108ab62f">stats.Stats.iterations</a></div><div class="ttdeci">iterations</div><div class="ttdef"><b>Definition:</b> <a href="stats_8py_source.html#l00104">stats.py:104</a></div></div>
-<div class="ttc" id="aclassstats_1_1Stats_html_a8d0a677f2c389b7d1871341fe9bff966"><div class="ttname"><a href="classstats_1_1Stats.html#a8d0a677f2c389b7d1871341fe9bff966">stats.Stats.algos</a></div><div class="ttdeci">algos</div><div class="ttdef"><b>Definition:</b> <a href="stats_8py_source.html#l00090">stats.py:90</a></div></div>
-<div class="ttc" id="aclassstats_1_1Stats_html_a8fca9d611f4283ef0377da3872cc5a24"><div class="ttname"><a href="classstats_1_1Stats.html#a8fca9d611f4283ef0377da3872cc5a24">stats.Stats.runPath</a></div><div class="ttdeci">runPath</div><div class="ttdef"><b>Definition:</b> <a href="stats_8py_source.html#l00101">stats.py:101</a></div></div>
-<div class="ttc" id="aclassstats_1_1Stats_html_a970cf044a2cdd8d7fe85d9ec87b67e8e"><div class="ttname"><a href="classstats_1_1Stats.html#a970cf044a2cdd8d7fe85d9ec87b67e8e">stats.Stats.checkValuesSame</a></div><div class="ttdeci">def checkValuesSame(self, iterations)</div><div class="ttdoc">Check if all algorithms share the same iteration count.</div><div class="ttdef"><b>Definition:</b> <a href="stats_8py_source.html#l00147">stats.py:147</a></div></div>
-<div class="ttc" id="aclassstats_1_1Stats_html_aa6b071c64c878c541933e32cb061592e"><div class="ttname"><a href="classstats_1_1Stats.html#aa6b071c64c878c541933e32cb061592e">stats.Stats.algosDetails</a></div><div class="ttdeci">algosDetails</div><div class="ttdef"><b>Definition:</b> <a href="stats_8py_source.html#l00085">stats.py:85</a></div></div>
-<div class="ttc" id="aclassstats_1_1Stats_html_ab4106ca0715d10d8046a79d2151a9285"><div class="ttname"><a href="classstats_1_1Stats.html#ab4106ca0715d10d8046a79d2151a9285">stats.Stats.compute</a></div><div class="ttdeci">def compute(self)</div><div class="ttdoc">Aggregate metrics per algorithm and write summary artifacts.</div><div class="ttdef"><b>Definition:</b> <a href="stats_8py_source.html#l00179">stats.py:179</a></div></div>
-<div class="ttc" id="aclassstats_1_1Stats_html_abafff1542203f7bc48a887c2ff2fbb80"><div class="ttname"><a href="classstats_1_1Stats.html#abafff1542203f7bc48a887c2ff2fbb80">stats.Stats.runDetails</a></div><div class="ttdeci">runDetails</div><div class="ttdef"><b>Definition:</b> <a href="stats_8py_source.html#l00087">stats.py:87</a></div></div>
-<div class="ttc" id="aclassstats_1_1Stats_html_abb4205283622b0541138811b2a87cabf"><div class="ttname"><a href="classstats_1_1Stats.html#abb4205283622b0541138811b2a87cabf">stats.Stats.resultsDir</a></div><div class="ttdeci">resultsDir</div><div class="ttdef"><b>Definition:</b> <a href="stats_8py_source.html#l00081">stats.py:81</a></div></div>
-<div class="ttc" id="aclassstats_1_1Stats_html_abed07b5d7336c056bbc668797888bda5"><div class="ttname"><a href="classstats_1_1Stats.html#abed07b5d7336c056bbc668797888bda5">stats.Stats.evalsDetails</a></div><div class="ttdeci">evalsDetails</div><div class="ttdef"><b>Definition:</b> <a href="stats_8py_source.html#l00086">stats.py:86</a></div></div>
-<div class="ttc" id="aclassstats_1_1Stats_html_ac76aebd543530e070576fb655829c2c3"><div class="ttname"><a href="classstats_1_1Stats.html#ac76aebd543530e070576fb655829c2c3">stats.Stats.__init__</a></div><div class="ttdeci">def __init__(self, runConfigPath, saveStatsImage=False)</div><div class="ttdoc">Initialize the statistics pipeline from a run configuration.</div><div class="ttdef"><b>Definition:</b> <a href="stats_8py_source.html#l00074">stats.py:74</a></div></div>
-<div class="ttc" id="aclassstats_1_1Stats_html_af6a903e176641e5db2e71bc471c9c4f3"><div class="ttname"><a href="classstats_1_1Stats.html#af6a903e176641e5db2e71bc471c9c4f3">stats.Stats.createDir</a></div><div class="ttdeci">def createDir(self, path)</div><div class="ttdoc">Create a directory if it does not exist.</div><div class="ttdef"><b>Definition:</b> <a href="stats_8py_source.html#l00123">stats.py:123</a></div></div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;                    <span class="keywordflow">for</span> k <span class="keywordflow">in</span> self.<a class="code" href="classstats_1_1Stats.html#a50ba380a82060e9dda896d7bbce6bc0a">evals</a>evals:</div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;                        values[k].append(float(eval_block.get(k, 0.0)))</div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160; </div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;            <span class="comment"># If no files found for this algo</span></div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;            any_vals = any(len(v) &gt; 0 <span class="keywordflow">for</span> v <span class="keywordflow">in</span> values.values())</div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;            <span class="keywordflow">if</span> <span class="keywordflow">not</span> any_vals:</div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;                print(f<span class="stringliteral">&quot;No result files found for algo &#39;{algo}&#39; at {path}&quot;</span>)</div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;                meanAlgoData[algo] = {k: float(<span class="stringliteral">&quot;nan&quot;</span>) <span class="keywordflow">for</span> k <span class="keywordflow">in</span> self.<a class="code" href="classstats_1_1Stats.html#a50ba380a82060e9dda896d7bbce6bc0a">evals</a>evals}</div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;                stdAlgoData[algo] = {k: float(<span class="stringliteral">&quot;nan&quot;</span>) <span class="keywordflow">for</span> k <span class="keywordflow">in</span> self.<a class="code" href="classstats_1_1Stats.html#a50ba380a82060e9dda896d7bbce6bc0a">evals</a>evals}</div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;                <span class="keywordflow">continue</span></div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160; </div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;            algo_means = {}</div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;            algo_stds = {}</div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160; </div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;            <span class="keywordflow">for</span> k <span class="keywordflow">in</span> self.<a class="code" href="classstats_1_1Stats.html#a50ba380a82060e9dda896d7bbce6bc0a">evals</a>evals:</div>
+<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;                arr_raw = np.array(values[k], dtype=float)</div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160; </div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;                <span class="keywordflow">if</span> arr_raw.size == 0:</div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;                    algo_means[k] = float(<span class="stringliteral">&quot;nan&quot;</span>)</div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;                    algo_stds[k] = float(<span class="stringliteral">&quot;nan&quot;</span>)</div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;                    <span class="keywordflow">continue</span></div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160; </div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;                <span class="keywordflow">if</span> is_success_key(k):</div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;                    <span class="comment"># Treat each value as success count/indicator per iteration.</span></div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;                    <span class="comment"># Pad with zeros up to max_iterations so that:</span></div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;                    <span class="comment">#   mean = total_successes / max_iterations (as before),</span></div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;                    <span class="comment">#   std  = std dev across all iterations (0/1 style).</span></div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;                    <span class="keywordflow">if</span> self.<a class="code" href="classstats_1_1Stats.html#a39125c796721b6b98ca5bde02e215b2b">max_iterations</a>max_iterations &gt; 0:</div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;                        num_iter = arr_raw.size</div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;                        <span class="keywordflow">if</span> self.<a class="code" href="classstats_1_1Stats.html#a39125c796721b6b98ca5bde02e215b2b">max_iterations</a>max_iterations &gt; num_iter:</div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;                            pad = np.zeros(self.<a class="code" href="classstats_1_1Stats.html#a39125c796721b6b98ca5bde02e215b2b">max_iterations</a>max_iterations - num_iter, dtype=float)</div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;                            arr_all = np.concatenate([arr_raw, pad])</div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;                        <span class="keywordflow">else</span>:</div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;                            arr_all = arr_raw  <span class="comment"># already at max_iterations</span></div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160; </div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;                        mean_k = arr_all.mean()            <span class="comment"># sum / max_iterations</span></div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;                        std_k = arr_all.std(ddof=0)        <span class="comment"># population std</span></div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;                    <span class="keywordflow">else</span>:</div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;                        mean_k = float(<span class="stringliteral">&quot;nan&quot;</span>)</div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;                        std_k = float(<span class="stringliteral">&quot;nan&quot;</span>)</div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;                <span class="keywordflow">else</span>:</div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;                    <span class="comment"># Regular metric: mean/std over available runs</span></div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;                    mean_k = arr_raw.mean()</div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;                    std_k = arr_raw.std(ddof=0)</div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160; </div>
+<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;                algo_means[k] = float(mean_k)</div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;                algo_stds[k] = float(std_k)</div>
+<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160; </div>
+<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;            meanAlgoData[algo] = algo_means</div>
+<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;            stdAlgoData[algo] = algo_stds</div>
+<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160; </div>
+<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;        <span class="comment"># DataFrames for convenience</span></div>
+<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;        df_mean = pd.DataFrame.from_dict(meanAlgoData, orient=<span class="stringliteral">&quot;index&quot;</span>)[self.<a class="code" href="classstats_1_1Stats.html#a50ba380a82060e9dda896d7bbce6bc0a">evals</a>evals]</div>
+<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;        df_std = pd.DataFrame.from_dict(stdAlgoData, orient=<span class="stringliteral">&quot;index&quot;</span>)[self.<a class="code" href="classstats_1_1Stats.html#a50ba380a82060e9dda896d7bbce6bc0a">evals</a>evals]</div>
+<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160; </div>
+<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;        print(<span class="stringliteral">&quot;=== Mean metrics ===&quot;</span>)</div>
+<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;        print(df_mean)</div>
+<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;        print(<span class="stringliteral">&quot;\n=== Std dev over iterations (per algo, per metric) ===&quot;</span>)</div>
+<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;        print(df_std)</div>
+<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160; </div>
+<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;        <span class="comment"># Optional image: show &quot;mean±std&quot; as in papers</span></div>
+<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;        <span class="keywordflow">if</span> self.<a class="code" href="classstats_1_1Stats.html#a66327072aa5b07d47c4680a12b30ac14">saveStatsImage</a>saveStatsImage:</div>
+<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;            df_disp = df_mean.copy().astype(str)</div>
+<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;            <span class="keywordflow">for</span> algo <span class="keywordflow">in</span> self.<a class="code" href="classstats_1_1Stats.html#a8d0a677f2c389b7d1871341fe9bff966">algos</a>algos:</div>
+<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;                <span class="keywordflow">for</span> k <span class="keywordflow">in</span> self.<a class="code" href="classstats_1_1Stats.html#a50ba380a82060e9dda896d7bbce6bc0a">evals</a>evals:</div>
+<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;                    m = df_mean.loc[algo, k]</div>
+<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;                    s = df_std.loc[algo, k]</div>
+<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;                    <span class="keywordflow">if</span> pd.isna(m) <span class="keywordflow">or</span> pd.isna(s):</div>
+<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;                        df_disp.loc[algo, k] = <span class="stringliteral">&quot;nan&quot;</span></div>
+<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;                    <span class="keywordflow">else</span>:</div>
+<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;                        df_disp.loc[algo, k] = f<span class="stringliteral">&quot;{m:.3f}±{s:.3f}&quot;</span></div>
+<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160; </div>
+<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;            fig = plt.figure(</div>
+<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;                figsize=(</div>
+<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;                    max(6, len(self.<a class="code" href="classstats_1_1Stats.html#a50ba380a82060e9dda896d7bbce6bc0a">evals</a>evals) * 1.2),</div>
+<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;                    max(3, len(self.<a class="code" href="classstats_1_1Stats.html#a8d0a677f2c389b7d1871341fe9bff966">algos</a>algos) * 0.6),</div>
+<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;                )</div>
+<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;            )</div>
+<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;            ax = plt.subplot(111, frame_on=<span class="keyword">False</span>)</div>
+<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;            ax.xaxis.set_visible(<span class="keyword">False</span>)</div>
+<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;            ax.yaxis.set_visible(<span class="keyword">False</span>)</div>
+<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;            table(ax, df_disp, loc=<span class="stringliteral">&quot;center&quot;</span>)</div>
+<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;            plt.tight_layout()</div>
+<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;            out_png = os.path.join(self.<a class="code" href="classstats_1_1Stats.html#abb4205283622b0541138811b2a87cabf">resultsDir</a>resultsDir, f<span class="stringliteral">&quot;{self.runDetails}.png&quot;</span>)</div>
+<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;            plt.savefig(out_png, dpi=200)</div>
+<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;            plt.close(fig)</div>
+<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160; </div>
+<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;        <span class="comment"># JSON summary: algo -&gt; metric -&gt; {mean, std}</span></div>
+<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;        summary = {}</div>
+<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;        <span class="keywordflow">for</span> algo <span class="keywordflow">in</span> self.<a class="code" href="classstats_1_1Stats.html#a8d0a677f2c389b7d1871341fe9bff966">algos</a>algos:</div>
+<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;            summary[algo] = {}</div>
+<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;            <span class="keywordflow">for</span> k <span class="keywordflow">in</span> self.<a class="code" href="classstats_1_1Stats.html#a50ba380a82060e9dda896d7bbce6bc0a">evals</a>evals:</div>
+<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;                summary[algo][k] = {</div>
+<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;                    <span class="stringliteral">&quot;mean&quot;</span>: meanAlgoData[algo].get(k, float(<span class="stringliteral">&quot;nan&quot;</span>)),</div>
+<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;                    <span class="stringliteral">&quot;std&quot;</span>: stdAlgoData[algo].get(k, float(<span class="stringliteral">&quot;nan&quot;</span>)),</div>
+<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;                }</div>
+<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160; </div>
+<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;        out_json = os.path.join(self.<a class="code" href="classstats_1_1Stats.html#abb4205283622b0541138811b2a87cabf">resultsDir</a>resultsDir, f<span class="stringliteral">&quot;{self.runDetails}Stats.json&quot;</span>)</div>
+<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;        <span class="keyword">with</span> open(out_json, <span class="stringliteral">&quot;w&quot;</span>) <span class="keyword">as</span> f:</div>
+<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;            json.dump(summary, f, indent=4)</div>
+<div class="ttc" id="aclassstats_1_1Stats_html"><div class="ttname"><a href="classstats_1_1Stats.html">stats.Stats</a></div><div class="ttdoc">Compute, compare, and visualize evaluation statistics across algorithms.</div><div class="ttdef"><b>Definition:</b> <a href="stats_8py_source.html#l00060">stats.py:60</a></div></div>
+<div class="ttc" id="aclassstats_1_1Stats_html_a00c6f21c8d4ca682b526673722a8f2cb"><div class="ttname"><a href="classstats_1_1Stats.html#a00c6f21c8d4ca682b526673722a8f2cb">stats.Stats.totalFiles</a></div><div class="ttdeci">totalFiles</div><div class="ttdef"><b>Definition:</b> <a href="stats_8py_source.html#l00156">stats.py:156</a></div></div>
+<div class="ttc" id="aclassstats_1_1Stats_html_a39125c796721b6b98ca5bde02e215b2b"><div class="ttname"><a href="classstats_1_1Stats.html#a39125c796721b6b98ca5bde02e215b2b">stats.Stats.max_iterations</a></div><div class="ttdeci">max_iterations</div><div class="ttdef"><b>Definition:</b> <a href="stats_8py_source.html#l00113">stats.py:113</a></div></div>
+<div class="ttc" id="aclassstats_1_1Stats_html_a43d983d58fb47897194329ad1c3e204e"><div class="ttname"><a href="classstats_1_1Stats.html#a43d983d58fb47897194329ad1c3e204e">stats.Stats.runConfigPath</a></div><div class="ttdeci">runConfigPath</div><div class="ttdef"><b>Definition:</b> <a href="stats_8py_source.html#l00076">stats.py:76</a></div></div>
+<div class="ttc" id="aclassstats_1_1Stats_html_a50ba380a82060e9dda896d7bbce6bc0a"><div class="ttname"><a href="classstats_1_1Stats.html#a50ba380a82060e9dda896d7bbce6bc0a">stats.Stats.evals</a></div><div class="ttdeci">evals</div><div class="ttdef"><b>Definition:</b> <a href="stats_8py_source.html#l00094">stats.py:94</a></div></div>
+<div class="ttc" id="aclassstats_1_1Stats_html_a51e8ebb272e09a501e00a593da37ad58"><div class="ttname"><a href="classstats_1_1Stats.html#a51e8ebb272e09a501e00a593da37ad58">stats.Stats.outputDir</a></div><div class="ttdeci">outputDir</div><div class="ttdef"><b>Definition:</b> <a href="stats_8py_source.html#l00101">stats.py:101</a></div></div>
+<div class="ttc" id="aclassstats_1_1Stats_html_a66327072aa5b07d47c4680a12b30ac14"><div class="ttname"><a href="classstats_1_1Stats.html#a66327072aa5b07d47c4680a12b30ac14">stats.Stats.saveStatsImage</a></div><div class="ttdeci">saveStatsImage</div><div class="ttdef"><b>Definition:</b> <a href="stats_8py_source.html#l00077">stats.py:77</a></div></div>
+<div class="ttc" id="aclassstats_1_1Stats_html_a813f7009ce6b4ae1aeb442b5108ab62f"><div class="ttname"><a href="classstats_1_1Stats.html#a813f7009ce6b4ae1aeb442b5108ab62f">stats.Stats.iterations</a></div><div class="ttdeci">iterations</div><div class="ttdef"><b>Definition:</b> <a href="stats_8py_source.html#l00105">stats.py:105</a></div></div>
+<div class="ttc" id="aclassstats_1_1Stats_html_a8d0a677f2c389b7d1871341fe9bff966"><div class="ttname"><a href="classstats_1_1Stats.html#a8d0a677f2c389b7d1871341fe9bff966">stats.Stats.algos</a></div><div class="ttdeci">algos</div><div class="ttdef"><b>Definition:</b> <a href="stats_8py_source.html#l00091">stats.py:91</a></div></div>
+<div class="ttc" id="aclassstats_1_1Stats_html_a8fca9d611f4283ef0377da3872cc5a24"><div class="ttname"><a href="classstats_1_1Stats.html#a8fca9d611f4283ef0377da3872cc5a24">stats.Stats.runPath</a></div><div class="ttdeci">runPath</div><div class="ttdef"><b>Definition:</b> <a href="stats_8py_source.html#l00102">stats.py:102</a></div></div>
+<div class="ttc" id="aclassstats_1_1Stats_html_a970cf044a2cdd8d7fe85d9ec87b67e8e"><div class="ttname"><a href="classstats_1_1Stats.html#a970cf044a2cdd8d7fe85d9ec87b67e8e">stats.Stats.checkValuesSame</a></div><div class="ttdeci">def checkValuesSame(self, iterations)</div><div class="ttdoc">Check if all algorithms share the same iteration count.</div><div class="ttdef"><b>Definition:</b> <a href="stats_8py_source.html#l00148">stats.py:148</a></div></div>
+<div class="ttc" id="aclassstats_1_1Stats_html_aa6b071c64c878c541933e32cb061592e"><div class="ttname"><a href="classstats_1_1Stats.html#aa6b071c64c878c541933e32cb061592e">stats.Stats.algosDetails</a></div><div class="ttdeci">algosDetails</div><div class="ttdef"><b>Definition:</b> <a href="stats_8py_source.html#l00086">stats.py:86</a></div></div>
+<div class="ttc" id="aclassstats_1_1Stats_html_ab4106ca0715d10d8046a79d2151a9285"><div class="ttname"><a href="classstats_1_1Stats.html#ab4106ca0715d10d8046a79d2151a9285">stats.Stats.compute</a></div><div class="ttdeci">def compute(self)</div><div class="ttdoc">Aggregate metrics per algorithm and write summary artifacts.</div><div class="ttdef"><b>Definition:</b> <a href="stats_8py_source.html#l00183">stats.py:183</a></div></div>
+<div class="ttc" id="aclassstats_1_1Stats_html_abafff1542203f7bc48a887c2ff2fbb80"><div class="ttname"><a href="classstats_1_1Stats.html#abafff1542203f7bc48a887c2ff2fbb80">stats.Stats.runDetails</a></div><div class="ttdeci">runDetails</div><div class="ttdef"><b>Definition:</b> <a href="stats_8py_source.html#l00088">stats.py:88</a></div></div>
+<div class="ttc" id="aclassstats_1_1Stats_html_abb4205283622b0541138811b2a87cabf"><div class="ttname"><a href="classstats_1_1Stats.html#abb4205283622b0541138811b2a87cabf">stats.Stats.resultsDir</a></div><div class="ttdeci">resultsDir</div><div class="ttdef"><b>Definition:</b> <a href="stats_8py_source.html#l00082">stats.py:82</a></div></div>
+<div class="ttc" id="aclassstats_1_1Stats_html_abed07b5d7336c056bbc668797888bda5"><div class="ttname"><a href="classstats_1_1Stats.html#abed07b5d7336c056bbc668797888bda5">stats.Stats.evalsDetails</a></div><div class="ttdeci">evalsDetails</div><div class="ttdef"><b>Definition:</b> <a href="stats_8py_source.html#l00087">stats.py:87</a></div></div>
+<div class="ttc" id="aclassstats_1_1Stats_html_ac76aebd543530e070576fb655829c2c3"><div class="ttname"><a href="classstats_1_1Stats.html#ac76aebd543530e070576fb655829c2c3">stats.Stats.__init__</a></div><div class="ttdeci">def __init__(self, runConfigPath, saveStatsImage=False)</div><div class="ttdoc">Initialize the statistics pipeline from a run configuration.</div><div class="ttdef"><b>Definition:</b> <a href="stats_8py_source.html#l00075">stats.py:75</a></div></div>
+<div class="ttc" id="aclassstats_1_1Stats_html_af6a903e176641e5db2e71bc471c9c4f3"><div class="ttname"><a href="classstats_1_1Stats.html#af6a903e176641e5db2e71bc471c9c4f3">stats.Stats.createDir</a></div><div class="ttdeci">def createDir(self, path)</div><div class="ttdoc">Create a directory if it does not exist.</div><div class="ttdef"><b>Definition:</b> <a href="stats_8py_source.html#l00124">stats.py:124</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>SafePlan: Measuring Balance: The OptiSafe Index and SafePlan Benchmark for Safe Navigation</title>
+<title>SafePlan: Unified Path Planner for Adaptive Safe and Near Optimal Paths with Normalized OptiSafe Index and SafePlan Benchmarking</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -82,7 +82,7 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 
 <div class="PageDoc"><div class="header">
   <div class="headertitle">
-<div class="title">Measuring Balance: The OptiSafe Index and SafePlan Benchmark for Safe Navigation </div>  </div>
+<div class="title">Unified Path Planner for Adaptive Safe and Near Optimal Paths with Normalized OptiSafe Index and SafePlan Benchmarking </div>  </div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p><a class="anchor" id="md_README"></a> </p>
@@ -163,25 +163,15 @@ Evaluation Metrics</h1>
 </li>
 </ul>
 <h2><a class="anchor" id="autotoc_md8"></a>
-4. Distance to Goal (m, failures only)</h2>
-<ul>
-<li><b>Definition:</b> Remaining distance between the last explored path node and the goal when planning fails. <br  />
-</li>
-<li><b>Computation:</b> Euclidean distance between last path node and goal. <br  />
-</li>
-<li><b>Unit:</b> meters (m). <br  />
-</li>
-</ul>
-<h2><a class="anchor" id="autotoc_md9"></a>
-5. Number of Nodes in Path</h2>
+4. Number of Nodes in Path</h2>
 <ul>
 <li><b>Definition:</b> Count of waypoints in the final path. <br  />
 </li>
 <li><b>Unit:</b> count (integer). <br  />
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md10"></a>
-6. Turning Angle (°)</h2>
+<h2><a class="anchor" id="autotoc_md9"></a>
+5. Turning Angle (°)</h2>
 <ul>
 <li><b>Definition:</b> Sum of angular deviations between consecutive path segments. <br  />
 </li>
@@ -190,8 +180,8 @@ Evaluation Metrics</h1>
 <li><b>Unit:</b> degrees (°). <br  />
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md11"></a>
-7. Jerk per Meter</h2>
+<h2><a class="anchor" id="autotoc_md10"></a>
+6. Jerk per Meter</h2>
 <ul>
 <li><b>Definition:</b> Rate of change of acceleration along the path, normalized per unit distance. <br  />
 </li>
@@ -200,8 +190,8 @@ Evaluation Metrics</h1>
 <li><b>Unit:</b> dimensionless (jerk/m). <br  />
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md12"></a>
-8. Optimal Deviation (%)</h2>
+<h2><a class="anchor" id="autotoc_md11"></a>
+7. Optimal Deviation (%)</h2>
 <ul>
 <li><b>Definition:</b> Difference between path cost and known optimal path cost. <br  />
 </li>
@@ -210,8 +200,8 @@ Evaluation Metrics</h1>
 <li><b>Unit:</b> percentage (%). <br  />
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md13"></a>
-9. Minimum Clearance (m)</h2>
+<h2><a class="anchor" id="autotoc_md12"></a>
+8. Minimum Clearance (m)</h2>
 <ul>
 <li><b>Definition:</b> Smallest distance from path to nearest obstacle. <br  />
 </li>
@@ -220,24 +210,24 @@ Evaluation Metrics</h1>
 <li><b>Unit:</b> meters (m). <br  />
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md14"></a>
-10. Average Minimum Clearance (m)</h2>
+<h2><a class="anchor" id="autotoc_md13"></a>
+9. Average Minimum Clearance (m)</h2>
 <ul>
 <li><b>Definition:</b> Mean clearance across path points. <br  />
 </li>
 <li><b>Unit:</b> meters (m). <br  />
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md15"></a>
-11. Clearance Variability</h2>
+<h2><a class="anchor" id="autotoc_md14"></a>
+10. Clearance Variability</h2>
 <ul>
 <li><b>Definition:</b> Variance of clearance values along the path. <br  />
 </li>
 <li><b>Unit:</b> meters². <br  />
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md16"></a>
-12. Danger Zone Violations</h2>
+<h2><a class="anchor" id="autotoc_md15"></a>
+11. Danger Zone Violations</h2>
 <ul>
 <li><b>Definition:</b> Number of times path enters a predefined danger radius around obstacles. <br  />
 </li>
@@ -246,17 +236,17 @@ Evaluation Metrics</h1>
 <li><b>Unit:</b> count (integer). <br  />
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md17"></a>
-13. OptiSafe Index (Proposed)</h2>
+<h2><a class="anchor" id="autotoc_md16"></a>
+12. OptiSafe Index (Proposed)</h2>
 <ul>
 <li><b>Definition:</b> An index to measure balance between safety and optimality</li>
 <li><b>Unit:</b> float between 0 and 1. <br  />
 </li>
 </ul>
-<h1><a class="anchor" id="autotoc_md18"></a>
+<h1><a class="anchor" id="autotoc_md17"></a>
 Algorithms in SafePlan</h1>
 <p>SafePlan includes both <b>traditional planners</b> and <b>safety-aware planners</b>, allowing direct benchmarking on <b>safety vs. optimality</b> tradeoffs.</p>
-<h2><a class="anchor" id="autotoc_md19"></a>
+<h2><a class="anchor" id="autotoc_md18"></a>
 🔹 Traditional Planners</h2>
 <ul>
 <li><b>A*</b> <br  />
@@ -270,12 +260,12 @@ Algorithms in SafePlan</h1>
  Reference: (<a href="https://www.semanticscholar.org/paper/Rapidly-exploring-random-trees-%3A-a-new-tool-for-LaValle/d967d9550f831a8b3f5cb00f8835a4c866da60ad">https://www.semanticscholar.org/paper/Rapidly-exploring-random-trees-%3A-a-new-tool-for-LaValle/d967d9550f831a8b3f5cb00f8835a4c866da60ad</a>)</li>
 </ul>
 <hr  />
-<h2><a class="anchor" id="autotoc_md21"></a>
+<h2><a class="anchor" id="autotoc_md20"></a>
 🔹 Safety-Aware Planners</h2>
 <ul>
-<li><b>Unified Path Planner</b> <br  />
+<li><b>Unified Path Planner (Ours)</b> <br  />
  A safety-aware planner integrating safety heuristics <br  />
- Reference: (<a href="https://arxiv.org/pdf/2505.23197">https://arxiv.org/pdf/2505.23197</a>)</li>
+</li>
 <li><b>SDF A*</b> <br  />
  A* variant augmented with Signed Distance Fields for safety margin enforcement. <br  />
  Reference: (<a href="https://ieeexplore.ieee.org/document/10364842/">https://ieeexplore.ieee.org/document/10364842/</a>)</li>
@@ -287,12 +277,10 @@ Algorithms in SafePlan</h1>
  Reference: (<a href="https://arxiv.org/pdf/2011.06748">https://arxiv.org/pdf/2011.06748</a>)</li>
 <li><b>FS Planner</b> <br  />
  Uses an integrated inverse distance, on lazy theta AStar and also gives a limit on maximum neighbours explored in goal and safe direction Reference: (<a href="https://arxiv.org/pdf/2505.24024">https://arxiv.org/pdf/2505.24024</a>)</li>
-<li><b>Safe A*</b> <br  />
- Safe A*: This approach is conceptually inspired by the inflation layer in the ROS Navigation framework wher traversal costs are increased in proportion to proximity to obstacles. Unlike Nav2, which uses an exponential decay function to inflate costs, we adopt a simplified inverse-distance formulation to achieve a similar safety bias.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md22"></a>
+<h1><a class="anchor" id="autotoc_md21"></a>
 Installation</h1>
-<h2><a class="anchor" id="autotoc_md23"></a>
+<h2><a class="anchor" id="autotoc_md22"></a>
 Requirements</h2>
 <ul>
 <li><b>Python</b>: 3.9 or newer <br  />
@@ -312,31 +300,30 @@ Requirements</h2>
 </ul>
 <p>All dependencies are listed in <code>requirements.txt</code>.</p>
 <hr  />
-<h2><a class="anchor" id="autotoc_md25"></a>
+<h2><a class="anchor" id="autotoc_md24"></a>
 Install from source</h2>
 <p>Clone the repository and install in editable mode:</p>
 <div class="fragment"><div class="line">git clone https://github.com/&lt;your-username&gt;/safeplan.git</div>
 <div class="line">cd safeplan</div>
 <div class="line">pip install -r requirements.txt</div>
 <div class="line">pip install -e .</div>
-</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md26"></a>
+</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md25"></a>
 Usage</h1>
 <p>SafePlan experiments are configured via a JSON file (e.g., <code>run1.json</code>). <br  />
  Below is an example:</p>
 <div class="fragment"><div class="line">{</div>
-<div class="line">  &quot;runDetails&quot;: &quot;run2&quot;,</div>
+<div class="line">  &quot;runDetails&quot;: &quot;run1&quot;,</div>
 <div class="line">  &quot;evalDetails&quot;: [</div>
-<div class="line">    {&quot;name&quot;: &quot;PlanningTime&quot;},</div>
+<div class="line">     {&quot;name&quot;: &quot;PlanningTime&quot;},</div>
 <div class="line">    {&quot;name&quot;: &quot;MinimumClearance&quot;,&quot;args&quot;: {&quot;pointSamples&quot;:100}},</div>
 <div class="line">    {&quot;name&quot;: &quot;AverageMinimumClearance&quot;,&quot;args&quot;: {&quot;pointSamples&quot;:100}},</div>
 <div class="line">    {&quot;name&quot;: &quot;ClearanceVariability&quot;,&quot;args&quot;: {&quot;pointSamples&quot;:100}},</div>
-<div class="line">    {&quot;name&quot;: &quot;DangerViolations&quot;,&quot;args&quot;: {&quot;pointSamples&quot;:100,&quot;dangerRadius&quot;:0.2}},</div>
+<div class="line">    {&quot;name&quot;: &quot;DangerViolations&quot;,&quot;args&quot;: {&quot;pointSamples&quot;:100,&quot;dangerRadius&quot;:0.1}},</div>
 <div class="line">    {&quot;name&quot;: &quot;TurningAngle&quot;},</div>
 <div class="line">    {&quot;name&quot;: &quot;JerkPerMeter&quot;},</div>
 <div class="line">    {&quot;name&quot;: &quot;SuccessRate&quot;},</div>
 <div class="line">    {&quot;name&quot;: &quot;OptimalDeviation&quot;},</div>
 <div class="line">    {&quot;name&quot;: &quot;PathCost&quot;},</div>
-<div class="line">    {&quot;name&quot;: &quot;DistanceToGoal&quot;},</div>
 <div class="line">    {&quot;name&quot;: &quot;OptiSafeIndex&quot;,&quot;args&quot;: {&quot;pointSamples&quot;:100,&quot;knn&quot;:1000}},</div>
 <div class="line">    {&quot;name&quot;: &quot;NodesInPath&quot;, &quot;args&quot;: {&quot;type&quot;:&quot;RDP&quot;,&quot;epsilon&quot;:0.01}}</div>
 <div class="line">  ],</div>
@@ -344,23 +331,25 @@ Usage</h1>
 <div class="line">    {&quot;name&quot;: &quot;VoronoiPlanner&quot;,&quot;args&quot;: {&quot;pointSamples&quot;:100,&quot;knn&quot;:100}},</div>
 <div class="line">    {&quot;name&quot;: &quot;AStar&quot;},</div>
 <div class="line">    {&quot;name&quot;: &quot;RRT&quot;,&quot;args&quot;: {&quot;maxIter&quot;:10000,&quot;goalSampleRate&quot;:0.05,&quot;stepSize&quot;:7,&quot;pointSamples&quot;:100}},</div>
-<div class="line"> </div>
-<div class="line">    {&quot;name&quot;: &quot;UPP&quot;,&quot;args&quot;: {&quot;alpha&quot;:0.5,&quot;beta&quot;:2,&quot;radius&quot;:5,&quot;epsilon&quot;:0.01}},</div>
 <div class="line">    {&quot;name&quot;: &quot;CBFRRT&quot;,&quot;args&quot;: {&quot;maxIter&quot;:10000,&quot;goalSampleRate&quot;:0.05,&quot;stepSize&quot;:7,&quot;pointSamples&quot;:100,&quot;gamma1&quot;:2,&quot;gamma2&quot;:2}},</div>
 <div class="line">    {&quot;name&quot;: &quot;FSPlanner&quot; ,&quot;args&quot;: {&quot;pointSamples&quot;:100,&quot;cw&quot;:1, &quot;epsilon&quot;:0.01,&quot;maxNeigh&quot;:5}},</div>
 <div class="line">    {&quot;name&quot;: &quot;SDFAStar&quot; , &quot;args&quot;: {&quot;k1&quot;:5,&quot;k2&quot;:5}},</div>
 <div class="line">    {&quot;name&quot;: &quot;OptimizedAStar&quot; , &quot;args&quot;: {&quot;turnPenaltyCoefficients&quot;:0.5,&quot;safetyDistGridRadius&quot;:100,&quot;maxInflateIter&quot;:100,&quot;pointSamples&quot;:100}},</div>
-<div class="line">    {&quot;name&quot;: &quot;SafeAStar&quot; ,&quot;args&quot;: {&quot;safetyFactor&quot;:4,&quot;epsilon&quot;:0.01}}</div>
+<div class="line">    {&quot;name&quot;: &quot;UPP&quot;,&quot;args&quot;: {&quot;alphaBase&quot;: 0.5,&quot;betaBase&quot;: 10.0,&quot;radiusBase&quot;: 1, &quot;epsilon&quot;: 0.01,&quot;betaMin&quot;: 0.1,&quot;betaMax&quot;: 2.0,&quot;betaDecay&quot;: 0.97,&quot;betaRecovery&quot;: 1.05,&quot;betaPatience&quot;: 20,&quot;goalTol&quot;: 0.1,&quot;alphaMin&quot;: 0.05,&quot;alphaMax&quot;: 0.95,&quot;alphaDecay&quot;: 0.97,&quot;alphaRecovery&quot;: 1.05,&quot;tolAngular&quot;: 180.0,&quot;turnTarget&quot;: 15.0,&quot;turnWindow&quot;: 10,&quot;radiusMin&quot;: 1,&quot;radiusMax&quot;: 5}</div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line">  </div>
 <div class="line">  ],</div>
 <div class="line">  &quot;envDetails&quot;: [</div>
 <div class="line">    {</div>
 <div class="line">      &quot;generateGrid&quot;: [</div>
 <div class="line">       </div>
-<div class="line">        {&quot;name&quot;: &quot;env1&quot; }</div>
+<div class="line">      {&quot;name&quot;: &quot;env1&quot;}</div>
+<div class="line">       </div>
 <div class="line">      ]    }</div>
 <div class="line">  ]</div>
 <div class="line">}</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md27"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md26"></a>
 Programmatic API</h1>
 <p>You can run SafePlan directly from Python by importing the main API and passing a path to your run config JSON.</p>
 <div class="fragment"><div class="line">from safeplan.main import SafePlan</div>
@@ -378,17 +367,7 @@ Programmatic API</h1>
 <div class="line"># 3) Visualize one iteration (2D → PNG, 3D → Plotly HTML)</div>
 <div class="line">viz = Visualize()</div>
 <div class="line">viz.see(&quot;/home/run1.json&quot;, iterNo=1, prefer_plotly=True)</div>
-</div><!-- fragment --><p>SafePlan experimental results in results folder on calling stats for planners for various metrices are shown in json form as follows: </p><table class="markdownTable">
-<tr class="markdownTableHead">
-<th class="markdownTableHeadNone">Algorithm   </th><th class="markdownTableHeadNone">Planning Time   </th><th class="markdownTableHeadNone">Min Clearance   </th><th class="markdownTableHeadNone">Avg Min Clearance   </th><th class="markdownTableHeadNone">Clearance Var   </th><th class="markdownTableHeadNone">Danger Violations   </th><th class="markdownTableHeadNone">Turning Angle   </th><th class="markdownTableHeadNone">Jerk / m   </th><th class="markdownTableHeadNone">Success Rate   </th><th class="markdownTableHeadNone">Opt Dev   </th><th class="markdownTableHeadNone">Path Cost   </th><th class="markdownTableHeadNone">Dist to Goal   </th><th class="markdownTableHeadNone">OptiSafe Index   </th><th class="markdownTableHeadNone">Nodes in Path    </th></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">SafeAStar   </td><td class="markdownTableBodyNone">374.96   </td><td class="markdownTableBodyNone">2.08   </td><td class="markdownTableBodyNone">3.86   </td><td class="markdownTableBodyNone">47.18   </td><td class="markdownTableBodyNone">159.62   </td><td class="markdownTableBodyNone">313.67   </td><td class="markdownTableBodyNone">0.108   </td><td class="markdownTableBodyNone">1.0   </td><td class="markdownTableBodyNone">0.0208   </td><td class="markdownTableBodyNone">13.77   </td><td class="markdownTableBodyNone">0.0   </td><td class="markdownTableBodyNone">0.887   </td><td class="markdownTableBodyNone">9.04    </td></tr>
-<tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone">AStar   </td><td class="markdownTableBodyNone">38.09   </td><td class="markdownTableBodyNone">2.02   </td><td class="markdownTableBodyNone">3.84   </td><td class="markdownTableBodyNone">49.88   </td><td class="markdownTableBodyNone">2317.31   </td><td class="markdownTableBodyNone">90.41   </td><td class="markdownTableBodyNone">0.0447   </td><td class="markdownTableBodyNone">1.0   </td><td class="markdownTableBodyNone">0.0   </td><td class="markdownTableBodyNone">13.71   </td><td class="markdownTableBodyNone">0.0   </td><td class="markdownTableBodyNone">0.842   </td><td class="markdownTableBodyNone">4.08    </td></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">FSPlanner   </td><td class="markdownTableBodyNone">712.05   </td><td class="markdownTableBodyNone">2.05   </td><td class="markdownTableBodyNone">3.82   </td><td class="markdownTableBodyNone">47.66   </td><td class="markdownTableBodyNone">48.08   </td><td class="markdownTableBodyNone">30.41   </td><td class="markdownTableBodyNone">0.00735   </td><td class="markdownTableBodyNone">1.0   </td><td class="markdownTableBodyNone">-0.0539   </td><td class="markdownTableBodyNone">13.29   </td><td class="markdownTableBodyNone">0.0   </td><td class="markdownTableBodyNone">0.934   </td><td class="markdownTableBodyNone">2.69   </td></tr>
-</table>
-<h1><a class="anchor" id="autotoc_md28"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md27"></a>
 Environments</h1>
 <p>SafePlan currently provides <b>12 benchmark environments</b>:</p>
 <ul>
@@ -407,11 +386,11 @@ Environments</h1>
 <li>Full 3D voxel maps for UAV and mobile robot planning <br  />
 </li>
 </ul>
-<h1><a class="anchor" id="autotoc_md29"></a>
+<h1><a class="anchor" id="autotoc_md28"></a>
 Extending SafePlan</h1>
 <p>SafePlan is designed to be <b>modular and extensible</b>, so you can easily add your own planners, evaluation metrics, or environments. <br  />
  This makes it straightforward for researchers and developers to benchmark <b>new ideas</b> while reusing the existing infrastructure.</p>
-<h2><a class="anchor" id="autotoc_md30"></a>
+<h2><a class="anchor" id="autotoc_md29"></a>
 Adding a New Planner</h2>
 <p>To add a new planner:</p><ol type="1">
 <li>Create a new file inside <code>safeplan/algos/</code> (e.g., <code>my_planner.py</code>).</li>
@@ -431,7 +410,7 @@ Adding a New Planner</h2>
 </div><!-- fragment --><p> You can update planner details as in adding in json form: </p><div class="fragment"><div class="line">&quot;algoDetails&quot;: [</div>
 <div class="line">    {&quot;name&quot;: &quot;MyPlanner&quot;}</div>
 <div class="line">]</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md31"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md30"></a>
 Adding a New Metric</h2>
 <p>To add a new metric:</p><ol type="1">
 <li>Create a new file inside <code>safeplan/evals/</code> (e.g., <code>my_metric.py</code>).</li>
@@ -450,7 +429,7 @@ Adding a New Metric</h2>
 </div><!-- fragment --><p> You can update eval details as in adding in json form: </p><div class="fragment"><div class="line">&quot;evalDetails&quot;: [</div>
 <div class="line">    {&quot;name&quot;: &quot;MyMetric&quot;}</div>
 <div class="line">]</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md32"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md31"></a>
 Adding a New Environment</h2>
 <p>SafePlan lets you plug in new environment generators that return occupancy grids and start/goal pairs in a consistent format. You can either <b>use the built-in <code>GenerateGrid</code></b> (loads polygons from JSON, rasterizes to a grid, caches a <code>_grid.json</code>) or <b>create your own environment</b> by subclassing <code>BaseEnv</code>.</p>
 <hr  />
@@ -523,22 +502,22 @@ Adding a New Environment</h2>
 <p>envName : str</p>
 <p>envDes : str</p>
 <p>startGoalPairs : list of objects like:</p>
-<h1><a class="anchor" id="autotoc_md34"></a>
+<h1><a class="anchor" id="autotoc_md33"></a>
 Caching &amp; Reloading (GenerateGrid)</h1>
 <p>First run: GenerateGrid loads &lt;name&gt;.json, rasterizes polygons, optionally samples random pairs, and writes &lt;name&gt;_grid.json.</p>
 <p>Subsequent runs: If &lt;name&gt;_grid.json is present and readable, it skips generation and loads from cache.</p>
 <p>Tip: Delete the _grid.json cache to force regeneration after changes to the base scene JSON.</p>
-<h1><a class="anchor" id="autotoc_md35"></a>
+<h1><a class="anchor" id="autotoc_md34"></a>
 Random Start/Goal Pairs (GenerateGrid)</h1>
 <p>If "randomStartGoal": true, SafePlan will sample numStartGoals distinct pairs in free cells.</p>
 <p>If "randomStartGoal": false, SafePlan uses the provided "startGoalPairs" array as-is.</p>
-<h1><a class="anchor" id="autotoc_md36"></a>
+<h1><a class="anchor" id="autotoc_md35"></a>
 Troubleshooting</h1>
 <p>“File exists and is readable” but scene didn’t change: Delete the cached _grid.json to regenerate.</p>
 <p>No obstacles appear: Check your polygons are convex and have valid vertex order; ConvexHull requires non-degenerate input.</p>
 <p>Invalid pairs: Ensure start/goal lie within grid bounds and on free cells (grid[...] == 0).</p>
 <p>3D grids: Use dimensionOfGrid: 3 and provide 3D polygons (polyhedra faces) that form valid convex hulls.</p>
-<h2><a class="anchor" id="autotoc_md37"></a>
+<h2><a class="anchor" id="autotoc_md36"></a>
 Cite SafePlan</h2>
 <p>If you use <b>SafePlan</b> in your research, please cite:</p>
 <div class="fragment"><div class="line">@misc{,</div>
