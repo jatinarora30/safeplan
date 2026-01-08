@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>SafePlan: Unified Path Planner for Adaptive Safe and Near Optimal Paths with Normalized OptiSafe Index and SafePlan Benchmarking</title>
+<title>SafePlan: Main Page</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -82,19 +82,12 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 
 <div class="PageDoc"><div class="header">
   <div class="headertitle">
-<div class="title">Unified Path Planner for Adaptive Safe and Near Optimal Paths with Normalized OptiSafe Index and SafePlan Benchmarking </div>  </div>
+<div class="title">SafePlan Documentation</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="md_README"></a> </p>
-<h1><a class="anchor" id="autotoc_md1"></a>
-Overview</h1>
-<p><b>SafePlan</b> is a benchmarking suite for evaluating classical and modern path planning algorithms with a strong focus on <b>safety and optimality</b> in robotics. <br  />
- It compares traditional planners with safety-aware planners, enabling fair evaluation of how algorithms balance safety and efficiency. <br  />
-</p>
-<p>SafePlan also includes the proposed <b>OptiSafe</b> metric, designed to quantify the trade-off between path optimality and safety, providing a more realistic assessment of planner performance in safety-critical robotic applications. <br  />
-</p>
-<h1><a class="anchor" id="autotoc_md2"></a>
-Key Features</h1>
+<div class="textblock"><p><a class="anchor" id="md_README"></a> Code for planners comparison</p>
+<h2><a class="anchor" id="autotoc_md0"></a>
+Key Features</h2>
 <ul>
 <li><b>Resume at any time</b><ul>
 <li>If code crashes or stops due to any reason, it will resume from the last stopped point of iteration</li>
@@ -127,13 +120,13 @@ Key Features</h1>
 </ul>
 </li>
 </ul>
-<h1><a class="anchor" id="autotoc_md3"></a>
-Evaluation Metrics</h1>
+<h2><a class="anchor" id="autotoc_md1"></a>
+Evaluation Metrics</h2>
 <p>SafePlan introduces a rich set of metrics that go <b>beyond path length and runtime</b>. <br  />
  They capture not only <b>efficiency</b>, but also <b>safety</b> and <b>smoothness</b> — key aspects for real robotic systems.</p>
 <hr  />
-<h2><a class="anchor" id="autotoc_md5"></a>
-1. Path Cost (m)</h2>
+<h3><a class="anchor" id="autotoc_md3"></a>
+1. Path Cost (m)</h3>
 <ul>
 <li><b>Definition:</b> Total geometric length of the path from start to goal. <br  />
 </li>
@@ -142,8 +135,8 @@ Evaluation Metrics</h1>
 <li><b>Unit:</b> meters (m). <br  />
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md6"></a>
-2. Planning Time (ms)</h2>
+<h3><a class="anchor" id="autotoc_md4"></a>
+2. Planning Time (ms)</h3>
 <ul>
 <li><b>Definition:</b> CPU time taken by the planner to compute a path. <br  />
 </li>
@@ -152,8 +145,8 @@ Evaluation Metrics</h1>
 <li><b>Unit:</b> milliseconds (ms). <br  />
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md7"></a>
-3. Success Rate (%)</h2>
+<h3><a class="anchor" id="autotoc_md5"></a>
+3. Success Rate (%)</h3>
 <ul>
 <li><b>Definition:</b> Fraction of planning queries where a valid path is found. <br  />
 </li>
@@ -162,16 +155,16 @@ Evaluation Metrics</h1>
 <li><b>Unit:</b> percentage (%). <br  />
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md8"></a>
-4. Number of Nodes in Path</h2>
+<h3><a class="anchor" id="autotoc_md6"></a>
+4. Number of Nodes in Path</h3>
 <ul>
 <li><b>Definition:</b> Count of waypoints in the final path. <br  />
 </li>
 <li><b>Unit:</b> count (integer). <br  />
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md9"></a>
-5. Turning Angle (°)</h2>
+<h3><a class="anchor" id="autotoc_md7"></a>
+5. Turning Angle (°)</h3>
 <ul>
 <li><b>Definition:</b> Sum of angular deviations between consecutive path segments. <br  />
 </li>
@@ -180,8 +173,8 @@ Evaluation Metrics</h1>
 <li><b>Unit:</b> degrees (°). <br  />
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md10"></a>
-6. Jerk per Meter</h2>
+<h3><a class="anchor" id="autotoc_md8"></a>
+6. Jerk per Meter</h3>
 <ul>
 <li><b>Definition:</b> Rate of change of acceleration along the path, normalized per unit distance. <br  />
 </li>
@@ -190,8 +183,8 @@ Evaluation Metrics</h1>
 <li><b>Unit:</b> dimensionless (jerk/m). <br  />
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md11"></a>
-7. Optimal Deviation (%)</h2>
+<h3><a class="anchor" id="autotoc_md9"></a>
+7. Optimal Deviation (%)</h3>
 <ul>
 <li><b>Definition:</b> Difference between path cost and known optimal path cost. <br  />
 </li>
@@ -200,8 +193,8 @@ Evaluation Metrics</h1>
 <li><b>Unit:</b> percentage (%). <br  />
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md12"></a>
-8. Minimum Clearance (m)</h2>
+<h3><a class="anchor" id="autotoc_md10"></a>
+8. Minimum Clearance (m)</h3>
 <ul>
 <li><b>Definition:</b> Smallest distance from path to nearest obstacle. <br  />
 </li>
@@ -210,24 +203,24 @@ Evaluation Metrics</h1>
 <li><b>Unit:</b> meters (m). <br  />
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md13"></a>
-9. Average Minimum Clearance (m)</h2>
+<h3><a class="anchor" id="autotoc_md11"></a>
+9. Average Minimum Clearance (m)</h3>
 <ul>
 <li><b>Definition:</b> Mean clearance across path points. <br  />
 </li>
 <li><b>Unit:</b> meters (m). <br  />
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md14"></a>
-10. Clearance Variability</h2>
+<h3><a class="anchor" id="autotoc_md12"></a>
+10. Clearance Variability</h3>
 <ul>
 <li><b>Definition:</b> Variance of clearance values along the path. <br  />
 </li>
 <li><b>Unit:</b> meters². <br  />
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md15"></a>
-11. Danger Zone Violations</h2>
+<h3><a class="anchor" id="autotoc_md13"></a>
+11. Danger Zone Violations</h3>
 <ul>
 <li><b>Definition:</b> Number of times path enters a predefined danger radius around obstacles. <br  />
 </li>
@@ -236,18 +229,17 @@ Evaluation Metrics</h1>
 <li><b>Unit:</b> count (integer). <br  />
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md16"></a>
-12. OptiSafe Index (Proposed)</h2>
+<h3><a class="anchor" id="autotoc_md14"></a>
+12. OptiSafe Index (Proposed)</h3>
 <ul>
 <li><b>Definition:</b> An index to measure balance between safety and optimality</li>
 <li><b>Unit:</b> float between 0 and 1. <br  />
 </li>
 </ul>
-<h1><a class="anchor" id="autotoc_md17"></a>
-Algorithms in SafePlan</h1>
-<p>SafePlan includes both <b>traditional planners</b> and <b>safety-aware planners</b>, allowing direct benchmarking on <b>safety vs. optimality</b> tradeoffs.</p>
-<h2><a class="anchor" id="autotoc_md18"></a>
-🔹 Traditional Planners</h2>
+<h2><a class="anchor" id="autotoc_md15"></a>
+Algorithms Included</h2>
+<h3><a class="anchor" id="autotoc_md16"></a>
+Traditional Planners</h3>
 <ul>
 <li><b>A*</b> <br  />
  Heuristic-guided search algorithm that combines optimality of Dijkstra with efficiency via heuristics. <br  />
@@ -260,8 +252,8 @@ Algorithms in SafePlan</h1>
  Reference: (<a href="https://www.semanticscholar.org/paper/Rapidly-exploring-random-trees-%3A-a-new-tool-for-LaValle/d967d9550f831a8b3f5cb00f8835a4c866da60ad">https://www.semanticscholar.org/paper/Rapidly-exploring-random-trees-%3A-a-new-tool-for-LaValle/d967d9550f831a8b3f5cb00f8835a4c866da60ad</a>)</li>
 </ul>
 <hr  />
-<h2><a class="anchor" id="autotoc_md20"></a>
-🔹 Safety-Aware Planners</h2>
+<h3><a class="anchor" id="autotoc_md18"></a>
+Safety-Aware Planners</h3>
 <ul>
 <li><b>Unified Path Planner (Ours)</b> <br  />
  A safety-aware planner integrating safety heuristics <br  />
@@ -278,10 +270,10 @@ Algorithms in SafePlan</h1>
 <li><b>FS Planner</b> <br  />
  Uses an integrated inverse distance, on lazy theta AStar and also gives a limit on maximum neighbours explored in goal and safe direction Reference: (<a href="https://arxiv.org/pdf/2505.24024">https://arxiv.org/pdf/2505.24024</a>)</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md21"></a>
-Installation</h1>
-<h2><a class="anchor" id="autotoc_md22"></a>
-Requirements</h2>
+<h2><a class="anchor" id="autotoc_md19"></a>
+Installation</h2>
+<h3><a class="anchor" id="autotoc_md20"></a>
+Requirements</h3>
 <ul>
 <li><b>Python</b>: 3.9 or newer <br  />
 </li>
@@ -299,16 +291,15 @@ Requirements</h2>
 </li>
 </ul>
 <p>All dependencies are listed in <code>requirements.txt</code>.</p>
-<hr  />
-<h2><a class="anchor" id="autotoc_md24"></a>
-Install from source</h2>
+<h3><a class="anchor" id="autotoc_md21"></a>
+Install from source</h3>
 <p>Clone the repository and install in editable mode:</p>
 <div class="fragment"><div class="line">git clone https://github.com/&lt;your-username&gt;/safeplan.git</div>
 <div class="line">cd safeplan</div>
 <div class="line">pip install -r requirements.txt</div>
 <div class="line">pip install -e .</div>
-</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md25"></a>
-Usage</h1>
+</div><!-- fragment --> <h2><a class="anchor" id="autotoc_md22"></a>
+Usage</h2>
 <p>SafePlan experiments are configured via a JSON file (e.g., <code>run1.json</code>). <br  />
  Below is an example:</p>
 <div class="fragment"><div class="line">{</div>
@@ -349,9 +340,9 @@ Usage</h1>
 <div class="line">      ]    }</div>
 <div class="line">  ]</div>
 <div class="line">}</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md26"></a>
-Programmatic API</h1>
-<p>You can run SafePlan directly from Python by importing the main API and passing a path to your run config JSON.</p>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md23"></a>
+Programmatic API</h2>
+<p>You can run directly from Python by importing the main API and passing a path to your run config JSON.</p>
 <div class="fragment"><div class="line">from safeplan.main import SafePlan</div>
 <div class="line">from safeplan.core.stats import Stats</div>
 <div class="line">from safeplan.core.visualize import Visualize</div>
@@ -367,9 +358,9 @@ Programmatic API</h1>
 <div class="line"># 3) Visualize one iteration (2D → PNG, 3D → Plotly HTML)</div>
 <div class="line">viz = Visualize()</div>
 <div class="line">viz.see(&quot;/home/run1.json&quot;, iterNo=1, prefer_plotly=True)</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md27"></a>
-Environments</h1>
-<p>SafePlan currently provides <b>12 benchmark environments</b>:</p>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md24"></a>
+Environments</h2>
+<p>It currently provides <b>12 benchmark environments</b>:</p>
 <ul>
 <li><b>2D Large (1000×1000):</b> 5 maps <br  />
 </li>
@@ -386,12 +377,12 @@ Environments</h1>
 <li>Full 3D voxel maps for UAV and mobile robot planning <br  />
 </li>
 </ul>
-<h1><a class="anchor" id="autotoc_md28"></a>
-Extending SafePlan</h1>
-<p>SafePlan is designed to be <b>modular and extensible</b>, so you can easily add your own planners, evaluation metrics, or environments. <br  />
+<h2><a class="anchor" id="autotoc_md25"></a>
+Extending Code</h2>
+<p>It is designed to be <b>modular and extensible</b>, so you can easily add your own planners, evaluation metrics, or environments. <br  />
  This makes it straightforward for researchers and developers to benchmark <b>new ideas</b> while reusing the existing infrastructure.</p>
-<h2><a class="anchor" id="autotoc_md29"></a>
-Adding a New Planner</h2>
+<h3><a class="anchor" id="autotoc_md26"></a>
+Adding a New Planner</h3>
 <p>To add a new planner:</p><ol type="1">
 <li>Create a new file inside <code>safeplan/algos/</code> (e.g., <code>my_planner.py</code>).</li>
 <li>Inherit from <code>BasePlanner</code> and implement the <code>plan(start, goal, grid)</code> method.</li>
@@ -410,8 +401,8 @@ Adding a New Planner</h2>
 </div><!-- fragment --><p> You can update planner details as in adding in json form: </p><div class="fragment"><div class="line">&quot;algoDetails&quot;: [</div>
 <div class="line">    {&quot;name&quot;: &quot;MyPlanner&quot;}</div>
 <div class="line">]</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md30"></a>
-Adding a New Metric</h2>
+</div><!-- fragment --><h3><a class="anchor" id="autotoc_md27"></a>
+Adding a New Metric</h3>
 <p>To add a new metric:</p><ol type="1">
 <li>Create a new file inside <code>safeplan/evals/</code> (e.g., <code>my_metric.py</code>).</li>
 <li>Inherit from <code>BaseEval</code> and implement the <code>eval(start,goal,grid,cellSize,path)</code> method.</li>
@@ -429,9 +420,9 @@ Adding a New Metric</h2>
 </div><!-- fragment --><p> You can update eval details as in adding in json form: </p><div class="fragment"><div class="line">&quot;evalDetails&quot;: [</div>
 <div class="line">    {&quot;name&quot;: &quot;MyMetric&quot;}</div>
 <div class="line">]</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md31"></a>
-Adding a New Environment</h2>
-<p>SafePlan lets you plug in new environment generators that return occupancy grids and start/goal pairs in a consistent format. You can either <b>use the built-in <code>GenerateGrid</code></b> (loads polygons from JSON, rasterizes to a grid, caches a <code>_grid.json</code>) or <b>create your own environment</b> by subclassing <code>BaseEnv</code>.</p>
+</div><!-- fragment --><h3><a class="anchor" id="autotoc_md28"></a>
+Adding a New Environment</h3>
+<p>It lets you plug in new environment generators that return occupancy grids and start/goal pairs in a consistent format. You can either <b>use the built-in <code>GenerateGrid</code></b> (loads polygons from JSON, rasterizes to a grid, caches a <code>_grid.json</code>) or <b>create your own environment</b> by subclassing <code>BaseEnv</code>.</p>
 <hr  />
 <p>Option A — Use the built-in <code>GenerateGrid</code></p>
 <p><code>GenerateGrid</code> reads a scene JSON from: safeplan/configs/generate_grid/&lt;YOUR_ENV&gt;/&lt;YOUR_ENV&gt;.json and writes/loads a cache: safeplan/configs/generate_grid/&lt;YOUR_ENV&gt;/&lt;YOUR_ENV&gt;_grid.json</p>
@@ -451,6 +442,7 @@ Adding a New Environment</h2>
 <div class="line">  &quot;envDes&quot;: &quot;A 2D room with convex polygon obstacles&quot;,</div>
 <div class="line">  &quot;randomStartGoal&quot;: true,</div>
 <div class="line">  &quot;numStartGoals&quot;: 50,</div>
+<div class="line">  &quot;timesEachGoal&quot;: 1,</div>
 <div class="line">  &quot;startGoalPairs&quot;: [],</div>
 <div class="line">  &quot;polygons&quot;: [</div>
 <div class="line">    { &quot;polygon&quot;: [[20,20],[40,20],[40,40],[20,40]] },</div>
@@ -502,35 +494,22 @@ Adding a New Environment</h2>
 <p>envName : str</p>
 <p>envDes : str</p>
 <p>startGoalPairs : list of objects like:</p>
-<h1><a class="anchor" id="autotoc_md33"></a>
-Caching &amp; Reloading (GenerateGrid)</h1>
+<h2><a class="anchor" id="autotoc_md30"></a>
+Caching &amp; Reloading (GenerateGrid)</h2>
 <p>First run: GenerateGrid loads &lt;name&gt;.json, rasterizes polygons, optionally samples random pairs, and writes &lt;name&gt;_grid.json.</p>
 <p>Subsequent runs: If &lt;name&gt;_grid.json is present and readable, it skips generation and loads from cache.</p>
 <p>Tip: Delete the _grid.json cache to force regeneration after changes to the base scene JSON.</p>
-<h1><a class="anchor" id="autotoc_md34"></a>
-Random Start/Goal Pairs (GenerateGrid)</h1>
+<h2><a class="anchor" id="autotoc_md31"></a>
+Random Start/Goal Pairs (GenerateGrid)</h2>
 <p>If "randomStartGoal": true, SafePlan will sample numStartGoals distinct pairs in free cells.</p>
 <p>If "randomStartGoal": false, SafePlan uses the provided "startGoalPairs" array as-is.</p>
-<h1><a class="anchor" id="autotoc_md35"></a>
+<h1><a class="anchor" id="autotoc_md32"></a>
 Troubleshooting</h1>
 <p>“File exists and is readable” but scene didn’t change: Delete the cached _grid.json to regenerate.</p>
 <p>No obstacles appear: Check your polygons are convex and have valid vertex order; ConvexHull requires non-degenerate input.</p>
 <p>Invalid pairs: Ensure start/goal lie within grid bounds and on free cells (grid[...] == 0).</p>
-<p>3D grids: Use dimensionOfGrid: 3 and provide 3D polygons (polyhedra faces) that form valid convex hulls.</p>
-<h2><a class="anchor" id="autotoc_md36"></a>
-Cite SafePlan</h2>
-<p>If you use <b>SafePlan</b> in your research, please cite:</p>
-<div class="fragment"><div class="line">@misc{,</div>
-<div class="line">  doi = {},</div>
-<div class="line">  url = {},</div>
-<div class="line">  author = {},</div>
-<div class="line">  keywords = {},</div>
-<div class="line">  title = {},</div>
-<div class="line">  publisher = {},</div>
-<div class="line">  year = {},</div>
-<div class="line">  copyright = {}</div>
-<div class="line">}</div>
-</div><!-- fragment --> </div></div><!-- PageDoc -->
+<p>3D grids: Use dimensionOfGrid: 3 and provide 3D polygons (polyhedra faces) that form valid convex hulls. </p>
+</div></div><!-- PageDoc -->
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

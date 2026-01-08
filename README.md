@@ -1,11 +1,4 @@
-# Unified Path Planner for Adaptive Safe and Near Optimal Paths with Normalized OptiSafe Index and SafePlan Benchmarking
-
-## Overview
-
-**SafePlan** is a benchmarking suite for evaluating classical and modern path planning algorithms with a strong focus on **safety and optimality** in robotics.  
-It compares traditional planners with safety-aware planners, enabling fair evaluation of how algorithms balance safety and efficiency.  
-
-SafePlan also includes the proposed **OptiSafe** metric, designed to quantify the trade-off between path optimality and safety, providing a more realistic assessment of planner performance in safety-critical robotic applications.  
+Code for planners comparison
 
 
 ## Key Features
@@ -99,11 +92,10 @@ They capture not only **efficiency**, but also **safety** and **smoothness** —
 - **Unit:** float between 0 and 1.  
 
 
-## Algorithms in SafePlan
+## Algorithms Included
 
-SafePlan includes both **traditional planners** and **safety-aware planners**, allowing direct benchmarking on **safety vs. optimality** tradeoffs.
 
-### 🔹 Traditional Planners
+###  Traditional Planners
 
 
 - **A\***  
@@ -121,7 +113,7 @@ SafePlan includes both **traditional planners** and **safety-aware planners**, a
 
 ---
 
-### 🔹 Safety-Aware Planners
+###  Safety-Aware Planners
 - **Unified Path Planner (Ours)**  
   A safety-aware planner integrating safety heuristics  
   
@@ -161,7 +153,7 @@ SafePlan includes both **traditional planners** and **safety-aware planners**, a
 
 All dependencies are listed in `requirements.txt`.
 
----
+
 
 ### Install from source
 
@@ -223,7 +215,7 @@ Below is an example:
 
 ##  Programmatic API
 
-You can run SafePlan directly from Python by importing the main API and passing a path to your run config JSON.
+You can run  directly from Python by importing the main API and passing a path to your run config JSON.
 
 ```python
 from safeplan.main import SafePlan
@@ -245,7 +237,7 @@ viz.see("/home/run1.json", iterNo=1, prefer_plotly=True)
 
 ## Environments
 
-SafePlan currently provides **12 benchmark environments**:
+It currently provides **12 benchmark environments**:
 
 - **2D Large (1000×1000):** 5 maps  
 - **2D Medium (100×100):** 5 maps  
@@ -256,9 +248,9 @@ These cover a diverse range of planning challenges:
 - Medium-sized grids for rapid prototyping  
 - Full 3D voxel maps for UAV and mobile robot planning  
 
-##  Extending SafePlan
+##  Extending Code
 
-SafePlan is designed to be **modular and extensible**, so you can easily add your own planners, evaluation metrics, or environments.  
+It is designed to be **modular and extensible**, so you can easily add your own planners, evaluation metrics, or environments.  
 This makes it straightforward for researchers and developers to benchmark **new ideas** while reusing the existing infrastructure.
 
 
@@ -319,7 +311,7 @@ You can update eval details as in adding in json form:
 
 ### Adding a New Environment
 
-SafePlan lets you plug in new environment generators that return occupancy grids and start/goal pairs in a consistent format. You can either **use the built-in `GenerateGrid`** (loads polygons from JSON, rasterizes to a grid, caches a `_grid.json`) or **create your own environment** by subclassing `BaseEnv`.
+It lets you plug in new environment generators that return occupancy grids and start/goal pairs in a consistent format. You can either **use the built-in `GenerateGrid`** (loads polygons from JSON, rasterizes to a grid, caches a `_grid.json`) or **create your own environment** by subclassing `BaseEnv`.
 
 ---
 
@@ -349,6 +341,7 @@ Scene JSON schema (example):
   "envDes": "A 2D room with convex polygon obstacles",
   "randomStartGoal": true,
   "numStartGoals": 50,
+  "timesEachGoal": 1,
   "startGoalPairs": [],
   "polygons": [
     { "polygon": [[20,20],[40,20],[40,40],[20,40]] },
@@ -446,19 +439,3 @@ Invalid pairs: Ensure start/goal lie within grid bounds and on free cells (grid[
 
 3D grids: Use dimensionOfGrid: 3 and provide 3D polygons (polyhedra faces) that form valid convex hulls.
 
-## Cite SafePlan
-
-If you use **SafePlan** in your research, please cite:
-
-```bibtex
-@misc{,
-  doi = {},
-  url = {},
-  author = {},
-  keywords = {},
-  title = {},
-  publisher = {},
-  year = {},
-  copyright = {}
-}
-```

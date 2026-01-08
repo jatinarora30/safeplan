@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['a_5fstar_273',['a_star',['../namespacea__star.html',1,'']]],
-  ['average_5fminimum_5fclearance_274',['average_minimum_clearance',['../namespaceaverage__minimum__clearance.html',1,'']]]
+  ['a_5fstar_272',['a_star',['../namespacea__star.html',1,'']]],
+  ['average_5fminimum_5fclearance_273',['average_minimum_clearance',['../namespaceaverage__minimum__clearance.html',1,'']]]
 ];

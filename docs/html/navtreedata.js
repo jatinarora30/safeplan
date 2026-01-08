@@ -25,46 +25,41 @@
 var NAVTREE =
 [
   [ "SafePlan", "index.html", [
-    [ "Unified Path Planner for Adaptive Safe and Near Optimal Paths with Normalized OptiSafe Index and SafePlan Benchmarking", "index.html", [
-      [ "Overview", "index.html#autotoc_md1", null ],
-      [ "Key Features", "index.html#autotoc_md2", null ],
-      [ "Evaluation Metrics", "index.html#autotoc_md3", [
-        [ "1. Path Cost (m)", "index.html#autotoc_md5", null ],
-        [ "2. Planning Time (ms)", "index.html#autotoc_md6", null ],
-        [ "3. Success Rate (%)", "index.html#autotoc_md7", null ],
-        [ "4. Number of Nodes in Path", "index.html#autotoc_md8", null ],
-        [ "5. Turning Angle (°)", "index.html#autotoc_md9", null ],
-        [ "6. Jerk per Meter", "index.html#autotoc_md10", null ],
-        [ "7. Optimal Deviation (%)", "index.html#autotoc_md11", null ],
-        [ "8. Minimum Clearance (m)", "index.html#autotoc_md12", null ],
-        [ "9. Average Minimum Clearance (m)", "index.html#autotoc_md13", null ],
-        [ "10. Clearance Variability", "index.html#autotoc_md14", null ],
-        [ "11. Danger Zone Violations", "index.html#autotoc_md15", null ],
-        [ "12. OptiSafe Index (Proposed)", "index.html#autotoc_md16", null ]
-      ] ],
-      [ "Algorithms in SafePlan", "index.html#autotoc_md17", [
-        [ "🔹 Traditional Planners", "index.html#autotoc_md18", null ],
-        [ "🔹 Safety-Aware Planners", "index.html#autotoc_md20", null ]
-      ] ],
-      [ "Installation", "index.html#autotoc_md21", [
-        [ "Requirements", "index.html#autotoc_md22", null ],
-        [ "Install from source", "index.html#autotoc_md24", null ]
-      ] ],
-      [ "Usage", "index.html#autotoc_md25", null ],
-      [ "Programmatic API", "index.html#autotoc_md26", null ],
-      [ "Environments", "index.html#autotoc_md27", null ],
-      [ "Extending SafePlan", "index.html#autotoc_md28", [
-        [ "Adding a New Planner", "index.html#autotoc_md29", null ],
-        [ "Adding a New Metric", "index.html#autotoc_md30", null ],
-        [ "Adding a New Environment", "index.html#autotoc_md31", null ]
-      ] ],
-      [ "Caching & Reloading (GenerateGrid)", "index.html#autotoc_md33", null ],
-      [ "Random Start/Goal Pairs (GenerateGrid)", "index.html#autotoc_md34", null ],
-      [ "Troubleshooting", "index.html#autotoc_md35", [
-        [ "Cite SafePlan", "index.html#autotoc_md36", null ]
-      ] ]
-    ] ],
+    [ "Troubleshooting", "index.html#autotoc_md32", null ],
     [ "Namespaces", "namespaces.html", [
+      [ "Key Features", "index.html#autotoc_md0", null ],
+      [ "Evaluation Metrics", "index.html#autotoc_md1", [
+        [ "1. Path Cost (m)", "index.html#autotoc_md3", null ],
+        [ "2. Planning Time (ms)", "index.html#autotoc_md4", null ],
+        [ "3. Success Rate (%)", "index.html#autotoc_md5", null ],
+        [ "4. Number of Nodes in Path", "index.html#autotoc_md6", null ],
+        [ "5. Turning Angle (°)", "index.html#autotoc_md7", null ],
+        [ "6. Jerk per Meter", "index.html#autotoc_md8", null ],
+        [ "7. Optimal Deviation (%)", "index.html#autotoc_md9", null ],
+        [ "8. Minimum Clearance (m)", "index.html#autotoc_md10", null ],
+        [ "9. Average Minimum Clearance (m)", "index.html#autotoc_md11", null ],
+        [ "10. Clearance Variability", "index.html#autotoc_md12", null ],
+        [ "11. Danger Zone Violations", "index.html#autotoc_md13", null ],
+        [ "12. OptiSafe Index (Proposed)", "index.html#autotoc_md14", null ]
+      ] ],
+      [ "Algorithms Included", "index.html#autotoc_md15", [
+        [ "Traditional Planners", "index.html#autotoc_md16", null ],
+        [ "Safety-Aware Planners", "index.html#autotoc_md18", null ]
+      ] ],
+      [ "Installation", "index.html#autotoc_md19", [
+        [ "Requirements", "index.html#autotoc_md20", null ],
+        [ "Install from source", "index.html#autotoc_md21", null ]
+      ] ],
+      [ "Usage", "index.html#autotoc_md22", null ],
+      [ "Programmatic API", "index.html#autotoc_md23", null ],
+      [ "Environments", "index.html#autotoc_md24", null ],
+      [ "Extending Code", "index.html#autotoc_md25", [
+        [ "Adding a New Planner", "index.html#autotoc_md26", null ],
+        [ "Adding a New Metric", "index.html#autotoc_md27", null ],
+        [ "Adding a New Environment", "index.html#autotoc_md28", null ]
+      ] ],
+      [ "Caching & Reloading (GenerateGrid)", "index.html#autotoc_md30", null ],
+      [ "Random Start/Goal Pairs (GenerateGrid)", "index.html#autotoc_md31", null ],
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
       [ "Namespace Members", "namespacemembers.html", [
         [ "All", "namespacemembers.html", null ],
@@ -91,7 +86,7 @@ var NAVTREEINDEX =
 [
 "____init_____8py.html",
 "classsafeplan_1_1main_1_1SafePlan.html#a8239b3d9aaca5e2b8184e3169cf37f7e",
-"namespaceminimum__clearance.html"
+"namespaceoptimized__astar.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
